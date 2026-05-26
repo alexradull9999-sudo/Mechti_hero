@@ -1,0 +1,109 @@
+@import "tailwindcss";
+
+@theme {
+  --font-serif: "Cormorant Garamond", Georgia, serif;
+  --font-sans: "Manrope", "Inter", sans-serif;
+
+  --color-bg-primary: #0F0F0F;
+  --color-bg-secondary: #1A1A1A;
+  --color-bg-light: #F5F1EA;
+  --color-bg-cream: #EDE6D8;
+  --color-text-primary: #F5F1EA;
+  --color-text-dark: #1A1A1A;
+  --color-text-muted: #8B8478;
+  --color-accent: #B8956A;
+  --color-accent-dark: #8B6F4E;
+}
+
+/* Custom premium scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #0F0F0F;
+}
+::-webkit-scrollbar-thumb {
+  background: #B8956A;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #8B6F4E;
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: #0F0F0F;
+  color: #F5F1EA;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Hide standard cursor if customized */
+.custom-cursor-active {
+  cursor: none;
+}
+.custom-cursor-active a,
+.custom-cursor-active button,
+.custom-cursor-active select,
+.custom-cursor-active input,
+.custom-cursor-active textarea,
+.custom-cursor-active [role="button"] {
+  cursor: none;
+}
+
+/* Smooth premium selection */
+::selection {
+  background-color: rgba(184, 149, 106, 0.3);
+  color: #F5F1EA;
+}
+
+/* Accent link hover underline effect */
+.hover-underline {
+  position: relative;
+}
+.hover-underline::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 1px;
+  bottom: -2px;
+  left: 0;
+  background-color: #B8956A;
+  transform-origin: bottom right;
+  transition: transform 0.3s ease-out;
+}
+.hover-underline:hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+/* Custom premium Immersive UI styles */
+.brass-border {
+  border-color: rgba(184, 149, 106, 0.3);
+}
+
+.accent-text {
+  color: #B8956A;
+}
+
+.bg-brass {
+  background-color: #B8956A;
+}
+
+.glass-nav {
+  background: rgba(15, 15, 15, 0.8);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+/* Base custom font families mapping for Tailwind configuration compatibility */
+.font-serif {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+}
+
+.font-sans {
+  font-family: 'Manrope', 'Inter', sans-serif;
+}
+

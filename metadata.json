@@ -1,0 +1,8 @@
+{
+  "name": "ГК «Все начинается с Мечты»",
+  "description": "Премиум-холдинг полного цикла недвижимости, дизайна, ремонта под ключ и мебельного производства в Москве — Mechty Group.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
