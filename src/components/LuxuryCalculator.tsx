@@ -546,7 +546,7 @@ export default function LuxuryCalculator({ onOpenConsultation }: LuxuryCalculato
   };
 
   return (
-    <section id="calculator" className="bg-[#1A1A1A] text-[#F5F1EA] py-24 md:py-36 relative overflow-hidden border-b border-[#B8956A]/20 pb-32 md:pb-36">
+    <section id="calculator" className="bg-[#1A1A1A] text-[#F5F1EA] py-24 md:py-36 relative overflow-clip border-b border-[#B8956A]/20 pb-32 md:pb-36">
       {/* Background radial glows */}
       <div className="absolute top-1/4 left-0 w-96 h-96 bg-[#B8956A]/5 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-1/4 right-0 w-96 h-96 bg-[#B8956A]/5 rounded-full blur-3xl pointer-events-none" />
@@ -882,7 +882,7 @@ export default function LuxuryCalculator({ onOpenConsultation }: LuxuryCalculato
           </div>
 
           {/* RIGHT COLUMN: Outcomes Sticky Summary Panel */}
-          <div className="md:col-span-4 lg:col-span-5 md:sticky md:top-24">
+          <div className="md:col-span-4 lg:col-span-5 md:sticky md:top-28 lg:top-32 self-start transition-all">
             
             <div className="bg-[#0F0F0F] border border-[#B8956A] p-6 lg:p-8 space-y-6 shadow-xl relative">
               

@@ -1,7 +1,11 @@
 import React from 'react';
-import { Instagram, Tv, Award, Users } from 'lucide-react';
+import { Instagram, Tv, Award, Users, MessageSquare } from 'lucide-react';
 
-export default function Founders() {
+interface FoundersProps {
+  onOpenConsultation?: (customMessage?: string, customTitle?: string, customDesc?: string) => void;
+}
+
+export default function Founders({ onOpenConsultation }: FoundersProps) {
   return (
     <section id="about" className="bg-[#F5F1EA] text-[#1A1A1A] py-24 md:py-36 border-b border-[#1A1A1A]/5">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
@@ -94,6 +98,20 @@ export default function Founders() {
                   Юрий и Диана Постриганевы лично координируют ключевые вехи проектов, гарантируя соблюдение премиальных стандартов качества.
                 </p>
               </div>
+
+              {onOpenConsultation && (
+                <button
+                  onClick={() => onOpenConsultation(
+                    'Запрос: Вопрос основателям холдинга (Юрию и Диане Постриганевым).',
+                    'Задать вопрос Юрию и Диане',
+                    'Напишите ваш вопрос Юрию и Диане. Мы передадим его основателям для обратной связи или прямого ответа.'
+                  )}
+                  className="w-full py-3.5 border-2 border-[#8B6F4E] hover:bg-[#8B6F4E] hover:text-white text-[#8B6F4E] transition-all duration-300 text-xs uppercase tracking-widest font-sans font-bold flex items-center justify-center gap-2 cursor-pointer mt-4"
+                >
+                  <MessageSquare size={13} />
+                  <span>Задать вопрос</span>
+                </button>
+              )}
             </div>
           </div>
 
@@ -103,8 +121,8 @@ export default function Founders() {
         <div className="mt-16 md:mt-24">
           <div className="relative h-[320px] sm:h-[450px] md:h-[550px] overflow-hidden border border-[#B8956A]/20 shadow-2xl bg-[#EDE6D8]">
             <img
-              src="/portfolio/usadba_1.png"
-              alt="Усадьба Эрмитаж"
+              src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80"
+              alt="Усадьба"
               className="w-full h-full object-cover"
               referrerPolicy="no-referrer"
               loading="lazy"

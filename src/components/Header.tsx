@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X, Phone } from 'lucide-react';
+import Logo from './Logo';
 
 interface HeaderProps {
   onOpenConsultation: () => void;
@@ -46,50 +47,47 @@ export default function Header({ onOpenConsultation, onScrollToSection }: Header
             : 'bg-[#1A1A1A]/90 backdrop-blur-md border-b border-white/5 py-4 md:py-5'
         }`}
       >
-        <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between">
-          {/* Logo */}
-          <div
-            onClick={() => handleNavItemClick('hero')}
-            className="cursor-pointer group flex items-center shrink-0"
-          >
-            <img 
-              src="/logo.svg" 
-              alt="MECHTY GROUP" 
-              className="h-9 md:h-11 w-auto opacity-95 group-hover:opacity-100 group-hover:scale-[1.02] transition-all duration-300"
-              onError={(e) => {
-                e.currentTarget.style.display = 'none';
-              }}
-            />
+        <div className="max-w-7xl mx-auto px-6 md:px-12 flex lg:grid lg:grid-cols-12 items-center justify-between">
+          {/* Logo container: spans 2/12 cols on lg, 3/12 on xl */}
+          <div className="flex items-center justify-start lg:col-span-2 xl:col-span-3">
+            <div
+              onClick={() => handleNavItemClick('hero')}
+              className="cursor-pointer group flex items-center shrink-0"
+            >
+              <Logo 
+                className="h-8 md:h-9 xl:h-11 w-auto opacity-95 group-hover:opacity-100 group-hover:scale-[1.02] transition-all duration-300 text-[#B8956A] hover:text-[#EDE6D8]"
+              />
+            </div>
           </div>
 
-          {/* Desktop Navigation - Optimized gaps and text sizes to prevent overlap */}
-          <nav className="hidden lg:flex items-center gap-3 xl:gap-5 min-[1380px]:gap-6">
+          {/* Desktop Navigation - Middle 6/12 columns, perfectly centered */}
+          <nav className="hidden lg:flex items-center justify-center gap-2.5 xl:gap-5 min-[1380px]:gap-6 lg:col-span-6">
             {navItems.map((item) => (
               <button
                 key={item.id}
                 onClick={() => handleNavItemClick(item.id)}
-                className="text-[#F5F1EA]/80 hover:text-[#B8956A] text-[10px] xl:text-xs uppercase tracking-wider xl:tracking-widest font-sans transition-colors duration-300 font-bold relative after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-[1px] after:bg-[#B8956A] hover:after:w-full after:transition-all after:duration-300"
+                className="text-[#F5F1EA]/80 hover:text-[#B8956A] text-[9px] xl:text-xs uppercase tracking-wider xl:tracking-widest font-sans transition-colors duration-300 font-bold relative after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-[1px] after:bg-[#B8956A] hover:after:w-full after:transition-all after:duration-300 whitespace-nowrap"
               >
                 {item.name}
               </button>
             ))}
           </nav>
 
-          {/* Contact Actions for Desktop (>= 1024px) */}
-          <div className="hidden lg:flex items-center gap-4 xl:gap-6">
-            <a
-              href="tel:+79250999333"
-              className="flex items-center gap-1.5 text-[#F5F1EA] hover:text-[#B8956A] font-mono text-xs xl:text-sm tracking-widest transition-colors duration-300 font-bold shrink-0"
-            >
-              <Phone size={13} className="text-[#B8956A]" />
-              <span>+7 (925) 0999-333</span>
-            </a>
+          {/* Contact Actions for Desktop - Stacked vertically (button on top, phone number underneath) to prevent any layout collision */}
+          <div className="hidden lg:flex flex-col items-end gap-1.5 lg:col-span-4 xl:col-span-3 pl-2 select-none">
             <button
               onClick={onOpenConsultation}
-              className="px-3.5 xl:px-5 py-2.5 text-[10px] xl:text-xs uppercase tracking-widest font-sans font-extrabold text-[#B8956A] hover:text-[#0F0F0F] border border-[#B8956A] hover:bg-[#B8956A] transition-all duration-300 active:scale-95 shadow-md shrink-0"
+              className="px-3 xl:px-5 py-2 text-[9px] xl:text-[10px] uppercase tracking-widest font-sans font-extrabold text-[#B8956A] hover:text-[#0F0F0F] border border-[#B8956A] hover:bg-[#B8956A] transition-all duration-300 active:scale-95 shadow-md shrink-0 whitespace-nowrap"
             >
               Записаться на встречу
             </button>
+            <a
+              href="tel:+79250999333"
+              className="flex items-center gap-1.5 text-white hover:text-[#B8956A] font-sans text-xs xl:text-sm tracking-wide transition-colors duration-300 font-bold shrink-0 group mr-1"
+            >
+              <Phone size={13} className="text-[#B8956A] shrink-0 group-hover:scale-110 transition-transform duration-300" />
+              <span className="whitespace-nowrap">+7 (925) 099-93-33</span>
+            </a>
           </div>
 
           {/* Mobile and Tablet Menu button trigger (hidden on desktop >= lg) */}
@@ -140,10 +138,10 @@ export default function Header({ onOpenConsultation, onScrollToSection }: Header
           <div className="mt-8 flex flex-col items-center gap-6 border-t border-[#B8956A]/10 pt-8 w-full max-w-md mx-auto shrink-0">
             <a
               href="tel:+79250999333"
-              className="flex items-center gap-2.5 text-[#F5F1EA] hover:text-[#B8956A] font-mono text-base md:text-lg tracking-wider transition-colors duration-300 font-semibold"
+              className="flex items-center gap-2.5 text-white hover:text-[#B8956A] font-sans text-lg md:text-xl tracking-wide transition-colors duration-300 font-bold"
             >
-              <Phone size={16} className="text-[#B8956A]" />
-              <span>+7 (925) 0999-333</span>
+              <Phone size={18} className="text-[#B8956A] shrink-0" />
+              <span>+7 (925) 099-93-33</span>
             </a>
             
             <button

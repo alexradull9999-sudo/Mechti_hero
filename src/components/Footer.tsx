@@ -1,5 +1,6 @@
 import React from 'react';
 import { Instagram, Sparkles, Building, Phone } from 'lucide-react';
+import Logo from './Logo';
 
 interface FooterProps {
   onScrollToSection: (id: string) => void;
@@ -24,13 +25,8 @@ export default function Footer({ onScrollToSection }: FooterProps) {
               onClick={() => onScrollToSection('hero')}
               className="cursor-pointer flex items-center group"
             >
-              <img 
-                src="/logo.svg" 
-                alt="MECHTY GROUP" 
-                className="h-9 md:h-11 w-auto opacity-95 group-hover:opacity-100 transition-all duration-300"
-                onError={(e) => {
-                  e.currentTarget.style.display = 'none';
-                }}
+              <Logo 
+                className="h-9 md:h-11 w-auto opacity-95 group-hover:opacity-100 transition-all duration-300 text-[#B8956A] hover:text-[#EDE6D8]"
               />
             </div>
             
@@ -106,8 +102,8 @@ export default function Footer({ onScrollToSection }: FooterProps) {
             </div>
             
             <div className="space-y-2">
-              <a href="tel:+79250999333" className="font-sans text-sm text-[#EDE6D8] font-bold block hover:text-[#B8956A] transition-colors">
-                +7 (925) 0999-333
+              <a href="tel:+79250999333" className="font-sans text-base text-[#EDE6D8] font-bold block hover:text-[#B8956A] transition-colors">
+                +7 (925) 099-93-33
               </a>
               <a
                 href="mailto:hello@mechtygroup.ru"
@@ -125,11 +121,14 @@ export default function Footer({ onScrollToSection }: FooterProps) {
 
         {/* Footer Base Legal details row */}
         <div className="space-y-6 pt-6 border-t border-[#B8956A]/10">
-          <div className="flex flex-col sm:flex-row justify-between items-center gap-6 text-[#8B8478] text-[10px] text-center sm:text-left">
-            <span>© Группа компаний „Всё начинается с Мечты“, 2026. Все права на товарный знак MECHTY защищены.</span>
-            <div className="flex gap-4">
-              <a href="/privacy" className="hover:text-[#B8956A] transition-colors">Политика конфиденциальности</a>
-              <a href="/consent" className="hover:text-[#B8956A] transition-colors">Согласие на обработку ПД</a>
+          <div className="flex flex-col lg:flex-row justify-between items-center lg:items-start gap-6 text-[#8B8478] text-[11px] text-center lg:text-left">
+            <div className="space-y-1.5">
+              <span className="block font-medium text-[#EDE6D8]/90">© 2026 ГК «Всё начинается с Мечты». Все права защищены.</span>
+              <span className="block text-[10px]">ИП Постриганев Ю.В. &nbsp;|&nbsp; ИНН: 235701234508, ОГРНИП: 312231120100045</span>
+            </div>
+            <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 text-[10px] items-center lg:items-end">
+              <a href="/privacy" className="hover:text-[#B8956A] transition-colors underline decoration-[#B8956A]/30 underline-offset-4">Политика обработки персональных данных</a>
+              <a href="/consent" className="hover:text-[#B8956A] transition-colors underline decoration-[#B8956A]/30 underline-offset-4">Согласие на обработку персональных данных</a>
             </div>
           </div>
           

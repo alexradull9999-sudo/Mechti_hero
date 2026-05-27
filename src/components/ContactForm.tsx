@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { MapPin, Phone, Mail, Instagram, Sparkles, Send, CheckCircle } from 'lucide-react';
+import { formatPhoneNumber, isValidPhoneNumber } from '../utils';
 
 interface ContactFormProps {
   customMessage?: string;
@@ -12,13 +13,14 @@ export default function ContactForm({ customMessage, onClearCustomMessage }: Con
   const [email, setEmail] = useState('');
   const [area, setArea] = useState('');
   const [message, setMessage] = useState('');
+  const [channel, setChannel] = useState<'telegram' | 'whatsapp' | 'messenger'>('telegram');
   const [consent, setConsent] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!consent || !name || !phone) return;
+    if (!consent || !name || !isValidPhoneNumber(phone)) return;
 
     setIsSubmitting(true);
     
@@ -73,8 +75,8 @@ export default function ContactForm({ customMessage, onClearCustomMessage }: Con
                 </div>
                 <div className="space-y-1">
                   <span className="text-xs uppercase font-sans text-[#B8956A] tracking-widest block font-bold">Телефон</span>
-                  <a href="tel:+79250999333" className="text-sm font-sans text-[#EDE6D8] font-extrabold block hover:text-[#B8956A] transition-colors">
-                    +7 (925) 0999-333
+                  <a href="tel:+79250999333" className="text-base font-sans text-[#EDE6D8] font-extrabold block hover:text-[#B8956A] transition-colors">
+                    +7 (925) 099-93-33
                   </a>
                 </div>
               </div>
@@ -155,12 +157,17 @@ export default function ContactForm({ customMessage, onClearCustomMessage }: Con
 
                   {/* Field 2 */}
                   <div className="space-y-2">
-                    <label className="text-xs uppercase tracking-widest font-sans text-[#C4BEB3] block font-bold sm:min-h-[32px] flex items-end pb-1">Ваш телефон *</label>
+                    <label className="text-xs uppercase tracking-widest font-sans text-[#C4BEB3] block font-bold sm:min-h-[32px] flex items-end pb-1">
+                      Ваш телефон *
+                      {phone && !isValidPhoneNumber(phone) && (
+                        <span className="text-[#B8956A] text-[10px] normal-case ml-2 font-medium animate-pulse">Неполный номер</span>
+                      )}
+                    </label>
                     <input
                       type="tel"
                       required
                       value={phone}
-                      onChange={(e) => setPhone(e.target.value)}
+                      onChange={(e) => setPhone(formatPhoneNumber(e.target.value))}
                       placeholder="+7 (999) 000-00-00"
                       className="w-full bg-[#0F0F0F] border border-[#B8956A]/20 focus:border-[#B8956A] focus:outline-none p-3.5 text-sm text-[#F5F1EA] font-sans transition-colors font-semibold shadow-sm"
                     />
@@ -208,6 +215,31 @@ export default function ContactForm({ customMessage, onClearCustomMessage }: Con
                   />
                 </div>
 
+                {/* Preferred contact channel */}
+                <div className="space-y-2 py-1">
+                  <label className="text-xs uppercase tracking-widest font-sans text-[#C4BEB3] block font-bold">Где удобнее общаться? *</label>
+                  <div className="grid grid-cols-3 gap-3">
+                    {[
+                      { id: 'telegram', label: 'Telegram' },
+                      { id: 'whatsapp', label: 'WhatsApp' },
+                      { id: 'messenger', label: 'Messenger' }
+                    ].map((ch) => (
+                      <button
+                        key={ch.id}
+                        type="button"
+                        onClick={() => setChannel(ch.id as any)}
+                        className={`py-3.5 px-2 text-xs font-sans font-bold text-center tracking-wider uppercase transition-all border cursor-pointer ${
+                          channel === ch.id
+                            ? 'bg-[#B8956A] text-[#0F0F0F] border-[#B8956A]'
+                            : 'bg-[#0F0F0F] text-[#C4BEB3] border-[#B8956A]/20 hover:border-[#B8956A]/50'
+                        }`}
+                      >
+                        {ch.label}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
                 {/* Interactive checkmark privacy per Pravka 9 */}
                 <label className="flex items-start gap-3 cursor-pointer group">
                   <input 
@@ -232,14 +264,14 @@ export default function ContactForm({ customMessage, onClearCustomMessage }: Con
                 {/* Form CTA trigger button */}
                 <button
                   type="submit"
-                  disabled={isSubmitting || !consent || !name || !phone}
+                  disabled={isSubmitting || !consent || !name || !isValidPhoneNumber(phone)}
                   className="w-full py-4 bg-[#B8956A] hover:bg-[#8B6F4E] disabled:bg-[#8B8478]/10 disabled:text-[#8B8478] text-[#0F0F0F] uppercase tracking-[0.2em] font-sans text-sm font-extrabold transition-all duration-300 transform active:scale-98 text-center flex items-center justify-center gap-2 shadow-lg cursor-pointer"
                 >
                   {isSubmitting ? (
                     <span>Отправка документов в зашифрованном виде...</span>
                   ) : (
                     <>
-                      <span>Записаться в шоу-рум</span>
+                      <span>Записаться</span>
                       <Send size={12} />
                     </>
                   )}

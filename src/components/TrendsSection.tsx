@@ -187,7 +187,7 @@ export default function TrendsSection() {
           <div className="flex items-center justify-between w-full max-w-7xl mx-auto py-2">
             <div>
               <span className="text-[10px] uppercase font-mono tracking-[0.2em] text-[#B8956A] block">
-                MECHTY.STUDIO • EPISODE {activeVideo.num}
+                MECHTY.STUDIO • ЭПИЗОД {activeVideo.num}
               </span>
               <h4 className="font-serif text-lg md:text-xl font-light text-[#F5F1EA] mt-1 line-clamp-1 max-w-xl">
                 {activeVideo.title}
@@ -265,19 +265,19 @@ export default function TrendsSection() {
                   onClick={() => setIsPlaying(!isPlaying)}
                   className="text-[#F5F1EA] hover:text-[#B8956A] transition-colors font-bold uppercase tracking-widest"
                 >
-                  {isPlaying ? "PAUSE" : "PLAY"}
+                  {isPlaying ? "ПАУЗА" : "СТАРТ"}
                 </button>
 
                 <div className="flex items-center gap-2">
                   <button onClick={() => setIsMuted(!isMuted)} className="hover:text-[#F5F1EA]">
                     {isMuted ? <VolumeX size={14} className="text-[#B8956A]" /> : <Volume2 size={14} />}
                   </button>
-                  <span>{isMuted ? "MUTED" : "STEREO 2.0"}</span>
+                  <span>{isMuted ? "БЕЗ ЗВУКА" : "СТЕРЕО 2.0"}</span>
                 </div>
 
                 <button onClick={() => setCurrentTime(0)} className="hover:text-[#F5F1EA] flex items-center gap-1">
                   <RotateCcw size={12} />
-                  <span>RESTART</span>
+                  <span>ПОВТОР</span>
                 </button>
               </div>
 

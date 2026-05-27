@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
 import { HelpCircle, Calendar, ArrowDown, Building2, Home, CheckCircle2 } from 'lucide-react';
 
-export default function Roadmap() {
+interface RoadmapProps {
+  onOpenConsultation?: (customMessage?: string, customTitle?: string, customDesc?: string) => void;
+}
+
+export default function Roadmap({ onOpenConsultation }: RoadmapProps) {
   const [objType, setObjType] = useState<'apartment' | 'villa'>('apartment');
   const [objSize, setObjSize] = useState<'small' | 'medium' | 'large'>('medium');
 
@@ -122,6 +126,20 @@ export default function Roadmap() {
             <p className="text-sm md:text-base text-[#5E584F] font-sans font-light leading-relaxed max-w-xl">
               Команда Mechty напрямую руководит 180+ профильными экспертами и подрядчиками на всех стадиях. Понятный, прозрачный и пошагово регламентированный процесс реализации с гибко адаптируемыми сроками в зависимости от площади и типа недвижимости.
             </p>
+
+            {onOpenConsultation && (
+              <button
+                onClick={() => onOpenConsultation(
+                  'Заявка: Сделать первый шаг к интерьеру мечты. Запись на аудит планировки или встречу в офисе.',
+                  'Сделать первый шаг к мечте',
+                  'Заполните форму, и наш ведущий де-люкс архитектор проконсультирует вас по всем шагам разработки проекта и зафиксирует начальный этап.'
+                )}
+                className="mt-4 px-6 py-3.5 bg-[#8B6F4E] hover:bg-[#1A1A1A] text-white hover:text-[#EDE6D8] font-sans text-xs uppercase tracking-widest font-bold transition-all duration-300 shadow-md cursor-pointer rounded-none inline-flex items-center gap-2"
+              >
+                <span>Сделать первый шаг</span>
+                <span>→</span>
+              </button>
+            )}
           </div>
 
           <div className="lg:col-span-4 bg-[#EDE6D8] border border-[#B8956A]/20 p-5 rounded-sm space-y-1">

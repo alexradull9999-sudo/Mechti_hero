@@ -3,7 +3,7 @@ import { CaseItem, PropertyItem, DesignService, RoadmapStep, FAQItem, ReviewItem
 export const portfolioCases: CaseItem[] = [
   {
     id: "case-1",
-    title: "Усадьба Эрмитаж",
+    title: "Усадьба",
     location: "Рублёво-Успенское направление",
     area: "450 м²",
     style: "Современная классика",
@@ -11,7 +11,11 @@ export const portfolioCases: CaseItem[] = [
     cover: "/portfolio/usadba_1.png",
     videoLoop: undefined,
     videoFull: undefined,
-    gallery: ["/portfolio/usadba_1.png", "/portfolio/usadba_2.png", "/portfolio/usadba_3.png"],
+    gallery: [
+      "/portfolio/usadba_1.png",
+      "/portfolio/usadba_2.png",
+      "/portfolio/usadba_3.png"
+    ],
     plan: "/portfolio/usadba_plan.png"
   },
   {
@@ -24,7 +28,11 @@ export const portfolioCases: CaseItem[] = [
     cover: "/portfolio/headliner_1.png",
     videoLoop: undefined,
     videoFull: undefined,
-    gallery: ["/portfolio/headliner_1.png", "/portfolio/headliner_2.png", "/portfolio/headliner_3.png"],
+    gallery: [
+      "/portfolio/headliner_1.png",
+      "/portfolio/headliner_2.png",
+      "/portfolio/headliner_3.png"
+    ],
     plan: "/portfolio/headliner_schema.png"
   },
   {
@@ -37,7 +45,11 @@ export const portfolioCases: CaseItem[] = [
     cover: "/portfolio/ostozhenka_1.png",
     videoLoop: undefined,
     videoFull: undefined,
-    gallery: ["/portfolio/ostozhenka_1.png", "/portfolio/ostozhenka_2.png", "/portfolio/ostozhenka_3.png"],
+    gallery: [
+      "/portfolio/ostozhenka_1.png",
+      "/portfolio/ostozhenka_2.png",
+      "/portfolio/ostozhenka_3.png"
+    ],
     plan: "/portfolio/ostozhenka_plan.png"
   },
   {
@@ -50,7 +62,11 @@ export const portfolioCases: CaseItem[] = [
     cover: "/portfolio/krasnodar_city_1.png",
     videoLoop: undefined,
     videoFull: undefined,
-    gallery: ["/portfolio/krasnodar_city_1.png", "/portfolio/krasnodar_city_2.png", "/portfolio/krasnodar_city_3.png"],
+    gallery: [
+      "/portfolio/krasnodar_city_1.png",
+      "/portfolio/krasnodar_city_2.png",
+      "/portfolio/krasnodar_city_3.png"
+    ],
     plan: "/portfolio/krasnodar_city_plan.png"
   },
   {
@@ -63,7 +79,11 @@ export const portfolioCases: CaseItem[] = [
     cover: "/portfolio/marshal_1.png",
     videoLoop: undefined,
     videoFull: undefined,
-    gallery: ["/portfolio/marshal_1.png", "/portfolio/marshal_2.png", "/portfolio/marshal_3.png"],
+    gallery: [
+      "/portfolio/marshal_1.png",
+      "/portfolio/marshal_2.png",
+      "/portfolio/marshal_3.png"
+    ],
     plan: "/portfolio/marshal_plan.png"
   }
 ];

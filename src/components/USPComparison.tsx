@@ -128,9 +128,11 @@ export default function USPComparison() {
               ))}
             </motion.div>
 
-            <p className="text-[11px] text-[#FF5555]/80 font-medium italic mt-8 leading-relaxed">
-              Срок неизвестен. Переделки и перекладки без гарантий. Качество — на удачу.
-            </p>
+            <div className="mt-8 p-5 border-l-2 border-[#B8956A]/60 bg-[#161616]/60 backdrop-blur-sm rounded-r-lg">
+              <p className="font-serif text-[15px] md:text-[17px] text-[#E5D5C0] font-light italic leading-relaxed">
+                «Срок неизвестен. Переделки, постоянное перекладывание ответственности, отсутствие реальных гарантий. Качество — на удачу».
+              </p>
+            </div>
           </div>
 
           {/* MIDDLE COLUMN: Vertical line separator with Arrow action */}
@@ -187,19 +189,19 @@ export default function USPComparison() {
 
               {/* Path of solution */}
               <div className="space-y-4 text-center">
-                <span className="text-[12px] text-[#F5F1EA] font-light tracking-wider block max-w-sm mx-auto">
+                <span className="text-sm md:text-base text-[#F5F1EA] font-medium tracking-wider block max-w-md mx-auto">
                   Подбор квартиры → дизайн → ремонт → мебель → ключи
                 </span>
-                <p className="text-sm font-serif font-light text-[#B8956A] tracking-wider leading-relaxed text-center">
+                <p className="text-base md:text-[19px] font-serif font-medium text-[#B8956A] tracking-wider leading-relaxed text-center">
                   Пожизненная гарантия на несущие конструкции и инженерию*
                 </p>
-                <p className="text-[9px] text-[#8B8478] leading-relaxed max-w-xs mx-auto text-center font-sans font-light">
+                <p className="text-xs md:text-sm text-[#C4BCB1] leading-relaxed max-w-lg mx-auto text-center font-sans font-light">
                   *На стены, перегородки, стяжку, штукатурку, гипсокартонные потолки, черновую электрику, шумоизоляцию, инженерные трубопроводы Rehau — на весь срок эксплуатации дома (до планового износа или сноса здания). Условия и исключения — в договоре.
                 </p>
               </div>
             </div>
 
-            <span className="text-[11px] text-[#8B8478] italic mt-12 md:mt-auto text-center md:text-right block">
+            <span className="text-xs md:text-sm text-[#A59E92] italic mt-12 md:mt-auto text-center md:text-right block">
               Все условия фиксируются в договоре с возможностью изменения по соглашению сторон.
             </span>
           </div>
@@ -210,7 +212,7 @@ export default function USPComparison() {
         <div className="h-[1px] bg-[#B8956A]/20 w-full my-12" />
 
         {/* Detailed concluding summary description texts beneath lines */}
-        <div className="max-w-3xl mx-auto text-center space-y-6 text-sm md:text-[15px] text-[#8B8478] leading-relaxed font-light mt-10 md:mt-14">
+        <div className="max-w-3xl mx-auto text-center space-y-6 text-sm md:text-lg text-[#C4BCB1] leading-relaxed font-light mt-10 md:mt-14">
           <p>
             Обычно клиент координирует более 100 подрядчиков, поставщиков услуг и товаров в хаосе. Mechty берёт полную ответственность за весь путь — от подбора квартиры до расстановки декора.
           </p>

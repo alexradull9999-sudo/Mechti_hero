@@ -21,6 +21,7 @@ import Footer from './components/Footer';
 import PrivacyPage from './components/PrivacyPage';
 import ConsentPage from './components/ConsentPage';
 import { Sparkles, X, Send, CheckCircle, Smartphone } from 'lucide-react';
+import { formatPhoneNumber, isValidPhoneNumber } from './utils';
 
 export default function App() {
   // Simple Path routing state
@@ -63,6 +64,9 @@ export default function App() {
   // Custom interactive lead input state inside callback modal
   const [mName, setMName] = useState('');
   const [mPhone, setMPhone] = useState('');
+  const [mChannel, setMChannel] = useState<'telegram' | 'whatsapp' | 'messenger'>('telegram');
+  const [modalSubmitLabel, setModalSubmitLabel] = useState('Получить');
+  const [modalChannelLabel, setModalChannelLabel] = useState('Где удобнее общаться? *');
   const [isModalSubmitted, setIsModalSubmitted] = useState(false);
   const [isModalSubmitting, setIsModalSubmitting] = useState(false);
 
@@ -130,16 +134,72 @@ export default function App() {
   };
 
   // Open consultation modal with customizable states
-  const handleOpenConsultation = (customMessage?: string) => {
+  const handleOpenConsultation = (
+    customMessage?: string, 
+    customTitle?: string, 
+    customDesc?: string,
+    customSubmitLabel?: string,
+    customChannelLabel?: string
+  ) => {
+    let finalTitle = customTitle || 'Записаться на встречу';
+    let finalDesc = customDesc || 'Заполните данные для прохождения технической регистрации в шоу-руме в Сити.';
+    
     if (customMessage) {
       setCalcMessage(customMessage);
-      setModalTitle('Расчёт зафиксирован');
-      setModalDesc('Ваша конфигурация сохранена. Заполните форму для фиксации персонального тарифа.');
+      finalTitle = customTitle || 'Расчёт зафиксирован';
+      finalDesc = customDesc || 'Ваша конфигурация сохранена. Заполните форму для фиксации персонального тарифа.';
     } else {
       setCalcMessage('');
-      setModalTitle('Записаться на встречу');
-      setModalDesc('Заполните данные для прохождения технической регистрации в шоу-руме в Сити.');
     }
+    
+    setModalTitle(finalTitle);
+    setModalDesc(finalDesc);
+
+    // Context-aware labels determination
+    let submitLabel = 'Получить';
+    let channelLabel = 'Где удобнее получить? *';
+
+    const titleLower = finalTitle.toLowerCase();
+    const descLower = finalDesc.toLowerCase();
+    const msgLower = (customMessage || '').toLowerCase();
+
+    // Check if context represents "записаться на встречу", consultation, question, or first step
+    if (
+      titleLower.includes('встреч') || 
+      titleLower.includes('визит') ||
+      titleLower.includes('вопрос') ||
+      titleLower.includes('шаг') ||
+      titleLower.includes('консульт') ||
+      msgLower.includes('консульт') ||
+      msgLower.includes('встреч') ||
+      msgLower.includes('вопрос') ||
+      (!customMessage && !customTitle) // default blank consultation trigger
+    ) {
+      submitLabel = 'Записаться';
+      channelLabel = 'Где удобнее общаться? *';
+    } else {
+      // It is a file download, layout project presentation, access setup
+      submitLabel = 'Получить';
+      if (titleLower.includes('презентац') || descLower.includes('презентац')) {
+        channelLabel = 'Где удобнее получить презентацию? *';
+      } else if (titleLower.includes('доступ') || descLower.includes('доступ')) {
+        channelLabel = 'Где удобнее получить доступ? *';
+      } else {
+        channelLabel = 'Где удобнее получить? *';
+      }
+    }
+
+    // Apply explicit parameters if provided
+    if (customSubmitLabel) {
+      submitLabel = customSubmitLabel;
+    }
+    if (customChannelLabel) {
+      channelLabel = customChannelLabel;
+    }
+
+    setModalSubmitLabel(submitLabel);
+    setModalChannelLabel(channelLabel);
+
     setIsModalSubmitted(false);
     setIsConsultationOpen(true);
   };
@@ -147,7 +207,7 @@ export default function App() {
   // Perform dialog form submissions mockup
   const handleModalSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!mName || !mPhone) return;
+    if (!mName || !isValidPhoneNumber(mPhone)) return;
 
     setIsModalSubmitting(true);
     setTimeout(() => {
@@ -170,7 +230,7 @@ export default function App() {
   }
 
   return (
-    <div className="relative min-h-screen bg-[#0F0F0F] text-[#F5F1EA] overflow-hidden selection:bg-[#B8956A]/30">
+    <div className="relative min-h-screen bg-[#0F0F0F] text-[#F5F1EA] overflow-clip selection:bg-[#B8956A]/30">
       
       {/* Premium custom mouse companion cursor */}
       {isCursorSupported && (
@@ -215,20 +275,29 @@ export default function App() {
         
         <RenovationDetails onScrollToSection={handleScrollToSection} />
         
-        <FurnitureSection onScrollToSection={handleScrollToSection} />
+        <FurnitureSection 
+          onScrollToSection={handleScrollToSection} 
+          onOpenConsultation={handleOpenConsultation}
+        />
         
         <RealEstateSection 
           onOpenConsultation={handleOpenConsultation} 
           onScrollToSection={handleScrollToSection} 
         />
         
-        <Roadmap />
+        <Roadmap 
+          onOpenConsultation={handleOpenConsultation}
+        />
         
         <PortfolioGrid onOpenConsultation={handleOpenConsultation} />
         
-        <Founders />
+        <Founders 
+          onOpenConsultation={handleOpenConsultation}
+        />
         
-        <ErpControl />
+        <ErpControl 
+          onOpenConsultation={handleOpenConsultation}
+        />
         
         <ReviewsSection onOpenConsultation={handleOpenConsultation} />
         
@@ -314,33 +383,63 @@ export default function App() {
                     </div>
 
                     <div className="space-y-1">
-                      <label className="text-[9px] uppercase tracking-wider text-[#8B8478] block">Контактный телефон *</label>
+                      <label className="text-[9px] uppercase tracking-wider text-[#8B8478] block">
+                        Контактный телефон *
+                        {mPhone && !isValidPhoneNumber(mPhone) && (
+                          <span className="text-[#B8956A] text-[8px] normal-case ml-2 font-medium animate-pulse">Неполный номер</span>
+                        )}
+                      </label>
                       <input
                         type="tel"
                         required
                         value={mPhone}
-                        onChange={(e) => setMPhone(e.target.value)}
+                        onChange={(e) => setMPhone(formatPhoneNumber(e.target.value))}
                         placeholder="+7 (925) 000-00-00"
                         className="w-full bg-[#0F0F0F] border border-[#B8956A]/20 focus:border-[#B8956A] focus:outline-none p-3 text-xs text-[#F5F1EA] font-sans"
                       />
                     </div>
 
+                    {/* Preferred contact channel */}
+                    <div className="space-y-1.5 pt-1">
+                      <label className="text-[9px] uppercase tracking-wider text-[#8B8478] block font-bold">{modalChannelLabel}</label>
+                      <div className="grid grid-cols-3 gap-2">
+                        {[
+                          { id: 'telegram', label: 'Telegram' },
+                          { id: 'whatsapp', label: 'WhatsApp' },
+                          { id: 'messenger', label: 'Messenger' }
+                        ].map((ch) => (
+                          <button
+                            key={ch.id}
+                            type="button"
+                            onClick={() => setMChannel(ch.id as any)}
+                            className={`py-2 text-[10px] font-sans font-bold text-center tracking-wider uppercase transition-all border cursor-pointer ${
+                              mChannel === ch.id
+                                ? 'bg-[#B8956A] text-[#0F0F0F] border-[#B8956A]'
+                                : 'bg-[#0F0F0F] text-[#C4BEB3] border-[#B8956A]/20 hover:border-[#B8956A]/50'
+                            }`}
+                          >
+                            {ch.label}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+
                   </div>
 
-                  <div className="text-[9px] text-[#8B8478] leading-normal pt-2">
+                  <div className="text-[9px] text-[#8B8478] leading-normal pt-1">
                     Ваш визит координируется в строго конфиденциальном режиме. Все данные инвесторов зашифрованы по стандартам холдинга Mechty.
                   </div>
 
                   <button
                     type="submit"
-                    disabled={isModalSubmitting || !mName || !mPhone}
-                    className="w-full py-4 bg-[#B8956A] hover:bg-[#8B6F4E] disabled:bg-[#8B8478]/15 disabled:text-[#8B8478] text-[#0F0F0F] uppercase tracking-widest font-sans font-bold text-xs transition-colors duration-300 transform active:scale-98 flex items-center justify-center gap-2 block shadow-lg"
+                    disabled={isModalSubmitting || !mName || !isValidPhoneNumber(mPhone)}
+                    className="w-full py-4 bg-[#B8956A] hover:bg-[#8B6F4E] disabled:bg-[#8B8478]/15 disabled:text-[#8B8478] text-[#0F0F0F] uppercase tracking-widest font-sans font-bold text-xs transition-colors duration-300 transform active:scale-98 flex items-center justify-center gap-2 block shadow-lg cursor-pointer"
                   >
                     {isModalSubmitting ? (
                       <span>Шифрование данных...</span>
                     ) : (
                       <>
-                        <span>Забронировать визит в Сити</span>
+                        <span>{modalSubmitLabel}</span>
                         <Send size={11} />
                       </>
                     )}

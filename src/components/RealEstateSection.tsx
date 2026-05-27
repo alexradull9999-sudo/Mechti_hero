@@ -27,7 +27,10 @@ export default function RealEstateSection({ onOpenConsultation, onScrollToSectio
 
   const partners = [
     "VESPER", "CAPITAL GROUP", "SMINEX-ИНТЕКО", "HUTTON DEVELOPMENT", 
-    "COLDY", "BARKLI", "MR GROUP", "STONE HEDGE"
+    "COLDY", "BARKLI", "MR GROUP", "STONE HEDGE", "ЖК ЭРА", "БАДАЕВСКИЙ", 
+    "КЛУБНЫЙ ДОМ FORUM", "LUCE (ЛЮЧЕ)", "CLOS 17 (КЛОС 17)", "ДОМ ЛАВРУШИНСКИЙ", 
+    "BRUSOV (БРЮСОВ)", "ОСТРОВ", "СОБЫТИЕ", "NICOLE (НИКОЛЬ)", "VESPER КУТУЗОВСКИЙ", 
+    "И ДРУГИЕ"
   ];
 
   return (

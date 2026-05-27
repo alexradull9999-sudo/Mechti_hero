@@ -105,7 +105,7 @@ export default function RenovationDetails({ onScrollToSection }: RenovationDetai
         <div className="mb-24">
           <div className="border-l-2 border-[#B8956A] pl-6 mb-12">
             <span className="text-xs uppercase font-mono tracking-wider font-extrabold text-[#B8956A] block mb-2">
-              MECHTY STANDARDS
+              СТАНДАРТЫ «МЕЧТЫ»
             </span>
             <h3 className="font-serif text-2xl md:text-4xl text-[#F5F1EA] font-light">
               Технологические стандарты и материалы

@@ -19,10 +19,15 @@ import {
   ChevronRight,
   User,
   Wrench,
-  ChevronLeft
+  ChevronLeft,
+  KeyRound
 } from 'lucide-react';
 
-export default function ErpControl() {
+interface ErpControlProps {
+  onOpenConsultation?: (customMessage?: string, customTitle?: string, customDesc?: string) => void;
+}
+
+export default function ErpControl({ onOpenConsultation }: ErpControlProps) {
   const [activeTab, setActiveTab] = useState<'readiness' | 'schedule' | 'reports'>('readiness');
   
   // Tab 1 state: Task completion toggler for realism
@@ -166,7 +171,7 @@ export default function ErpControl() {
           </div>
 
           {/* RIGHT CLUSTER: Exquisite smartphone viewport replica of actual screenshots */}
-          <div className="lg:col-span-7 flex justify-center">
+          <div className="lg:col-span-7 flex flex-col items-center gap-6">
             
             {/* High-fidelity Phone Frame Wrapper */}
             <div className="w-full max-w-[420px] bg-[#121212] border-[6px] border-[#2E2C28] rounded-[36px] shadow-[0_25px_60px_-15px_rgba(0,0,0,0.9)] overflow-hidden flex flex-col relative aspect-[9/18.5]">
@@ -654,6 +659,20 @@ export default function ErpControl() {
               </div>
 
             </div>
+
+            {onOpenConsultation && (
+              <button
+                onClick={() => onOpenConsultation(
+                  'Доступ к CRM-системе прозрачного контроля ремонта Mechty.',
+                  'Получить доступ к CRM',
+                  'Заполните форму для оформления временного гостевого демо-доступа к личному кабинету инвестора.'
+                )}
+                className="w-full max-w-[420px] py-4 bg-[#B8956A] hover:bg-[#8B6F4E] hover:text-white text-[#0F0F0F] font-sans text-xs uppercase tracking-widest font-extrabold transition-all duration-300 shadow-xl flex items-center justify-center gap-2.5 cursor-pointer rounded-sm"
+              >
+                <KeyRound size={14} />
+                <span>Получить доступ к системе</span>
+              </button>
+            )}
           </div>
 
         </div>

@@ -1,11 +1,12 @@
 import React from 'react';
-import { ShieldCheck, Layers, Hammer, Settings, Wrench } from 'lucide-react';
+import { ShieldCheck, Layers, Hammer, Settings, Wrench, FileText } from 'lucide-react';
 
 interface FurnitureSectionProps {
   onScrollToSection?: (id: string) => void;
+  onOpenConsultation?: (customMessage?: string, customTitle?: string, customDesc?: string) => void;
 }
 
-export default function FurnitureSection({ onScrollToSection }: FurnitureSectionProps) {
+export default function FurnitureSection({ onScrollToSection, onOpenConsultation }: FurnitureSectionProps) {
   const guarantees = [
     {
       icon: <Layers size={18} className="text-[#8B6F4E]" />,
@@ -63,6 +64,20 @@ export default function FurnitureSection({ onScrollToSection }: FurnitureSection
             <p className="text-base md:text-lg text-[#322F2A] font-sans font-normal leading-relaxed">
               Главная боль меблировки на заказ — несовпадение зазоров со строительными порталами. Собственное производство Комплектация Мечты в Подмосковье синхронизирует замеры на этапе оштукатуривания. Разрабатываем кухни, гардеробы, комоды и мягкие диваны в едином стилевом ключе куратора проекта.
             </p>
+
+            {onOpenConsultation && (
+              <button
+                onClick={() => onOpenConsultation(
+                  'Заявка на получение презентации мебели и каталога Комплектации Мечты.',
+                  'Получить презентацию мебели',
+                  'Заполните форму, чтобы получить полную презентацию премиум-мебели, кухонь и гардеробов от мебельной фабрики Комплектации Мечты.'
+                )}
+                className="inline-flex items-center gap-3 px-6 py-4 bg-[#1A1A1A] hover:bg-[#8B6F4E] text-white hover:text-[#EDE6D8] font-sans text-xs uppercase tracking-widest font-bold transition-all duration-300 shadow-md cursor-pointer rounded-none"
+              >
+                <FileText size={14} className="animate-pulse" />
+                <span>Посмотреть презентацию мебели</span>
+              </button>
+            )}
 
             <div className="relative h-[380px] overflow-hidden">
               <img
