@@ -4,30 +4,34 @@ import { motion } from 'motion/react';
 
 export default function USPComparison() {
   const roles = [
-    'Брокер',
-    'Юрист',
-    'Согласование планировок',
-    'Представление в управляющей компании',
-    'Консьерж сервис',
-    'Архитектор',
-    'Дизайнер',
-    'Инженер ОВ',
-    'Инженер ВК',
-    'Электрик-проект',
-    'Слаботочник',
-    'Снабженец',
-    'Прораб',
-    'Бригада черновых',
-    'Бригада чистовых',
-    'Кухня на заказ',
-    'Корпусная мебель',
-    'Мягкая мебель',
-    'Шторы и текстиль',
-    'Декоратор',
-    'Поставщик света',
-    'Поставщик сантехники',
-    'Монтажники',
-    'Авторский надзор',
+    'Брокер (подбор и оценка недвижимости)',
+    'Юрист (проверка сделок и договоров)',
+    'Специалист по согласованию планировок (МЖИ)',
+    'Представитель в УК (защита интересов в Управляющей Компании)',
+    'Архитектор (конструктивные решения КР/АР)',
+    'Дизайнер интерьера (эскизы, стилистика, ведомости)',
+    'Инженер вентиляции и кондиционирования (ВиК)',
+    'Инженер водопровода и отопления (ВК/ОВ)',
+    'Электропроектировщик (проект электроснабжения ЭОМ)',
+    'Инженер слаботочных систем (СС и Умный Дом)',
+    'Сметчик-калькулятор (расчет объёмов и бюджетов)',
+    'Технадзор (независимый контроль строительных решений)',
+    'Снабженец (логистика, поиск и закупка отделочных материалов)',
+    'Прораб (управление строительным процессом на объекте)',
+    'Бригада черновых строителей (демонтаж, стяжка, перегородки)',
+    'Бригада чистовых отделочников (плиточники, маляры)',
+    'Замерщик мебельных изделий (построение 3D-сканов)',
+    'Технолог мебельного производства (конструкторские карты)',
+    'Поставщик дверей, порталов и стеновых панелей',
+    'Производитель кухонных гарнитуров на заказ',
+    'Производитель корпусной мебели (гардеробные, шкафы)',
+    'Поставщик мягкой мебели (диваны, спальные системы)',
+    'Поставщик светотехники (люстры, трековые системы)',
+    'Поставщик сантехнического оборудования и инсталляций',
+    'Монтажники климатического оборудования и кондиционеров',
+    'Текстильный декоратор (пошив штор и оформление)',
+    'Специалист по финальному клинингу и сдаче',
+    'Авторский надзор (контроль соответствия концепции)',
   ];
 
   const containerVariants = {
@@ -77,7 +81,7 @@ export default function USPComparison() {
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.3 }}
             >
-              Один договор.
+              Индивидуальный договор.
             </motion.div>
             <motion.div
               initial={{ opacity: 0, y: 15 }}
@@ -100,7 +104,7 @@ export default function USPComparison() {
           <div className="md:col-span-5 space-y-6">
             <div>
               <span className="text-[10px] uppercase tracking-[0.3em] text-[#8B8478] block">
-                Обычный путь · 24 контакта
+                Обычный путь · 28 контактов в хаосе
               </span>
               <div className="h-[1px] w-12 bg-[#B8956A]/35 mt-2" />
             </div>
@@ -117,15 +121,15 @@ export default function USPComparison() {
                 <motion.div
                   key={idx}
                   variants={itemVariants}
-                  className="font-sans text-sm sm:text-[15px] tracking-wide text-[#BDB5A7] py-1 border-b border-white/5 hover:text-[#B8956A] transition-all duration-300"
+                  className="font-sans text-xs tracking-wide text-[#BDB5A7] py-0.5 border-b border-white/5 hover:text-[#B8956A] transition-all duration-300"
                 >
                   {role}
                 </motion.div>
               ))}
             </motion.div>
 
-            <p className="text-[11px] text-[#8B8478] italic mt-8 leading-relaxed">
-              Задержка до 6 месяцев · Переплата 15–25% на стыках · Никто не отвечает за общий результат
+            <p className="text-[11px] text-[#FF5555]/80 font-medium italic mt-8 leading-relaxed">
+              Срок неизвестен. Переделки и перекладки без гарантий. Качество — на удачу.
             </p>
           </div>
 
@@ -139,7 +143,7 @@ export default function USPComparison() {
                   <ArrowRight size={20} className="text-[#B8956A]" />
                 </div>
                 <span className="absolute top-14 text-[9px] uppercase tracking-[0.3em] text-[#B8956A] whitespace-nowrap">
-                  ОДИН ДОГОВОР
+                  ЕДИНЫЙ КОНТРАКТ
                 </span>
               </div>
               <div className="w-[1px] bg-gradient-to-b from-transparent via-[#B8956A]/45 to-transparent flex-grow" />
@@ -153,7 +157,7 @@ export default function USPComparison() {
                   <ArrowDown size={16} className="text-[#B8956A]" />
                 </div>
                 <span className="text-[8px] uppercase tracking-[0.3em] text-[#B8956A] mt-2 block">
-                  ОДИН ДОГОВОР
+                  ЕДИНЫЙ КОНТРАКТ
                 </span>
               </div>
               <div className="h-[1px] w-full bg-gradient-to-r from-transparent via-[#B8956A]/35 to-transparent" />
@@ -165,7 +169,7 @@ export default function USPComparison() {
             <div className="space-y-6">
               <div className="flex flex-col md:items-start items-center">
                 <span className="text-[10px] uppercase tracking-[0.3em] text-[#B8956A] block">
-                  MECHTY GROUP · ОДИН ХОЛДИНГ
+                  MECHTY · ОДНА КОМАНДА
                 </span>
                 <div className="h-[1px] w-12 bg-[#B8956A]/35 mt-2" />
               </div>
@@ -182,13 +186,21 @@ export default function USPComparison() {
               </motion.div>
 
               {/* Path of solution */}
-              <span className="text-[12px] text-[#F5F1EA] font-light tracking-wider text-center block max-w-sm mx-auto">
-                Подбор квартиры → дизайн → ремонт → мебель → ключи
-              </span>
+              <div className="space-y-4 text-center">
+                <span className="text-[12px] text-[#F5F1EA] font-light tracking-wider block max-w-sm mx-auto">
+                  Подбор квартиры → дизайн → ремонт → мебель → ключи
+                </span>
+                <p className="text-sm font-serif font-light text-[#B8956A] tracking-wider leading-relaxed text-center">
+                  Пожизненная гарантия на несущие конструкции и инженерию*
+                </p>
+                <p className="text-[9px] text-[#8B8478] leading-relaxed max-w-xs mx-auto text-center font-sans font-light">
+                  *На стены, перегородки, стяжку, штукатурку, гипсокартонные потолки, черновую электрику, шумоизоляцию, инженерные трубопроводы Rehau — на весь срок эксплуатации дома (до планового износа или сноса здания). Условия и исключения — в договоре.
+                </p>
+              </div>
             </div>
 
             <span className="text-[11px] text-[#8B8478] italic mt-12 md:mt-auto text-center md:text-right block">
-              Один договор. Фиксированная цена. Гарантия 5 лет.
+              Все условия фиксируются в договоре с возможностью изменения по соглашению сторон.
             </span>
           </div>
 
@@ -200,7 +212,7 @@ export default function USPComparison() {
         {/* Detailed concluding summary description texts beneath lines */}
         <div className="max-w-3xl mx-auto text-center space-y-6 text-sm md:text-[15px] text-[#8B8478] leading-relaxed font-light mt-10 md:mt-14">
           <p>
-            Обычно клиент координирует от 10 до 100 подрядчиков в хаосе. Мы изменили правила. Mechty Group берёт полную ответственность за весь путь — от подбора квартиры до расстановки свечей на комоде.
+            Обычно клиент координирует более 100 подрядчиков, поставщиков услуг и товаров в хаосе. Mechty берёт полную ответственность за весь путь — от подбора квартиры до расстановки декора.
           </p>
           <p>
             Свой проектный департамент. Сертифицированная инженерия. Собственный мебельный завод. Цифровой ERP-контроль.

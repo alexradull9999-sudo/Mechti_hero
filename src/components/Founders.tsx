@@ -85,7 +85,7 @@ export default function Founders() {
               <div className="flex items-start gap-4 text-xs sm:text-sm text-[#8B8478]">
                 <Users size={20} className="text-[#B8956A] shrink-0 mt-0.5" />
                 <p className="leading-relaxed font-light">
-                  Штат холдинга Mechty Group насчитывает более <strong className="text-[#1A1A1A] font-bold">180 специалистов</strong>: лицензированные градостроительные архитекторы, сертифицированные инженеры, юристы, прорабы-строители, снабженцы и декораторы. Работаем как единый слаженный организм.
+                  Команда управляет <strong className="text-[#1A1A1A] font-bold">180+ экспертами и подрядчиками</strong> под единым брендом: лицензированные градостроительные архитекторы, сертифицированные инженеры, юристы, прорабы-строители, снабженцы и декораторы. Работают как единый слаженный организм.
                 </p>
               </div>
               <div className="bg-[#B8956A]/5 p-5 border border-[#B8956A]/10 space-y-2">
@@ -99,12 +99,12 @@ export default function Founders() {
 
         </div>
 
-        {/* Giant Team Photo Banner */}
+        {/* Giant Interior Photo Banner (Replacing Team Photo to comply with privacy rules) */}
         <div className="mt-16 md:mt-24">
           <div className="relative h-[320px] sm:h-[450px] md:h-[550px] overflow-hidden border border-[#B8956A]/20 shadow-2xl bg-[#EDE6D8]">
             <img
-              src="/сайт/prof-team.jpg"
-              alt="Команда холдинга Mechty Group"
+              src="/portfolio/usadba_1.png"
+              alt="Усадьба Эрмитаж"
               className="w-full h-full object-cover"
               referrerPolicy="no-referrer"
               loading="lazy"
@@ -115,14 +115,14 @@ export default function Founders() {
             <div className="absolute bottom-6 left-6 right-6 md:bottom-10 md:left-10 md:right-10 flex flex-col sm:flex-row justify-between items-start sm:items-end gap-4 text-white">
               <div className="space-y-1">
                 <span className="text-[10px] font-mono uppercase tracking-[0.25em] text-[#B8956A] font-bold block">
-                  КОНСЬЕРЖ-СЕРВИС И УПРАВЛЕНИЕ
+                  НАШИ РЕАЛИЗОВАННЫЕ ПРОЕКТЫ
                 </span>
-                <h4 className="font-serif text-xl sm:text-2xl md:text-3xl font-light text-[#F5F1EA]">
-                  Штаб-квартира Мечты в Сити
+                <h4 className="font-serif text-xl sm:text-2xl md:text-3xl font-light text-[#F5F1EA] italic leading-tight">
+                  «Кто-то мечтает о бизнесе, мы мечтали о надежном доме»
                 </h4>
               </div>
               <div className="bg-[#B8956A] text-[#0F0F0F] text-xs uppercase tracking-widest font-extrabold px-5 py-2.5 whitespace-nowrap">
-                180+ экспертов холдинга
+                Эстетика и качество Mechty
               </div>
             </div>
           </div>

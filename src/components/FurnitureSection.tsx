@@ -1,12 +1,16 @@
 import React from 'react';
 import { ShieldCheck, Layers, Hammer, Settings, Wrench } from 'lucide-react';
 
-export default function FurnitureSection() {
+interface FurnitureSectionProps {
+  onScrollToSection?: (id: string) => void;
+}
+
+export default function FurnitureSection({ onScrollToSection }: FurnitureSectionProps) {
   const guarantees = [
     {
       icon: <Layers size={18} className="text-[#8B6F4E]" />,
-      title: "Экологичные премиум плиты",
-      desc: "Используем австрийские плиты EGGER класса эмиссии E1 и шпон редких пород дерева с матовым премиальным лаком."
+      title: "Экологичные и инновационные материалы",
+      desc: "Используем австрийские плиты EGGER (класс эмиссии E1), суперматовый нанопластик Fenix NTM с защитой от отпечатков пальцев, плиты Alvic, шпон редких пород (эбен, американский орех, дуб, палисандр) под износостойким матовым лаком, а также эксклюзивную отделку жидким металлом (жидкий металл с ручной полировкой) для дизайнерских фасадов."
     },
     {
       icon: <Hammer size={18} className="text-[#8B6F4E]" />,
@@ -26,13 +30,23 @@ export default function FurnitureSection() {
     {
       icon: <ShieldCheck size={18} className="text-[#8B6F4E]" />,
       title: "Пожизненная гарантия на фурнитуру",
-      desc: "Мы официальные партнеры австрийской марки Blum. Действует расширенная гарантия на амортизаторы и петли."
+      desc: "Мы официальные партнеры ведущих европейских марок Blum и Hettich. Действует расширенная пожизненная гарантия на все доводчики, амортизаторы, петли и выдвижные системы."
     }
   ];
 
   return (
     <section id="furniture-section" className="bg-[#F5F1EA] text-[#1A1A1A] py-24 md:py-36 border-b border-[#1A1A1A]/5">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
+        
+        {/* Back navigation button */}
+        {onScrollToSection && (
+          <button
+            onClick={() => onScrollToSection('directions')}
+            className="group flex items-center gap-2 text-xs uppercase tracking-widest font-sans font-bold text-[#8B6F4E] hover:text-[#1A1A1A] transition-colors mb-8 cursor-pointer bg-transparent border-none p-0 inline-flex"
+          >
+            <span className="transition-transform duration-300 group-hover:-translate-x-1">←</span> Назад к направлениям
+          </button>
+        )}
         
         {/* Layout split */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">

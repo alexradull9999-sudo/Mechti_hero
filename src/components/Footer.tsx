@@ -35,7 +35,7 @@ export default function Footer({ onScrollToSection }: FooterProps) {
             </div>
             
             <p className="text-[#8B8478] leading-relaxed max-w-xs text-[11px]">
-              Проектируем, строим и полностью меблируем премиум-интерьеры в Москве с 2009 года. Полная ответственность за ведомости и зазоры в одном договоре.
+              Проектируем, строим и полностью меблируем премиум-интерьеры в Москве с 2009 года. Полная ответственность за ведомости и результаты в рамках контракта.
             </p>
 
             <div className="flex gap-3">
@@ -87,7 +87,7 @@ export default function Footer({ onScrollToSection }: FooterProps) {
                 Юрий и Диана Постриганевы
               </button>
               <button onClick={() => onScrollToSection('usp')} className="hover:text-[#B8956A] text-left transition-colors font-sans text-xs">
-                Единый договор УТП
+                Преимущества холдинга
               </button>
               <button onClick={() => onScrollToSection('portfolio')} className="hover:text-[#B8956A] text-left transition-colors font-sans text-xs">
                 Кейсы портфолио в ЖК
@@ -102,30 +102,40 @@ export default function Footer({ onScrollToSection }: FooterProps) {
           <div className="space-y-4 bg-[#1A1A1A] p-5 border border-[#B8956A]/15">
             <div className="flex items-center gap-1.5 text-xs text-[#B8956A] font-semibold font-serif">
               <Sparkles size={12} />
-              <span>СТАТУС: ШОУ-РУМ ОТКРЫТ</span>
+              <span>КОНТАКТЫ ХОЛДИНГА</span>
             </div>
             
-            <p className="text-[11px] text-[#8B8478] leading-relaxed">
-              Пресненская наб., 6, стр. 2, башня «Империя», Москва. Пл. 180 кв. м. Запись на встречи строго за 2 часа до приезда.
+            <div className="space-y-2">
+              <a href="tel:+79250999333" className="font-sans text-sm text-[#EDE6D8] font-bold block hover:text-[#B8956A] transition-colors">
+                +7 (925) 0999-333
+              </a>
+              <a
+                href="mailto:hello@mechtygroup.ru"
+                className="font-mono text-xs text-[#EDE6D8] block hover:text-[#B8956A] transition-colors"
+              >
+                hello@mechtygroup.ru
+              </a>
+            </div>
+            <p className="text-[10px] text-[#8B8478] leading-relaxed">
+              Запись на презентации и консультации в Москве осуществляется заблаговременно.
             </p>
-
-            <a
-              href="mailto:hello@mechtygroup.ru"
-              className="font-mono text-[11px] text-[#EDE6D8] block hover:text-[#B8956A] transition-colors"
-            >
-              hello@mechtygroup.ru
-            </a>
           </div>
 
         </div>
 
         {/* Footer Base Legal details row */}
-        <div className="flex flex-col sm:flex-row justify-between items-center gap-6 text-[#8B8478] text-[10px] text-center sm:text-left">
-          <span>© 2009–2026 ГК «Все начинается с Мечты». Все права защищены законом РФ.</span>
-          <div className="flex gap-4">
-            <a href="#contacts" className="hover:text-[#B8956A] transition-colors">Политика конфиденциальности</a>
-            <a href="#contacts" className="hover:text-[#B8956A] transition-colors">Согласие на обработку ПД</a>
+        <div className="space-y-6 pt-6 border-t border-[#B8956A]/10">
+          <div className="flex flex-col sm:flex-row justify-between items-center gap-6 text-[#8B8478] text-[10px] text-center sm:text-left">
+            <span>© Группа компаний „Всё начинается с Мечты“, 2026. Все права на товарный знак MECHTY защищены.</span>
+            <div className="flex gap-4">
+              <a href="/privacy" className="hover:text-[#B8956A] transition-colors">Политика конфиденциальности</a>
+              <a href="/consent" className="hover:text-[#B8956A] transition-colors">Согласие на обработку ПД</a>
+            </div>
           </div>
+          
+          <p className="text-[10px] text-[#8B8478] leading-relaxed max-w-7xl text-justify">
+            Информация на настоящем интернет-сайте носит исключительно ознакомительный характер, не является публичной офертой, определяемой положениями Статьи 437 Гражданского кодекса РФ, и ни при каких условиях не может трактоваться как публичное обещание, оферта или гарантия заключения сделки. Конкретные условия сотрудничества, цены, сроки и параметры оказываемых услуг фиксируются исключительно в двусторонних договорах.
+          </p>
         </div>
 
       </div>

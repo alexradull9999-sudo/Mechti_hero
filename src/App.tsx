@@ -18,9 +18,42 @@ import TrendsSection from './components/TrendsSection';
 import FAQAccordion from './components/FAQAccordion';
 import ContactForm from './components/ContactForm';
 import Footer from './components/Footer';
+import PrivacyPage from './components/PrivacyPage';
+import ConsentPage from './components/ConsentPage';
 import { Sparkles, X, Send, CheckCircle, Smartphone } from 'lucide-react';
 
 export default function App() {
+  // Simple Path routing state
+  const [currentPath, setCurrentPath] = useState(window.location.pathname);
+
+  useEffect(() => {
+    const handleLocationChange = () => {
+      setCurrentPath(window.location.pathname);
+    };
+    window.addEventListener('popstate', handleLocationChange);
+    
+    // Smooth navigation support for links
+    const handleLinkClick = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      const anchor = target.closest('a');
+      if (anchor && anchor.getAttribute('href')?.startsWith('/')) {
+        const href = anchor.getAttribute('href');
+        if (href === '/privacy' || href === '/consent' || href === '/') {
+          e.preventDefault();
+          window.history.pushState(null, '', href);
+          setCurrentPath(href);
+          window.scrollTo(0, 0);
+        }
+      }
+    };
+    
+    document.addEventListener('click', handleLinkClick);
+    return () => {
+      window.removeEventListener('popstate', handleLocationChange);
+      document.removeEventListener('click', handleLinkClick);
+    };
+  }, []);
+
   // Callback Consultation Dialog Modal States
   const [isConsultationOpen, setIsConsultationOpen] = useState(false);
   const [modalTitle, setModalTitle] = useState('Записаться на встречу');
@@ -128,6 +161,14 @@ export default function App() {
     }, 1000);
   };
 
+  if (currentPath === '/privacy') {
+    return <PrivacyPage />;
+  }
+
+  if (currentPath === '/consent') {
+    return <ConsentPage />;
+  }
+
   return (
     <div className="relative min-h-screen bg-[#0F0F0F] text-[#F5F1EA] overflow-hidden selection:bg-[#B8956A]/30">
       
@@ -167,13 +208,19 @@ export default function App() {
         
         <LuxuryCalculator onOpenConsultation={handleOpenConsultation} />
         
-        <DesignServices onOpenConsultation={handleOpenConsultation} />
+        <DesignServices 
+          onOpenConsultation={handleOpenConsultation} 
+          onScrollToSection={handleScrollToSection} 
+        />
         
-        <RenovationDetails />
+        <RenovationDetails onScrollToSection={handleScrollToSection} />
         
-        <FurnitureSection />
+        <FurnitureSection onScrollToSection={handleScrollToSection} />
         
-        <RealEstateSection onOpenConsultation={handleOpenConsultation} />
+        <RealEstateSection 
+          onOpenConsultation={handleOpenConsultation} 
+          onScrollToSection={handleScrollToSection} 
+        />
         
         <Roadmap />
         

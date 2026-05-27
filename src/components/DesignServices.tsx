@@ -4,9 +4,10 @@ import { Check, ClipboardList, HelpingHand } from 'lucide-react';
 
 interface DesignServicesProps {
   onOpenConsultation: (msg?: string) => void;
+  onScrollToSection?: (id: string) => void;
 }
 
-export default function DesignServices({ onOpenConsultation }: DesignServicesProps) {
+export default function DesignServices({ onOpenConsultation, onScrollToSection }: DesignServicesProps) {
   const [activePackage, setActivePackage] = useState<string>("ds-3");
 
   const selectedPack = designServices.find(s => s.id === activePackage);
@@ -14,6 +15,16 @@ export default function DesignServices({ onOpenConsultation }: DesignServicesPro
   return (
     <section id="design-section" className="bg-[#F5F1EA] text-[#1A1A1A] py-24 md:py-36 border-b border-[#1A1A1A]/5">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
+        
+        {/* Back navigation button */}
+        {onScrollToSection && (
+          <button
+            onClick={() => onScrollToSection('directions')}
+            className="group flex items-center gap-2 text-xs uppercase tracking-widest font-sans font-bold text-[#8B6F4E] hover:text-[#1A1A1A] transition-colors mb-8 cursor-pointer bg-transparent border-none p-0 inline-flex"
+          >
+            <span className="transition-transform duration-300 group-hover:-translate-x-1">←</span> Назад к направлениям
+          </button>
+        )}
         
         {/* Section Header */}
         <div className="max-w-3xl mb-16 md:mb-24 space-y-4">

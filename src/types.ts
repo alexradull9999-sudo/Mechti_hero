@@ -6,6 +6,8 @@ export interface CaseItem {
   style: string;
   description: string;
   cover: string;          // путь к обложке /portfolio/...
+  videoLoop?: string;     // 10-30 сек короткое видео для карточки (autoplay loop)
+  videoFull?: string;     // ~60 сек полный обзор для модалки
   gallery: string[];      // 3 фото для модалки
   plan: string;           // план / схема
 }

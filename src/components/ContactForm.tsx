@@ -12,12 +12,13 @@ export default function ContactForm({ customMessage, onClearCustomMessage }: Con
   const [email, setEmail] = useState('');
   const [area, setArea] = useState('');
   const [message, setMessage] = useState('');
+  const [consent, setConsent] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!name || !phone) return;
+    if (!consent || !name || !phone) return;
 
     setIsSubmitting(true);
     
@@ -33,6 +34,7 @@ export default function ContactForm({ customMessage, onClearCustomMessage }: Con
       setEmail('');
       setArea('');
       setMessage('');
+      setConsent(false);
     }, 1200);
   };
 
@@ -62,20 +64,8 @@ export default function ContactForm({ customMessage, onClearCustomMessage }: Con
               </p>
             </div>
 
-            {/* Structured Contact Units List */}
+            {/* Structured Contact Units List (Excluding private address and maps per rules) */}
             <div className="space-y-6">
-              
-              <div className="flex gap-4 items-start pb-4 border-b border-[#B8956A]/10 max-w-sm">
-                <div className="w-10 h-10 rounded-full border border-[#B8956A]/30 flex items-center justify-center bg-[#1A1A1A]">
-                   <MapPin size={16} className="text-[#B8956A]" />
-                </div>
-                <div className="space-y-1">
-                  <span className="text-xs uppercase font-sans text-[#B8956A] tracking-widest block font-bold">Наш Адрес</span>
-                  <span className="text-sm font-sans text-[#EDE6D8] font-bold block">
-                    Пресненская наб., 6, стр. 2, башня «Империя», Москва
-                  </span>
-                </div>
-              </div>
 
               <div className="flex gap-4 items-start pb-4 border-b border-[#B8956A]/10 max-w-sm">
                 <div className="w-10 h-10 rounded-full border border-[#B8956A]/30 flex items-center justify-center bg-[#1A1A1A]">
@@ -103,23 +93,8 @@ export default function ContactForm({ customMessage, onClearCustomMessage }: Con
 
             </div>
 
-            {/* Stylized custom map holder */}
-            <div className="border border-[#B8956A]/20 bg-[#1A1A1A] h-64 relative group overflow-hidden">
-              {/* Clean Google Maps stylized dark frame */}
-              <iframe
-                title="Шоу-рум в Сити"
-                className="w-full h-full grayscale opacity-60 group-hover:opacity-85 transition-opacity duration-500"
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2245.5415849841804!2d37.53503527715697!3d55.74735227308236!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46b54bddb281f6eb%3A0xc6cb69ab1264c7e4!2z0J_RgNC10YHQvdC10L3RgdC60LDRjyDQvdCw0LEuLCA2INGB0YLRgMC-0LnRgtC10LvRjNGB0YLQstC_IDIsINCd0L7QstC60LA!5e0!3m2!1sru!2sru!4v1703000000000!5m2!1sru!2sru"
-                style={{ border: 0 }}
-                allowFullScreen={false}
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-              />
-              <div className="absolute top-3 left-3 bg-[#0F0F0F] border border-[#B8956A]/30 text-white font-mono text-xs uppercase tracking-widest px-2.5 py-1.5 pointer-events-none font-bold flex items-center gap-1.5">
-                <MapPin size={12} className="text-[#B8956A]" />
-                <span>Башня Федерация Империя</span>
-              </div>
-            </div>
+            {/* Brass Separator Line replacing the map */}
+            <div className="h-[1px] bg-gradient-to-r from-transparent via-[#B8956A]/45 to-transparent my-10" />
           </div>
 
           {/* Right Block: Conversion Contact Form */}
@@ -233,16 +208,32 @@ export default function ContactForm({ customMessage, onClearCustomMessage }: Con
                   />
                 </div>
 
-                {/* Interactive checkmark privacy */}
-                <div className="text-xs text-[#C4BEB3] font-medium leading-relaxed">
-                  Нажимая кнопку, вы соглашаетесь с Политикой обработки персональных данных и неразглашении конфиденциальных сведений о параметрах вашего жилья в Мск.
-                </div>
+                {/* Interactive checkmark privacy per Pravka 9 */}
+                <label className="flex items-start gap-3 cursor-pointer group">
+                  <input 
+                    type="checkbox" 
+                    required
+                    checked={consent}
+                    onChange={(e) => setConsent(e.target.checked)}
+                    className="mt-1 w-4 h-4 accent-[#B8956A] cursor-pointer shrink-0"
+                  />
+                  <span className="text-[11px] text-[#8B8478] leading-relaxed select-none">
+                    Я даю согласие на обработку моих персональных данных в соответствии с{' '}
+                    <a href="/privacy" target="_blank" className="text-[#B8956A] hover:underline">
+                      Политикой конфиденциальности
+                    </a>{' '}
+                    и{' '}
+                    <a href="/consent" target="_blank" className="text-[#B8956A] hover:underline">
+                      Согласием на обработку персональных данных
+                    </a>.
+                  </span>
+                </label>
 
                 {/* Form CTA trigger button */}
                 <button
                   type="submit"
-                  disabled={isSubmitting || !name || !phone}
-                  className="w-full py-4 bg-[#B8956A] hover:bg-[#8B6F4E] disabled:bg-[#8B8478]/10 disabled:text-[#8B8478] text-[#0F0F0F] uppercase tracking-[0.2em] font-sans text-sm font-extrabold transition-all duration-300 transform active:scale-98 text-center flex items-center justify-center gap-2 shadow-lg"
+                  disabled={isSubmitting || !consent || !name || !phone}
+                  className="w-full py-4 bg-[#B8956A] hover:bg-[#8B6F4E] disabled:bg-[#8B8478]/10 disabled:text-[#8B8478] text-[#0F0F0F] uppercase tracking-[0.2em] font-sans text-sm font-extrabold transition-all duration-300 transform active:scale-98 text-center flex items-center justify-center gap-2 shadow-lg cursor-pointer"
                 >
                   {isSubmitting ? (
                     <span>Отправка документов в зашифрованном виде...</span>

@@ -30,7 +30,7 @@ export default function Hero({ onScrollToSection, onOpenConsultation }: HeroProp
             </h1>
             
             <p className="text-base md:text-xl font-light text-[#C4BEB3] max-w-lg leading-relaxed mb-10 font-sans">
-              От подбора авторской недвижимости до полной комплектации интерьера. Одна профессиональная команда, один юридический договор, один безупречный результат.
+              От подбора авторской недвижимости до меблировки. Координация работы 180+ экспертов и подрядчиков в рамках одного договора под единым руководством.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 sm:gap-6">
@@ -69,7 +69,7 @@ export default function Hero({ onScrollToSection, onOpenConsultation }: HeroProp
               «Всё включено под тапочки»
             </p>
             <p className="text-xs md:text-sm text-[#C4BEB3] font-sans font-normal leading-normal">
-              Дизайн, ремонт и мебель в едином контракте с честной гарантией 5 лет.
+              Дизайн, ремонт и комплектация мебели под ключ с гарантией на условиях договора.
             </p>
           </div>
         </div>

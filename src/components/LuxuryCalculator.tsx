@@ -10,7 +10,24 @@ type FormatService = 'podTapochki' | 'poChastyam';
 
 export type CategoryKey = 
   | 'design' 
-  | 'demolition' | 'engineering_work' | 'finishing_work' | 'cleaning'
+  // Section II: Construction Works
+  | 'const_demolition'
+  | 'const_walls'
+  | 'const_noise'
+  | 'const_screed'
+  | 'const_plaster'
+  | 'const_painting'
+  | 'const_cladding'
+  | 'const_flooring'
+  | 'const_electric_rough'
+  | 'const_electric_fine'
+  | 'const_plumbing_rough'
+  | 'const_plumbing_fine'
+  | 'const_climate'
+  | 'const_doors_fine'
+  | 'const_furniture_assembly'
+  | 'const_cleaning'
+  // Sections III - VI
   | 'finishMaterials' | 'decorElements' | 'doorsWindows'
   | 'climate' | 'electricLighting' | 'plumbing'
   | 'kitchen' | 'cabinet' | 'softFurniture'
@@ -43,7 +60,7 @@ const SECTIONS: Section[] = [
       {
         key: 'design',
         title: 'Дизайн-проект «Всё включено»',
-        description: 'Планировка, 3D-визуализация, рабочая документация, авторский надзор',
+        description: 'Эскизный и рабочий проект интерьера: планировка, 3D-визуализация, рабочая документация, авторский надзор. На основе эскизного проекта инженеры разрабатывают рабочую документацию по вентиляции, сантехнике и электрике — это включено в стоимость авторского дизайн-проекта „Всё включено". На этапе разработки вносится до 5 итераций изменений. Точное техническое задание снимаем на старте, поэтому в концепцию попадаем со 2-й итерации — это следствие нашей системы этапности, а не везения.',
         rate: 7500,
       }
     ]
@@ -54,31 +71,103 @@ const SECTIONS: Section[] = [
     title: 'СТРОИТЕЛЬНЫЕ РАБОТЫ',
     displayName: 'Строительные работы',
     tooltip: 'Капитальные работы премиального уровня: строгий контроль СНиП, сертифицированная инженерия и подготовка поверхностей.',
-    subtitle: 'Работа бригады без учёта стоимости материалов. Свои прорабы, контроль через ERP, фиксация в договоре.',
+    subtitle: 'Все работы выполняются по СНиПам и ГОСТам. Стандарт качества малярных и шумоизоляционных работ — не ниже Q3 (Q4 — по запросу, дополнительная стоимость).',
     categories: [
       {
-        key: 'demolition',
-        title: 'Демонтаж, монтаж, черновые поверхности',
-        description: 'Демонтажные работы, монтаж перегородок, выравнивание стен/потолков/полов',
-        rate: 37000,
+        key: 'const_demolition',
+        title: 'Демонтаж конструкций и подготовка',
+        description: 'Безопасный демонтаж перегородок, стяжки, очистка перекрытий и вывоз мусора',
+        rate: 5500,
       },
       {
-        key: 'engineering_work',
-        title: 'Инженерные работы (электрика, сантехника)',
-        description: 'Электромонтаж + слаботочка, сантехнические работы, проектная документация ВК/ОВ/ГК/СО',
-        rate: 23500,
+        key: 'const_walls',
+        title: 'Возведение перегородок (ГКЛ, пеноблок)',
+        description: 'Монтаж перегородок с соблюдением геометрии и армирования',
+        rate: 7500,
       },
       {
-        key: 'finishing_work',
-        title: 'Устройство покрытий и чистовая отделка',
-        description: 'Укладка полов, облицовка стен, чистовые малярные и отделочные работы',
-        rate: 42600,
+        key: 'const_noise',
+        title: 'Шумоизоляция стен и перекрытий',
+        description: 'Монтаж звукоизоляционных мембран и плит под плавающую стяжку и каркас',
+        rate: 5800,
       },
       {
-        key: 'cleaning',
-        title: 'Финальный клининг и сдача',
-        description: 'Промежуточные и финальный клининг, передача объекта',
-        rate: 3500,
+        key: 'const_screed',
+        title: 'Стяжка пола (черновая + финишная)',
+        description: 'Заливка ровной базы под укладку чистовых напольных покрытий',
+        rate: 9500,
+      },
+      {
+        key: 'const_plaster',
+        title: 'Штукатурные работы по стенам',
+        description: 'Выравнивание геометрии стен по маякам с точностью до миллиметра под Q3',
+        rate: 7200,
+      },
+      {
+        key: 'const_painting',
+        title: 'Малярные работы (стандарт Q3+)',
+        description: 'Подготовка под покраску, поклейка стеклохолста, многослойное шпатлевание',
+        rate: 8000,
+      },
+      {
+        key: 'const_cladding',
+        title: 'Облицовка стен (керамогранит, камень)',
+        description: 'Высокоточная укладка крупноформатных плит премиум-материалов',
+        rate: 10000,
+      },
+      {
+        key: 'const_flooring',
+        title: 'Укладка инженерной доски и покрытий',
+        description: 'Монтаж деревянных полов на клей/подложку по технологии без порогов',
+        rate: 7500,
+      },
+      {
+        key: 'const_electric_rough',
+        title: 'Электромонтаж черновой (штробление, прокладка)',
+        description: 'Прокладка сертифицированных кабелей в гофре, монтаж подрозетников',
+        rate: 9000,
+      },
+      {
+        key: 'const_electric_fine',
+        title: 'Электромонтаж чистовой (розетки, выключатели)',
+        description: 'Установка выключателей, розеток, механизмов управления и подсветки',
+        rate: 4500,
+      },
+      {
+        key: 'const_plumbing_rough',
+        title: 'Сантехнические работы черновые (разводка ГВ/ХВ/канализация)',
+        description: 'Монтаж коллекторных узлов, труб Rehau, фильтров тонкой очистки',
+        rate: 10500,
+      },
+      {
+        key: 'const_plumbing_fine',
+        title: 'Сантехнические работы чистовые (монтаж сантехники)',
+        description: 'Установка и подключение инсталляций, смесителей, ванны, раковины',
+        rate: 5300,
+      },
+      {
+        key: 'const_climate',
+        title: 'Монтаж климатических систем (вентиляция, кондиционирование)',
+        description: 'Прокладка трасс, установка внутренних блоков, приточных адаптеров',
+        rate: 11400,
+      },
+      {
+        key: 'const_doors_fine',
+        title: 'Установка дверей и фурнитуры',
+        description: 'Монтаж скрытых коробов инвизибл, петель и ручек на финишном этапе',
+        rate: 4800,
+      },
+      {
+        key: 'const_furniture_assembly',
+        title: 'Сборка и монтаж мебели',
+        description: 'Профессиональная сборка сложных встроенных шкафов, кухонь, стеновых панелей',
+        rate: 7200,
+      },
+      {
+        key: 'const_cleaning',
+        title: 'Финальный клининг и сдача под ключ',
+        description: 'Профессиональная обеспыливающая уборка перед заселением',
+        rate: 1500,
       }
     ]
   },
@@ -92,19 +181,19 @@ const SECTIONS: Section[] = [
       {
         key: 'finishMaterials',
         title: 'Чистовые материалы',
-        description: 'Керамогранит, инженерная доска (грунт + подложка), краски стен и потолков',
+        description: 'Керамогранит крупноформатный, инженерная доска премиум (грунт + подложка), износостойкая краска стен и потолков. Гипсокартонные потолки, парящие потолки со скрытой подсветкой.',
         rate: 19900,
       },
       {
         key: 'decorElements',
         title: 'Декоративные элементы',
-        description: 'Декоративные стеновые панели (3–5 шт), плинтус, молдинги, пробковый компенсатор',
+        description: 'Декоративные стеновые панели под дизайн-проект, плинтус скрытого монтажа, молдинги, пробковый компенсатор',
         rate: 9200,
       },
       {
         key: 'doorsWindows',
-        title: 'Двери, окна, подоконники',
-        description: 'Входная дверь с электрозамком, межкомнатные двери скрытого монтажа, подоконники, фурнитура',
+        title: 'Двери и подоконники',
+        description: 'Входная дверь с электрозамком, межкомнатные двери скрытого монтажа, подоконники премиум, фурнитура',
         rate: 11400,
       }
     ]
@@ -119,19 +208,19 @@ const SECTIONS: Section[] = [
       {
         key: 'climate',
         title: 'Климат и отопление',
-        description: 'Тёплый пол, канальное кондиционирование, приточно-вытяжная вентиляция, радиаторы',
+        description: 'Тёплый пол, канальное кондиционирование, приточно-вытяжная вентиляция, дизайнерские радиаторы',
         rate: 31200,
       },
       {
         key: 'electricLighting',
         title: 'Электрика и освещение',
-        description: 'Шинопровод и трековые светильники, точечные светильники, люстры, выключатели Donel, электрокарнизы Эскар',
+        description: 'Шинопровод и трековые светильники, точечные светильники, дизайнерские люстры, выключатели премиум JUNG/Berker, электрокарнизы',
         rate: 15600,
       },
       {
         key: 'plumbing',
         title: 'Сантехника и оборудование ванных',
-        description: 'Boheme, Omoikiri: душевые комплекты, ванна, унитазы с инсталляцией, смесители, аксессуары',
+        description: 'Villeroy & Boch, Antonio Lupi, Laufen: душевые комплекты, ванна, унитазы с инсталляцией, смесители, аксессуары',
         rate: 11400,
       }
     ]
@@ -142,25 +231,25 @@ const SECTIONS: Section[] = [
     title: 'МЕБЕЛЬ',
     displayName: 'Мебель',
     tooltip: 'Индивидуальное производство мебели любой сложности от фабрики Комплектация Мечты.',
-    subtitle: 'Вся мебель — собственного производства Комплектация Мечты. Индивидуальные проекты, гарантия на механизмы и материалы.',
+    subtitle: 'Вся мебель — собственного производства Комплектация Мечты. Индивидуальные проекты, гарантия на инновационные механизмы Blum и Hettich.',
     categories: [
       {
         key: 'kitchen',
         title: 'Кухонный гарнитур со столешницей',
-        description: 'Гарнитур собственного производства, столешница и фартук из кварца, скрытая фурнитура',
+        description: 'Гарнитур собственного производства, столешница и фартук из кварца, скрытая европейская фурнитура Blum / Hettich',
         rate: 28400,
       },
       {
         key: 'cabinet',
         title: 'Корпусная мебель и гардеробные',
-        description: 'Шкафы, тумбы под ТВ и в санузлах, гардеробные системы, рабочие зоны, шкафы-витрины',
-        rate: 39800,
+        description: 'Используем антивандальные австрийские плиты Egger (класс эмиссии E1), премиальный влагостойкий МДФ, шпон редких пород дерева, жидкий металл, декоративные покрытия любой сложности под индивидуальный дизайн-проект.',
+        rate: 48000,
       },
       {
         key: 'softFurniture',
         title: 'Мягкая мебель и спальни',
-        description: 'Диваны, кресла, кровати с изголовьем, прикроватные тумбы, матрасы, постельное бельё',
-        rate: 17000,
+        description: 'Диваны, кресла, кровати с изголовьем, прикроватные тумбы, матрасы премиум, постельное бельё',
+        rate: 14000,
       }
     ]
   },
@@ -169,25 +258,25 @@ const SECTIONS: Section[] = [
     num: 'VI',
     title: 'КОМПЛЕКТАЦИЯ И ДОСТАВКА',
     displayName: 'Комплектация и доставка',
-    tooltip: 'Снабжение объекта премиальной техникой, интерьерным текстилем, полная логистика, монтаж и финальный клининг.',
+    tooltip: 'Снабжение объекта премиальной техникой, интерьерным текстилем, полная логистика, сборка и монтаж мебели.',
     categories: [
       {
         key: 'appliances',
         title: 'Бытовая техника премиум-брендов',
-        description: 'Asko, Liebherr, Elica, Omoikiri: холодильники, духовой шкаф, кофемашина, посудомойка, стирка/сушка, ТВ, биокамин',
-        rate: 21300,
+        description: 'Asko, Liebherr, Elica, Omoikiri, премиальные бренды: кухонные приборы, встраиваемая техника, стиральная и сушильная машины, телевизионные панели, биокамин',
+        rate: 15000,
       },
       {
         key: 'textile',
         title: 'Текстиль, шторы, декор',
-        description: 'Электрокарнизы, шторы и тюль по всем комнатам, декор и аксессуары, зеркала, ковры',
-        rate: 19200,
+        description: 'Электрокарнизы, пошив штор и тюль по всем комнатам, декор и авторские аксессуары, зеркала, ковры',
+        rate: 10000,
       },
       {
         key: 'delivery',
         title: 'Доставка, сборка, монтаж',
-        description: 'Логистика всего объёма, сборка и монтаж мебели, вывоз мусора, финальный клининг под тапочки',
-        rate: 32700,
+        description: 'Логистика всего объёма, сборка и навеска мебели, вывоз строительного мусора',
+        rate: 15000,
       }
     ]
   }
@@ -196,10 +285,22 @@ const SECTIONS: Section[] = [
 // Helper to keep the custom rates list
 const rates: Record<CategoryKey, number> = {
   design:           7500,
-  demolition:       37000,
-  engineering_work: 23500,
-  finishing_work:   42600,
-  cleaning:         3500,
+  const_demolition: 5500,
+  const_walls:      7500,
+  const_noise:      5800,
+  const_screed:     9500,
+  const_plaster:    7200,
+  const_painting:   8000,
+  const_cladding:   10000,
+  const_flooring:   7500,
+  const_electric_rough: 9000,
+  const_electric_fine: 4500,
+  const_plumbing_rough: 10500,
+  const_plumbing_fine: 5300,
+  const_climate:    11400,
+  const_doors_fine: 4800,
+  const_furniture_assembly: 7200,
+  const_cleaning:   1500,
   finishMaterials:  19900,
   decorElements:    9200,
   doorsWindows:     11400,
@@ -207,11 +308,11 @@ const rates: Record<CategoryKey, number> = {
   electricLighting: 15600,
   plumbing:         11400,
   kitchen:          28400,
-  cabinet:          39800,
-  softFurniture:    17000,
-  appliances:       21300,
-  textile:          19200,
-  delivery:         32700,
+  cabinet:          48000,
+  softFurniture:    14000,
+  appliances:       15000,
+  textile:          10000,
+  delivery:         15000,
 };
 
 // Custom smooth easeOutCubic animated price interpolator component
@@ -267,10 +368,22 @@ export default function LuxuryCalculator({ onOpenConsultation }: LuxuryCalculato
   
   const [selectedCategories, setSelectedCategories] = useState<Record<CategoryKey, boolean>>({
     design: true,
-    demolition: true,
-    engineering_work: true,
-    finishing_work: true,
-    cleaning: true,
+    const_demolition: true,
+    const_walls: true,
+    const_noise: true,
+    const_screed: true,
+    const_plaster: true,
+    const_painting: true,
+    const_cladding: true,
+    const_flooring: true,
+    const_electric_rough: true,
+    const_electric_fine: true,
+    const_plumbing_rough: true,
+    const_plumbing_fine: true,
+    const_climate: true,
+    const_doors_fine: true,
+    const_furniture_assembly: true,
+    const_cleaning: true,
     finishMaterials: true,
     decorElements: true,
     doorsWindows: true,
@@ -318,6 +431,16 @@ export default function LuxuryCalculator({ onOpenConsultation }: LuxuryCalculato
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     }
+  };
+
+  const handleSwitchToPoChastyam = () => {
+    setFormat('poChastyam');
+    setTimeout(() => {
+      const element = document.getElementById('constructor-steps') || document.getElementById('sec-design');
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }, 100);
   };
 
   const handleToggleCategory = (key: CategoryKey) => {
@@ -373,6 +496,13 @@ export default function LuxuryCalculator({ onOpenConsultation }: LuxuryCalculato
     return area * 350000;
   }, [area]);
 
+  const dynamicTerm = useMemo(() => {
+    if (area <= 80) return "6–8 месяцев";
+    if (area <= 150) return "8–10 месяцев";
+    if (area <= 250) return "10–12 месяцев";
+    return "12–14 месяцев";
+  }, [area]);
+
   const activeTotal = format === 'podTapochki' ? podTapochkiTotal : poChastyamTotal;
 
   // Potential savings difference
@@ -410,7 +540,7 @@ export default function LuxuryCalculator({ onOpenConsultation }: LuxuryCalculato
         .map(sec => sec.displayName)
         .join(', ');
 
-      message = `Здравствуйте, прошу зафиксировать расчёт:\nТариф: Собрать по частям\nПлощадь: ${area} м²\nВключено категорий: ${totalSelectedCount} из 17\nРазделы: ${activeSectionNames || 'Не выбрано'}\nСумма: ${formatTextNumber(activeTotal)} (включая агентское сопровождение)`;
+      message = `Здравствуйте, прошу зафиксировать расчёт:\nТариф: Собрать по частям\nПлощадь: ${area} м²\nВключено категорий: ${totalSelectedCount} из 29\nРазделы: ${activeSectionNames || 'Не выбрано'}\nСумма: ${formatTextNumber(activeTotal)} (включая агентское сопровождение)`;
     }
     onOpenConsultation(message);
   };
@@ -433,7 +563,7 @@ export default function LuxuryCalculator({ onOpenConsultation }: LuxuryCalculato
           </h2>
           <div className="h-[1px] w-24 bg-[#B8956A]/40 mx-auto mt-4" />
           <p className="text-base md:text-lg text-[#C4BEB3] font-sans font-light leading-relaxed">
-            Цена зафиксирована юридически. Защита от подорожания материалов и работ включена в договор.
+            Цена фиксируется в договоре и может быть изменена по соглашению сторон с учётом изменения объёмов или материалов.
           </p>
         </div>
 
@@ -516,7 +646,7 @@ export default function LuxuryCalculator({ onOpenConsultation }: LuxuryCalculato
                       Дизайн + Ремонт + Инженерия + Сантехника + Кухня + Мебель + Техника + Текстиль + Декор + Клининг.
                     </p>
 
-                    <div className="space-y-1.5 py-3 border-t border-[#B8956A]/10 mt-2">
+                    <div className="space-y-2 py-3 border-t border-[#B8956A]/10 mt-2">
                       {[
                         'Дизайн-проект «Всё включено»',
                         'Ремонт и инженерия по СНиП',
@@ -525,9 +655,11 @@ export default function LuxuryCalculator({ onOpenConsultation }: LuxuryCalculato
                         'Авторская мебель Комплектация Мечты',
                         'Текстильный дизайн и декорирование',
                       ].map((name, i) => (
-                        <div key={i} className="flex items-center gap-2 text-[10px] sm:text-xs text-[#C4BEB3]">
-                          <Check size={11} className="text-[#B8956A] shrink-0" />
-                          <span className="truncate">{name} — <span className="text-[#B8956A]/80 font-mono font-bold">включено</span></span>
+                        <div key={i} className="flex items-start gap-2.5 text-[11px] sm:text-xs text-[#C4BEB3]">
+                          <Check size={12} className="text-[#B8956A] shrink-0 mt-0.5" />
+                          <span className="leading-normal">
+                            {name} — <span className="text-[#B8956A]/80 font-mono font-bold whitespace-nowrap">включено</span>
+                          </span>
                         </div>
                       ))}
                     </div>
@@ -542,7 +674,7 @@ export default function LuxuryCalculator({ onOpenConsultation }: LuxuryCalculato
 
                 {/* Format Card B: Customized "Po Chastyam" */}
                 <div
-                  onClick={() => setFormat('poChastyam')}
+                  onClick={handleSwitchToPoChastyam}
                   className={`bg-[#0F0F0F] p-6 md:p-8 border cursor-pointer relative flex flex-col justify-between transition-all duration-300 min-h-[420px] ${
                     format === 'poChastyam'
                       ? 'border-[#B8956A] shadow-lg shadow-[#B8956A]/5'
@@ -561,15 +693,15 @@ export default function LuxuryCalculator({ onOpenConsultation }: LuxuryCalculato
                     
                     <p className="text-xs sm:text-sm text-[#C4BEB3] leading-relaxed min-h-[40px]">
                       {totalSelectedCount === 0 && 'Выберите услуги, которые вам необходимы'}
-                      {totalSelectedCount >= 1 && totalSelectedCount <= 6 && 'Подходит, если вам необходима только часть работ'}
-                      {totalSelectedCount >= 7 && totalSelectedCount <= 11 && 'Частичная сборка. Сравните выгоду с полным тарифом'}
-                      {totalSelectedCount >= 12 && `Вариант под ключ выгоднее на ${(potSavings / 1000000).toFixed(2).replace(/\.00$/, '')} млн ₽`}
+                      {totalSelectedCount >= 1 && totalSelectedCount <= 10 && 'Подходит, если вам необходима только часть работ'}
+                      {totalSelectedCount >= 11 && totalSelectedCount <= 22 && 'Частичная сборка. Сравните выгоду с полным тарифом'}
+                      {totalSelectedCount >= 23 && `Вариант под ключ выгоднее на ${(potSavings / 1000000).toFixed(2).replace(/\.00$/, '')} млн ₽`}
                     </p>
                   </div>
 
                   <div className="border-t border-[#B8956A]/15 pt-4 mt-6">
                     <p className="text-[10px] sm:text-xs font-sans text-[#8B8478] leading-normal font-medium">
-                      Гибкие опции. Настройте конфигурацию по 17 статьям сметы под конкретные требования вашего объекта.
+                      Гибкие опции. Настройте конфигурацию по 29 статьям сметы под конкретные требования вашего объекта.
                     </p>
                   </div>
                 </div>
@@ -581,6 +713,7 @@ export default function LuxuryCalculator({ onOpenConsultation }: LuxuryCalculato
             <AnimatePresence>
               {format === 'poChastyam' && (
                 <motion.div
+                  id="constructor-steps"
                   initial={{ opacity: 0, height: 0 }}
                   animate={{ opacity: 1, height: 'auto' }}
                   exit={{ opacity: 0, height: 0 }}
@@ -769,12 +902,12 @@ export default function LuxuryCalculator({ onOpenConsultation }: LuxuryCalculato
                 <span className="text-xs font-mono text-[#C4BEB3] uppercase tracking-wider block font-bold transition-opacity">
                   {format === 'podTapochki'
                     ? `350 000 ₽/м² × ${area} м²`
-                    : `${area} м² · ${totalSelectedCount === 17 ? 'все категории включены' : `категорий: ${totalSelectedCount} из 17`}`}
+                    : `${area} м² · ${totalSelectedCount === 29 ? 'все категории включены' : `категорий: ${totalSelectedCount} из 29`}`}
                 </span>
               </div>
 
-              {/* Plaque "Вариант под ключ" when >= 12 categories in constructor */}
-              {format === 'poChastyam' && totalSelectedCount >= 12 && (
+              {/* Plaque "Вариант под ключ" when >= 23 categories in constructor */}
+              {format === 'poChastyam' && totalSelectedCount >= 23 && (
                 <div className="border border-[#B8956A]/20 bg-[#1A1A1A] p-4.5 space-y-3">
                   <div className="flex items-center gap-2 text-[#B8956A]">
                     <Sparkles size={13} className="stroke-[1.5]" />
@@ -853,21 +986,26 @@ export default function LuxuryCalculator({ onOpenConsultation }: LuxuryCalculato
                       </span>
                     </div>
                     <p className="text-[10px] text-[#8B8478] leading-normal mt-1.5 font-light">
-                      Юридическое сопровождение, договор, контроль качества, выплаты подрядчикам, защита от подорожания материалов и работ.
+                      Юридическое сопровождение, договор, контроль качества, выплаты подрядчикам, защита от подорожания — на условиях договора.
                     </p>
                   </div>
                 </div>
               )}
 
+              {/* Pricing Footnote (Pravka 4) */}
+              <p className="text-[10px] italic text-[#8B8478] leading-relaxed mt-4 max-w-prose">
+                Цена является ориентировочной и может быть изменена при детальном расчёте после замера, согласования объёмов работ и выбранных материалов.
+              </p>
+
               {/* Additional Specs cards */}
-              <div className="space-y-3 pt-2">
+              <div className="space-y-3 pt-2 border-t border-[#B8956A]/10">
                 <div className="flex items-center gap-3 text-xs sm:text-sm text-[#C4BEB3]">
                   <Calendar size={15} className="text-[#B8956A]" />
-                  <span className="font-semibold">Срок реализации: <strong className="text-[#F5F1EA]">9–12 месяцев</strong></span>
+                  <span className="font-semibold">Срок реализации: <strong className="text-[#F5F1EA]">{dynamicTerm}</strong></span>
                 </div>
-                <div className="flex items-center gap-3 text-xs sm:text-sm text-[#C4BEB3]">
-                  <Shield size={15} className="text-[#B8956A]" />
-                  <span className="font-semibold">Защита от подорожания: <strong className="text-[#F5F1EA]">включена</strong></span>
+                <div className="flex items-start gap-3 text-xs text-[#C4BEB3]">
+                  <Shield size={15} className="text-[#B8956A] shrink-0 mt-0.5" />
+                  <span className="font-semibold leading-tight">Защита от подорожания материалов и работ — на условиях, указанных в договоре.</span>
                 </div>
               </div>
 

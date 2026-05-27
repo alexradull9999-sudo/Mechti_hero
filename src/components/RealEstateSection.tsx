@@ -4,9 +4,10 @@ import { MapPin, ArrowRight, Building, Key, Home, Sparkles } from 'lucide-react'
 
 interface RealEstateSectionProps {
   onOpenConsultation: (msg?: string) => void;
+  onScrollToSection?: (id: string) => void;
 }
 
-export default function RealEstateSection({ onOpenConsultation }: RealEstateSectionProps) {
+export default function RealEstateSection({ onOpenConsultation, onScrollToSection }: RealEstateSectionProps) {
   const [activeSegment, setActiveSegment] = useState<string>("all");
 
   const segments = [
@@ -24,9 +25,24 @@ export default function RealEstateSection({ onOpenConsultation }: RealEstateSect
     return true;
   });
 
+  const partners = [
+    "VESPER", "CAPITAL GROUP", "SMINEX-ИНТЕКО", "HUTTON DEVELOPMENT", 
+    "COLDY", "BARKLI", "MR GROUP", "STONE HEDGE"
+  ];
+
   return (
     <section id="real-estate" className="bg-[#0F0F0F] text-[#F5F1EA] py-24 md:py-36 border-b brass-border">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
+        
+        {/* Back navigation button */}
+        {onScrollToSection && (
+          <button
+            onClick={() => onScrollToSection('directions')}
+            className="group flex items-center gap-2 text-xs uppercase tracking-widest font-sans font-bold text-[#B8956A] hover:text-[#F5F1EA] transition-colors mb-8 cursor-pointer bg-transparent border-none p-0 inline-flex"
+          >
+            <span className="transition-transform duration-300 group-hover:-translate-x-1">←</span> Назад к направлениям
+          </button>
+        )}
         
         {/* Section Header */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end mb-16 md:mb-24">
@@ -125,6 +141,20 @@ export default function RealEstateSection({ onOpenConsultation }: RealEstateSect
           ))}
         </div>
 
+        {/* Partner Developers Ticker Bar */}
+        <div className="mb-16 border-t border-b border-[#B8956A]/15 py-8">
+          <span className="text-[10px] uppercase font-mono tracking-wider text-[#8B8478] font-bold block mb-4 text-center">
+            ПАРТНЕРЫ-ЗАСТРОЙЩИКИ И СОБСТВЕННИКИ ЭЛИТНЫХ ОБЪЕКТОВ:
+          </span>
+          <div className="flex flex-wrap justify-center items-center gap-x-8 gap-y-4 text-xs font-serif tracking-[0.15em] text-[#C4BEB3] opacity-75">
+            {partners.map((partner, i) => (
+              <span key={i} className="hover:text-[#B8956A] transition-colors duration-300 font-light">
+                {partner}
+              </span>
+            ))}
+          </div>
+        </div>
+
         {/* Global callout */}
         <div className="border brass-border bg-[#1A1A1A]/80 p-6 md:p-8 flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex items-start gap-4">
@@ -142,10 +172,10 @@ export default function RealEstateSection({ onOpenConsultation }: RealEstateSect
           </div>
           
           <button
-            onClick={() => onOpenConsultation("Здравствуйте, хочу запросить персональный подбор квартир в Москве по моим критериям.")}
+            onClick={() => onOpenConsultation("Здравствуйте, хочу записаться на встречу на объекте для обсуждения подбора элитной недвижимости.")}
             className="px-6 py-3.5 bg-[#B8956A] hover:bg-[#8B6F4E] text-[#0F0F0F] text-sm uppercase tracking-widest font-sans font-bold flex items-center gap-2 text-center transition-all duration-300 transform active:scale-95 whitespace-nowrap shrink-0"
           >
-            <span>Подобрать лот под меня</span>
+            <span>Записаться на встречу на объекте</span>
             <ArrowRight size={14} />
           </button>
         </div>

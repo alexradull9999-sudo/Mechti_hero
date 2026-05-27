@@ -66,7 +66,7 @@ export default function FAQAccordion() {
                   <div className="p-6 md:p-8 text-xs md:text-sm text-[#8B8478] font-sans font-light leading-relaxed space-y-3">
                     <p>{item.answer}</p>
                     <div className="text-[10px] font-mono uppercase tracking-widest text-[#B8956A] text-right pt-2">
-                      Единый стандарт холдинга MECHTY GROUP
+                      Единый стандарт — Группа компаний „Всё начинается с Мечты“
                     </div>
                   </div>
                 </div>
