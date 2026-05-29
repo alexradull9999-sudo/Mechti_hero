@@ -27,7 +27,7 @@ export default function ServicesGrid({ onScrollToSection }: ServicesGridProps) {
       id: "ds-renovations",
       num: "03",
       title: "Ремонт под ключ",
-      description: "Премиальная строительная реализация «под ключ». Фиксированная смета, ежедневный фотоотчет в ERP-ERP, авторский и технический надзор.",
+      description: "Премиальная строительная реализация «под ключ». Фиксированная смета, еженедельный фотоотчет в ERP, авторский и технический надзор.",
       image: "https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=800&q=80",
       targetId: "renovation-section"
     },

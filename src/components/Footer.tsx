@@ -1,5 +1,5 @@
 import React from 'react';
-import { Instagram, Sparkles, Building, Phone } from 'lucide-react';
+import { Send, MessageSquare, Sparkles, Building, Phone, Youtube } from 'lucide-react';
 import Logo from './Logo';
 
 interface FooterProps {
@@ -8,10 +8,10 @@ interface FooterProps {
 
 export default function Footer({ onScrollToSection }: FooterProps) {
   const socialHandles = [
-    { name: "@mechti_group", label: "Канал недвижимости" },
-    { name: "@doma_mechti.rf", label: "Строительство вилл" },
-    { name: "@mebel_mechty_", label: "Каталог мебели" },
-    { name: "@mechty.moscow", label: "Дизайн-студия" }
+    { name: "Telegram", label: "t.me/mechtigroup", iconType: 'telegram', url: 'https://t.me/mechtigroup' },
+    { name: "Мессенджер Макс", label: "Мессенджер Макс", iconType: 'messenger', url: 'https://t.me/mechtigroup' },
+    { name: "Яндекс.Дзен", label: "Дзен", iconType: 'zen', url: 'https://dzen.ru/mechti_group' },
+    { name: "YouTube", label: "YouTube", iconType: 'youtube', url: 'https://www.youtube.com/@mechti_group' }
   ];
 
   return (
@@ -34,20 +34,21 @@ export default function Footer({ onScrollToSection }: FooterProps) {
               Проектируем, строим и полностью меблируем премиум-интерьеры в Москве с 2009 года. Полная ответственность за ведомости и результаты в рамках контракта.
             </p>
 
-            <div className="flex gap-3">
-              {socialHandles.slice(0, 2).map((soc, i) => (
-                <div key={i} className="flex items-center gap-1.5 text-[10px] bg-[#1A1A1A] p-2 border border-[#B8956A]/10 hover:border-[#B8956A]/30 text-[#EDE6D8] transition-colors leading-none cursor-pointer">
-                  <Instagram size={11} className="text-[#B8956A]" />
+            <div className="flex flex-wrap gap-2.5 pt-2">
+              {socialHandles.map((soc, i) => (
+                <a 
+                  key={i} 
+                  href={soc.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-1.5 text-[10px] bg-[#1A1A1A] p-2 border border-[#B8956A]/10 hover:border-[#B8956A]/30 text-[#EDE6D8] transition-colors leading-none cursor-pointer"
+                >
+                  {soc.iconType === 'telegram' && <Send size={11} className="text-[#B8956A]" />}
+                  {soc.iconType === 'messenger' && <MessageSquare size={11} className="text-[#B8956A]" />}
+                  {soc.iconType === 'youtube' && <Youtube size={11} className="text-[#B8956A]" />}
+                  {soc.iconType === 'zen' && <Sparkles size={11} className="text-[#B8956A]" />}
                   <span>{soc.name}</span>
-                </div>
-              ))}
-            </div>
-            <div className="flex gap-3 -mt-2">
-              {socialHandles.slice(2, 4).map((soc, i) => (
-                <div key={i} className="flex items-center gap-1.5 text-[10px] bg-[#1A1A1A] p-2 border border-[#B8956A]/10 hover:border-[#B8956A]/30 text-[#EDE6D8] transition-colors leading-none cursor-pointer">
-                  <Instagram size={11} className="text-[#B8956A]" />
-                  <span>{soc.name}</span>
-                </div>
+                </a>
               ))}
             </div>
           </div>

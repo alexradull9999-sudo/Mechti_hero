@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { MapPin, Phone, Mail, Instagram, Sparkles, Send, CheckCircle } from 'lucide-react';
+import { MapPin, Phone, Mail, Sparkles, Send, CheckCircle } from 'lucide-react';
 import { formatPhoneNumber, isValidPhoneNumber } from '../utils';
 
 interface ContactFormProps {
@@ -14,7 +14,7 @@ export default function ContactForm({ customMessage, onClearCustomMessage }: Con
   const [area, setArea] = useState('');
   const [message, setMessage] = useState('');
   const [channel, setChannel] = useState<'telegram' | 'whatsapp' | 'messenger'>('telegram');
-  const [consent, setConsent] = useState(false);
+  const [consent, setConsent] = useState(true);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
@@ -36,7 +36,7 @@ export default function ContactForm({ customMessage, onClearCustomMessage }: Con
       setEmail('');
       setArea('');
       setMessage('');
-      setConsent(false);
+      setConsent(true);
     }, 1200);
   };
 
@@ -222,7 +222,7 @@ export default function ContactForm({ customMessage, onClearCustomMessage }: Con
                     {[
                       { id: 'telegram', label: 'Telegram' },
                       { id: 'whatsapp', label: 'WhatsApp' },
-                      { id: 'messenger', label: 'Messenger' }
+                      { id: 'messenger', label: 'Мессенджер Макс' }
                     ].map((ch) => (
                       <button
                         key={ch.id}

@@ -31,7 +31,7 @@ export type CategoryKey =
   | 'finishMaterials' | 'decorElements' | 'doorsWindows'
   | 'climate' | 'electricLighting' | 'plumbing'
   | 'kitchen' | 'cabinet' | 'softFurniture'
-  | 'appliances' | 'textile' | 'delivery';
+  | 'appliances' | 'textile' | 'delivery' | 'waste_cleaning';
 
 interface Section {
   id: string;
@@ -88,7 +88,7 @@ const SECTIONS: Section[] = [
       {
         key: 'const_noise',
         title: 'Шумоизоляция стен и перекрытий',
-        description: 'Монтаж звукоизоляционных мембран и плит под плавающую стяжку и каркас',
+        description: 'Шумоизоляция стен, потолков и перекрытий — современные многослойные системы с подтверждённым акустическим эффектом, соответствуют ГОСТ.',
         rate: 5800,
       },
       {
@@ -136,7 +136,7 @@ const SECTIONS: Section[] = [
       {
         key: 'const_plumbing_rough',
         title: 'Сантехнические работы черновые (разводка ГВ/ХВ/канализация)',
-        description: 'Монтаж коллекторных узлов, труб Rehau, фильтров тонкой очистки',
+        description: 'Монтаж коллекторных узлов, труб Rehau, Uponor, и другие проверенные европейские системы, фильтров тонкой очистки',
         rate: 10500,
       },
       {
@@ -208,19 +208,19 @@ const SECTIONS: Section[] = [
       {
         key: 'climate',
         title: 'Климат и отопление',
-        description: 'Тёплый пол, канальное кондиционирование, приточно-вытяжная вентиляция, дизайнерские радиаторы',
+        description: 'Тёплый пол, канальное кондиционирование, приточно-вытяжная вентиляция, увлажнение воздуха и приточная вентиляция с сапфировыми распылителями канального типа — поддержание оптимальной влажности 40-60% во всех помещениях для здоровья жителей и сохранности отделки, дизайнерские радиаторы',
         rate: 31200,
       },
       {
         key: 'electricLighting',
         title: 'Электрика и освещение',
-        description: 'Шинопровод и трековые светильники, точечные светильники, дизайнерские люстры, выключатели премиум JUNG/Berker, электрокарнизы',
+        description: 'Шинопровод и трековые светильники, точечные светильники, дизайнерские люстры, розетки и выключатели JUNG, Berker, и другие премиальные европейские бренды, электрокарнизы',
         rate: 15600,
       },
       {
         key: 'plumbing',
         title: 'Сантехника и оборудование ванных',
-        description: 'Villeroy & Boch, Antonio Lupi, Laufen: душевые комплекты, ванна, унитазы с инсталляцией, смесители, аксессуары',
+        description: 'Villeroy & Boch, Laufen, Antonio Lupi, Grohe, Hansgrohe, Boheme и другие премиальные бренды: душевые комплекты, ванна, унитазы с инсталляцией, смесители, аксессуары',
         rate: 11400,
       }
     ]
@@ -269,7 +269,7 @@ const SECTIONS: Section[] = [
       {
         key: 'textile',
         title: 'Текстиль, шторы, декор',
-        description: 'Электрокарнизы, пошив штор и тюль по всем комнатам, декор и авторские аксессуары, зеркала, ковры',
+        description: 'Шторы день-ночь, тюль, портьеры с эффектом Black Out (100% затемнение для спален), декоративные карнизы Эскар, пошив штор и тюль по всем комнатам, декор и авторские аксессуары, зеркала, ковры',
         rate: 10000,
       },
       {
@@ -277,6 +277,12 @@ const SECTIONS: Section[] = [
         title: 'Доставка, сборка, монтаж',
         description: 'Логистика всего объёма, сборка и навеска мебели, вывоз строительного мусора',
         rate: 15000,
+      },
+      {
+        key: 'waste_cleaning',
+        title: 'Клининг и вывоз мусора',
+        description: 'Постэтапная и финальная уборка, регулярный вывоз строительного мусора и упаковки на весь срок работ',
+        rate: 1500,
       }
     ]
   }
@@ -313,6 +319,7 @@ const rates: Record<CategoryKey, number> = {
   appliances:       15000,
   textile:          10000,
   delivery:         15000,
+  waste_cleaning:   1500,
 };
 
 // Custom smooth easeOutCubic animated price interpolator component
@@ -396,6 +403,7 @@ export default function LuxuryCalculator({ onOpenConsultation }: LuxuryCalculato
     appliances: true,
     textile: true,
     delivery: true,
+    waste_cleaning: true,
   });
 
   const [expandedSections, setExpandedSections] = useState<Record<string, boolean>>({
@@ -540,7 +548,7 @@ export default function LuxuryCalculator({ onOpenConsultation }: LuxuryCalculato
         .map(sec => sec.displayName)
         .join(', ');
 
-      message = `Здравствуйте, прошу зафиксировать расчёт:\nТариф: Собрать по частям\nПлощадь: ${area} м²\nВключено категорий: ${totalSelectedCount} из 29\nРазделы: ${activeSectionNames || 'Не выбрано'}\nСумма: ${formatTextNumber(activeTotal)} (включая агентское сопровождение)`;
+      message = `Здравствуйте, прошу зафиксировать расчёт:\nТариф: Собрать по частям\nПлощадь: ${area} м²\nВключено категорий: ${totalSelectedCount} из 30\nРазделы: ${activeSectionNames || 'Не выбрано'}\nСумма: ${formatTextNumber(activeTotal)} (включая агентское сопровождение)`;
     }
     onOpenConsultation(message);
   };
@@ -604,6 +612,9 @@ export default function LuxuryCalculator({ onOpenConsultation }: LuxuryCalculato
                   <span>350 м²</span>
                   <span>500 м²</span>
                 </div>
+                <p className="text-[11px] italic text-[#8B8478] mt-3">
+                  Для объектов площадью менее 50 м² расчёт стоимости производится индивидуально.
+                </p>
               </div>
             </div>
 
@@ -701,7 +712,7 @@ export default function LuxuryCalculator({ onOpenConsultation }: LuxuryCalculato
 
                   <div className="border-t border-[#B8956A]/15 pt-4 mt-6">
                     <p className="text-[10px] sm:text-xs font-sans text-[#8B8478] leading-normal font-medium">
-                      Гибкие опции. Настройте конфигурацию по 29 статьям сметы под конкретные требования вашего объекта.
+                      Гибкие опции. Настройте конфигурацию по 30 статьям сметы под конкретные требования вашего объекта.
                     </p>
                   </div>
                 </div>
@@ -882,8 +893,29 @@ export default function LuxuryCalculator({ onOpenConsultation }: LuxuryCalculato
           </div>
 
           {/* RIGHT COLUMN: Outcomes Sticky Summary Panel */}
-          <div className="md:col-span-4 lg:col-span-5 md:sticky md:top-28 lg:top-32 self-start transition-all">
+          <div className="md:col-span-4 lg:col-span-5 md:sticky md:top-28 lg:top-32 self-start transition-all space-y-6">
             
+            {/* Promo Banner Action */}
+            <div className="bg-[#0F0F0F] border-2 border-[#B8956A] p-6 sm:p-8 text-center relative rounded-none shadow-xl">
+              <div className="absolute -top-3 left-1/2 -translate-x-1/2">
+                <span className="bg-[#B8956A] text-[#0F0F0F] text-[10px] uppercase font-sans font-extrabold px-3.5 py-1 tracking-[0.4em] whitespace-nowrap">
+                  АКЦИЯ
+                </span>
+              </div>
+              <div className="pt-2 space-y-3">
+                <h4 className="font-serif text-3xl sm:text-4xl text-[#B8956A] font-light uppercase tracking-wide leading-tight">
+                  ДИЗАЙН-ПРОЕКТ В ПОДАРОК
+                </h4>
+                <p className="font-sans text-base sm:text-lg text-white">
+                  при заказе ремонта под ключ
+                </p>
+                <div className="h-[1px] w-16 bg-[#B8956A]/20 mx-auto my-3" />
+                <p className="font-sans text-xs sm:text-sm text-[#8B8478]">
+                  Экономия от 1 125 000 ₽ на проекте 150 м²
+                </p>
+              </div>
+            </div>
+
             <div className="bg-[#0F0F0F] border border-[#B8956A] p-6 lg:p-8 space-y-6 shadow-xl relative">
               
               {/* Header */}
@@ -902,7 +934,7 @@ export default function LuxuryCalculator({ onOpenConsultation }: LuxuryCalculato
                 <span className="text-xs font-mono text-[#C4BEB3] uppercase tracking-wider block font-bold transition-opacity">
                   {format === 'podTapochki'
                     ? `350 000 ₽/м² × ${area} м²`
-                    : `${area} м² · ${totalSelectedCount === 29 ? 'все категории включены' : `категорий: ${totalSelectedCount} из 29`}`}
+                    : `${area} м² · ${totalSelectedCount === 30 ? 'все категории включены' : `категорий: ${totalSelectedCount} из 30`}`}
                 </span>
               </div>
 

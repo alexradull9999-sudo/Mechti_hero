@@ -1,5 +1,5 @@
 import React from 'react';
-import { Instagram, Tv, Award, Users, MessageSquare } from 'lucide-react';
+import { Send, Tv, Award, Users, MessageSquare } from 'lucide-react';
 
 interface FoundersProps {
   onOpenConsultation?: (customMessage?: string, customTitle?: string, customDesc?: string) => void;
@@ -58,11 +58,11 @@ export default function Founders({ onOpenConsultation }: FoundersProps) {
               </div>
 
               <div className="flex gap-4 items-start bg-[#EDE6D8]/40 p-5 border border-[#1A1A1A]/5">
-                <Instagram size={20} className="text-[#8B6F4E] shrink-0 mt-0.5" />
+                <Send size={20} className="text-[#8B6F4E] shrink-0 mt-0.5" />
                 <div className="space-y-1">
-                  <span className="text-xs font-sans font-bold text-[#1A1A1A] block">Блогер-миллионник</span>
+                  <span className="text-xs font-sans font-bold text-[#1A1A1A] block">Личный Telegram-блог</span>
                   <p className="text-[11px] sm:text-xs text-[#8B8478] leading-relaxed font-light">
-                    Аудитория более 877 тыс. лояльных подписчиков в Instagram (@diana.mechty).
+                    Полезные посты и живые репортажи о премиум-недвижимости, мебельных трендах и стройке в Москве.
                   </p>
                 </div>
               </div>
@@ -72,7 +72,7 @@ export default function Founders({ onOpenConsultation }: FoundersProps) {
                 <div className="space-y-1">
                   <span className="text-xs font-sans font-bold text-[#1A1A1A] block">Бизнес-клубы Москвы</span>
                   <p className="text-[11px] sm:text-xs text-[#8B8478] leading-relaxed font-light">
-                    Действующий член высших лиг «Клуба 500», «Атланты» и «Клуба Первых» от Сбербанка.
+                    Действующий член высших лиг «Атланты» и «Клуба Первых» от Сбербанка.
                   </p>
                 </div>
               </div>

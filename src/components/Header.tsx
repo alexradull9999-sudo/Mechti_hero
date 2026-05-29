@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Phone } from 'lucide-react';
+import { Menu, X, Phone, Send, Youtube, Sparkles, MessageSquare } from 'lucide-react';
 import Logo from './Logo';
 
 interface HeaderProps {
@@ -73,7 +73,7 @@ export default function Header({ onOpenConsultation, onScrollToSection }: Header
             ))}
           </nav>
 
-          {/* Contact Actions for Desktop - Stacked vertically (button on top, phone number underneath) to prevent any layout collision */}
+          {/* Contact Actions for Desktop - Stacked vertically (button on top, phone number and social links underneath) to prevent any layout collision */}
           <div className="hidden lg:flex flex-col items-end gap-1.5 lg:col-span-4 xl:col-span-3 pl-2 select-none">
             <button
               onClick={onOpenConsultation}
@@ -81,13 +81,37 @@ export default function Header({ onOpenConsultation, onScrollToSection }: Header
             >
               Записаться на встречу
             </button>
-            <a
-              href="tel:+79250999333"
-              className="flex items-center gap-1.5 text-white hover:text-[#B8956A] font-sans text-xs xl:text-sm tracking-wide transition-colors duration-300 font-bold shrink-0 group mr-1"
-            >
-              <Phone size={13} className="text-[#B8956A] shrink-0 group-hover:scale-110 transition-transform duration-300" />
-              <span className="whitespace-nowrap">+7 (925) 099-93-33</span>
-            </a>
+            <div className="flex flex-col items-end gap-1">
+              <div className="flex items-center gap-3">
+                <a
+                  href="tel:+79250999333"
+                  className="flex items-center gap-1.5 text-white hover:text-[#B8956A] font-sans text-xs xl:text-sm tracking-wide transition-colors duration-300 font-bold shrink-0 group mr-1"
+                >
+                  <Phone size={11} className="text-[#B8956A] shrink-0 group-hover:scale-110 transition-transform duration-300" />
+                  <span className="whitespace-nowrap">+7 (925) 099-93-33</span>
+                </a>
+                <div className="flex items-center gap-2 shrink-0">
+                  <a 
+                    href="https://t.me/mechtigroup" 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="w-[22px] h-[22px] rounded-full bg-[#1A1A1A]/80 border border-[#B8956A]/30 hover:border-[#B8956A] flex items-center justify-center text-[#B8956A] hover:bg-[#B8956A] hover:text-[#0F0F0F] transition-all" 
+                    title="Telegram"
+                  >
+                    <Send size={10} />
+                  </a>
+                  <a 
+                    href="https://t.me/mechtigroup" 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="w-[22px] h-[22px] rounded-full bg-[#1A1A1A]/80 border border-[#B8956A]/30 hover:border-[#B8956A] flex items-center justify-center text-[#B8956A] hover:bg-[#B8956A] hover:text-[#0F0F0F] transition-all" 
+                    title="Мессенджер Макс"
+                  >
+                    <MessageSquare size={11} className="p-0.5" />
+                  </a>
+                </div>
+              </div>
+            </div>
           </div>
 
           {/* Mobile and Tablet Menu button trigger (hidden on desktop >= lg) */}
@@ -135,7 +159,7 @@ export default function Header({ onOpenConsultation, onScrollToSection }: Header
           </nav>
 
           {/* Bottom Call to Actions inside menu to prevent layout collision */}
-          <div className="mt-8 flex flex-col items-center gap-6 border-t border-[#B8956A]/10 pt-8 w-full max-w-md mx-auto shrink-0">
+          <div className="mt-8 flex flex-col items-center gap-5 border-t border-[#B8956A]/10 pt-8 w-full max-w-md mx-auto shrink-0">
             <a
               href="tel:+79250999333"
               className="flex items-center gap-2.5 text-white hover:text-[#B8956A] font-sans text-lg md:text-xl tracking-wide transition-colors duration-300 font-bold"
@@ -153,6 +177,26 @@ export default function Header({ onOpenConsultation, onScrollToSection }: Header
             >
               Записаться на встречу
             </button>
+
+            {/* Social channels on mobile */}
+            <div className="flex flex-wrap items-center justify-center gap-2 pt-2 text-[#F2ECE1]/80 font-sans text-[11px]">
+              <a href="https://t.me/mechtigroup" target="_blank" rel="noopener noreferrer" className="hover:text-[#B8956A] transition-all flex items-center gap-1 py-1 px-2 border border-[#B8956A]/10 bg-[#1A1A1A]">
+                <Send size={10} className="text-[#B8956A]" />
+                <span>Telegram</span>
+              </a>
+              <a href="https://t.me/mechtigroup" target="_blank" rel="noopener noreferrer" className="hover:text-[#B8956A] transition-all flex items-center gap-1 py-1 px-2 border border-[#B8956A]/10 bg-[#1A1A1A]">
+                <MessageSquare size={10} className="text-[#B8956A]" />
+                <span>Мессенджер Макс</span>
+              </a>
+              <a href="https://dzen.ru/mechti_group" target="_blank" rel="noopener noreferrer" className="hover:text-[#B8956A] transition-all flex items-center gap-1 py-1 px-2 border border-[#B8956A]/10 bg-[#1A1A1A]">
+                <Sparkles size={10} className="text-[#B8956A]" />
+                <span>Дзен</span>
+              </a>
+              <a href="https://www.youtube.com/@mechti_group" target="_blank" rel="noopener noreferrer" className="hover:text-[#B8956A] transition-all flex items-center gap-1 py-1 px-2 border border-[#B8956A]/10 bg-[#1A1A1A]">
+                <Youtube size={11} className="text-[#B8956A]" />
+                <span>YouTube</span>
+              </a>
+            </div>
           </div>
 
         </div>

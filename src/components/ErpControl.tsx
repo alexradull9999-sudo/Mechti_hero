@@ -320,11 +320,11 @@ export default function ErpControl({ onOpenConsultation }: ErpControlProps) {
                           <div className="space-y-1">
                             <div className="flex justify-between text-xs font-bold text-gray-700">
                               <span>Стройка</span>
-                              <span className="text-green-600">100%</span>
+                              <span className="text-[#B8956A]">65% В процессе</span>
                             </div>
                             <div className="w-full bg-gray-200 h-6.5 rounded overflow-hidden relative border border-gray-300 shadow-inner">
-                              <div className="bg-green-600 h-full w-[100%] transition-all duration-500 relative">
-                                <span className="absolute inset-y-0 right-3 flex items-center text-[10px] font-extrabold text-white">100%</span>
+                              <div className="bg-[#B8956A] h-full w-[65%] transition-all duration-500 relative">
+                                <span className="absolute inset-y-0 right-3 flex items-center text-[10px] font-extrabold text-white">65%</span>
                               </div>
                             </div>
                           </div>

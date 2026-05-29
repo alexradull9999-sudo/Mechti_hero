@@ -69,6 +69,7 @@ export default function App() {
   const [modalChannelLabel, setModalChannelLabel] = useState('Где удобнее общаться? *');
   const [isModalSubmitted, setIsModalSubmitted] = useState(false);
   const [isModalSubmitting, setIsModalSubmitting] = useState(false);
+  const [modalConsent, setModalConsent] = useState(true);
 
   // Custom Cursor Mouse tracker
   const [mousePos, setMousePos] = useState({ x: -100, y: -100 });
@@ -201,13 +202,14 @@ export default function App() {
     setModalChannelLabel(channelLabel);
 
     setIsModalSubmitted(false);
+    setModalConsent(true);
     setIsConsultationOpen(true);
   };
 
   // Perform dialog form submissions mockup
   const handleModalSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!mName || !isValidPhoneNumber(mPhone)) return;
+    if (!modalConsent || !mName || !isValidPhoneNumber(mPhone)) return;
 
     setIsModalSubmitting(true);
     setTimeout(() => {
@@ -218,6 +220,7 @@ export default function App() {
       // Clear inputs
       setMName('');
       setMPhone('');
+      setModalConsent(true);
     }, 1000);
   };
 
@@ -268,6 +271,10 @@ export default function App() {
         
         <LuxuryCalculator onOpenConsultation={handleOpenConsultation} />
         
+        <Roadmap 
+          onOpenConsultation={handleOpenConsultation}
+        />
+        
         <DesignServices 
           onOpenConsultation={handleOpenConsultation} 
           onScrollToSection={handleScrollToSection} 
@@ -283,10 +290,6 @@ export default function App() {
         <RealEstateSection 
           onOpenConsultation={handleOpenConsultation} 
           onScrollToSection={handleScrollToSection} 
-        />
-        
-        <Roadmap 
-          onOpenConsultation={handleOpenConsultation}
         />
         
         <PortfolioGrid onOpenConsultation={handleOpenConsultation} />
@@ -406,7 +409,7 @@ export default function App() {
                         {[
                           { id: 'telegram', label: 'Telegram' },
                           { id: 'whatsapp', label: 'WhatsApp' },
-                          { id: 'messenger', label: 'Messenger' }
+                          { id: 'messenger', label: 'Мессенджер Макс' }
                         ].map((ch) => (
                           <button
                             key={ch.id}
@@ -426,13 +429,34 @@ export default function App() {
 
                   </div>
 
-                  <div className="text-[9px] text-[#8B8478] leading-normal pt-1">
+                  {/* Consent checkbox */}
+                  <label className="flex items-start gap-2.5 cursor-pointer group py-1">
+                    <input 
+                      type="checkbox" 
+                      required
+                      checked={modalConsent}
+                      onChange={(e) => setModalConsent(e.target.checked)}
+                      className="mt-0.5 w-3.5 h-3.5 accent-[#B8956A] cursor-pointer shrink-0"
+                    />
+                    <span className="text-[10px] text-[#8B8478] leading-normal select-none">
+                      Я даю согласие на обработку моих персональных данных в соответствии с{' '}
+                      <a href="/privacy" target="_blank" className="text-[#B8956A] hover:underline">
+                        Политикой конфиденциальности
+                      </a>{' '}
+                      и{' '}
+                      <a href="/consent" target="_blank" className="text-[#B8956A] hover:underline">
+                        Согласием на обработку персональных данных
+                      </a>.
+                    </span>
+                  </label>
+
+                  <div className="text-[9px] text-[#8B8478] leading-normal">
                     Ваш визит координируется в строго конфиденциальном режиме. Все данные инвесторов зашифрованы по стандартам холдинга Mechty.
                   </div>
 
                   <button
                     type="submit"
-                    disabled={isModalSubmitting || !mName || !isValidPhoneNumber(mPhone)}
+                    disabled={isModalSubmitting || !mName || !isValidPhoneNumber(mPhone) || !modalConsent}
                     className="w-full py-4 bg-[#B8956A] hover:bg-[#8B6F4E] disabled:bg-[#8B8478]/15 disabled:text-[#8B8478] text-[#0F0F0F] uppercase tracking-widest font-sans font-bold text-xs transition-colors duration-300 transform active:scale-98 flex items-center justify-center gap-2 block shadow-lg cursor-pointer"
                   >
                     {isModalSubmitting ? (

@@ -71,7 +71,7 @@ export default function DesignServices({ onOpenConsultation, onScrollToSection }
                   Бесплатный выезд на обмер
                 </h4>
                 <p className="text-sm text-[#4E473F] leading-relaxed mt-1 font-normal">
-                  Используем 3D-лазерные сканеры Leica для формирования точного облака точек с погрешностью до 1 мм.
+                  Используем современные лазерные линейки повышенной точности для формирования детального обмерного плана помещений.
                 </p>
               </div>
             </div>
