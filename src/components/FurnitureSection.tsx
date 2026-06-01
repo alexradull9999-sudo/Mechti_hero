@@ -10,8 +10,13 @@ export default function FurnitureSection({ onScrollToSection, onOpenConsultation
   const guarantees = [
     {
       icon: <Layers size={18} className="text-[#8B6F4E]" />,
-      title: "Экологичные и инновационные материалы",
-      desc: "Используем австрийские плиты EGGER (класс эмиссии E1), суперматовый нанопластик Fenix NTM с защитой от отпечатков пальцев, плиты Alvic, шпон редких пород (эбен, американский орех, дуб, палисандр) под износостойким матовым лаком, а также эксклюзивную отделку жидким металлом (жидкий металл с ручной полировкой) для дизайнерских фасадов."
+      title: "Индивидуальная комплектация и премиальные материалы",
+      desc: "Индивидуальная расстановка каждой детали созданного проекта — от мебели до чашек, ложек, цветов и предметов искусства. Премиальные материалы: дерево, ткань, кожа, металл, камень. Топовые мировые бренды мебели и предметов интерьера — Minotti, Poltrona Frau, B&B Italia, Cassina, Flexform и другие."
+    },
+    {
+      icon: <Layers size={18} className="text-[#8B6F4E]" />,
+      title: "Текстильное оформление окон под ключ",
+      desc: "Изготовление и навеска текстиля: шторы день-ночь, тюль, портьеры с эффектом Black Out (100% затемнение для спален), качественные декоративные карнизы по размерам помещений."
     },
     {
       icon: <Hammer size={18} className="text-[#8B6F4E]" />,
@@ -21,17 +26,12 @@ export default function FurnitureSection({ onScrollToSection, onOpenConsultation
     {
       icon: <Wrench size={18} className="text-[#8B6F4E]" />,
       title: "Высококлассная сборка",
-      desc: "Сборку ведут штатные мастера завода на скрытые немецкие мебельные стяжки Hettich, сохраняя идеальные зазоры."
-    },
-    {
-      icon: <Settings size={18} className="text-[#8B6F4E]" />,
-      title: "Лазерный контроль ЧПУ",
-      desc: "Раскрой панелей ведется на итальянских пильных станках с электронным позиционированием до сотых долей си."
+      desc: "Сбору ведут штатные мастера завода на скрытые немецкие мебельные стяжки Hettich, сохраняя идеальные зазоры."
     },
     {
       icon: <ShieldCheck size={18} className="text-[#8B6F4E]" />,
       title: "Пожизненная гарантия на фурнитуру",
-      desc: "Мы официальные партнеры ведущих европейских марок Blum и Hettich. Действует расширенная пожизненная гарантия на все доводчики, амортизаторы, петли и выдвижные системы."
+      desc: "Мы работаем напрямую с лидерами европейского рынка Blum и Hettich. Действует расширенная пожизненная гарантия на все доводчики, петли и выдвижные системы."
     }
   ];
 
@@ -54,26 +54,26 @@ export default function FurnitureSection({ onScrollToSection, onOpenConsultation
           
           {/* Left Column: Visual copy & images */}
           <div className="lg:col-span-6 space-y-6">
-            <span className="text-sm uppercase font-sans tracking-[0.2em] text-[#8B6F4E] font-bold block">
-              НАПРАВЛЕНИЕ КОМПЛЕКТАЦИЯ МЕЧТЫ
-            </span>
-            <h2 className="font-serif text-4xl md:text-6xl font-light leading-tight">
-              Комплектация по эскизам,<br />
-              <span className="italic text-[#8B6F4E]">строго в размер стен</span>
-            </h2>
-            <p className="text-base md:text-lg text-[#322F2A] font-sans font-normal leading-relaxed">
-              Главная боль меблировки на заказ — несовпадение зазоров со строительными порталами. Собственное производство Комплектация Мечты в Подмосковье синхронизирует замеры на этапе оштукатуривания. Разрабатываем кухни, гардеробы, комоды и мягкие диваны в едином стилевом ключе куратора проекта.
-            </p>
+          <span className="text-sm uppercase font-sans tracking-[0.2em] text-[#8B6F4E] font-bold block">
+            НАПРАВЛЕНИЕ КОМПЛЕКТАЦИЯ
+          </span>
+          <h2 className="font-serif text-4xl md:text-6xl font-light leading-tight">
+            Комплектация по эскизам,<br />
+            <span className="italic text-[#8B6F4E]">строго в размер стен</span>
+          </h2>
+          <p className="text-base md:text-lg text-[#322F2A] font-sans font-normal leading-relaxed">
+            Главная боль меблировки на заказ — несовпадение зазоров со строительными порталами. Собственное производство в Подмосковье синхронизирует замеры на этапе оштукатуривания. Разрабатываем кухни, гардеробы, комоды и мягкие диваны в едином стилевом ключе куратора проекта. Передача готового объекта, полностью готового для жизни.
+          </p>
 
-            {onOpenConsultation && (
-              <button
-                onClick={() => onOpenConsultation(
-                  'Заявка на получение презентации мебели и каталога Комплектации Мечты.',
-                  'Получить презентацию мебели',
-                  'Заполните форму, чтобы получить полную презентацию премиум-мебели, кухонь и гардеробов от мебельной фабрики Комплектации Мечты.'
-                )}
-                className="inline-flex items-center gap-3 px-6 py-4 bg-[#1A1A1A] hover:bg-[#8B6F4E] text-white hover:text-[#EDE6D8] font-sans text-xs uppercase tracking-widest font-bold transition-all duration-300 shadow-md cursor-pointer rounded-none"
-              >
+          {onOpenConsultation && (
+            <button
+              onClick={() => onOpenConsultation(
+                'Заявка на получение презентации мебели и каталога Комплектации.',
+                'Получить презентацию комплектации',
+                'Заполните форму, чтобы получить полную презентацию премиум-мебели, кухонь и гардеробов от нашего мебельного цеха.'
+              )}
+              className="inline-flex items-center gap-3 px-6 py-4 bg-[#1A1A1A] hover:bg-[#8B6F4E] text-white hover:text-[#EDE6D8] font-sans text-xs uppercase tracking-widest font-bold transition-all duration-300 shadow-md cursor-pointer rounded-none"
+            >
                 <FileText size={14} className="animate-pulse" />
                 <span>Посмотреть презентацию мебели</span>
               </button>

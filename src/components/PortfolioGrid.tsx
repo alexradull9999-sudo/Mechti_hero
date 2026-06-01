@@ -41,7 +41,7 @@ export default function PortfolioGrid({ onOpenConsultation }: PortfolioGridProps
   }, []);
 
   return (
-    <section id="portfolio" className="bg-[#0F0F0F] text-[#F5F1EA] py-32 md:py-44 border-b border-[#B8956A]/20">
+    <section id="portfolio" className="bg-[#0F0F0F] text-[#F5F1EA] py-32 md:py-44 border-b border-[#B8956A]/20 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         
         {/* Section Header */}
@@ -256,6 +256,10 @@ export default function PortfolioGrid({ onOpenConsultation }: PortfolioGridProps
           </div>
         </div>
       )}
+
+      <div className="absolute bottom-6 right-6 text-[#F5F1EA] opacity-20 text-[10px] sm:text-xs tracking-[0.25em] font-sans font-extrabold uppercase select-none pointer-events-none">
+        НАЧИНАЕТСЯ С…
+      </div>
 
     </section>
   );

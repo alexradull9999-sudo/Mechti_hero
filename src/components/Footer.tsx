@@ -103,8 +103,8 @@ export default function Footer({ onScrollToSection }: FooterProps) {
             </div>
             
             <div className="space-y-2">
-              <a href="tel:+79250999333" className="font-sans text-base text-[#EDE6D8] font-bold block hover:text-[#B8956A] transition-colors">
-                +7 (925) 099-93-33
+              <a href="tel:+79055164466" className="font-sans text-base text-[#EDE6D8] font-bold block hover:text-[#B8956A] transition-colors">
+                +7 (905) 516-44-66
               </a>
               <a
                 href="mailto:hello@mechtygroup.ru"

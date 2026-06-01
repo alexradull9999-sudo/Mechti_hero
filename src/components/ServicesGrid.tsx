@@ -10,15 +10,15 @@ export default function ServicesGrid({ onScrollToSection }: ServicesGridProps) {
     {
       id: "ds-real-estate",
       num: "01",
-      title: "Авторская недвижимость",
-      description: "Персональный подбор премиального жилья в Москве (новостройки, элитная вторичка, усадьбы). Доступ к закрытым сделкам UHNW вне открытого рынка.",
+      title: "Подбор и строительство объекта",
+      description: "Персональный подбор премиального жилья в Москве (новостройки, элитная вторичка, усадьбы). Доступ к закрытым сделкам вне открытого рынка.",
       image: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=800&q=80",
       targetId: "real-estate"
     },
     {
       id: "ds-design",
       num: "02",
-      title: "Дизайн интерьера",
+      title: "Дизайн",
       description: "Авторские дизайн-проекты от концептуального 3D-моделирования до полной рабочей документации, инженерных схем и ведомостей комплектации.",
       image: "https://images.unsplash.com/photo-1618219908412-a29a1bb7b86e?auto=format&fit=crop&w=800&q=80",
       targetId: "design-section"
@@ -26,15 +26,15 @@ export default function ServicesGrid({ onScrollToSection }: ServicesGridProps) {
     {
       id: "ds-renovations",
       num: "03",
-      title: "Ремонт под ключ",
-      description: "Премиальная строительная реализация «под ключ». Фиксированная смета, еженедельный фотоотчет в ERP, авторский и технический надзор.",
+      title: "Ремонт",
+      description: "Премиальная строительная реализация. Фиксированная смета, еженедельный фотоотчет в ERP, авторский и технический надзор.",
       image: "https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=800&q=80",
       targetId: "renovation-section"
     },
     {
       id: "ds-furniture",
       num: "04",
-      title: "Комплектация Мечты",
+      title: "Комплектация",
       description: "Собственная мебельная мануфактура полного цикла и прямые поставки. Индивидуальное производство кухонь, гардеробов и премиальное декорирование.",
       image: "https://images.unsplash.com/photo-1538688525198-9b88f6f53126?auto=format&fit=crop&w=800&q=80",
       targetId: "furniture-section"

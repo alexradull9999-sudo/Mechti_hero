@@ -62,7 +62,7 @@ export default function ContactForm({ customMessage, onClearCustomMessage }: Con
                 <span className="italic text-[#B8956A] font-light">ваш проект?</span>
               </h2>
               <p className="text-sm md:text-base text-[#C4BEB3] font-sans font-light leading-relaxed max-w-sm">
-                Запишитесь на закрытую презентацию в нашем центральном шоу-руме в Москва-Сити. Коллеги предложат вам зерновой кофе, покажут образцы фасадов и сметные ведомости.
+                Запишитесь на встречу в нашем готовом объекте — посмотрите вживую то, что вас интересует. Коллеги предложат вам презентацию, покажут образцы материалов и сметные ведомости.
               </p>
             </div>
 
@@ -74,9 +74,10 @@ export default function ContactForm({ customMessage, onClearCustomMessage }: Con
                   <Phone size={16} className="text-[#B8956A]" />
                 </div>
                 <div className="space-y-1">
-                  <span className="text-xs uppercase font-sans text-[#B8956A] tracking-widest block font-bold">Телефон</span>
-                  <a href="tel:+79250999333" className="text-base font-sans text-[#EDE6D8] font-extrabold block hover:text-[#B8956A] transition-colors">
-                    +7 (925) 099-93-33
+                  <span className="text-xs uppercase font-sans text-[#B8956A] tracking-widest block font-bold">Контакты</span>
+                  <span className="text-xs text-[#C4BEB3] block">Прямой контакт с руководителем продаж — Вадим</span>
+                  <a href="tel:+79055164466" className="text-base font-sans text-[#EDE6D8] font-extrabold block hover:text-[#B8956A] transition-colors">
+                    +7 (905) 516-44-66
                   </a>
                 </div>
               </div>
@@ -130,7 +131,7 @@ export default function ContactForm({ customMessage, onClearCustomMessage }: Con
                     ЗАПРЕДМЕТНОЕ ОБРАЩЕНИЕ
                   </span>
                   <h3 className="font-serif text-2xl text-[#F5F1EA] font-light">
-                    Оставьте параметры объекта
+                    Расскажите нам о вашем объекте
                   </h3>
                 </div>
 
@@ -262,20 +263,25 @@ export default function ContactForm({ customMessage, onClearCustomMessage }: Con
                 </label>
 
                 {/* Form CTA trigger button */}
-                <button
-                  type="submit"
-                  disabled={isSubmitting || !consent || !name || !isValidPhoneNumber(phone)}
-                  className="w-full py-4 bg-[#B8956A] hover:bg-[#8B6F4E] disabled:bg-[#8B8478]/10 disabled:text-[#8B8478] text-[#0F0F0F] uppercase tracking-[0.2em] font-sans text-sm font-extrabold transition-all duration-300 transform active:scale-98 text-center flex items-center justify-center gap-2 shadow-lg cursor-pointer"
-                >
-                  {isSubmitting ? (
-                    <span>Отправка документов в зашифрованном виде...</span>
-                  ) : (
-                    <>
-                      <span>Записаться</span>
-                      <Send size={12} />
-                    </>
-                  )}
-                </button>
+                <div className="space-y-2">
+                  <button
+                    type="submit"
+                    disabled={isSubmitting || !consent || !name || !isValidPhoneNumber(phone)}
+                    className="w-full py-4 bg-[#B8956A] hover:bg-[#8B6F4E] disabled:bg-[#8B8478]/10 disabled:text-[#8B8478] text-[#0F0F0F] uppercase tracking-[0.2em] font-sans text-sm font-extrabold transition-all duration-300 transform active:scale-98 text-center flex items-center justify-center gap-2 shadow-lg cursor-pointer"
+                  >
+                    {isSubmitting ? (
+                      <span>Отправка документов в зашифрованном виде...</span>
+                    ) : (
+                      <>
+                        <span>Записаться на встречу в готовом объекте</span>
+                        <Send size={12} />
+                      </>
+                    )}
+                  </button>
+                  <p className="text-center text-[11px] text-[#C4BEB3]/80 italic font-sans leading-normal">
+                    Записаться на встречу в нашем готовом объекте — посмотрите вживую то, что вас интересует.
+                  </p>
+                </div>
               </form>
             )}
 

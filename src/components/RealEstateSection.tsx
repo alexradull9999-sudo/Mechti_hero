@@ -58,7 +58,7 @@ export default function RealEstateSection({ onOpenConsultation, onScrollToSectio
               <span className="italic text-[#B8956A] font-light">в лучших локациях Москвы</span>
             </h2>
             <p className="text-base md:text-lg text-[#C4BEB3] font-sans font-light leading-relaxed max-w-2xl">
-              Сотрудничаем напрямую с застройщиками Vesper, Capital Group, Sminex и собственниками квартир. 80% наших сделок — закрытые продажи вне каталогов по персональному запросу.
+              Сотрудничаем напрямую с застройщиками: Vesper, Capital Group, Sminex и прочими застройщиками премиальной недвижимости. 80% сделок — закрытые продажи для состоятельных клиентов, без открытых каталогов.
             </p>
           </div>
           
@@ -169,7 +169,7 @@ export default function RealEstateSection({ onOpenConsultation, onScrollToSectio
                 Индивидуальный закрытый консьерж-подбор
               </h4>
               <p className="text-xs md:text-sm text-[#C4BEB3] leading-relaxed max-w-xl mt-1.5 font-normal">
-                Ищете конкретный метраж в Хамовниках или закрытый лофт на Остоженке? Задайте параметры. Наш брокер сформирует внерыночный пул квартир по личным каналам.
+                Ищете конкретный метраж в Хамовниках или закрытый лофт на Остоженке? Задайте параметры. Эксклюзивные лоты, которых нет в открытой продаже — закрытые предложения для наших клиентов. Также можем спроектировать резиденцию любой сложности и даже целый посёлок.
               </p>
             </div>
           </div>

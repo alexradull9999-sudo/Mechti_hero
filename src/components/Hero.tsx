@@ -18,9 +18,9 @@ export default function Hero({ onScrollToSection, onOpenConsultation }: HeroProp
           <div className="max-w-xl mx-auto lg:mx-0 xl:pl-12">
             <div className="mb-6 flex items-center gap-4">
               <div className="w-12 h-[1px] bg-[#B8956A]"></div>
-              <span className="text-xs md:text-sm uppercase tracking-[0.3em] accent-text font-semibold flex items-center gap-1.5">
+              <span className="text-xs md:text-sm uppercase tracking-[0.3em] accent-text font-semibold flex items-center gap-1.5 align-middle">
                 <Sparkles size={12} className="animate-pulse" />
-                Premium · De Luxe · С 2009 года
+                Бизнес · Премиум · De Luxe · с 2009 года
               </span>
             </div>
             
@@ -30,19 +30,24 @@ export default function Hero({ onScrollToSection, onOpenConsultation }: HeroProp
             </h1>
             
             <p className="text-base md:text-xl font-light text-[#C4BEB3] max-w-lg leading-relaxed mb-10 font-sans">
-              От подбора авторской недвижимости до меблировки. Координация работы 180+ экспертов и подрядчиков в рамках одного договора под единым руководством.
+              Находим квартиру, делаем ремонт, полностью обставляем — вы получаете готовый дом. Один договор, один менеджер, ноль хаоса.
             </p>
             
-            <div className="flex flex-col sm:flex-row gap-4 sm:gap-6">
-              <button
-                onClick={() => onScrollToSection('calculator')}
-                className="bg-brass text-[#0F0F0F] px-8 py-4 text-sm uppercase tracking-[0.2em] font-sans font-bold hover:bg-[#8B6F4E] transition-all transform active:scale-97 cursor-pointer text-center"
-              >
-                Рассчитать стоимость
-              </button>
+            <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 items-start">
+              <div className="flex flex-col w-full sm:w-auto">
+                <button
+                  onClick={() => onScrollToSection('calculator')}
+                  className="bg-brass text-[#0F0F0F] px-8 py-4 text-sm uppercase tracking-[0.2em] font-sans font-bold hover:bg-[#8B6F4E] transition-all transform active:scale-97 cursor-pointer text-center w-full"
+                >
+                  Рассчитать стоимость
+                </button>
+                <div className="text-[12px] text-[#8B8478] italic mt-3 select-none text-left pl-1">
+                  Квартира 100 м² под ключ — от 29 млн ₽. Узнайте точнее за 2 минуты →
+                </div>
+              </div>
               <button
                 onClick={onOpenConsultation}
-                className="border brass-border px-8 py-4 text-sm uppercase tracking-[0.2em] font-sans font-medium hover:bg-white/5 transition-all transform active:scale-97 cursor-pointer text-center"
+                className="border brass-border px-8 py-4 text-sm uppercase tracking-[0.2em] font-sans font-medium hover:bg-white/5 transition-all transform active:scale-97 cursor-pointer text-center w-full sm:w-auto"
               >
                 Записаться на встречу
               </button>

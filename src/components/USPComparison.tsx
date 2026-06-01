@@ -81,7 +81,7 @@ export default function USPComparison() {
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.3 }}
             >
-              Индивидуальный договор.
+              Один договор.
             </motion.div>
             <motion.div
               initial={{ opacity: 0, y: 15 }}
@@ -98,45 +98,50 @@ export default function USPComparison() {
         <div className="h-[1px] bg-[#B8956A]/20 w-full my-12" />
 
         {/* Comparison columns in 12-column grid */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-4 items-center">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-4 items-stretch">
           
           {/* LEFT COLUMN: The Chaotic 24 contacts list */}
-          <div className="md:col-span-5 space-y-6">
-            <div>
-              <span className="text-[10px] uppercase tracking-[0.3em] text-[#8B8478] block">
-                Обычный путь · 28 контактов в хаосе
-              </span>
-              <div className="h-[1px] w-12 bg-[#B8956A]/35 mt-2" />
+          <div className="md:col-span-5 flex flex-col justify-between space-y-6">
+            <div className="space-y-4">
+              <div>
+                <span className="text-[10px] uppercase tracking-[0.3em] text-[#8B8478] block">
+                  ОБЫЧНЫЙ ПУТЬ КЛИЕНТА · 28 контактов в одиночку
+                </span>
+                <span className="text-xs text-[#8B8478] mt-2 block font-sans">
+                  Если делать ремонт самостоятельно, через эти 28 ролей придётся пройти лично — найти, согласовать договоры, контролировать, переплачивать на стыках.
+                </span>
+                <div className="h-[1px] w-12 bg-[#B8956A]/35 mt-2" />
+              </div>
+
+              {/* A dense wall of roles appearing staggered */}
+              <motion.div
+                variants={containerVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-50px" }}
+                className="grid grid-cols-2 md:grid-cols-1 gap-x-4 md:gap-x-0 gap-y-[3px]"
+              >
+                {roles.map((role, idx) => (
+                  <motion.div
+                    key={idx}
+                    variants={itemVariants}
+                    className="font-sans text-xs tracking-wide text-[#BDB5A7] py-0.5 border-b border-white/5 hover:text-[#B8956A] transition-all duration-300"
+                  >
+                    {role}
+                  </motion.div>
+                ))}
+              </motion.div>
             </div>
 
-            {/* A dense wall of roles appearing staggered */}
-            <motion.div
-              variants={containerVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-50px" }}
-              className="grid grid-cols-2 md:grid-cols-1 gap-x-4 md:gap-x-0 gap-y-[3px]"
-            >
-              {roles.map((role, idx) => (
-                <motion.div
-                  key={idx}
-                  variants={itemVariants}
-                  className="font-sans text-xs tracking-wide text-[#BDB5A7] py-0.5 border-b border-white/5 hover:text-[#B8956A] transition-all duration-300"
-                >
-                  {role}
-                </motion.div>
-              ))}
-            </motion.div>
-
-            <div className="mt-8 p-5 border-l-2 border-[#B8956A]/60 bg-[#161616]/60 backdrop-blur-sm rounded-r-lg">
-              <p className="font-serif text-[15px] md:text-[17px] text-[#E5D5C0] font-light italic leading-relaxed">
-                «Срок неизвестен. Переделки, постоянное перекладывание ответственности, отсутствие реальных гарантий. Качество — на удачу».
+            <div className="mt-8 p-5 border-l-2 border-[#E13A3E]/60 bg-[#161616]/60 backdrop-blur-sm rounded-r-lg">
+              <p className="font-serif text-[15px] md:text-[17px] text-[#EDE6D8] font-light italic leading-relaxed">
+                «Срок — непредсказуем. Качество — на удачу. Ответственный за общий результат — никто.»
               </p>
             </div>
           </div>
 
           {/* MIDDLE COLUMN: Vertical line separator with Arrow action */}
-          <div className="md:col-span-2 flex flex-col items-center justify-center self-stretch py-4 md:py-0">
+          <div className="md:col-span-2 flex flex-col items-center justify-center py-4 md:py-0">
             {/* Desktop View Divider */}
             <div className="hidden md:flex flex-col items-center justify-center h-full min-h-[400px] w-full">
               <div className="w-[1px] bg-gradient-to-b from-transparent via-[#B8956A]/45 to-transparent flex-grow" />
@@ -171,7 +176,10 @@ export default function USPComparison() {
             <div className="space-y-6">
               <div className="flex flex-col md:items-start items-center">
                 <span className="text-[10px] uppercase tracking-[0.3em] text-[#B8956A] block">
-                  MECHTY · ОДНА КОМАНДА
+                  С НАМИ · одна команда, один контакт
+                </span>
+                <span className="text-xs text-[#B8956A] mt-2 block font-sans">
+                  С одной компанией и личным менеджером.
                 </span>
                 <div className="h-[1px] w-12 bg-[#B8956A]/35 mt-2" />
               </div>
@@ -182,7 +190,7 @@ export default function USPComparison() {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 1.2, ease: "easeOut" }}
-                className="font-serif text-[180px] sm:text-[280px] md:text-[340px] font-thin text-[#B8956A] leading-[0.8] text-center select-none py-4"
+                className="font-serif text-[180px] sm:text-[280px] md:text-[340px] font-thin text-[#B8956A] leading-[0.8] text-center select-none py-2"
               >
                 M
               </motion.div>
@@ -196,7 +204,7 @@ export default function USPComparison() {
                   Пожизненная гарантия на несущие конструкции и инженерию*
                 </p>
                 <p className="text-xs md:text-sm text-[#C4BCB1] leading-relaxed max-w-lg mx-auto text-center font-sans font-light">
-                  *На стены, перегородки, стяжку, штукатурку, гипсокартонные потолки, черновую электрику, шумоизоляцию, инженерные трубопроводы Rehau — на весь срок эксплуатации дома (до планового износа или сноса здания). Условия и исключения — в договоре.
+                  *На стены, перегородки, стяжку, штукатурку, гипсокартонные потолки, черновую электрику, шумоизоляцию, инженерные трубопроводы Rehau — на весь срок эксплуатации дома. Условия и исключения — в договоре.
                 </p>
               </div>
             </div>

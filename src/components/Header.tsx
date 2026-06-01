@@ -84,11 +84,11 @@ export default function Header({ onOpenConsultation, onScrollToSection }: Header
             <div className="flex flex-col items-end gap-1">
               <div className="flex items-center gap-3">
                 <a
-                  href="tel:+79250999333"
+                  href="tel:+79055164466"
                   className="flex items-center gap-1.5 text-white hover:text-[#B8956A] font-sans text-xs xl:text-sm tracking-wide transition-colors duration-300 font-bold shrink-0 group mr-1"
                 >
                   <Phone size={11} className="text-[#B8956A] shrink-0 group-hover:scale-110 transition-transform duration-300" />
-                  <span className="whitespace-nowrap">+7 (925) 099-93-33</span>
+                  <span className="whitespace-nowrap">+7 (905) 516-44-66</span>
                 </a>
                 <div className="flex items-center gap-2 shrink-0">
                   <a 
@@ -118,7 +118,7 @@ export default function Header({ onOpenConsultation, onScrollToSection }: Header
           <div className="flex lg:hidden items-center gap-3">
             {/* Direct phone dialer icon shown on small mobile only */}
             <a
-              href="tel:+79250999333"
+              href="tel:+79055164466"
               className="p-2 md:hidden text-[#B8956A] hover:bg-[#1A1A1A] transition-colors duration-300 border border-[#B8956A]/20"
               aria-label="Call MECHTY Group"
             >
@@ -161,11 +161,11 @@ export default function Header({ onOpenConsultation, onScrollToSection }: Header
           {/* Bottom Call to Actions inside menu to prevent layout collision */}
           <div className="mt-8 flex flex-col items-center gap-5 border-t border-[#B8956A]/10 pt-8 w-full max-w-md mx-auto shrink-0">
             <a
-              href="tel:+79250999333"
+              href="tel:+79055164466"
               className="flex items-center gap-2.5 text-white hover:text-[#B8956A] font-sans text-lg md:text-xl tracking-wide transition-colors duration-300 font-bold"
             >
               <Phone size={18} className="text-[#B8956A] shrink-0" />
-              <span>+7 (925) 099-93-33</span>
+              <span>+7 (905) 516-44-66</span>
             </a>
             
             <button

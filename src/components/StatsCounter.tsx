@@ -89,22 +89,22 @@ export default function StatsCounter() {
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 divide-y md:divide-y-0 md:divide-x divide-white/10 md:divide-[#B8956A]/20">
           <CounterItem
-            target={15}
+            target={17}
             suffix="+"
-            label="15+ лет"
-            sublabel="на рынке High-End сегмента"
+            label="17+ лет ведения проектов"
+            sublabel="под ключ в премиальном сегменте"
           />
           <CounterItem
             target={1500}
             suffix="+"
-            label="1500+ проектов"
-            sublabel="Создано квартир и вилл"
+            label="1500+ реализованных"
+            sublabel="квартир и домов"
           />
           <CounterItem
             target={180}
             suffix="+"
-            label="180+ экспертов"
-            sublabel="Штатных специалистов в Мск"
+            label="Команда"
+            sublabel="из 180+ экспертов"
           />
         </div>
       </div>

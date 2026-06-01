@@ -20,13 +20,13 @@ export default function FAQAccordion() {
         {/* Header Title */}
         <div className="text-center mb-16 md:mb-24 space-y-4">
           <span className="text-xs uppercase font-sans tracking-[0.2em] text-[#B8956A] font-bold block">
-            ОТВЕТЫ НА НАШИ ЧАСТЫЕ ВОПРОСЫ
+            FAQ
           </span>
-          <h2 className="font-serif text-4xl md:text-6xl font-light">
-            Детали, зазоры, <br />
-            <span className="italic text-[#8B6F4E] font-light">гарантийные соглашения</span>
+          <h2 className="font-serif text-4xl md:text-6xl font-normal tracking-tight text-[#1A1A1A]">
+            Ответы на ваши вопросы <br />
+            <span className="italic text-[#8B6F4E] font-light text-3xl md:text-4xl block mt-2">Детали, зазоры, гарантийные соглашения</span>
           </h2>
-          <div className="h-[1px] w-20 bg-[#B8956A]/40 mx-auto mt-4" />
+          <div className="h-[1px] w-24 bg-[#B8956A]/40 mx-auto mt-4" />
         </div>
 
         {/* Accordions track */}

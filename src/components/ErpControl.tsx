@@ -101,7 +101,7 @@ export default function ErpControl({ onOpenConsultation }: ErpControlProps) {
               <span>Технологичная прозрачность</span>
             </div>
             
-            <h2 className="font-serif text-4xl md:text-6xl font-light leading-tight text-[#F5F1EA]">
+            <h2 className="font-serif text-5xl md:text-7xl font-light leading-tight text-[#F5F1EA]">
               Цифровой контроль <br />
               <span className="italic text-[#B8956A] font-light">в реальном времени</span>
             </h2>
@@ -140,11 +140,11 @@ export default function ErpControl({ onOpenConsultation }: ErpControlProps) {
                 <div className="flex items-center gap-2 text-[#B8956A]">
                   <Shield size={14} className="shrink-0" />
                   <h4 className="text-sm font-sans font-extrabold text-[#F5F1EA] uppercase tracking-wider">
-                    Актуальные фотоотчеты
+                    Еженедельный фотоотчёт
                   </h4>
                 </div>
                 <p className="text-xs text-[#C4BEB3] leading-relaxed">
-                  Еженедельные отчетные журналы скрытых инженерных работ и высококачественные панорамы прямо в приложении.
+                  Еженедельный фотоотчёт скрытых инженерных работ и высококачественные панорамы прямо в приложении.
                 </p>
               </div>
 
@@ -164,9 +164,9 @@ export default function ErpControl({ onOpenConsultation }: ErpControlProps) {
             {/* Note instruction card */}
             <div className="bg-[#111] border border-[#B8956A]/15 p-4 text-xs font-sans text-[#C4BEB3] flex items-center justify-between gap-3">
               <span className="italic">
-                Попробуйте интерактивно переключить вкладки на макете смартфона справа, чтобы посмотреть реальные экраны нашей CRM-системы.
+                Попробуйте интерактивно переключить вкладки на макете смартфона справа, чтобы посмотреть реальные экраны нашей CRM-системы. <span className="text-[#B8956A] inline-block font-extrabold animate-pulse ml-1 text-base">🡲</span>
               </span>
-              <Smartphone size={24} className="text-[#B8956A] shrink-0 animate-bounce" />
+              <Smartphone size={24} className="text-[#B8956A] shrink-0 animate-pulse" />
             </div>
           </div>
 
@@ -300,7 +300,7 @@ export default function ErpControl({ onOpenConsultation }: ErpControlProps) {
                             текущий проект контроля:
                           </span>
                           <h4 className="font-serif font-bold text-sm tracking-tight text-gray-800">
-                            ЖК ХЕДЛАЙНЕР № 750 (РЕМОНТ)
+                            ЖК «Крылья», 135 м²
                           </h4>
                         </div>
                         <div className="p-1 text-gray-500 bg-gray-100 rounded">
@@ -427,7 +427,7 @@ export default function ErpControl({ onOpenConsultation }: ErpControlProps) {
                       </div>
 
                       <div className="text-center text-[10px] text-gray-500 font-medium">
-                        ЖК ХЕДЛАЙНЕР КВ. 750 (РЕМОНТ) · ШАГ 7 ИЗ 10
+                        ЖК «Крылья», 135 м² · ШАГ 7 ИЗ 10
                       </div>
                     </div>
 
@@ -445,7 +445,7 @@ export default function ErpControl({ onOpenConsultation }: ErpControlProps) {
                           ИНЖЕНЕРНЫЙ ГРАФИК
                         </span>
                         <h4 className="font-semibold text-xs sm:text-xs">
-                          (399) ЖК ОСТРОВ ЭТАЖ 19 КВ.160 (ДИЗАЙН)
+                          (399) ЖК «Крылья», 135 м² (ДИЗАЙН)
                         </h4>
                       </div>
                       

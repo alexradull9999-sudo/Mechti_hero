@@ -371,7 +371,11 @@ function AnimatedPrice({ value }: { value: number }) {
 
 export default function LuxuryCalculator({ onOpenConsultation }: LuxuryCalculatorProps) {
   const [area, setArea] = useState<number>(150);
-  const [format, setFormat] = useState<FormatService>('podTapochki');
+  const [format, setFormat] = useState<FormatService>('poChastyam');
+  const [showFullMobileConfig, setShowFullMobileConfig] = useState<boolean>(false);
+  const [emailModalOpen, setEmailModalOpen] = useState<boolean>(false);
+  const [email, setEmail] = useState<string>('');
+  const [emailSent, setEmailSent] = useState<boolean>(false);
   
   const [selectedCategories, setSelectedCategories] = useState<Record<CategoryKey, boolean>>({
     design: true,
@@ -738,7 +742,22 @@ export default function LuxuryCalculator({ onOpenConsultation }: LuxuryCalculato
                       Шаг 3 · Категории проекта
                     </span>
                     
-                    <div className="space-y-6">
+                    {!showFullMobileConfig && (
+                      <div className="md:hidden bg-[#0F0F0F] p-4 border border-[#B8956A]/20 text-center space-y-3">
+                        <p className="text-[11px] text-[#C4BEB3] leading-relaxed">
+                          Все 30 разделов сметы сгруппированы для вашей площади. Вы можете открыть детальный ручной конфигуратор.
+                        </p>
+                        <button
+                          type="button"
+                          onClick={() => setShowFullMobileConfig(true)}
+                          className="w-full py-2 border border-[#B8956A] text-[#B8956A] text-[10px] uppercase tracking-wider font-bold transition-all hover:bg-[#B8956A] hover:text-[#0F0F0F] bg-transparent"
+                        >
+                          Открыть полный конфигуратор
+                        </button>
+                      </div>
+                    )}
+                    
+                    <div className={`${!showFullMobileConfig ? 'hidden md:block' : 'space-y-6'}`}>
                       {SECTIONS.map((section) => {
                         const isExpanded = !!expandedSections[section.id];
                         const { total, active, cost } = getSectionActiveStats(section);
@@ -907,11 +926,11 @@ export default function LuxuryCalculator({ onOpenConsultation }: LuxuryCalculato
                   ДИЗАЙН-ПРОЕКТ В ПОДАРОК
                 </h4>
                 <p className="font-sans text-base sm:text-lg text-white">
-                  при заказе ремонта под ключ
+                  при заказе варианта „Под ключ“.
                 </p>
                 <div className="h-[1px] w-16 bg-[#B8956A]/20 mx-auto my-3" />
-                <p className="font-sans text-xs sm:text-sm text-[#8B8478]">
-                  Экономия от 1 125 000 ₽ на проекте 150 м²
+                <p className="font-sans text-xs sm:text-sm text-[#8B8478] leading-relaxed">
+                  Экономия от 1 125 000 ₽ на проекте 150 м² — на работы, технику, мебелировку и комплектацию.
                 </p>
               </div>
             </div>
@@ -938,15 +957,15 @@ export default function LuxuryCalculator({ onOpenConsultation }: LuxuryCalculato
                 </span>
               </div>
 
-              {/* Plaque "Вариант под ключ" when >= 23 categories in constructor */}
-              {format === 'poChastyam' && totalSelectedCount >= 23 && (
+              {/* Plaque "Вариант под ключ" in constructor */}
+              {format === 'poChastyam' && (
                 <div className="border border-[#B8956A]/20 bg-[#1A1A1A] p-4.5 space-y-3">
                   <div className="flex items-center gap-2 text-[#B8956A]">
                     <Sparkles size={13} className="stroke-[1.5]" />
-                    <span className="text-xs uppercase tracking-widest font-sans font-bold">Вариант под ключ</span>
+                    <span className="text-xs uppercase tracking-widest font-sans font-bold">Выгода решения под ключ</span>
                   </div>
                   <p className="text-xs text-[#C4BEB3] leading-relaxed font-light">
-                    При полной комплектации проект под ключ обойдётся на <strong className="text-[#F5F1EA] font-semibold">{(potSavings / 1000000).toFixed(2).replace(/\.00$/, '')} млн ₽</strong> ниже за счёт единой логистики.
+                    Если заказать те же категории по частям у разных подрядчиков — стоимость выше примерно на 1,5–2 млн ₽ из-за координации, переделок и потерь времени. Под ключ от Mechty — на 2,3 млн ₽ ниже Конструктора.
                   </p>
                   <button
                     onClick={handleSwitchToPodTapochki}
@@ -1055,6 +1074,13 @@ export default function LuxuryCalculator({ onOpenConsultation }: LuxuryCalculato
                 >
                   Записаться на встречу
                 </button>
+                <button
+                  type="button"
+                  onClick={() => setEmailModalOpen(true)}
+                  className="w-full text-center text-[12px] text-[#B8956A] hover:underline transition-all mt-3 bg-transparent border-none cursor-pointer block font-medium"
+                >
+                  📧 Сохранить расчёт и отправить себе на почту
+                </button>
               </div>
 
             </div>
@@ -1080,6 +1106,75 @@ export default function LuxuryCalculator({ onOpenConsultation }: LuxuryCalculato
           Получить расчет
         </button>
       </div>
+
+      <AnimatePresence>
+        {emailModalOpen && (
+          <div className="fixed inset-0 bg-[#0F0F0F]/85 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              className="bg-[#1A1A1A] border-2 border-[#B8956A] p-6 sm:p-8 max-w-md w-full relative z-[100] shadow-2xl"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button
+                type="button"
+                onClick={() => { setEmailModalOpen(false); setEmailSent(false); }}
+                className="absolute top-4 right-4 text-[#C4BEB3] hover:text-[#B8956A] text-lg font-mono bg-transparent border-none cursor-pointer"
+              >
+                ✕
+              </button>
+              <h4 className="font-serif text-2xl text-[#F5F1EA] mb-4">📧 Сохранить расчёт</h4>
+              {emailSent ? (
+                <div className="space-y-4 py-4 text-center">
+                  <p className="text-[#B8956A] font-medium text-sm sm:text-base">Расчёт успешно отправлен!</p>
+                  <p className="text-xs text-[#C4BEB3] leading-relaxed">
+                    Мы продублировали детализированную спецификацию на адрес <strong className="text-white font-semibold">{email}</strong>.
+                  </p>
+                  <button
+                    type="button"
+                    onClick={() => { setEmailModalOpen(false); setEmailSent(false); }}
+                    className="mt-2 bg-[#B8956A] text-[#0F0F0F] px-8 py-2.5 text-xs uppercase tracking-wider font-bold hover:bg-[#8B6F4E] transition-all border-none cursor-pointer"
+                  >
+                    Закрыть
+                  </button>
+                </div>
+              ) : (
+                <form
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                    if (email.trim()) {
+                      setEmailSent(true);
+                    }
+                  }}
+                  className="space-y-4"
+                >
+                  <p className="text-xs text-[#C4BEB3] leading-relaxed">
+                    Введите ваш адрес электронной почты. Мы вышлем вам полную спецификацию по {totalSelectedCount} статьям расходов для площади {area} м² со всеми тарифами и черновой подготовкой.
+                  </p>
+                  <div>
+                    <label className="text-[10px] uppercase tracking-wider text-[#8B8478] block mb-1 font-bold">Ваш Email</label>
+                    <input
+                      type="email"
+                      required
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      placeholder="example@mail.ru"
+                      className="w-full bg-[#0F0F0F] border border-[#B8956A]/30 text-white p-3 text-sm focus:outline-none focus:border-[#B8956A] font-sans"
+                    />
+                  </div>
+                  <button
+                    type="submit"
+                    className="w-full py-3 bg-[#B8956A] text-[#0F0F0F] text-xs uppercase tracking-wider font-bold hover:bg-[#8B6F4E] transition-all border-none cursor-pointer"
+                  >
+                    Отправить расчет
+                  </button>
+                </form>
+              )}
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
 
     </section>
   );
