@@ -95,7 +95,7 @@ export const premiumProperties: PropertyItem[] = [
     "location": "Хамовники, Пречистенская набережная",
     "area": "538 м²",
     "price": "По запросу",
-    "image": "/сайт/a-0820.jpg",
+    "image": "/site/a-0820.jpg",
     "badge": "Пентхаус"
   },
   {
@@ -104,7 +104,7 @@ export const premiumProperties: PropertyItem[] = [
     "location": "Хамовники, Пречистенская набережная",
     "area": "286 м²",
     "price": "По запросу",
-    "image": "/сайт/a-0817.jpg",
+    "image": "/site/a-0817.jpg",
     "badge": "Пентхаус"
   },
   {
@@ -113,7 +113,7 @@ export const premiumProperties: PropertyItem[] = [
     "location": "Чистые Пруды, Костянский переулок",
     "area": "450 м²",
     "price": "По запросу",
-    "image": "/сайт/a-1326.jpg",
+    "image": "/site/a-1326.jpg",
     "badge": "Клубный дом"
   },
   {
@@ -122,7 +122,7 @@ export const premiumProperties: PropertyItem[] = [
     "location": "Золотая Миля, Бутиковский переулок",
     "area": "430 м²",
     "price": "По запросу",
-    "image": "/сайт/a-0796.jpg",
+    "image": "/site/a-0796.jpg",
     "badge": "Пентхаус"
   },
   {
@@ -131,7 +131,7 @@ export const premiumProperties: PropertyItem[] = [
     "location": "Хамовники, улица Ефремова",
     "area": "170 м²",
     "price": "По запросу",
-    "image": "/сайт/a-0933.jpg",
+    "image": "/site/a-0933.jpg",
     "badge": "Квартира"
   },
   {
@@ -140,16 +140,16 @@ export const premiumProperties: PropertyItem[] = [
     "location": "Хамовники, улица Ефремова",
     "area": "213 м²",
     "price": "По запросу",
-    "image": "/сайт/a-0919.jpg",
+    "image": "/site/a-0919.jpg",
     "badge": "Квартира"
   },
   {
     "id": "prop-a-0795",
-    "title": "Видовой двухуровневый пентхаус в ЖК «Садовые Кварталы»",
+    "title": "Видовой двухуровнемый пентхаус в ЖК «Садовые Кварталы»",
     "location": "Хамовники, улица Ефремова",
     "area": "238.8 м²",
     "price": "По запросу",
-    "image": "/сайт/a-0795.jpg",
+    "image": "/site/a-0795.jpg",
     "badge": "Пентхаус"
   },
   {
@@ -167,7 +167,7 @@ export const premiumProperties: PropertyItem[] = [
     "location": "Раменки, Мосфильмовская улица",
     "area": "190.7 м²",
     "price": "По запросу",
-    "image": "/сайт/a-0738.jpg",
+    "image": "/site/a-0738.jpg",
     "badge": "Квартира"
   },
   {
@@ -176,7 +176,7 @@ export const premiumProperties: PropertyItem[] = [
     "location": "Хамовники, улица Льва Толстого",
     "area": "204 м²",
     "price": "По запросу",
-    "image": "/сайт/a-1403.jpg",
+    "image": "/site/a-1403.jpg",
     "badge": "Клубный дом"
   }
 ];

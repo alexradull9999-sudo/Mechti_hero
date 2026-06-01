@@ -18,9 +18,10 @@ export default function Hero({ onScrollToSection, onOpenConsultation }: HeroProp
           <div className="max-w-xl mx-auto lg:mx-0 xl:pl-12">
             <div className="mb-6 flex items-center gap-4">
               <div className="w-12 h-[1px] bg-[#B8956A]"></div>
-              <span className="text-xs md:text-sm uppercase tracking-[0.3em] accent-text font-semibold flex items-center gap-1.5 align-middle">
-                <Sparkles size={12} className="animate-pulse" />
-                Бизнес · Премиум · De Luxe · с 2009 года
+              <span className="text-xs md:text-sm uppercase tracking-[0.3em] text-[#C4BEB3] font-semibold flex flex-wrap items-center gap-x-1.5 gap-y-1 align-middle">
+                <Sparkles size={12} className="animate-pulse text-[#B8956A]" />
+                <span>Бизнес · Премиум · De Luxe · </span>
+                <span className="whitespace-nowrap">с 2009 года</span>
               </span>
             </div>
             
