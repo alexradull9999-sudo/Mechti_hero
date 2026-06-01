@@ -11,17 +11,17 @@ export default function RealEstateSection({ onOpenConsultation, onScrollToSectio
   const [activeSegment, setActiveSegment] = useState<string>("all");
 
   const segments = [
-    { id: "all", name: "Все сегменты", icon: <Building size={14} /> },
-    { id: "novostroy", name: "Новостройки", icon: <Building size={14} /> },
-    { id: "vtorichka", name: "Вторичка эксклюзив", icon: <Key size={14} /> },
-    { id: "zagorod", name: "Частные дома", icon: <Home size={14} /> },
+    { id: "all", name: "Все объекты", icon: <Building size={14} /> },
+    { id: "apartment", name: "Квартиры", icon: <Building size={14} /> },
+    { id: "penthouse", name: "Пентхаусы", icon: <Building size={14} /> },
+    { id: "clubhouse", name: "Клубные дома и резиденции", icon: <Key size={14} /> },
   ];
 
   const filteredProperties = premiumProperties.filter(p => {
     if (activeSegment === "all") return true;
-    if (activeSegment === "novostroy") return p.badge.includes("Новостройка");
-    if (activeSegment === "vtorichka") return p.badge.includes("Вторичка");
-    if (activeSegment === "zagorod") return p.badge.includes("Резиденция") || p.title.includes("Усадьба");
+    if (activeSegment === "apartment") return p.badge === "Квартира";
+    if (activeSegment === "penthouse") return p.badge === "Пентхаус";
+    if (activeSegment === "clubhouse") return p.badge === "Клубный дом" || p.badge === "Резиденция";
     return true;
   });
 

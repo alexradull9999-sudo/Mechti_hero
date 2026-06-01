@@ -78,7 +78,7 @@ export default function RenovationDetails({ onScrollToSection }: RenovationDetai
             <span className="italic text-[#B8956A] font-light">всё уже включено</span>
           </h2>
           <p className="text-base md:text-lg text-[#C4BEB3] font-sans font-light leading-relaxed max-w-xl">
-            Никаких внезапных доплат, скрытых согласований и лишних мешков с мусором. Весь цикл учтён изначально.
+            Никаких внезапных доплат, скрытых согласований и лишних мешков с мусором. Весь цикл учтён изначально. Важно: саму реализацию проекта и ремонтные работы мы можем начинать уже сразу после согласования планировочного решения.
           </p>
         </div>
 

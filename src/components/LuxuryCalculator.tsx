@@ -1,5 +1,5 @@
 import React, { useState, useMemo, useEffect, useRef } from 'react';
-import { Check, Info, Calendar, Shield, Sparkles } from 'lucide-react';
+import { Check, Info, Calendar, Shield, Sparkles, Building, Home } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 
 interface LuxuryCalculatorProps {
@@ -31,7 +31,23 @@ export type CategoryKey =
   | 'finishMaterials' | 'decorElements' | 'doorsWindows'
   | 'climate' | 'electricLighting' | 'plumbing'
   | 'kitchen' | 'cabinet' | 'softFurniture'
-  | 'appliances' | 'textile' | 'delivery' | 'waste_cleaning';
+  | 'appliances' | 'textile' | 'delivery' | 'waste_cleaning'
+  // House categories
+  | 'house_arch'
+  | 'house_foundation'
+  | 'house_walls'
+  | 'house_facade'
+  | 'house_fence'
+  | 'house_boil'
+  | 'house_sept'
+  | 'house_electric'
+  | 'house_climate'
+  | 'house_landscape'
+  | 'house_paving'
+  | 'house_irrigation'
+  | 'house_windows'
+  | 'house_interior'
+  | 'house_kitchen';
 
 interface Section {
   id: string;
@@ -48,7 +64,7 @@ interface Section {
   }[];
 }
 
-const SECTIONS: Section[] = [
+const SECTIONS_APARTMENT: Section[] = [
   {
     id: 'sec-design',
     num: 'I',
@@ -288,6 +304,144 @@ const SECTIONS: Section[] = [
   }
 ];
 
+const SECTIONS_HOUSE: Section[] = [
+  {
+    id: 'sec-arch',
+    num: 'I',
+    title: 'АРХИТЕКТУРА И ДИЗАЙН',
+    displayName: 'Архитектура',
+    tooltip: 'Индивидуальное архитектурно-строительное и интерьерное проектирование пассивной резиденции.',
+    categories: [
+      {
+        key: 'house_arch',
+        title: 'Индивидуальный проект резиденции',
+        description: 'Разработка архитектурно-строительных решений (АР, КР), благоустройства, 3D визуализация фасадов и посадка дома на генплан.',
+        rate: 9500,
+      }
+    ]
+  },
+  {
+    id: 'sec-const-house',
+    num: 'II',
+    title: 'СТРОИТЕЛЬНЫЕ РАБОТЫ И КОРОБКА',
+    displayName: 'Строительные работы',
+    tooltip: 'Работы по возведению фундамента, несущих стен, плит перекрытий и кровли.',
+    categories: [
+      {
+        key: 'house_foundation',
+        title: 'Монолитный фундамент и плита',
+        description: 'Анализ грунта, разметка, копка котлована, песчано-гравийная подготовка, двойной армированный каркас, заливка бетона М350.',
+        rate: 18000,
+      },
+      {
+        key: 'house_walls',
+        title: 'Возведение стен и кровли',
+        description: 'Кладка стен из керамических блоков, перекрытия, монтаж стропил, утепление кровли (250 мм) и укладка фальцевого клик-профиля.',
+        rate: 24000,
+      },
+      {
+        key: 'house_facade',
+        title: 'Отделка фасада усадьбы',
+        description: 'Премиальное утепление, облицовка клинкером, фиброцементом, декоративными вставками из натурального юрского известняка и термодерева.',
+        rate: 16000,
+      },
+      {
+        key: 'house_fence',
+        title: 'Капитальный забор по периметру',
+        description: 'Устройство фундаментной монолитной ленты, установка заборных столбов, калитки и откатных ворот с автоматикой Came.',
+        rate: 9000,
+      }
+    ]
+  },
+  {
+    id: 'sec-eng-house',
+    num: 'III',
+    title: 'ИНЖЕНЕРНЫЕ СЕТИ И КОТЕЛЬНАЯ',
+    displayName: 'Инженерия',
+    tooltip: 'Оборудование систем жизнеобеспечения дома, разводка труб и коммуникаций.',
+    categories: [
+      {
+        key: 'house_boil',
+        title: 'Отопление и профессиональная котельная',
+        description: 'Установка премиального котла Viessmann/Buderus, монтаж бойлера, группы насосов, водяных теплых полов Rehau во всех зонах.',
+        rate: 15000,
+      },
+      {
+        key: 'house_sept',
+        title: 'Скважина и автономная канализация',
+        description: 'Бурение и обустройство скважины, монтаж кессона, установка станции биоочистки (септика) Топас/Астра и дренажного колодца.',
+        rate: 12500,
+      },
+      {
+        key: 'house_electric',
+        title: 'Электромонтаж и заземление',
+        description: 'ГОСТ-кабели, монтаж распределительных шкафов ABB/Legrand, силовой ввод, организация глубинного контура заземления и молниезащиты.',
+        rate: 8500,
+      },
+      {
+        key: 'house_climate',
+        title: 'Канальный климат-контроль и вентиляция',
+        description: 'Приточно-вытяжная вентиляция с рекуперацией тепла, очистка поступающего воздуха, увлажнение с сапфировыми распылителями.',
+        rate: 11000,
+      }
+    ]
+  },
+  {
+    id: 'sec-land-house',
+    num: 'IV',
+    title: 'ЛАНДШАФТНЫЙ ДИЗАЙН И БЛАГОУСТРОЙСТВО',
+    displayName: 'Ландшафтный дизайн и благоустройство',
+    tooltip: 'Организация придомовой территории, создание газона, автополив, въездные группы.',
+    categories: [
+      {
+        key: 'house_landscape',
+        title: 'Ландшафтное зонирование и планировка',
+        description: 'Планировка отметок участка спецтехникой, укладка геотекстиля, засыпка плодородным грунтом, устройство дренажных лотков.',
+        rate: 8000,
+      },
+      {
+        key: 'house_paving',
+        title: 'Гранитная брусчатка и газоны под ключ',
+        description: 'Обустройство отмостки и дорожек, укладка гранитной плитки, настил рулонного газона премиум, посадка декоративных кустарников.',
+        rate: 14000,
+      },
+      {
+        key: 'house_irrigation',
+        title: 'Автополив участка и освещение',
+        description: 'Многозонный автоматический полив Hunter, монтаж накопительной емкости, установка световой ландшафтной LED подсветки дорожек.',
+        rate: 7000,
+      }
+    ]
+  },
+  {
+    id: 'sec-comp-house',
+    num: 'V',
+    title: 'ЧИСТОВАЯ КОМПЛЕКТАЦИЯ РЕЗИДЕНЦИИ',
+    displayName: 'Чистовое благоустройство',
+    tooltip: 'Премиальные окна, готовая отделка стен, монтаж мебели и бытовой техники под ключ.',
+    categories: [
+      {
+        key: 'house_windows',
+        title: 'Панорамное остекление Schüco',
+        description: 'Энергосберегающий теплый алюминиевый профиль Schüco (Германия) с антибликовым напылением и скрытыми петлями.',
+        rate: 22000,
+      },
+      {
+        key: 'house_interior',
+        title: 'Чистовые премиум материалы отделки',
+        description: 'Потолочные системы, теневые швы, натуральный паркет шеврон, декоративная штукатурка, дизайнерский брендовый свет.',
+        rate: 35000,
+      },
+      {
+        key: 'house_kitchen',
+        title: 'Топ-меблировка и техника «под тапочки»',
+        description: 'Шкафы, гардеробные, кухонный гарнитур, премиальная техника Asko/Liebherr, пошив штор, авторский интерьерный декор.',
+        rate: 55000,
+      }
+    ]
+  }
+];
+
 // Helper to keep the custom rates list
 const rates: Record<CategoryKey, number> = {
   design:           7500,
@@ -320,6 +474,21 @@ const rates: Record<CategoryKey, number> = {
   textile:          10000,
   delivery:         15000,
   waste_cleaning:   1500,
+  house_arch:       9500,
+  house_foundation: 18000,
+  house_walls:      24000,
+  house_facade:     16000,
+  house_fence:      9000,
+  house_boil:       15000,
+  house_sept:       12500,
+  house_electric:   8500,
+  house_climate:    11000,
+  house_landscape:  8000,
+  house_paving:     14000,
+  house_irrigation: 7000,
+  house_windows:    22000,
+  house_interior:   35000,
+  house_kitchen:    55000,
 };
 
 // Custom smooth easeOutCubic animated price interpolator component
@@ -370,6 +539,7 @@ function AnimatedPrice({ value }: { value: number }) {
 }
 
 export default function LuxuryCalculator({ onOpenConsultation }: LuxuryCalculatorProps) {
+  const [propertyType, setPropertyType] = useState<'apartment' | 'house'>('apartment');
   const [area, setArea] = useState<number>(150);
   const [format, setFormat] = useState<FormatService>('poChastyam');
   const [showFullMobileConfig, setShowFullMobileConfig] = useState<boolean>(false);
@@ -408,6 +578,21 @@ export default function LuxuryCalculator({ onOpenConsultation }: LuxuryCalculato
     textile: true,
     delivery: true,
     waste_cleaning: true,
+    house_arch: true,
+    house_foundation: true,
+    house_walls: true,
+    house_facade: true,
+    house_fence: true,
+    house_boil: true,
+    house_sept: true,
+    house_electric: true,
+    house_climate: true,
+    house_landscape: true,
+    house_paving: true,
+    house_irrigation: true,
+    house_windows: true,
+    house_interior: true,
+    house_kitchen: true,
   });
 
   const [expandedSections, setExpandedSections] = useState<Record<string, boolean>>({
@@ -417,7 +602,16 @@ export default function LuxuryCalculator({ onOpenConsultation }: LuxuryCalculato
     'sec-equipment': true,
     'sec-furniture': true,
     'sec-complectation': true,
+    'sec-arch': true,
+    'sec-const-house': true,
+    'sec-eng-house': true,
+    'sec-land-house': true,
+    'sec-comp-house': true,
   });
+
+  const SECTIONS = useMemo(() => {
+    return propertyType === 'apartment' ? SECTIONS_APARTMENT : SECTIONS_HOUSE;
+  }, [propertyType]);
 
   // Handle responsive accordion initialization on mount
   useEffect(() => {
@@ -429,13 +623,35 @@ export default function LuxuryCalculator({ onOpenConsultation }: LuxuryCalculato
         'sec-equipment': false,
         'sec-furniture': false,
         'sec-complectation': false,
+        'sec-arch': true,
+        'sec-const-house': false,
+        'sec-eng-house': false,
+         'sec-land-house': false,
+         'sec-comp-house': false,
       });
     }
   }, []);
 
+  // Update area range on propertyType changes
+  useEffect(() => {
+    if (propertyType === 'house') {
+      if (area < 100) setArea(300);
+    } else {
+      if (area > 500) setArea(150);
+    }
+  }, [propertyType]);
+
   const totalSelectedCount = useMemo(() => {
-    return Object.values(selectedCategories).filter(Boolean).length;
-  }, [selectedCategories]);
+    let count = 0;
+    SECTIONS.forEach(sec => {
+      sec.categories.forEach(cat => {
+        if (selectedCategories[cat.key]) {
+          count++;
+        }
+      });
+    });
+    return count;
+  }, [SECTIONS, selectedCategories]);
 
   const handleSwitchToPodTapochki = () => {
     setFormat('podTapochki');
@@ -448,7 +664,7 @@ export default function LuxuryCalculator({ onOpenConsultation }: LuxuryCalculato
   const handleSwitchToPoChastyam = () => {
     setFormat('poChastyam');
     setTimeout(() => {
-      const element = document.getElementById('constructor-steps') || document.getElementById('sec-design');
+      const element = document.getElementById('constructor-steps') || document.getElementById('sec-design') || document.getElementById('sec-arch');
       if (element) {
         element.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
@@ -494,7 +710,7 @@ export default function LuxuryCalculator({ onOpenConsultation }: LuxuryCalculato
       });
     });
     return area * sum;
-  }, [area, selectedCategories]);
+  }, [area, selectedCategories, SECTIONS]);
 
   const agentFee = useMemo(() => {
     return subtotal * 0.0384;
@@ -505,26 +721,32 @@ export default function LuxuryCalculator({ onOpenConsultation }: LuxuryCalculato
   }, [subtotal, agentFee]);
 
   const podTapochkiTotal = useMemo(() => {
-    return area * 350000;
-  }, [area]);
+    const rate = propertyType === 'house' ? 450000 : 350000;
+    return area * rate;
+  }, [area, propertyType]);
 
   const dynamicTerm = useMemo(() => {
+    if (propertyType === 'house') {
+      if (area <= 300) return "10–12 месяцев";
+      if (area <= 500) return "12–15 месяцев";
+      return "15–18 месяцев";
+    }
     if (area <= 80) return "6–8 месяцев";
     if (area <= 150) return "8–10 месяцев";
     if (area <= 250) return "10–12 месяцев";
     return "12–14 месяцев";
-  }, [area]);
+  }, [area, propertyType]);
 
   const activeTotal = format === 'podTapochki' ? podTapochkiTotal : poChastyamTotal;
 
   // Potential savings difference
   const potSavings = useMemo(() => {
-    // Exact savings comparison at full set (approx. 5.25 mln with 150m2, or dynamically computed now)
-    const activeRatesSum = Object.entries(rates)
-      .reduce((sum, [_, rate]) => sum + rate, 0); // 370600
+    const activeRatesSum = SECTIONS.reduce((sum, sec) => {
+      return sum + sec.categories.reduce((s, cat) => s + cat.rate, 0);
+    }, 0);
     const fullPoChastyam = (area * activeRatesSum) * 1.0384;
     return Math.max(0, fullPoChastyam - podTapochkiTotal);
-  }, [area, podTapochkiTotal]);
+  }, [area, podTapochkiTotal, SECTIONS]);
 
   const formatTextNumber = (val: number) => {
     return new Intl.NumberFormat('ru-RU', {
@@ -544,15 +766,16 @@ export default function LuxuryCalculator({ onOpenConsultation }: LuxuryCalculato
 
   const handleCTA = () => {
     let message = '';
+    const typeLabel = propertyType === 'house' ? 'Загородный дом' : 'Квартира';
     if (format === 'podTapochki') {
-      message = `Здравствуйте, прошу зафиксировать расчёт:\nТариф: Вариант под ключ\nПлощадь: ${area} м²\nСумма: ${formatTextNumber(activeTotal)}`;
+      message = `Здравствуйте, прошу зафиксировать расчёт:\nТип недвижимости: ${typeLabel}\nТариф: Вариант под ключ\nПлощадь: ${area} м²\nСумма: ${formatTextNumber(activeTotal)}`;
     } else {
       const activeSectionNames = SECTIONS
         .filter(sec => sec.categories.some(cat => selectedCategories[cat.key]))
         .map(sec => sec.displayName)
         .join(', ');
 
-      message = `Здравствуйте, прошу зафиксировать расчёт:\nТариф: Собрать по частям\nПлощадь: ${area} м²\nВключено категорий: ${totalSelectedCount} из 30\nРазделы: ${activeSectionNames || 'Не выбрано'}\nСумма: ${formatTextNumber(activeTotal)} (включая агентское сопровождение)`;
+      message = `Здравствуйте, прошу зафиксировать расчёт:\nТип недвижимости: ${typeLabel}\nТариф: Собрать по частям\nПлощадь: ${area} м²\nВключено категорий: ${totalSelectedCount} из ${propertyType === 'house' ? 15 : 30}\nРазделы: ${activeSectionNames || 'Не выбрано'}\nСумма: ${formatTextNumber(activeTotal)} (включая агентское сопровождение)`;
     }
     onOpenConsultation(message);
   };
@@ -566,7 +789,7 @@ export default function LuxuryCalculator({ onOpenConsultation }: LuxuryCalculato
       <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
         
         {/* Section Heading */}
-        <div className="text-center max-w-3xl mx-auto mb-16 md:mb-24 space-y-4">
+        <div className="text-center max-w-3xl mx-auto mb-16 md:mb-16 space-y-4">
           <span className="text-xs uppercase font-sans tracking-[0.3em] text-[#B8956A] block font-bold">
             ПРОЗРАЧНЫЙ БЮДЖЕТ ДО СТАРТА
           </span>
@@ -579,6 +802,34 @@ export default function LuxuryCalculator({ onOpenConsultation }: LuxuryCalculato
           </p>
         </div>
 
+        {/* Type selector (Квартира / Загородный дом) */}
+        <div className="flex justify-center mb-16">
+          <div className="inline-flex rounded-full bg-[#0F0F0F] p-1 border border-[#B8956A]/20">
+            <button
+              onClick={() => setPropertyType('apartment')}
+              className={`rounded-full px-6 py-2.5 text-xs uppercase tracking-widest font-sans font-bold flex items-center gap-2 transition-all duration-300 cursor-pointer ${
+                propertyType === 'apartment'
+                  ? 'bg-[#B8956A] text-[#0F0F0F]'
+                  : 'text-[#C4BEB3] hover:text-[#F5F1EA] bg-transparent'
+              }`}
+            >
+              <Building size={14} />
+              Квартира
+            </button>
+            <button
+              onClick={() => setPropertyType('house')}
+              className={`rounded-full px-6 py-2.5 text-xs uppercase tracking-widest font-sans font-bold flex items-center gap-2 transition-all duration-300 cursor-pointer ${
+                propertyType === 'house'
+                  ? 'bg-[#B8956A] text-[#0F0F0F]'
+                  : 'text-[#C4BEB3] hover:text-[#F5F1EA] bg-transparent'
+              }`}
+            >
+              <Home size={14} />
+              Загородный дом
+            </button>
+          </div>
+        </div>
+
         {/* 12-Column Responsive Layout Grid */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-12 items-start">
           
@@ -589,7 +840,7 @@ export default function LuxuryCalculator({ onOpenConsultation }: LuxuryCalculato
             <div className="bg-[#0F0F0F] p-6 md:p-8 border border-[#B8956A]/10">
               <div className="flex flex-col sm:flex-row items-start sm:items-baseline justify-between gap-4 mb-6">
                 <span className="text-xs sm:text-sm uppercase tracking-widest font-sans font-bold text-[#C4BEB3]">
-                  Шаг 1 · Площадь вашего объекта
+                  Шаг 1 · Площадь {propertyType === 'house' ? 'вашего дома' : 'вашей квартиры'}
                 </span>
                 <span className="font-serif text-6xl md:text-8xl text-[#B8956A] font-light leading-none">
                   {area} <span className="text-lg uppercase tracking-wider font-sans ml-1 text-[#F5F1EA]">м²</span>
@@ -599,25 +850,37 @@ export default function LuxuryCalculator({ onOpenConsultation }: LuxuryCalculato
               <div className="relative pt-4 pb-2">
                 <input
                   type="range"
-                  min="50"
-                  max="500"
+                  min={propertyType === 'house' ? '100' : '50'}
+                  max={propertyType === 'house' ? '1200' : '500'}
                   step="5"
                   value={area}
                   onChange={(e) => setArea(Number(e.target.value))}
                   className="w-full h-[3px] bg-[#B8956A]/20 rounded-lg appearance-none cursor-pointer accent-[#B8956A]"
                   style={{
-                    background: `linear-gradient(to right, #B8956A 0%, #B8956A ${((area - 50) / 450) * 100}%, rgba(184, 149, 106, 0.2) ${((area - 50) / 450) * 100}%, rgba(184, 149, 106, 0.2) 100%)`
+                    background: `linear-gradient(to right, #B8956A 0%, #B8956A ${((area - (propertyType === 'house' ? 100 : 50)) / (propertyType === 'house' ? 1100 : 450)) * 100}%, rgba(184, 149, 106, 0.2) ${((area - (propertyType === 'house' ? 100 : 50)) / (propertyType === 'house' ? 1100 : 450)) * 100}%, rgba(184, 149, 106, 0.2) 100%)`
                   }}
                 />
                 <div className="flex justify-between text-xs font-mono text-[#C4BEB3] font-bold mt-4 shrink-0">
-                  <span>50 м²</span>
-                  <span>150 м² (Стандарт)</span>
-                  <span>250 м²</span>
-                  <span>350 м²</span>
-                  <span>500 м²</span>
+                  {propertyType === 'house' ? (
+                    <>
+                      <span>100 м²</span>
+                      <span>300 м² (Стандарт)</span>
+                      <span>600 м²</span>
+                      <span>900 м²</span>
+                      <span>1200 м²</span>
+                    </>
+                  ) : (
+                    <>
+                      <span>50 м²</span>
+                      <span>150 м² (Стандарт)</span>
+                      <span>250 м²</span>
+                      <span>350 м²</span>
+                      <span>500 м²</span>
+                    </>
+                  )}
                 </div>
                 <p className="text-[11px] italic text-[#8B8478] mt-3">
-                  Для объектов площадью менее 50 м² расчёт стоимости производится индивидуально.
+                  Для объектов площадью менее {propertyType === 'house' ? '100' : '50'} м² расчёт стоимости производится индивидуально.
                 </p>
               </div>
             </div>
@@ -654,26 +917,41 @@ export default function LuxuryCalculator({ onOpenConsultation }: LuxuryCalculato
                     
                     <div className="py-1">
                       <span className="text-xs font-mono text-[#8B8478] block">Цена за м²:</span>
-                      <span className="text-2xl sm:text-3xl font-serif text-[#B8956A] font-bold">350 000 ₽ / м²</span>
+                      <span className="text-2xl sm:text-3xl font-serif text-[#B8956A] font-bold">
+                        {propertyType === 'house' ? '450 000 ₽ / м²' : '350 000 ₽ / м²'}
+                      </span>
                     </div>
 
                     <p className="text-xs sm:text-sm text-[#C4BEB3] leading-relaxed">
-                      Дизайн + Ремонт + Инженерия + Сантехника + Кухня + Мебель + Техника + Текстиль + Декор + Клининг.
+                      {propertyType === 'house'
+                        ? "Индивидуальный проект + возведение коробки + фасад + забор по периметру + ландшафт с автополивом + котельная и коммуникации + премиальная отделка, дизайнерский свет и меблировка под ключ."
+                        : "Дизайн + Ремонт + Инженерия + Сантехника + Кухня + Мебель + Техника + Текстиль + Декор + Клининг."
+                      }
                     </p>
 
                     <div className="space-y-2 py-3 border-t border-[#B8956A]/10 mt-2">
-                      {[
-                        'Дизайн-проект «Всё включено»',
-                        'Ремонт и инженерия по СНиП',
-                        'Премиальное оборудование и ванные',
-                        'Кухня и встраиваемая техника',
-                        'Авторская мебель Комплектация Мечты',
-                        'Текстильный дизайн и декорирование',
-                      ].map((name, i) => (
+                      {(propertyType === 'house'
+                        ? [
+                            'Архитектура, фасады, генплан',
+                            'Строительные работы и коробка',
+                            'Забор и благоустройство по периметру',
+                            'Ландшафтный дизайн и газоны',
+                            'Котельная Viessmann и коммуникации',
+                            'Комплектация премиальным светом и мебелью',
+                          ]
+                        : [
+                            'Дизайн-проект «Всё включено»',
+                            'Ремонт и инженерия по СНиП',
+                            'Премиальное оборудование и ванные',
+                            'Кухня и встраиваемая техника',
+                            'Авторская мебель Комплектация Мечты',
+                            'Текстильный дизайн и декорирование',
+                          ]
+                      ).map((name, i) => (
                         <div key={i} className="flex items-start gap-2.5 text-[11px] sm:text-xs text-[#C4BEB3]">
                           <Check size={12} className="text-[#B8956A] shrink-0 mt-0.5" />
                           <span className="leading-normal">
-                            {name} — <span className="text-[#B8956A]/80 font-mono font-bold whitespace-nowrap">включено</span>
+                            {name} — <span className="text-[#B8956A]/80 font-mono font-bold whitespace-nowrap font-sans font-medium">включено</span>
                           </span>
                         </div>
                       ))}
@@ -708,15 +986,15 @@ export default function LuxuryCalculator({ onOpenConsultation }: LuxuryCalculato
                     
                     <p className="text-xs sm:text-sm text-[#C4BEB3] leading-relaxed min-h-[40px]">
                       {totalSelectedCount === 0 && 'Выберите услуги, которые вам необходимы'}
-                      {totalSelectedCount >= 1 && totalSelectedCount <= 10 && 'Подходит, если вам необходима только часть работ'}
-                      {totalSelectedCount >= 11 && totalSelectedCount <= 22 && 'Частичная сборка. Сравните выгоду с полным тарифом'}
-                      {totalSelectedCount >= 23 && `Вариант под ключ выгоднее на ${(potSavings / 1000000).toFixed(2).replace(/\.00$/, '')} млн ₽`}
+                      {totalSelectedCount >= 1 && totalSelectedCount <= (propertyType === 'house' ? 5 : 10) && 'Подходит, если вам необходима только часть работ'}
+                      {totalSelectedCount > (propertyType === 'house' ? 5 : 10) && totalSelectedCount <= (propertyType === 'house' ? 10 : 22) && 'Частичная сборка. Сравните выгоду с полным тарифом'}
+                      {totalSelectedCount > (propertyType === 'house' ? 10 : 22) && `Вариант под ключ выгоднее на ${(potSavings / 1000000).toFixed(2).replace(/\.00$/, '')} млн ₽`}
                     </p>
                   </div>
 
                   <div className="border-t border-[#B8956A]/15 pt-4 mt-6">
                     <p className="text-[10px] sm:text-xs font-sans text-[#8B8478] leading-normal font-medium">
-                      Гибкие опции. Настройте конфигурацию по 30 статьям сметы под конкретные требования вашего объекта.
+                      Гибкие опции. Настройте конфигурацию по {propertyType === 'house' ? 15 : 30} разделам сметы под конкретные требования вашего объекта.
                     </p>
                   </div>
                 </div>
@@ -745,7 +1023,7 @@ export default function LuxuryCalculator({ onOpenConsultation }: LuxuryCalculato
                     {!showFullMobileConfig && (
                       <div className="md:hidden bg-[#0F0F0F] p-4 border border-[#B8956A]/20 text-center space-y-3">
                         <p className="text-[11px] text-[#C4BEB3] leading-relaxed">
-                          Все 30 разделов сметы сгруппированы для вашей площади. Вы можете открыть детальный ручной конфигуратор.
+                          Все {propertyType === 'house' ? 15 : 30} разделов сметы сгруппированы для вашей площади. Вы можете открыть детальный ручной конфигуратор.
                         </p>
                         <button
                           type="button"
@@ -930,7 +1208,10 @@ export default function LuxuryCalculator({ onOpenConsultation }: LuxuryCalculato
                 </p>
                 <div className="h-[1px] w-16 bg-[#B8956A]/20 mx-auto my-3" />
                 <p className="font-sans text-xs sm:text-sm text-[#8B8478] leading-relaxed">
-                  Экономия от 1 125 000 ₽ на проекте 150 м² — на работы, технику, мебелировку и комплектацию.
+                  {propertyType === 'house'
+                    ? `Экономия от 2 850 000 ₽ на проекте ${area} м² — полный архитектурный консалтинг, фасадная и ландшафтная инженерия в подарок.`
+                    : `Экономия от 1 125 000 ₽ на проекте ${area} м² — авторские решения на работы, мебель, технику и комплектацию в подарок.`
+                  }
                 </p>
               </div>
             </div>
@@ -952,8 +1233,8 @@ export default function LuxuryCalculator({ onOpenConsultation }: LuxuryCalculato
                 </span>
                 <span className="text-xs font-mono text-[#C4BEB3] uppercase tracking-wider block font-bold transition-opacity">
                   {format === 'podTapochki'
-                    ? `350 000 ₽/м² × ${area} м²`
-                    : `${area} м² · ${totalSelectedCount === 30 ? 'все категории включены' : `категорий: ${totalSelectedCount} из 30`}`}
+                    ? `${propertyType === 'house' ? '450 000' : '350 000'} ₽/м² × ${area} м²`
+                    : `${area} м² · ${totalSelectedCount === (propertyType === 'house' ? 15 : 30) ? 'все категории включены' : `категорий: ${totalSelectedCount} из ${propertyType === 'house' ? 15 : 30}`}`}
                 </span>
               </div>
 
@@ -983,18 +1264,31 @@ export default function LuxuryCalculator({ onOpenConsultation }: LuxuryCalculato
                   <span className="text-xs uppercase font-mono tracking-wider font-extrabold text-[#B8956A] block mb-2">
                     Что входит в стоимость:
                   </span>
-                  {[
-                    "Авторский дизайн-проект «Всё включено»",
-                    "Полный ремонт под ключ",
-                    "Инженерные системы и климат",
-                    "Сантехника и оборудование ванных",
-                    "Кухня под ключ с премиум-техникой",
-                    "Корпусная и мягкая мебель собственного производства",
-                    "Освещение и сценарии света",
-                    "Шторы, текстиль и аксессуары",
-                    "Декор и предметы интерьера",
-                    "Сборка, монтаж, финальный клининг"
-                  ].map((chk, i) => (
+                  {(propertyType === 'house'
+                    ? [
+                        "Индивидуальный проект резиденции",
+                        "Монолитные работы и коробка",
+                        "Котельная Buderus/Viessmann",
+                        "Панорамное остекление Schüco",
+                        "Премиальный фасад усадьбы",
+                        "Капитальный забор по периметру",
+                        "Ландшафтный автополив и газоны",
+                        "Чистовое благоустройство и свет",
+                        "Премиум мебель и техника Asko"
+                      ]
+                    : [
+                        "Авторский дизайн-проект «Всё включено»",
+                        "Полный ремонт под ключ",
+                        "Инженерные системы и климат",
+                        "Сантехника и оборудование ванных",
+                        "Кухня под ключ с премиум-техникой",
+                        "Корпусная и мягкая мебель собственного производства",
+                        "Освещение и сценарии света",
+                        "Шторы, текстиль и аксессуары",
+                        "Декор и предметы интерьера",
+                        "Сборка, монтаж, финальный клининг"
+                      ]
+                  ).map((chk, i) => (
                     <div key={i} className="flex items-start gap-2.5 text-[#EDE6D8] font-medium leading-tight">
                       <Check size={13} className="text-[#B8956A] shrink-0 mt-0.5" />
                       <span>{chk}</span>
