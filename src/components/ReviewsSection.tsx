@@ -30,92 +30,100 @@ export default function ReviewsSection({ onOpenConsultation }: ReviewsSectionPro
           </p>
         </div>
 
-        {/* 5 Review Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {reviewsList.map((rev) => (
-            <div
-              key={rev.id}
-              className="bg-[#EDE6D8] p-6 md:p-8 border border-[#B8956A]/25 flex flex-col justify-between space-y-8 h-full shadow-sm hover:shadow-md transition-all duration-300"
-            >
-              <div className="space-y-4">
-                {/* Visual stars rating */}
-                <div className="flex justify-between items-center">
-                  <div className="flex gap-1 text-[#B8956A]">
-                    {[...Array(5)].map((_, i) => (
-                      <Star key={i} size={11} fill="#B8956A" className="text-[#B8956A]" />
-                    ))}
-                  </div>
-                  <span className="text-[10px] uppercase font-mono tracking-widest text-[#B8956A]/80 font-bold bg-[#F5F1EA]/80 px-2 py-0.5 border border-[#B8956A]/10">
-                    {rev.area}
-                  </span>
+        {/* 5 Stories Grid */}
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-4 lg:gap-6">
+          {reviewsList.map((rev) => {
+            // Get initials for profile bubble
+            const initials = rev.name.split(' ').map(n => n[0]).join('');
+            
+            return (
+              <div
+                key={rev.id}
+                onClick={() => setActiveVideo(rev.id)}
+                className="group relative aspect-[9/16] rounded-2xl overflow-hidden border border-[#B8956A]/20 hover:border-[#B8956A]/60 bg-[#0F0F0F] cursor-pointer shadow-lg hover:shadow-2xl hover:-translate-y-1.5 transition-all duration-500 ease-out"
+              >
+                {/* Visual Stories Progress Bars at Top (Simulated) */}
+                <div className="absolute top-2.5 inset-x-3 z-20 flex gap-1">
+                  <div className="h-[2px] flex-1 bg-[#B8956A]/80 rounded-full" />
+                  <div className="h-[2px] flex-1 bg-white/20 rounded-full" />
+                  <div className="h-[2px] flex-1 bg-white/20 rounded-full" />
                 </div>
 
-                <blockquote className="text-sm md:text-base font-sans font-medium text-[#1A1A1A] italic leading-relaxed">
-                  “ {rev.quote} ”
-                </blockquote>
-              </div>
+                {/* Full-bleed background image with modern hover transitions */}
+                <img
+                  src={rev.videoPlaceholder}
+                  alt={`${rev.name} - Видеоотзыв`}
+                  className="absolute inset-0 w-full h-full object-cover grayscale opacity-60 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-[1s] ease-out select-none"
+                  referrerPolicy="no-referrer"
+                  loading="lazy"
+                />
+                
+                {/* Elegant Ambient Overlay Gradients */}
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0F0F0F] via-[#0F0F0F]/10 to-[#0F0F0F]/45 z-10" />
 
-              {/* Video Thumbnail and Author Info Bottom block */}
-              <div className="space-y-4 pt-4 border-t border-[#1A1A1A]/10">
-                {/* Custom Elegant play cover */}
-                <div
-                  onClick={() => setActiveVideo(rev.id)}
-                  className="relative h-44 border border-[#B8956A]/20 overflow-hidden cursor-pointer group"
-                >
-                  <img
-                    src={rev.videoPlaceholder}
-                    alt={`${rev.name} - Видеоотзыв`}
-                    className="w-full h-full object-cover grayscale opacity-75 group-hover:grayscale-0 group-hover:scale-103 transition-all duration-500"
-                    referrerPolicy="no-referrer"
-                    loading="lazy"
-                  />
-                  <div className="absolute inset-0 bg-[#0F0F0F]/30 group-hover:bg-[#0F0F0F]/15" />
-                  
-                  {/* Play circle */}
-                  <div className="absolute inset-x-0 inset-y-0 m-auto w-12 h-12 bg-white rounded-full flex items-center justify-center text-[#B8956A] shadow-md group-hover:scale-105 group-hover:bg-[#B8956A] group-hover:text-white transition-all duration-300">
-                    <Play size={16} fill="currentColor" className="ml-0.5 animate-pulse" />
+                {/* Header HUD: Avatar Profile Bubble & Project */}
+                <div className="absolute top-5 left-3 right-3 z-20 flex items-center gap-2">
+                  <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-[#9c7b4f] to-[#d6b78d] p-[1px] shadow-md shrink-0">
+                    <div className="w-full h-full rounded-full bg-[#0F0F0F] flex items-center justify-center">
+                      <span className="text-[10px] font-mono tracking-wider text-[#B8956A] font-extrabold">
+                        {initials || "C"}
+                      </span>
+                    </div>
                   </div>
-                  
-                  <span className="absolute bottom-2 left-2 text-[9px] font-mono uppercase bg-[#0F0F0F] text-[#F5F1EA] tracking-widest px-2.5 py-1 font-bold flex items-center gap-1.5">
-                    <span>СМОТРЕТЬ НА RUTUBE</span>
-                    <ExternalLink size={10} className="text-[#B8956A]" />
-                  </span>
-                </div>
-
-                {/* Author text */}
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-full bg-[#1A1A1A]/10 border border-[#B8956A]/20 flex items-center justify-center text-[#8B6F4E] shrink-0">
-                    <User size={16} />
-                  </div>
-                  <div>
-                    <h4 className="font-sans text-xs uppercase tracking-widest font-extrabold text-[#1A1A1A]">
+                  <div className="min-w-0">
+                    <span className="text-[9px] uppercase font-mono tracking-wider text-white font-extrabold block truncate leading-none">
                       {rev.name}
-                    </h4>
-                    <span className="text-[10px] text-[#8B6F4E] font-mono uppercase block font-bold mt-0.5 leading-tight">
+                    </span>
+                    <span className="text-[8px] text-[#B8956A] font-mono uppercase tracking-widest block truncate mt-0.5 leading-none">
                       {rev.project}
                     </span>
                   </div>
                 </div>
+
+                {/* Center Circle Play Button */}
+                <div className="absolute inset-0 flex items-center justify-center z-10">
+                  <div className="w-12 h-12 rounded-full bg-[#0F0F0F]/65 border border-[#B8956A]/50 backdrop-blur-md flex items-center justify-center text-[#B8956A] group-hover:bg-[#B8956A] group-hover:text-[#0F0F0F] group-hover:border-transparent group-hover:scale-110 shadow-2xl transition-all duration-300">
+                    <Play size={14} fill="currentColor" className="ml-0.5" />
+                  </div>
+                </div>
+
+                {/* Bottom Story HUD: Stars, Quote snippet, and details */}
+                <div className="absolute bottom-0 inset-x-0 p-3.5 pt-12 z-20 space-y-2 select-none">
+                  <div className="flex gap-0.5 text-[#B8956A]">
+                    {[...Array(5)].map((_, i) => (
+                      <Star key={i} size={8} fill="#B8956A" className="text-[#B8956A]" />
+                    ))}
+                  </div>
+
+                  <p className="text-[10px] lg:text-[11px] text-[#F5F1EA]/85 font-sans leading-relaxed line-clamp-3 italic">
+                    “{rev.quote}”
+                  </p>
+                  
+                  <div className="flex justify-between items-center pt-2 border-t border-white/[0.08] text-[8px] font-mono tracking-wider text-[#B8956A] uppercase">
+                    <span>СМОТРЕТЬ ОБЗОР</span>
+                    <span>{rev.area}</span>
+                  </div>
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
 
         {/* Ending disclaimer */}
         <div className="mt-16 text-center text-xs text-[#1A1A1A]/55 font-mono uppercase tracking-widest">
-          Все видеоотзывы записаны на завершенных объектах Mechty Group в Кино-формате.
+          Все видеообзоры записаны на завершенных объектах Mechty Group в высоком разрешении.
         </div>
 
       </div>
 
-      {/* Real Rutube Embed Video Modal player */}
+      {/* Real YouTube / Rutube Embed Video Modal player */}
       {activeVideo && activeReviewInfo && (
         <div className="fixed inset-0 z-[120] bg-[#0F0F0F]/98 backdrop-blur-md flex flex-col justify-center items-center p-4">
           {/* Modal Header Controls */}
           <div className="w-full flex justify-between items-center max-w-4xl text-[#F5F1EA] mb-3 px-2">
             <div className="text-left">
               <span className="text-[9px] font-mono tracking-widest uppercase text-[#B8956A]">
-                РЕАЛЬНЫЙ ОТЗЫВ КЛИЕНТА • MECHTY GROUP
+                РЕАЛЬНЫЙ ОБЗОР ОБЪЕКТА • MECHTY GROUP
               </span>
               <h3 className="font-serif text-lg font-light leading-tight">
                 {activeReviewInfo.name} — {activeReviewInfo.project}
@@ -124,7 +132,7 @@ export default function ReviewsSection({ onOpenConsultation }: ReviewsSectionPro
             
             <button
               onClick={() => setActiveVideo(null)}
-              className="text-[#8B8478] hover:text-[#B8956A] p-2 hover:bg-[#1A1A1A] border border-[#B8956A]/20 rounded transition-all text-xs flex items-center gap-1"
+              className="text-[#8B8478] hover:text-[#B8956A] p-2 hover:bg-[#1A1A1A] border border-[#B8956A]/20 rounded transition-all text-xs flex items-center gap-1 cursor-pointer"
             >
               <span>Закрыть</span>
               <X size={14} />
@@ -141,23 +149,23 @@ export default function ReviewsSection({ onOpenConsultation }: ReviewsSectionPro
           >
             {activeReviewInfo.embedUrl ? (
               <iframe
-                src={`${activeReviewInfo.embedUrl}?backUrl=${encodeURIComponent(window.location.href)}&mute=0&autoplay=1`}
+                src={activeReviewInfo.youtubeUrl ? `${activeReviewInfo.embedUrl}?autoplay=1&rel=0` : `${activeReviewInfo.embedUrl}?backUrl=${encodeURIComponent(window.location.href)}&mute=0&autoplay=1`}
                 frameBorder="0"
-                allow="clipboard-write; autoplay; encrypted-media; fullscreen; picture-in-picture;"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen"
                 allowFullScreen
                 className="absolute inset-0 w-full h-full"
-                title={`${activeReviewInfo.name} - Rutube Video`}
+                title={`${activeReviewInfo.name} - Video Review`}
               ></iframe>
             ) : (
               <div className="absolute inset-0 flex flex-col items-center justify-center p-8 text-center text-[#F5F1EA]">
                 <p className="text-sm font-sans mb-4">Видеофайл временно недоступен</p>
                 <a 
-                  href={activeReviewInfo.rutubeUrl} 
+                  href={activeReviewInfo.youtubeUrl || activeReviewInfo.rutubeUrl} 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="px-4 py-2 bg-[#B8956A] text-[#0F0F0F] text-xs font-bold uppercase tracking-widest"
                 >
-                  Открыть на RuTube
+                  Открыть видео
                 </a>
               </div>
             )}

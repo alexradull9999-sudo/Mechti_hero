@@ -335,7 +335,7 @@ export const reviewsList: ReviewItem[] = [
   {
     id: "rev-1",
     name: "Лена С.",
-    project: "ЖК Knightsbridge, 132 м²",
+    project: "ЖК Knightsbridge",
     area: "132 м²",
     quote: "Доверилась команде Mechty с первой встречи — система этапности и понятный график оплат сразу сняли все мои страхи. Через 8 месяцев въехала в квартиру, готовую к жизни.",
     videoPlaceholder: "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=800&q=80",
@@ -345,7 +345,7 @@ export const reviewsList: ReviewItem[] = [
   {
     id: "rev-2",
     name: "Семья Ковалевых",
-    project: "ЖК Headliner, 145 м²",
+    project: "ЖК Headliner",
     area: "145 м²",
     quote: "Непередаваемые эмоции от переезда! С застройщиком намучились, но команда Mechty Group исправила все косяки планировки и сделала настоящий образец роскоши с панорамными видами. Рекомендуем!",
     videoPlaceholder: "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=800&q=80",
@@ -355,7 +355,7 @@ export const reviewsList: ReviewItem[] = [
   {
     id: "rev-3",
     name: "Михаил Т.",
-    project: "ЖК Sky View, 180 м²",
+    project: "ЖК Sky View",
     area: "180 м²",
     quote: "Строительный надзор и автоматизация в ERP на уровне космических кораблей. Все закупки материалов ровно в смету. Получили квартиру мечты точно к юбилею супруги.",
     videoPlaceholder: "https://images.unsplash.com/photo-1618219908412-a29a1bb7b86e?auto=format&fit=crop&w=800&q=80",
@@ -365,7 +365,7 @@ export const reviewsList: ReviewItem[] = [
   {
     id: "rev-4",
     name: "Кристина и Артем",
-    project: "ЖК Хедлайнер, 110 м²",
+    project: "ЖК Хедлайнер",
     area: "110 м²",
     quote: "Впечатлило качество и комплектация под ключ — кухня-гостиная получилась невероятно изысканной и стильной! Дизайн-проектирование было очень дотошным и индивидуальным под наши привычки.",
     videoPlaceholder: "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=800&q=80",
@@ -375,7 +375,7 @@ export const reviewsList: ReviewItem[] = [
   {
     id: "rev-5",
     name: "Георгий В.",
-    project: "ЖК Тургенев, 210 м²",
+    project: "ЖК Тургенев",
     area: "210 м²",
     quote: "Уникальный элитный комплекс и соответствующая реализация от Mechty Group. Полная шумоизоляция, сложная автоматика кондиционирования, шпонированная мебель высокого ремесленного уровня.",
     videoPlaceholder: "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=800&q=80",

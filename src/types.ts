@@ -51,6 +51,7 @@ export interface ReviewItem {
   videoPlaceholder: string;
   rutubeUrl?: string;
   embedUrl?: string;
+  youtubeUrl?: string;
 }
 
 export interface TrendItem {
