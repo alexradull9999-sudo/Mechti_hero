@@ -72,7 +72,7 @@ export default function Founders({ onOpenConsultation }: FoundersProps) {
                 <div className="space-y-1">
                   <span className="text-xs font-sans font-bold text-[#1A1A1A] block">Бизнес-клубы Москвы</span>
                   <p className="text-[11px] sm:text-xs text-[#8B8478] leading-relaxed font-light">
-                    Действующий член высших лиг «Атланты» и «Клуба Первых» от Сбербанка.
+                    Действующий член высших лиг «Атланты», «Клуба Первых» от Сбербанка и других.
                   </p>
                 </div>
               </div>

@@ -156,7 +156,7 @@ export default function ErpControl({ onOpenConsultation }: ErpControlProps) {
                   </h4>
                 </div>
                 <p className="text-xs text-[#C4BEB3] leading-relaxed">
-                  Мгновенное подписание актов выполненных работ и этапов снабжения. Полная интеграция с мебельной фабрикой Mechty.
+                  Мгновенное подписание актов выполненных работ, этапов снабжения, а также согласование изменений, дополнений и прочих поступивших вводных от заказчика.
                 </p>
               </div>
             </div>
@@ -574,7 +574,7 @@ export default function ErpControl({ onOpenConsultation }: ErpControlProps) {
                     {/* Header identifier from screenshot 2 */}
                     <div className="border border-gray-200 rounded-lg p-3 bg-[#FAF9F6]">
                       <span className="text-[10px] font-mono uppercase tracking-wider text-gray-400 font-bold block mb-1">
-                        Журнал учета скрытых работ:
+                        Реестр учета скрытых работ:
                       </span>
                       <h4 className="font-serif text-sm font-bold text-gray-800">
                         Последние отчеты технадзора
@@ -641,7 +641,7 @@ export default function ErpControl({ onOpenConsultation }: ErpControlProps) {
                       </div>
                       
                       <button className="flex items-center gap-1 text-[#B8956A] hover:text-[#8B6F4E] font-sans font-bold uppercase text-[9px]">
-                        <span>Скачать журнал</span>
+                        <span>Скачать отчет</span>
                         <Download size={10} />
                       </button>
                     </div>

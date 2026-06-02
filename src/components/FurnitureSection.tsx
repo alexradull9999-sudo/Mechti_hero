@@ -26,7 +26,7 @@ export default function FurnitureSection({ onScrollToSection, onOpenConsultation
     {
       icon: <Wrench size={18} className="text-[#8B6F4E]" />,
       title: "Высококлассная сборка",
-      desc: "Сбору ведут штатные мастера завода на скрытые немецкие мебельные стяжки Hettich, сохраняя идеальные зазоры."
+      desc: "Сборку ведут высококлассные штатные мастера на скрытые немецкие мебельные стяжки Hettich, сохраняя идеальные зазоры."
     },
     {
       icon: <ShieldCheck size={18} className="text-[#8B6F4E]" />,
@@ -62,7 +62,7 @@ export default function FurnitureSection({ onScrollToSection, onOpenConsultation
             <span className="italic text-[#8B6F4E]">строго в размер стен</span>
           </h2>
           <p className="text-base md:text-lg text-[#322F2A] font-sans font-normal leading-relaxed">
-            Главная боль меблировки на заказ — несовпадение зазоров со строительными порталами. Собственное производство в Подмосковье синхронизирует замеры на этапе оштукатуривания. Разрабатываем кухни, гардеробы, комоды и мягкие диваны в едином стилевом ключе куратора проекта. Передача готового объекта, полностью готового для жизни.
+            Главная боль меблировки на заказ — несовпадение зазоров со строительными порталами. Полная комплектация по мебели и работа с премиальными брендами гарантирует точную интеграцию и замеры на этапе оштукатуривания. Разрабатываем кухни, гардеробы, комоды и мягкие диваны в едином стилевом ключе куратора проекта. Передача готового объекта, полностью готового для жизни.
           </p>
 
           {onOpenConsultation && (
@@ -70,7 +70,7 @@ export default function FurnitureSection({ onScrollToSection, onOpenConsultation
               onClick={() => onOpenConsultation(
                 'Заявка на получение презентации мебели и каталога Комплектации.',
                 'Получить презентацию комплектации',
-                'Заполните форму, чтобы получить полную презентацию премиум-мебели, кухонь и гардеробов от нашего мебельного цеха.'
+                'Заполните форму, чтобы получить полную презентацию премиум-мебели, кухонь и гардеробов от наших премиальных брендов-партнеров.'
               )}
               className="inline-flex items-center gap-3 px-6 py-4 bg-[#1A1A1A] hover:bg-[#8B6F4E] text-white hover:text-[#EDE6D8] font-sans text-xs uppercase tracking-widest font-bold transition-all duration-300 shadow-md cursor-pointer rounded-none"
             >
@@ -95,10 +95,10 @@ export default function FurnitureSection({ onScrollToSection, onOpenConsultation
           <div className="lg:col-span-6 space-y-8 bg-[#EDE6D8] p-6 md:p-10 border border-[#B8956A]/30 shadow-md">
             <div className="space-y-2">
               <h3 className="font-serif text-2xl md:text-3xl font-light text-[#1A1A1A]">
-                Стандарты нашего производства
+                Стандарты полной комплектации
               </h3>
               <p className="text-sm text-[#4E473F] uppercase tracking-wider font-sans font-bold block">
-                5 уровней качества мебельного цеха
+                5 уровней контроля качества мебели
               </p>
             </div>
             

@@ -31,7 +31,7 @@ export default function Footer({ onScrollToSection }: FooterProps) {
             </div>
             
             <p className="text-[#8B8478] leading-relaxed max-w-xs text-[11px]">
-              Проектируем, строим и полностью меблируем премиум-интерьеры в Москве с 2009 года. Полная ответственность за ведомости и результаты в рамках контракта.
+              Проектируем, строим и полностью комплектуем премиум-интерьеры в Москве с 2009 года. Полная ответственность за ведомости и результаты в рамках контракта.
             </p>
 
             <div className="flex flex-wrap gap-2.5 pt-2">
@@ -69,7 +69,7 @@ export default function Footer({ onScrollToSection }: FooterProps) {
                 Ремонт под ключ
               </button>
               <button onClick={() => onScrollToSection('furniture-section')} className="hover:text-[#B8956A] text-left transition-colors font-sans text-xs">
-                Производство мебели
+                Мебелирование, полная комплектация
               </button>
             </div>
           </div>

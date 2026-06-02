@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { premiumProperties } from '../data';
 import { MapPin, ArrowRight, Building, Key, Home, Sparkles } from 'lucide-react';
+import { AnimatePresence } from 'motion/react';
+import PropertyModal from './PropertyModal';
+import { PropertyItem } from '../types';
 
 interface RealEstateSectionProps {
   onOpenConsultation: (msg?: string) => void;
@@ -9,6 +12,7 @@ interface RealEstateSectionProps {
 
 export default function RealEstateSection({ onOpenConsultation, onScrollToSection }: RealEstateSectionProps) {
   const [activeSegment, setActiveSegment] = useState<string>("all");
+  const [selectedProperty, setSelectedProperty] = useState<PropertyItem | null>(null);
 
   const segments = [
     { id: "all", name: "Все объекты", icon: <Building size={14} /> },
@@ -58,7 +62,7 @@ export default function RealEstateSection({ onOpenConsultation, onScrollToSectio
               <span className="italic text-[#B8956A] font-light">в лучших локациях Москвы</span>
             </h2>
             <p className="text-base md:text-lg text-[#C4BEB3] font-sans font-light leading-relaxed max-w-2xl">
-              Сотрудничаем напрямую с застройщиками: Vesper, Capital Group, Sminex и прочими застройщиками премиальной недвижимости. 80% сделок — закрытые продажи для состоятельных клиентов, без открытых каталогов.
+              Сотрудничаем напрямую с застройщиками Vesper, Capital Group, Sminex и прочих застройщиков премиальной недвижимости. Также мы можем спроектировать загородную резиденцию любой сложности и даже целый посёлок. 80% наших сделок — закрытые продажи вне каталогов по персональному запросу.
             </p>
           </div>
           
@@ -91,11 +95,11 @@ export default function RealEstateSection({ onOpenConsultation, onScrollToSectio
         </div>
 
         {/* Properties Catalog Showcase cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
-          {filteredProperties.map((prop) => (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+          {filteredProperties.slice(0, 8).map((prop) => (
             <div
               key={prop.id}
-              onClick={() => onOpenConsultation(`Здравствуйте, интересует подбор по объекту: "${prop.title}".`)}
+              onClick={() => setSelectedProperty(prop)}
               className="group cursor-pointer bg-[#1A1A1A] border brass-border relative overflow-hidden flex flex-col justify-between"
             >
               {/* Photo section */}
@@ -143,6 +147,31 @@ export default function RealEstateSection({ onOpenConsultation, onScrollToSectio
             </div>
           ))}
         </div>
+
+        {/* Catalog CTA Button */}
+        <div className="flex justify-center mb-20">
+          <button
+            onClick={() => onOpenConsultation("Здравствуйте! Отправьте мне, пожалуйста, полный каталог со всеми готовыми проектами и закрытыми продажами компании «Мечты» в Москве.")}
+            className="px-8 py-4 bg-transparent border border-[#B8956A] text-[#B8956A] hover:bg-[#B8956A] hover:text-[#0F0F0F] text-xs uppercase tracking-[0.2em] font-sans font-bold flex items-center justify-center gap-3 transition-all duration-300 select-none shadow-md shadow-[#B8956A]/5 cursor-pointer transform hover:-translate-y-0.5 active:translate-y-0"
+          >
+            <span>Получить каталог всех готовых проектов</span>
+            <Building size={14} className="animate-pulse" />
+          </button>
+        </div>
+
+        {/* Object Detailed Popup Overlay */}
+        <AnimatePresence>
+          {selectedProperty && (
+            <PropertyModal
+              property={selectedProperty}
+              onClose={() => setSelectedProperty(null)}
+              onOpenConsultation={(msg) => {
+                setSelectedProperty(null);
+                onOpenConsultation(msg);
+              }}
+            />
+          )}
+        </AnimatePresence>
 
         {/* Partner Developers Ticker Bar */}
         <div className="mb-16 border-t border-b border-[#B8956A]/15 py-8">

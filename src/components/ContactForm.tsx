@@ -62,7 +62,7 @@ export default function ContactForm({ customMessage, onClearCustomMessage }: Con
                 <span className="italic text-[#B8956A] font-light">ваш проект?</span>
               </h2>
               <p className="text-sm md:text-base text-[#C4BEB3] font-sans font-light leading-relaxed max-w-sm">
-                Запишитесь на встречу в нашем готовом объекте — посмотрите вживую то, что вас интересует. Коллеги предложат вам презентацию, покажут образцы материалов и сметные ведомости.
+                Запишитесь на закрытую презентацию в нашем готовом объекте и оценить всё, что вас интересует.
               </p>
             </div>
 
@@ -211,7 +211,7 @@ export default function ContactForm({ customMessage, onClearCustomMessage }: Con
                       }
                       setMessage(e.target.value);
                     }}
-                    placeholder="ЖК Knightsbridge, трехкомнатная, требуется дизайн и производство кухонной мебели под потолок..."
+                    placeholder="ЖК Knightsbridge, трехкомнатная, требуется дизайн и комплектация кухонной мебели под потолок..."
                     className="w-full bg-[#0F0F0F] border border-[#B8956A]/20 focus:border-[#B8956A] focus:outline-none p-4 text-sm text-[#F5F1EA] font-sans transition-colors resize-none font-semibold shadow-sm"
                   />
                 </div>
@@ -279,7 +279,7 @@ export default function ContactForm({ customMessage, onClearCustomMessage }: Con
                     )}
                   </button>
                   <p className="text-center text-[11px] text-[#C4BEB3]/80 italic font-sans leading-normal">
-                    Записаться на встречу в нашем готовом объекте — посмотрите вживую то, что вас интересует.
+                    Записаться на закрытую презентацию в нашем готовом объекте — оцените вживую всё, что вас интересует.
                   </p>
                 </div>
               </form>

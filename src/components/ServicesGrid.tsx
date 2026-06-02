@@ -35,7 +35,7 @@ export default function ServicesGrid({ onScrollToSection }: ServicesGridProps) {
       id: "ds-furniture",
       num: "04",
       title: "Комплектация",
-      description: "Собственная мебельная мануфактура полного цикла и прямые поставки. Индивидуальное производство кухонь, гардеробов и премиальное декорирование.",
+      description: "Полная комплектация по мебели, работа с премиальными брендами. Индивидуальный подбор кухонь, премиальных гардеробов и декорирование.",
       image: "https://images.unsplash.com/photo-1538688525198-9b88f6f53126?auto=format&fit=crop&w=800&q=80",
       targetId: "furniture-section"
     }
@@ -56,7 +56,7 @@ export default function ServicesGrid({ onScrollToSection }: ServicesGridProps) {
           </div>
           <div className="max-w-md">
             <p className="text-sm md:text-base text-[#8B8478] font-sans font-light leading-relaxed">
-              Вы взаимодействуете с одной компанией на каждом этапе. От поиска квартиры в лучших ЖК Москвы до финальной сборки мебели и регулировки доводчиков на кухне.
+              Вы взаимодействуете с одной компанией и личным менеджером на каждом этапе. От подбора/строительства объекта до дизайна, ремонта, комплектации и передачи ключей.
             </p>
           </div>
         </div>
