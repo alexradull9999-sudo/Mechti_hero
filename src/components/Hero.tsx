@@ -61,7 +61,7 @@ export default function Hero({ onScrollToSection, onOpenConsultation }: HeroProp
           <div
             className="absolute inset-0 bg-cover bg-center opacity-70"
             style={{
-              backgroundImage: `url('https://images.unsplash.com/photo-1600210491892-03d54c0aaf87?auto=format&fit=crop&w=1200&q=80')`,
+              backgroundImage: `url('/hero.jpg')`,
             }}
           />
           <div className="absolute inset-0 bg-gradient-to-t lg:bg-gradient-to-r from-[#0F0F0F] via-transparent to-transparent opacity-45" />
