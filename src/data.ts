@@ -5,16 +5,30 @@ export const portfolioCases: CaseItem[] = [
     id: "case-1",
     title: "Резиденция в СНТ Усадьба",
     location: "Рублёво-Успенское шоссе",
-    area: "450 м²",
+    area: "812 м²",
     style: "Современная классика",
-    description: "Загородный дом авторской архитектуры с интерьером в духе современной классики. Эксклюзивные материалы, авторская мебель и предметы декора с полной комплектацией по мебели и работой с премиальными брендами. Полный цикл от архитектурного проекта до расстановки декора.",
-    cover: "/portfolio/usadba_1.png",
+    description: `Дом построен в 2023 году в очень живописном лесу на 30 сотках, на берегу Генеральского озера.
+
+● 812 м² + 152,5 м² гараж на 2 машиноместа + блок для персонала
+● Второй свет
+● Бассейн в доме с зоной спа и с видом на лес
+● Кабинет со стеклянной стеной и видом на второй свет и на лес с балконом
+● Мастер-спальня с витражами и видом на лес с огромной гардеробной м/ж (всего 6 спален)
+● Санузел с отдельно стоящей ванной
+● 6 спален
+● Кинотеатр
+● Постирочная
+● Спортзал
+● Винная комната`,
+    cover: "/portfolio/usadba1.jpg",
     videoLoop: undefined,
     videoFull: undefined,
     gallery: [
-      "/portfolio/usadba_1.png",
-      "/portfolio/usadba_2.png",
-      "/portfolio/usadba_3.png"
+      "/portfolio/usadba1.jpg",
+      "/portfolio/usadba2.jpg",
+      "/portfolio/usadba3.jpg",
+      "/portfolio/usadba4.jpg",
+      "/portfolio/usadba5.jpg"
     ],
     plan: "/portfolio/usadba_plan.png"
   },
@@ -36,38 +50,55 @@ export const portfolioCases: CaseItem[] = [
     plan: "/portfolio/headliner_schema.png"
   },
   {
-    id: "case-krylya",
-    title: "Квартира в ЖК «Крылья»",
-    location: "Москва, ЖК «Крылья»",
-    area: "135 м²",
+    id: "case-zolotoy",
+    title: "Евро 4-комнатная квартира в ЖК «Золотой»",
+    location: "Якиманка, Софийская наб., 18",
+    area: "162.7 м²",
     style: "Современная классика",
-    description: "Семейная квартира с интегрированной кухней-гостиной и тёплой палитрой натуральных материалов. Авторская мебель и полная комплектация по мебели, работа с премиальными брендами.",
-    cover: "/portfolio/usadba_1.png", /* TODO: добавить фото ЖК Крылья от собственника */
+    description: `Элитный Deluxe квартал «Золотой» расположен в самом сердце российской истории на первой линии Москва-реки, напротив Кремля.
+
+● 162.7 м² жилого пространства deluxe-уровня
+● Виды на набережную и исторический центр Москвы
+● Просторая панорамная кухня-гостиная премиум-класса
+● Роскошные спальные блоки со встроенными гардеробными системами
+● Дизайнерские ванные комнаты с премиальным немецким сантехническим оборудованием
+● Полная комплектация авторской мебелью высшего ремесленного уровня и встроенной техникой от мировых брендов на условиях «Все включено под тапочки».`,
+    cover: "/portfolio/zolotoy_1.jpg",
     videoLoop: undefined,
     videoFull: undefined,
     gallery: [
-      "/portfolio/usadba_1.png", /* TODO: добавить фото ЖК Крылья от собственника */
-      "/portfolio/usadba_2.png",
-      "/portfolio/usadba_3.png"
+      "/portfolio/zolotoy_1.jpg",
+      "/portfolio/zolotoy_2.png",
+      "/portfolio/zolotoy_3.png",
+      "/portfolio/zolotoy_4.png",
+      "/portfolio/zolotoy_5.png"
     ],
-    plan: "/portfolio/usadba_plan.png" /* TODO: добавить фото ЖК Крылья от собственника */
+    plan: "/portfolio/zolotoy_1.jpg"
   },
   {
-    id: "case-3",
-    title: "Резиденция на Остоженке",
-    location: "Москва, Золотая Миля (Остоженка)",
-    area: "210 м²",
-    style: "Тёплый минимализм с классической базой",
-    description: "Камерная квартира в клубном доме в самом центре. Сдержанная палитра, натуральный камень и шпон, тщательная проработка свето-сценариев. Авторский надзор на всех этапах реализации.",
-    cover: "/portfolio/ostozhenka_1.png",
+    id: "case-now",
+    title: "Двухуровневая квартира в ЖК “Now”",
+    location: "Москва, проезд Лихачева 10, к.3",
+    area: "184,55 м²",
+    style: "Теплый современный минимализм",
+    description: `Дизайнерская двухуровневая резиденция бизнес-лайт уровня на берегу затона Новинки в современном квартале ЖК «NOW».
+
+● Уникальный двухуровневый формат на 12–13 этажах с панорамными видами на реку и благоустроенную набережную.
+● Общая площадь — 184.55 м² гармонии и безупречной эргономики.
+● Первый уровень: масштабное двухсветное пространство просторной кухни-гостиной, спальня/кабинет, гардеробные системы.
+● Второй уровень: мастер-спальня с просторными видовыми витражами, детские спальни, премиальные ванные блоки.
+● Высочайший уровень уединения, панорамное остекление, изящный дизайн в стиле теплый современный минимализм.`,
+    cover: "/portfolio/now_1.jpg",
     videoLoop: undefined,
     videoFull: undefined,
     gallery: [
-      "/portfolio/ostozhenka_1.png",
-      "/portfolio/ostozhenka_2.png",
-      "/portfolio/ostozhenka_3.png"
+      "/portfolio/now_1.jpg",
+      "/portfolio/now_2.jpg",
+      "/portfolio/now_3.jpg",
+      "/portfolio/now_4.jpg",
+      "/portfolio/now_5.jpg"
     ],
-    plan: "/portfolio/ostozhenka_plan.png"
+    plan: "/portfolio/now_1.jpg"
   },
   {
     id: "case-4",
@@ -90,6 +121,15 @@ export const portfolioCases: CaseItem[] = [
 
 export const premiumProperties: PropertyItem[] = [
   {
+    "id": "prop-a-now",
+    "title": "Двухуровневая квартира в ЖК “Now”",
+    "location": "Москва, проезд Лихачева 10, к.3, 12-13 этаж",
+    "area": "184,55 м²",
+    "price": "По запросу",
+    "image": "/portfolio/now_1.jpg",
+    "badge": "Пентхаус"
+  },
+  {
     "id": "prop-a-0820",
     "title": "Дизайнерский пентхаус в ЖК Carré Blanc (Карре Бланк)",
     "location": "Хамовники, Пречистенская набережная",
@@ -97,6 +137,15 @@ export const premiumProperties: PropertyItem[] = [
     "price": "По запросу",
     "image": "https://api.gk-mechti.ru/api/image/61371781dd3aba13ffd87ddda7c9e377",
     "badge": "Пентхаус"
+  },
+  {
+    "id": "prop-a-1394",
+    "title": "Евро 4-комнатная квартира в ЖК «Золотой»",
+    "location": "Якиманка, Софийская наб., 18",
+    "area": "162.7 м²",
+    "price": "495 000 000 ₽",
+    "image": "/portfolio/zolotoy_1.jpg",
+    "badge": "Клубный дом"
   },
   {
     "id": "prop-a-0817",
@@ -151,15 +200,6 @@ export const premiumProperties: PropertyItem[] = [
     "price": "По запросу",
     "image": "https://api.gk-mechti.ru/api/image/6728f7f72e397076ef2453247130a25d",
     "badge": "Пентхаус"
-  },
-  {
-    "id": "prop-a-1394",
-    "title": "ЖК Золотой 162.7 готовый",
-    "location": "Якиманка, Софийская набережная",
-    "area": "162.7 м²",
-    "price": "По запросу",
-    "image": "https://api.gk-mechti.ru/api/image/e488dddab532868165335a570f26e345",
-    "badge": "Клубный дом"
   },
   {
     "id": "prop-a-0738",

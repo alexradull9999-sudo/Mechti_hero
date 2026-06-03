@@ -168,10 +168,10 @@ export default function PortfolioGrid({ onOpenConsultation }: PortfolioGridProps
                   </button>
                 </div>
                 
-                {/* 3 thumbnails + 1 plan */}
-                <div className="grid grid-cols-4 gap-2 md:gap-4">
+                {/* Dynamic thumbnails + plan */}
+                <div className="grid grid-flow-col auto-cols-fr gap-2 md:gap-4">
                   {modalImages.map((imgSrc, index) => {
-                    const isPlan = index === 3;
+                    const isPlan = index === modalImages.length - 1;
                     const isActive = activeImageIndex === index;
                     return (
                       <button
@@ -231,19 +231,30 @@ export default function PortfolioGrid({ onOpenConsultation }: PortfolioGridProps
                     </div>
                   </div>
                   
-                  <p className="text-[#C4BEB3] text-sm leading-relaxed font-light font-sans pt-3 border-t border-[#B8956A]/10">
+                  <p className="text-[#C4BEB3] text-sm leading-relaxed font-light font-sans pt-3 border-t border-[#B8956A]/10 whitespace-pre-line">
                     {activeCaseInfo.description}
                   </p>
                 </div>
                 
-                {/* CTA кнопка */}
-                <div className="pt-8 lg:pt-12">
+                {/* CTA кнопки */}
+                <div className="pt-8 lg:pt-12 space-y-3">
+                  <button
+                    onClick={() => {
+                      setSelectedCaseId(null);
+                      onOpenConsultation(`Запрос на скачивание презентации проекта — ${activeCaseInfo.title}, ${activeCaseInfo.area}`);
+                    }}
+                    className="w-full py-4 bg-[#B8956A] text-[#0F0F0F] hover:bg-[#A38157] text-xs uppercase tracking-[0.25em] font-sans font-extrabold transition-all duration-300 flex items-center justify-center gap-2 animate-fadeIn"
+                  >
+                    <span>Скачать презентацию</span>
+                    <ArrowUpRight size={14} />
+                  </button>
+
                   <button
                     onClick={() => {
                       setSelectedCaseId(null);
                       onOpenConsultation(`Интересует похожий проект — ${activeCaseInfo.title}, ${activeCaseInfo.area}`);
                     }}
-                    className="w-full py-4 bg-[#B8956A] text-[#0F0F0F] hover:bg-[#A38157] text-xs uppercase tracking-[0.25em] font-sans font-extrabold transition-all duration-300 flex items-center justify-center gap-2 animate-fadeIn"
+                    className="w-full py-4 border border-[#B8956A]/40 text-[#B8956A] hover:bg-[#B8956A]/10 text-xs uppercase tracking-[0.25em] font-sans font-bold transition-all duration-300 flex items-center justify-center gap-2"
                   >
                     <span>Запросить похожий проект</span>
                     <ArrowUpRight size={14} />
