@@ -1,7 +1,8 @@
-import express, { Request, Response, NextFunction } from 'express';
+import express, { Request, Response } from 'express';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import dotenv from 'dotenv';
+import fs from 'fs';
 
 dotenv.config();
 
@@ -17,7 +18,7 @@ app.set('trust proxy', 1); // Timeweb is behind reverse-proxy
 app.use(express.json({ limit: '50kb' })); // protection from large payloads
 
 // Minimal CORS setup
-app.use((req: Request, res: Response, next: NextFunction) => {
+app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
@@ -91,6 +92,12 @@ app.post('/api/lead', async (req: Request, res: Response) => {
     return res.status(400).json({ error: 'Укажите имя и телефон или email' });
   }
 
+  const esc = (s: string | undefined): string => {
+    return String(s || '').replace(/[&<>]/g, c =>
+      c === '&' ? '&amp;' : c === '<' ? '&lt;' : '&gt;'
+    );
+  };
+
   const lines: string[] = [];
   lines.push(`<b>🔔 НОВАЯ ЗАЯВКА · ${esc(body.source || 'unknown')}</b>`);
   lines.push('');
@@ -143,46 +150,27 @@ app.post('/api/lead', async (req: Request, res: Response) => {
   }
 });
 
-function esc(s: string): string {
-  return String(s || '').replace(/[&<>]/g, c =>
-    c === '&' ? '&amp;' : c === '<' ? '&lt;' : '&gt;'
-  );
+// === Static Assets static delivery ===
+// Robust resolution of static asset directory across dev and production environments
+let STATIC_DIR = path.resolve(process.cwd(), 'dist');
+if (!fs.existsSync(STATIC_DIR) || !fs.existsSync(path.join(STATIC_DIR, 'index.html'))) {
+  STATIC_DIR = path.resolve(__dirname, '../../dist');
 }
+console.log(`Serving static from: ${STATIC_DIR}`);
 
-// === Static Assets & Vite middleware integration ===
-async function setupFrontend() {
-  if (process.env.NODE_ENV !== "production") {
-    // In development mode, dynamically mount Vite Dev Server
-    const { createServer: createViteServer } = await import("vite");
-    const vite = await createViteServer({
-      server: { middlewareMode: true },
-      appType: "spa",
-    });
-    app.use(vite.middlewares);
-  } else {
-    // In production mode (e.g. on Timeweb Cloud Apps after compilation)
-    // __dirname in compiled production is /app/server/dist
-    // React production output is in /app/dist
-    const STATIC_DIR = path.join(__dirname, '../../dist');
+app.use(express.static(STATIC_DIR, {
+  maxAge: '1y',
+  index: false,
+  etag: true,
+}));
 
-    app.use(express.static(STATIC_DIR, {
-      maxAge: '1y',
-      index: false,
-      etag: true,
-    }));
+app.get(/^(?!\/api).*/, (_, res: Response) => {
+  res.sendFile(path.join(STATIC_DIR, 'index.html'));
+});
 
-    app.get(/^(?!\/api).*/, (_, res: Response) => {
-      res.sendFile(path.join(STATIC_DIR, 'index.html'));
-    });
-  }
-}
-
-setupFrontend().then(() => {
-  app.listen(PORT, '0.0.0.0', () => {
-    console.log(`Mechti-hero server listening on http://0.0.0.0:${PORT}`);
-  });
-}).catch(err => {
-  console.error("Failed to boot frontend service in server:", err);
+app.listen(PORT, '0.0.0.0', () => {
+  console.log(`Mechti-hero server listening on port ${PORT}`);
+  console.log(`Static dir: ${STATIC_DIR}`);
 });
 
 export default app;
