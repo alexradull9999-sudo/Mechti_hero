@@ -75,7 +75,7 @@ export default function ContactForm({ customMessage, onClearCustomMessage }: Con
                 </div>
                 <div className="space-y-1">
                   <span className="text-xs uppercase font-sans text-[#B8956A] tracking-widest block font-bold">Контакты</span>
-                  <span className="text-xs text-[#C4BEB3] block">Прямой контакт с руководителем продаж — Вадим</span>
+                  <span className="text-xs text-[#C4BEB3] block">Прямой контакт со специалистом — Вадим</span>
                   <a href="tel:+79055164466" className="text-base font-sans text-[#EDE6D8] font-extrabold block hover:text-[#B8956A] transition-colors">
                     +7 (905) 516-44-66
                   </a>

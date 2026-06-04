@@ -164,7 +164,7 @@ export default function ErpControl({ onOpenConsultation }: ErpControlProps) {
             {/* Note instruction card */}
             <div className="bg-[#111] border border-[#B8956A]/15 p-4 text-xs font-sans text-[#C4BEB3] flex items-center justify-between gap-3">
               <span className="italic">
-                Попробуйте интерактивно переключить вкладки на макете смартфона справа, чтобы посмотреть реальные экраны нашей CRM-системы. <span className="text-[#B8956A] inline-block font-extrabold animate-pulse ml-1 text-base">🡲</span>
+                Попробуйте интерактивно переключить вкладки на макете смартфона справа, чтобы посмотреть реальные экраны нашей ERP-системы. <span className="text-[#B8956A] inline-block font-extrabold animate-pulse ml-1 text-base">🡲</span>
               </span>
               <Smartphone size={24} className="text-[#B8956A] shrink-0 animate-pulse" />
             </div>
@@ -663,8 +663,8 @@ export default function ErpControl({ onOpenConsultation }: ErpControlProps) {
             {onOpenConsultation && (
               <button
                 onClick={() => onOpenConsultation(
-                  'Доступ к CRM-системе прозрачного контроля ремонта Mechty.',
-                  'Получить доступ к CRM',
+                  'Доступ к ERP-системе прозрачного контроля ремонта Mechty.',
+                  'Получить доступ к ERP',
                   'Заполните форму для оформления временного гостевого демо-доступа к личному кабинету инвестора.'
                 )}
                 className="w-full max-w-[420px] py-4 bg-[#B8956A] hover:bg-[#8B6F4E] hover:text-white text-[#0F0F0F] font-sans text-xs uppercase tracking-widest font-extrabold transition-all duration-300 shadow-xl flex items-center justify-center gap-2.5 cursor-pointer rounded-sm"

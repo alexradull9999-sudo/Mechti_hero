@@ -8,8 +8,8 @@ interface FooterProps {
 
 export default function Footer({ onScrollToSection }: FooterProps) {
   const socialHandles = [
-    { name: "Telegram", label: "t.me/mechtigroup", iconType: 'telegram', url: 'https://t.me/mechtigroup' },
-    { name: "Мессенджер Макс", label: "Мессенджер Макс", iconType: 'messenger', url: 'https://t.me/mechtigroup' },
+    { name: "Telegram", label: "t.me/Vadim_Yastrebov", iconType: 'telegram', url: 'https://t.me/Vadim_Yastrebov' },
+    { name: "Мессенджер Макс", label: "Мессенджер Макс", iconType: 'messenger', url: 'https://max.ru/u/f9LHodD0cOI3kLephDN2gD-mh2-FWe968N1MDGmz9ix6ZNJJPru11CPCRc0' },
     { name: "Яндекс.Дзен", label: "Дзен", iconType: 'zen', url: 'https://dzen.ru/mechti_group' },
     { name: "YouTube", label: "YouTube", iconType: 'youtube', url: 'https://www.youtube.com/@mechti_group' }
   ];

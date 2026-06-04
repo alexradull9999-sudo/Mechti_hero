@@ -92,7 +92,7 @@ export default function Header({ onOpenConsultation, onScrollToSection }: Header
                 </a>
                 <div className="flex items-center gap-2 shrink-0">
                   <a 
-                    href="https://t.me/mechtigroup" 
+                    href="https://t.me/Vadim_Yastrebov" 
                     target="_blank" 
                     rel="noopener noreferrer" 
                     className="w-[22px] h-[22px] rounded-full bg-[#1A1A1A]/80 border border-[#B8956A]/30 hover:border-[#B8956A] flex items-center justify-center text-[#B8956A] hover:bg-[#B8956A] hover:text-[#0F0F0F] transition-all" 
@@ -101,7 +101,7 @@ export default function Header({ onOpenConsultation, onScrollToSection }: Header
                     <Send size={10} />
                   </a>
                   <a 
-                    href="https://t.me/mechtigroup" 
+                    href="https://max.ru/u/f9LHodD0cOI3kLephDN2gD-mh2-FWe968N1MDGmz9ix6ZNJJPru11CPCRc0" 
                     target="_blank" 
                     rel="noopener noreferrer" 
                     className="w-[22px] h-[22px] rounded-full bg-[#1A1A1A]/80 border border-[#B8956A]/30 hover:border-[#B8956A] flex items-center justify-center text-[#B8956A] hover:bg-[#B8956A] hover:text-[#0F0F0F] transition-all" 
@@ -180,11 +180,11 @@ export default function Header({ onOpenConsultation, onScrollToSection }: Header
 
             {/* Social channels on mobile */}
             <div className="flex flex-wrap items-center justify-center gap-2 pt-2 text-[#F2ECE1]/80 font-sans text-[11px]">
-              <a href="https://t.me/mechtigroup" target="_blank" rel="noopener noreferrer" className="hover:text-[#B8956A] transition-all flex items-center gap-1 py-1 px-2 border border-[#B8956A]/10 bg-[#1A1A1A]">
+              <a href="https://t.me/Vadim_Yastrebov" target="_blank" rel="noopener noreferrer" className="hover:text-[#B8956A] transition-all flex items-center gap-1 py-1 px-2 border border-[#B8956A]/10 bg-[#1A1A1A]">
                 <Send size={10} className="text-[#B8956A]" />
                 <span>Telegram</span>
               </a>
-              <a href="https://t.me/mechtigroup" target="_blank" rel="noopener noreferrer" className="hover:text-[#B8956A] transition-all flex items-center gap-1 py-1 px-2 border border-[#B8956A]/10 bg-[#1A1A1A]">
+              <a href="https://max.ru/u/f9LHodD0cOI3kLephDN2gD-mh2-FWe968N1MDGmz9ix6ZNJJPru11CPCRc0" target="_blank" rel="noopener noreferrer" className="hover:text-[#B8956A] transition-all flex items-center gap-1 py-1 px-2 border border-[#B8956A]/10 bg-[#1A1A1A]">
                 <MessageSquare size={10} className="text-[#B8956A]" />
                 <span>Мессенджер Макс</span>
               </a>

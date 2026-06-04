@@ -375,7 +375,7 @@ export const reviewsList: ReviewItem[] = [
   {
     id: "rev-1",
     name: "Лена С.",
-    project: "ЖК Knightsbridge",
+    project: "ЖК Level Причальный",
     area: "132 м²",
     quote: "Доверилась команде Mechty с первой встречи — система этапности и понятный график оплат сразу сняли все мои страхи. Через 8 месяцев въехала в квартиру, готовую к жизни.",
     videoPlaceholder: "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=800&q=80",
@@ -395,7 +395,7 @@ export const reviewsList: ReviewItem[] = [
   {
     id: "rev-3",
     name: "Михаил Т.",
-    project: "ЖК Sky View",
+    project: "ЖК Крылья",
     area: "180 м²",
     quote: "Строительный надзор и автоматизация в ERP на уровне космических кораблей. Все закупки материалов ровно в смету. Получили квартиру мечты точно к юбилею супруги.",
     videoPlaceholder: "https://images.unsplash.com/photo-1618219908412-a29a1bb7b86e?auto=format&fit=crop&w=800&q=80",
