@@ -1,14 +1,22 @@
 import express, { Request, Response, NextFunction } from 'express';
+import path from 'path';
+import { fileURLToPath } from 'url';
 import dotenv from 'dotenv';
 
 dotenv.config();
 
+// Define __dirname for ES modules
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = Number(process.env.PORT) || 3000;
 
-app.use(express.json({ limit: '50kb' })); // защита от больших payload
+app.set('trust proxy', 1); // Timeweb is behind reverse-proxy
 
-// Минимальный CORS на случай тестов с других доменов
+app.use(express.json({ limit: '50kb' })); // protection from large payloads
+
+// Minimal CORS setup
 app.use((req: Request, res: Response, next: NextFunction) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
@@ -20,23 +28,10 @@ app.use((req: Request, res: Response, next: NextFunction) => {
   next();
 });
 
-interface LeadPayload {
-  source: string;
-  name?: string;
-  phone?: string;
-  email?: string;
-  area?: string;
-  comment?: string;
-  budget?: string;
-  url?: string;
-  utm?: Record<string, string>;
-  _hp?: string; // honeypot
-}
-
-// === In-memory rate-limit (простой, без сторонних библиотек) ===
+// === In-memory rate-limit (simple, without third-party libraries) ===
 const rateLimitMap = new Map<string, { count: number; resetAt: number }>();
-const RATE_LIMIT = 5;           // максимум заявок
-const RATE_WINDOW_MS = 60_000;  // в минуту
+const RATE_LIMIT = 5;
+const RATE_WINDOW_MS = 60_000;
 
 function isRateLimited(ip: string): boolean {
   const now = Date.now();
@@ -49,32 +44,45 @@ function isRateLimited(ip: string): boolean {
   return entry.count > RATE_LIMIT;
 }
 
-// === Health-check для мониторинга ===
+// === Health-check (Timeweb can check that the application is alive) ===
 app.get('/api/health', (_, res: Response) => {
-  res.json({ ok: true, service: 'mechti-lead-api' });
+  res.json({ ok: true, service: 'mechti-hero', ts: Date.now() });
 });
 
-// === Основной endpoint ===
+interface LeadPayload {
+  source: string;
+  name?: string;
+  phone?: string;
+  email?: string;
+  area?: string;
+  comment?: string;
+  budget?: string;
+  url?: string;
+  utm?: Record<string, string>;
+  _hp?: string;
+}
+
+// === Endpoint for receiving contact leads ===
 app.post('/api/lead', async (req: Request, res: Response) => {
   const BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
   const CHAT_ID = process.env.TELEGRAM_CHAT_ID;
 
   if (!BOT_TOKEN || !CHAT_ID) {
-    console.error('TELEGRAM_BOT_TOKEN or TELEGRAM_CHAT_ID not set');
-    return res.status(500).json({ error: 'Server misconfigured' });
+    console.error('TELEGRAM env vars not set');
+    return res.status(500).json({ error: 'Сервер не настроен' });
   }
 
-  // Rate limit по IP
-  const ip = (req.headers['x-forwarded-for'] as string)?.split(',')[0].trim() 
-          || req.socket.remoteAddress 
+  const ip = (req.headers['x-forwarded-for'] as string)?.split(',')[0].trim()
+          || req.socket.remoteAddress
           || 'unknown';
+
   if (isRateLimited(ip)) {
     return res.status(429).json({ error: 'Слишком много заявок. Попробуйте через минуту.' });
   }
 
   const body = req.body as LeadPayload;
 
-  // Honeypot — если бот заполнил, тихо возвращаем ok
+  // Honeypot anti-spam check
   if (body._hp) {
     return res.status(200).json({ ok: true });
   }
@@ -83,7 +91,6 @@ app.post('/api/lead', async (req: Request, res: Response) => {
     return res.status(400).json({ error: 'Укажите имя и телефон или email' });
   }
 
-  // Формирование сообщения в Telegram (HTML)
   const lines: string[] = [];
   lines.push(`<b>🔔 НОВАЯ ЗАЯВКА · ${esc(body.source || 'unknown')}</b>`);
   lines.push('');
@@ -105,7 +112,8 @@ app.post('/api/lead', async (req: Request, res: Response) => {
     lines.push(`<i>UTM: ${esc(JSON.stringify(body.utm))}</i>`);
   }
   lines.push('');
-  lines.push(`<i>${new Date().toLocaleString('ru-RU', { timeZone: 'Europe/Moscow' })} МСК · IP: ${esc(ip)}</i>`);
+  const now = new Date().toLocaleString('ru-RU', { timeZone: 'Europe/Moscow' });
+  lines.push(`<i>${now} МСК · IP ${esc(ip)}</i>`);
 
   const text = lines.join('\n');
 
@@ -127,7 +135,6 @@ app.post('/api/lead', async (req: Request, res: Response) => {
       return res.status(502).json({ error: 'Не удалось доставить заявку. Попробуйте позже.' });
     }
 
-    // Логируем успешную заявку (для дебага через journalctl)
     console.log(`[lead] ${body.source} from ${ip} — ok`);
     return res.status(200).json({ ok: true });
   } catch (err) {
@@ -142,8 +149,40 @@ function esc(s: string): string {
   );
 }
 
-app.listen(PORT, () => {
-  console.log(`Mechti lead-api listening on port ${PORT}`);
+// === Static Assets & Vite middleware integration ===
+async function setupFrontend() {
+  if (process.env.NODE_ENV !== "production") {
+    // In development mode, dynamically mount Vite Dev Server
+    const { createServer: createViteServer } = await import("vite");
+    const vite = await createViteServer({
+      server: { middlewareMode: true },
+      appType: "spa",
+    });
+    app.use(vite.middlewares);
+  } else {
+    // In production mode (e.g. on Timeweb Cloud Apps after compilation)
+    // __dirname in compiled production is /app/server/dist
+    // React production output is in /app/dist
+    const STATIC_DIR = path.join(__dirname, '../../dist');
+
+    app.use(express.static(STATIC_DIR, {
+      maxAge: '1y',
+      index: false,
+      etag: true,
+    }));
+
+    app.get(/^(?!\/api).*/, (_, res: Response) => {
+      res.sendFile(path.join(STATIC_DIR, 'index.html'));
+    });
+  }
+}
+
+setupFrontend().then(() => {
+  app.listen(PORT, '0.0.0.0', () => {
+    console.log(`Mechti-hero server listening on http://0.0.0.0:${PORT}`);
+  });
+}).catch(err => {
+  console.error("Failed to boot frontend service in server:", err);
 });
 
 export default app;

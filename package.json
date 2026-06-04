@@ -4,15 +4,20 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "tsx server.ts",
+    "dev:client": "vite --port=3001 --host=0.0.0.0",
     "dev:server": "tsx watch server/index.ts",
-    "dev:all": "concurrently \"vite --port=3001 --host=0.0.0.0\" \"npm run dev:server\"",
-    "build": "vite build && esbuild server.ts --bundle --platform=node --format=cjs --packages=external --sourcemap --outfile=dist/server.cjs",
+    "dev": "tsx server/index.ts",
+    "dev:all": "concurrently \"npm:dev:client\" \"npm:dev:server\"",
+    "build:client": "vite build",
     "build:server": "tsc -p server/tsconfig.json",
-    "start": "node dist/server.cjs",
+    "build": "npm run build:client && npm run build:server",
+    "start": "node server/dist/index.js",
     "preview": "vite preview",
-    "clean": "rm -rf dist server.js",
+    "clean": "rm -rf dist server/dist",
     "lint": "tsc --noEmit"
+  },
+  "engines": {
+    "node": ">=20.0.0"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.14",
