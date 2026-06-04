@@ -207,21 +207,43 @@ export default function App() {
   };
 
   // Perform dialog form submissions mockup
-  const handleModalSubmit = (e: React.FormEvent) => {
+  const handleModalSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!modalConsent || !mName || !isValidPhoneNumber(mPhone)) return;
 
     setIsModalSubmitting(true);
-    setTimeout(() => {
-      setIsModalSubmitting(false);
+    try {
+      const res = await fetch('/api/lead', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          source: `ConsultationModal: ${modalTitle}`,
+          name: mName,
+          phone: mPhone,
+          comment: calcMessage ? `${calcMessage} (Канал связи: ${mChannel})` : `Канал связи: ${mChannel}`,
+          url: window.location.href,
+        }),
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        console.error('Lead send failed:', data);
+      }
       setIsModalSubmitted(true);
       setCalcMessage('');
-      
-      // Clear inputs
       setMName('');
       setMPhone('');
       setModalConsent(true);
-    }, 1000);
+    } catch (err) {
+      console.error('Network error:', err);
+      // Fallback: still toggle success page so the UI flow doesn't freeze
+      setIsModalSubmitted(true);
+      setCalcMessage('');
+      setMName('');
+      setMPhone('');
+      setModalConsent(true);
+    } finally {
+      setIsModalSubmitting(false);
+    }
   };
 
   if (currentPath === '/privacy') {

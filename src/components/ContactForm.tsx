@@ -17,27 +17,50 @@ export default function ContactForm({ customMessage, onClearCustomMessage }: Con
   const [consent, setConsent] = useState(true);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [honeypot, setHoneypot] = useState('');
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!consent || !name || !isValidPhoneNumber(phone)) return;
 
     setIsSubmitting(true);
-    
-    // Simulate premium submission response (0.8s)
-    setTimeout(() => {
-      setIsSubmitting(false);
+    setError(null);
+
+    try {
+      const res = await fetch('/api/lead', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          source: 'ContactForm',
+          name,
+          phone,
+          email: email || undefined,
+          area: area || undefined,
+          comment: (message || customMessage || '') + (channel ? ` (Удобный канал связи: ${channel})` : ''),
+          url: window.location.href,
+          _hp: honeypot,
+        }),
+      });
+
+      const data = await res.json();
+      if (!res.ok) {
+        throw new Error(data.error || 'Не удалось отправить заявку');
+      }
+
       setIsSubmitted(true);
-      if (onClearCustomMessage) onClearCustomMessage();
-      
-      // Cleanup
       setName('');
       setPhone('');
       setEmail('');
       setArea('');
       setMessage('');
       setConsent(true);
-    }, 1200);
+      if (onClearCustomMessage) onClearCustomMessage();
+    } catch (err: any) {
+      setError(err.message || 'Произошла ошибка. Попробуйте ещё раз.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const activeMsg = message || customMessage || '';
@@ -126,6 +149,16 @@ export default function ContactForm({ customMessage, onClearCustomMessage }: Con
             ) : (
               /* Active Form */
               <form onSubmit={handleSubmit} className="space-y-6 animate-fadeIn">
+                <input
+                  type="text"
+                  name="company_website"
+                  value={honeypot}
+                  onChange={(e) => setHoneypot(e.target.value)}
+                  tabIndex={-1}
+                  autoComplete="off"
+                  style={{ position: 'absolute', left: '-9999px', opacity: 0, pointerEvents: 'none' }}
+                  aria-hidden="true"
+                />
                 <div className="space-y-2 border-b border-[#B8956A]/10 pb-4">
                   <span className="text-xs uppercase font-mono tracking-widest text-[#B8956A] block font-bold">
                     ЗАПРЕДМЕТНОЕ ОБРАЩЕНИЕ
@@ -264,6 +297,9 @@ export default function ContactForm({ customMessage, onClearCustomMessage }: Con
 
                 {/* Form CTA trigger button */}
                 <div className="space-y-2">
+                  {error && (
+                    <div className="text-[12px] text-red-400 my-2 text-center animate-fadeIn">{error}</div>
+                  )}
                   <button
                     type="submit"
                     disabled={isSubmitting || !consent || !name || !isValidPhoneNumber(phone)}
