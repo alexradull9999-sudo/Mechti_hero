@@ -99,28 +99,22 @@ app.post('/api/lead', async (req: Request, res: Response) => {
   };
 
   const lines: string[] = [];
-  lines.push(`<b>🔔 НОВАЯ ЗАЯВКА · ${esc(body.source || 'unknown')}</b>`);
-  lines.push('');
-  if (body.name)    lines.push(`<b>Имя:</b> ${esc(body.name)}`);
-  if (body.phone)   lines.push(`<b>Телефон:</b> ${esc(body.phone)}`);
-  if (body.email)   lines.push(`<b>Email:</b> ${esc(body.email)}`);
-  if (body.area)    lines.push(`<b>Площадь:</b> ${esc(body.area)} м²`);
-  if (body.budget)  lines.push(`<b>Бюджет:</b> ${esc(body.budget)}`);
+  lines.push(`🔔 Новая заявка!`);
+  lines.push(`Имя: ${esc(body.name || '—')}`);
+  lines.push(`Телефон: ${esc(body.phone || '—')}`);
+  lines.push(`Email: ${esc(body.email || '—')}`);
+
+  if (body.area)    lines.push(`Площадь: ${esc(body.area)} м²`);
+  if (body.budget)  lines.push(`Бюджет: ${esc(body.budget)}`);
   if (body.comment) {
-    lines.push('');
-    lines.push(`<b>Сообщение:</b>`);
-    lines.push(esc(body.comment));
+    lines.push(`Сообщение: ${esc(body.comment)}`);
   }
   if (body.url) {
-    lines.push('');
-    lines.push(`<i>Страница: ${esc(body.url)}</i>`);
+    lines.push(`Страница: ${esc(body.url)}`);
   }
   if (body.utm && Object.keys(body.utm).length) {
-    lines.push(`<i>UTM: ${esc(JSON.stringify(body.utm))}</i>`);
+    lines.push(`UTM: ${esc(JSON.stringify(body.utm))}`);
   }
-  lines.push('');
-  const now = new Date().toLocaleString('ru-RU', { timeZone: 'Europe/Moscow' });
-  lines.push(`<i>${now} МСК · IP ${esc(ip)}</i>`);
 
   const text = lines.join('\n');
 

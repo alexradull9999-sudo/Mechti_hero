@@ -212,37 +212,44 @@ export default function App() {
     if (!modalConsent || !mName || !isValidPhoneNumber(mPhone)) return;
 
     setIsModalSubmitting(true);
+    const MAKE_WEBHOOK = 'https://hook.eu1.make.com/puy2n5ltucpawv56c9mnocuyxt6txrdc';
+
+    // Собрать UTM из URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const utm: Record<string, string> = {};
+    ['utm_source','utm_medium','utm_campaign','utm_term','utm_content'].forEach(k => {
+      const v = urlParams.get(k);
+      if (v) utm[k] = v;
+    });
+
+    const payload = {
+      source: `ConsultationModal: ${modalTitle}`,
+      name: mName,
+      phone: mPhone,
+      email: '',
+      area: '',
+      budget: '',
+      comment: calcMessage ? `${calcMessage} (Канал связи: ${mChannel})` : `Канал связи: ${mChannel}`,
+      url: window.location.href,
+      utm: Object.keys(utm).length > 0 ? JSON.stringify(utm) : '',
+    };
+
     try {
-      const res = await fetch('/api/lead', {
+      await fetch(MAKE_WEBHOOK, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          source: `ConsultationModal: ${modalTitle}`,
-          name: mName,
-          phone: mPhone,
-          comment: calcMessage ? `${calcMessage} (Канал связи: ${mChannel})` : `Канал связи: ${mChannel}`,
-          url: window.location.href,
-        }),
+        body: JSON.stringify(payload),
       });
-      const data = await res.json();
-      if (!res.ok) {
-        console.error('Lead send failed:', data);
-      }
-      setIsModalSubmitted(true);
-      setCalcMessage('');
-      setMName('');
-      setMPhone('');
-      setModalConsent(true);
     } catch (err) {
-      console.error('Network error:', err);
-      // Fallback: still toggle success page so the UI flow doesn't freeze
-      setIsModalSubmitted(true);
-      setCalcMessage('');
-      setMName('');
-      setMPhone('');
-      setModalConsent(true);
+      console.error('Webhook error:', err);
+      // Не показываем ошибку пользователю
     } finally {
       setIsModalSubmitting(false);
+      setIsModalSubmitted(true);
+      setCalcMessage('');
+      setMName('');
+      setMPhone('');
+      setModalConsent(true);
     }
   };
 

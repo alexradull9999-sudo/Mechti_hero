@@ -27,27 +27,41 @@ export default function ContactForm({ customMessage, onClearCustomMessage }: Con
     setIsSubmitting(true);
     setError(null);
 
+    const MAKE_WEBHOOK = 'https://hook.eu1.make.com/puy2n5ltucpawv56c9mnocuyxt6txrdc';
+
+    // UTM
+    const urlParams = new URLSearchParams(window.location.search);
+    const utm: Record<string, string> = {};
+    ['utm_source','utm_medium','utm_campaign','utm_term','utm_content'].forEach(k => {
+      const v = urlParams.get(k);
+      if (v) utm[k] = v;
+    });
+
+    const payload = {
+      source: 'ContactForm',
+      name,
+      phone,
+      email: email || '',
+      area: area || '',
+      budget: '',
+      comment: (message || customMessage || '') + (channel ? ` (Удобный канал связи: ${channel})` : ''),
+      url: window.location.href,
+      utm: Object.keys(utm).length > 0 ? JSON.stringify(utm) : '',
+    };
+
+    if (honeypot) {
+      setIsSubmitted(true);
+      setIsSubmitting(false);
+      return;
+    }
+
     try {
-      const res = await fetch('/api/lead', {
+      const res = await fetch(MAKE_WEBHOOK, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          source: 'ContactForm',
-          name,
-          phone,
-          email: email || undefined,
-          area: area || undefined,
-          comment: (message || customMessage || '') + (channel ? ` (Удобный канал связи: ${channel})` : ''),
-          url: window.location.href,
-          _hp: honeypot,
-        }),
+        body: JSON.stringify(payload),
       });
-
-      const data = await res.json();
-      if (!res.ok) {
-        throw new Error(data.error || 'Не удалось отправить заявку');
-      }
-
+      if (!res.ok) throw new Error('Ошибка отправки');
       setIsSubmitted(true);
       setName('');
       setPhone('');
@@ -57,7 +71,7 @@ export default function ContactForm({ customMessage, onClearCustomMessage }: Con
       setConsent(true);
       if (onClearCustomMessage) onClearCustomMessage();
     } catch (err: any) {
-      setError(err.message || 'Произошла ошибка. Попробуйте ещё раз.');
+      setError('Произошла ошибка. Попробуйте ещё раз или позвоните нам.');
     } finally {
       setIsSubmitting(false);
     }
