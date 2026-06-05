@@ -1,5 +1,5 @@
 import React, { useState, useMemo, useEffect, useRef } from 'react';
-import { Check, Info, Calendar, Shield, Sparkles, Building, Home } from 'lucide-react';
+import { Check, Info, Calendar, Shield, Sparkles, Building, Home, LayoutGrid, ArrowDown } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 
 interface LuxuryCalculatorProps {
@@ -790,41 +790,41 @@ export default function LuxuryCalculator({ onOpenConsultation }: LuxuryCalculato
         
         {/* Section Heading */}
         <div className="text-center max-w-3xl mx-auto mb-16 md:mb-16 space-y-4">
-          <span className="text-xs uppercase font-sans tracking-[0.3em] text-[#B8956A] block font-bold">
+          <span className="text-xs sm:text-sm uppercase font-sans tracking-[0.3em] text-[#B8956A] block font-bold">
             ПРОЗРАЧНЫЙ БЮДЖЕТ ДО СТАРТА
           </span>
           <h2 className="font-serif text-4xl md:text-6xl font-light">
             Калькулятор стоимости <span className="italic text-[#B8956A] font-light">проекта</span>
           </h2>
           <div className="h-[1px] w-24 bg-[#B8956A]/40 mx-auto mt-4" />
-          <p className="text-base md:text-lg text-[#C4BEB3] font-sans font-light leading-relaxed">
+          <p className="text-lg md:text-xl text-[#C4BEB3] font-sans font-light leading-relaxed">
             Цена фиксируется в договоре и может быть изменена по соглашению сторон с учётом изменения объёмов или материалов.
           </p>
         </div>
 
         {/* Type selector (Квартира / Загородный дом) */}
         <div className="flex justify-center mb-16">
-          <div className="inline-flex rounded-full bg-[#0F0F0F] p-1 border border-[#B8956A]/20">
+          <div className="inline-flex rounded-full bg-[#0F0F0F] p-1.5 border border-[#B8956A]/20">
             <button
               onClick={() => setPropertyType('apartment')}
-              className={`rounded-full px-6 py-2.5 text-xs uppercase tracking-widest font-sans font-bold flex items-center gap-2 transition-all duration-300 cursor-pointer ${
+              className={`rounded-full px-8 py-3.5 text-xs sm:text-sm uppercase tracking-widest font-sans font-bold flex items-center gap-2 transition-all duration-300 cursor-pointer ${
                 propertyType === 'apartment'
                   ? 'bg-[#B8956A] text-[#0F0F0F]'
                   : 'text-[#C4BEB3] hover:text-[#F5F1EA] bg-transparent'
               }`}
             >
-              <Building size={14} />
+              <Building size={16} />
               Квартира
             </button>
             <button
               onClick={() => setPropertyType('house')}
-              className={`rounded-full px-6 py-2.5 text-xs uppercase tracking-widest font-sans font-bold flex items-center gap-2 transition-all duration-300 cursor-pointer ${
+              className={`rounded-full px-8 py-3.5 text-xs sm:text-sm uppercase tracking-widest font-sans font-bold flex items-center gap-2 transition-all duration-300 cursor-pointer ${
                 propertyType === 'house'
                   ? 'bg-[#B8956A] text-[#0F0F0F]'
                   : 'text-[#C4BEB3] hover:text-[#F5F1EA] bg-transparent'
               }`}
             >
-              <Home size={14} />
+              <Home size={16} />
               Загородный дом
             </button>
           </div>
@@ -839,11 +839,11 @@ export default function LuxuryCalculator({ onOpenConsultation }: LuxuryCalculato
             {/* STEP 1: Area Range Slider */}
             <div className="bg-[#0F0F0F] p-6 md:p-8 border border-[#B8956A]/10">
               <div className="flex flex-col sm:flex-row items-start sm:items-baseline justify-between gap-4 mb-6">
-                <span className="text-xs sm:text-sm uppercase tracking-widest font-sans font-bold text-[#C4BEB3]">
+                <span className="text-sm sm:text-base uppercase tracking-widest font-sans font-bold text-[#C4BEB3]">
                   Шаг 1 · Площадь {propertyType === 'house' ? 'вашего дома' : 'вашей квартиры'}
                 </span>
                 <span className="font-serif text-6xl md:text-8xl text-[#B8956A] font-light leading-none">
-                  {area} <span className="text-lg uppercase tracking-wider font-sans ml-1 text-[#F5F1EA]">м²</span>
+                  {area} <span className="text-xl uppercase tracking-wider font-sans ml-1 text-[#F5F1EA]">м²</span>
                 </span>
               </div>
               
@@ -855,12 +855,12 @@ export default function LuxuryCalculator({ onOpenConsultation }: LuxuryCalculato
                   step="5"
                   value={area}
                   onChange={(e) => setArea(Number(e.target.value))}
-                  className="w-full h-[3px] bg-[#B8956A]/20 rounded-lg appearance-none cursor-pointer accent-[#B8956A]"
+                  className="w-full h-[4px] bg-[#B8956A]/20 rounded-lg appearance-none cursor-pointer accent-[#B8956A]"
                   style={{
                     background: `linear-gradient(to right, #B8956A 0%, #B8956A ${((area - (propertyType === 'house' ? 100 : 50)) / (propertyType === 'house' ? 1100 : 450)) * 100}%, rgba(184, 149, 106, 0.2) ${((area - (propertyType === 'house' ? 100 : 50)) / (propertyType === 'house' ? 1100 : 450)) * 100}%, rgba(184, 149, 106, 0.2) 100%)`
                   }}
                 />
-                <div className="flex justify-between text-xs font-mono text-[#C4BEB3] font-bold mt-4 shrink-0">
+                <div className="flex justify-between text-xs sm:text-sm font-mono text-[#C4BEB3] font-bold mt-4 shrink-0">
                   {propertyType === 'house' ? (
                     <>
                       <span>100 м²</span>
@@ -879,7 +879,7 @@ export default function LuxuryCalculator({ onOpenConsultation }: LuxuryCalculato
                     </>
                   )}
                 </div>
-                <p className="text-[11px] italic text-[#8B8478] mt-3">
+                <p className="text-xs sm:text-sm italic text-[#9B9488] mt-3">
                   Для объектов площадью менее {propertyType === 'house' ? '100' : '50'} м² расчёт стоимости производится индивидуально.
                 </p>
               </div>
@@ -1015,20 +1015,20 @@ export default function LuxuryCalculator({ onOpenConsultation }: LuxuryCalculato
                 >
                   
                   {/* STEP 3: Categories by Sections */}
-                  <div className="space-y-6 pt-4 border-t border-[#B8956A]/10">
-                    <span className="text-xs sm:text-sm uppercase tracking-widest font-sans font-bold text-[#C4BEB3] block">
+                  <div className="space-y-6 pt-6 border-t border-[#B8956A]/10">
+                    <span className="text-sm sm:text-base uppercase tracking-widest font-sans font-bold text-[#C4BEB3] block">
                       Шаг 3 · Категории проекта
                     </span>
                     
                     {!showFullMobileConfig && (
-                      <div className="md:hidden bg-[#0F0F0F] p-4 border border-[#B8956A]/20 text-center space-y-3">
-                        <p className="text-[11px] text-[#C4BEB3] leading-relaxed">
+                      <div className="md:hidden bg-[#121212] p-6 sm:p-8 border-2 border-[#B8956A]/40 text-center space-y-4 rounded-none">
+                        <p className="text-sm sm:text-base text-[#F5F1EA] font-sans font-medium leading-relaxed">
                           Все {propertyType === 'house' ? 15 : 30} разделов сметы сгруппированы для вашей площади. Вы можете открыть детальный ручной конфигуратор.
                         </p>
                         <button
                           type="button"
                           onClick={() => setShowFullMobileConfig(true)}
-                          className="w-full py-2 border border-[#B8956A] text-[#B8956A] text-[10px] uppercase tracking-wider font-bold transition-all hover:bg-[#B8956A] hover:text-[#0F0F0F] bg-transparent"
+                          className="w-full py-4 border-2 border-[#B8956A] text-[#B8956A] text-xs sm:text-sm uppercase tracking-widest font-extrabold transition-all hover:bg-[#B8956A] hover:text-[#0F0F0F] bg-transparent cursor-pointer block"
                         >
                           Открыть полный конфигуратор
                         </button>
@@ -1381,6 +1381,24 @@ export default function LuxuryCalculator({ onOpenConsultation }: LuxuryCalculato
 
           </div>
 
+        </div>
+
+        {/* Full-width premium CTA button below both calculator columns */}
+        <div className="mt-24 text-center animate-fadeIn px-4">
+          <div className="inline-block w-full max-w-4xl p-[1.5px] bg-[#B8956A]">
+            <button
+              type="button"
+              onClick={() => {
+                const el = document.getElementById('portfolio');
+                if (el) el.scrollIntoView({ behavior: 'smooth' });
+              }}
+              className="w-full py-6.5 px-8 bg-[#0F0F0F] hover:bg-[#B8956A] text-[#B8956A] hover:text-[#0F0F0F] text-sm sm:text-lg md:text-xl uppercase tracking-[0.25em] font-sans font-black transition-all duration-300 transform hover:scale-[1.01] active:scale-98 cursor-pointer border-none flex items-center justify-center gap-3.5 shadow-2xl"
+            >
+              <LayoutGrid size={22} className="shrink-0" />
+              <span>Посмотреть готовые объекты</span>
+              <ArrowDown size={22} className="shrink-0 animate-bounce" />
+            </button>
+          </div>
         </div>
 
       </div>

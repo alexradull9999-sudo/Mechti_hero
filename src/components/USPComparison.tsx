@@ -104,10 +104,10 @@ export default function USPComparison() {
           <div className="md:col-span-5 flex flex-col justify-between space-y-6">
             <div className="space-y-4">
               <div>
-                <span className="text-[10px] uppercase tracking-[0.3em] text-[#8B8478] block">
+                <span className="text-[11px] uppercase tracking-[0.3em] text-[#B8956A] block font-bold">
                   ОБЫЧНЫЙ ПУТЬ КЛИЕНТА · 28 контактов в одиночку
                 </span>
-                <span className="text-xs text-[#8B8478] mt-2 block font-sans">
+                <span className="text-sm md:text-base text-[#C4BEB3] mt-2 block font-sans">
                   Если делать ремонт самостоятельно, через эти 28 ролей придётся пройти лично — найти, согласовать договоры, контролировать, переплачивать на стыках.
                 </span>
                 <div className="h-[1px] w-12 bg-[#B8956A]/35 mt-2" />
@@ -119,13 +119,13 @@ export default function USPComparison() {
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, margin: "-50px" }}
-                className="grid grid-cols-2 md:grid-cols-1 gap-x-4 md:gap-x-0 gap-y-[3px]"
+                className="grid grid-cols-2 md:grid-cols-1 gap-x-4 md:gap-x-0 gap-y-[4px]"
               >
                 {roles.map((role, idx) => (
                   <motion.div
                     key={idx}
                     variants={itemVariants}
-                    className="font-sans text-xs tracking-wide text-[#BDB5A7] py-0.5 border-b border-white/5 hover:text-[#B8956A] transition-all duration-300"
+                    className="font-sans text-xs sm:text-sm tracking-wide text-[#EDE6D8] py-1 border-b border-white/5 hover:text-[#B8956A] transition-all duration-300 font-medium"
                   >
                     {role}
                   </motion.div>
@@ -134,7 +134,7 @@ export default function USPComparison() {
             </div>
 
             <div className="mt-8 p-5 border-l-2 border-[#E13A3E]/60 bg-[#161616]/60 backdrop-blur-sm rounded-r-lg">
-              <p className="font-serif text-[15px] md:text-[17px] text-[#EDE6D8] font-light italic leading-relaxed">
+              <p className="font-serif text-lg md:text-xl text-[#EDE6D8] font-light italic leading-relaxed">
                 «Срок — непредсказуем. Качество — на удачу. Ответственный за общий результат — никто.»
               </p>
             </div>
@@ -175,10 +175,10 @@ export default function USPComparison() {
           <div className="md:col-span-5 flex flex-col justify-between self-stretch py-2">
             <div className="space-y-6">
               <div className="flex flex-col md:items-start items-center">
-                <span className="text-[10px] uppercase tracking-[0.3em] text-[#B8956A] block">
+                <span className="text-sm uppercase tracking-[0.3em] text-[#B8956A] block font-bold">
                   С НАМИ · одна команда, один контакт
                 </span>
-                <span className="text-xs text-[#B8956A] mt-2 block font-sans">
+                <span className="text-sm sm:text-base text-[#F5F1EA] mt-2 block font-sans font-medium">
                   С одной компанией и личным менеджером.
                 </span>
                 <div className="h-[1px] w-12 bg-[#B8956A]/35 mt-2" />
@@ -197,19 +197,19 @@ export default function USPComparison() {
 
               {/* Path of solution */}
               <div className="space-y-4 text-center">
-                <span className="text-sm md:text-base text-[#F5F1EA] font-medium tracking-wider block max-w-xl mx-auto">
+                <span className="text-base md:text-lg text-[#F5F1EA] font-semibold tracking-wider block max-w-xl mx-auto">
                   Подбор/строительство объекта → дизайн → ремонт → комплектация → ключи
                 </span>
-                <p className="text-base md:text-[19px] font-serif font-medium text-[#B8956A] tracking-wider leading-relaxed text-center">
+                <p className="text-lg md:text-2xl font-serif font-medium text-[#B8956A] tracking-wider leading-relaxed text-center">
                   Пожизненная гарантия на несущие конструкции и инженерию*
                 </p>
-                <p className="text-xs md:text-sm text-[#C4BCB1] leading-relaxed max-w-lg mx-auto text-center font-sans font-light">
+                <p className="text-xs sm:text-sm text-[#EDE6D8] leading-relaxed max-w-lg mx-auto text-center font-sans font-normal">
                   *На стены, перегородки, стяжку, штукатурку, гипсокартонные потолки, черновую электрику, шумоизоляцию, инженерные трубопроводы Rehau — на весь срок эксплуатации дома. Условия и исключения — в договоре.
                 </p>
               </div>
             </div>
 
-            <span className="text-xs md:text-sm text-[#A59E92] italic mt-12 md:mt-auto text-center md:text-right block">
+            <span className="text-sm text-[#C4BEB3] italic mt-12 md:mt-auto text-center md:text-right block font-medium">
               Все условия фиксируются в договоре с возможностью изменения по соглашению сторон.
             </span>
           </div>
@@ -220,11 +220,11 @@ export default function USPComparison() {
         <div className="h-[1px] bg-[#B8956A]/20 w-full my-12" />
 
         {/* Detailed concluding summary description texts beneath lines */}
-        <div className="max-w-3xl mx-auto text-center space-y-6 text-sm md:text-lg text-[#C4BCB1] leading-relaxed font-light mt-10 md:mt-14">
+        <div className="max-w-3xl mx-auto text-center space-y-6 text-base sm:text-lg md:text-xl text-[#F5F1EA] leading-relaxed font-light mt-10 md:mt-14">
           <p>
             Обычно клиент координирует более 100 подрядчиков, поставщиков услуг и товаров в хаосе. Mechty берёт полную ответственность за весь путь — от подбора квартиры до расстановки декора.
           </p>
-          <p>
+          <p className="font-sans font-medium text-[#B8956A]">
             Свой проектный департамент. Сертифицированная инженерия. Цифровой ERP-контроль.
           </p>
         </div>

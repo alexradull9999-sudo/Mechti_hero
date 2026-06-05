@@ -30,7 +30,7 @@ export default function Hero({ onScrollToSection, onOpenConsultation }: HeroProp
               <span className="italic text-[#B8956A] font-light">с Мечты</span>
             </h1>
             
-            <p className="text-base md:text-xl font-light text-[#C4BEB3] max-w-lg leading-relaxed mb-10 font-sans">
+            <p className="text-lg md:text-2xl font-light text-[#EDE6D8] max-w-lg leading-relaxed mb-10 font-sans">
               Находим квартиру, делаем ремонт, полностью обставляем — вы получаете готовый дом. Один договор, один менеджер, ноль хаоса.
             </p>
             

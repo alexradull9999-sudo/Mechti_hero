@@ -300,9 +300,11 @@ export default function App() {
         
         <LuxuryCalculator onOpenConsultation={handleOpenConsultation} />
         
+        {/*
         <Roadmap 
           onOpenConsultation={handleOpenConsultation}
         />
+        */}
         
         <DesignServices 
           onOpenConsultation={handleOpenConsultation} 
