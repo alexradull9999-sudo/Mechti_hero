@@ -4,6 +4,7 @@ import { MapPin, ArrowRight, Building, Key, Home, Sparkles } from 'lucide-react'
 import { AnimatePresence } from 'motion/react';
 import PropertyModal from './PropertyModal';
 import { PropertyItem } from '../types';
+import { getFallbackImage } from '../utils/imageFallback';
 
 interface RealEstateSectionProps {
   onOpenConsultation: (msg?: string) => void;
@@ -110,6 +111,12 @@ export default function RealEstateSection({ onOpenConsultation, onScrollToSectio
                   className="w-full h-full object-cover group-hover:scale-105 transition-all duration-700"
                   referrerPolicy="no-referrer"
                   loading="lazy"
+                  onError={(e) => {
+                    const fallback = getFallbackImage(prop.image);
+                    if (e.currentTarget.src !== fallback) {
+                      e.currentTarget.src = fallback;
+                    }
+                  }}
                 />
                 
                 {/* Visual badge top */}

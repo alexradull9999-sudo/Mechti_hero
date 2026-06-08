@@ -3,6 +3,7 @@ import { motion } from 'motion/react';
 import { X, MapPin, ChevronLeft, ChevronRight, Phone, Calendar } from 'lucide-react';
 import { PropertyItem } from '../types';
 import { propertyDetailsMap } from '../propertyDetails';
+import { getFallbackImage } from '../utils/imageFallback';
 
 interface PropertyModalProps {
   property: PropertyItem | null;
@@ -90,6 +91,12 @@ export default function PropertyModal({ property, onClose, onOpenConsultation }:
               alt={`${property.title} - фото ${activeIndex + 1}`}
               className="w-full h-full object-cover transition-transform duration-500"
               referrerPolicy="no-referrer"
+              onError={(e) => {
+                const fallback = getFallbackImage(images[activeIndex] || '');
+                if (e.currentTarget.src !== fallback) {
+                  e.currentTarget.src = fallback;
+                }
+              }}
             />
             
             {/* Gradient Overlay for aesthetic fade and readable captions */}
@@ -143,6 +150,12 @@ export default function PropertyModal({ property, onClose, onOpenConsultation }:
                     className="w-full h-full object-cover"
                     referrerPolicy="no-referrer"
                     loading="lazy"
+                    onError={(e) => {
+                      const fallback = getFallbackImage(img || '');
+                      if (e.currentTarget.src !== fallback) {
+                        e.currentTarget.src = fallback;
+                      }
+                    }}
                   />
                 </button>
               ))}
