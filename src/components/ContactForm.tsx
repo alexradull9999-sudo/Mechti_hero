@@ -62,6 +62,12 @@ export default function ContactForm({ customMessage, onClearCustomMessage }: Con
         body: JSON.stringify(payload),
       });
       if (!res.ok) throw new Error('Ошибка отправки');
+      
+      // Yandex.Metrika reach goal
+      if (typeof window !== 'undefined' && (window as any).ym) {
+        (window as any).ym(109051239, 'reachGoal', 'send');
+      }
+
       setIsSubmitted(true);
       setName('');
       setPhone('');

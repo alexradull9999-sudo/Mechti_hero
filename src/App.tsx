@@ -240,6 +240,11 @@ export default function App() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
       });
+      
+      // Yandex.Metrika reach goal
+      if (typeof window !== 'undefined' && (window as any).ym) {
+        (window as any).ym(109051239, 'reachGoal', 'send');
+      }
     } catch (err) {
       console.error('Webhook error:', err);
       // Не показываем ошибку пользователю

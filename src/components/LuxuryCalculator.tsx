@@ -1456,6 +1456,10 @@ export default function LuxuryCalculator({ onOpenConsultation }: LuxuryCalculato
                   onSubmit={(e) => {
                     e.preventDefault();
                     if (email.trim()) {
+                      // Yandex.Metrika reach goal
+                      if (typeof window !== 'undefined' && (window as any).ym) {
+                        (window as any).ym(109051239, 'reachGoal', 'send');
+                      }
                       setEmailSent(true);
                     }
                   }}
