@@ -2,6 +2,58 @@ import { CaseItem, PropertyItem, DesignService, RoadmapStep, FAQItem, ReviewItem
 
 export const portfolioCases: CaseItem[] = [
   {
+    id: "case-prime-park",
+    title: "Евро 4-комнатная квартира в ЖК «Prime Park»",
+    location: "Москва, Ленинградский проспект, 24-й этаж",
+    area: "138 м²",
+    style: "Современный люкс",
+    description: `Изысканная четырехкомнатная квартира на 24 этаже в премиальном жилом квартале «Prime Park».
+
+● 138 м² эргономичного пространства с высококлассной планировкой
+● Панорамный вид на динамичную городскую линию Ленинградского проспекта и парковые зоны
+● Просторная объединенная кухня-гостиная с премиальным зонированием и изысканной подсветкой
+● Мастер-спальня с индивидуальной гардеробной комнатой и просторным санузлом
+● Идеальные конструктивные и финишные решения, теневые швы, безупречная инженерия и шумоизоляция
+● Контрастные акценты и индивидуальная меблировка от студии Mechty для создания утонченной атмосферы комфорта.`,
+    cover: "/portfolio/prime_park_1.jpg",
+    videoLoop: undefined,
+    videoFull: "https://www.youtube.com/embed/mloSg9Ju8sI",
+    gallery: [
+      "/portfolio/prime_park_1.jpg",
+      "/portfolio/prime_park_2.jpg",
+      "/portfolio/prime_park_3.jpg",
+      "/portfolio/prime_park_4.jpg",
+      "/portfolio/prime_park_5.jpg"
+    ],
+    plan: "/portfolio/prime_park_1.jpg"
+  },
+  {
+    id: "case-level",
+    title: "Евро 4-комнатная квартира в ЖК «Level»",
+    location: "Москва, Причальный проезд, д. 10, 19/33 этаж",
+    area: "136 м² + 100 м² терраса",
+    style: "Премиальный хай-тек",
+    description: `Эффектный видовой пентхаус на 19 этаже с огромной собственной террасой в современном комплексе бизнес-класса «Level Причальный».
+
+● 136 м² жилого пространства + 100 м² приватная терраса с панорамным обзором
+● Потрясающие видовые характеристики на Шелепихинскую набережную, реку и силуэты башен Сити
+● Мастер-спальня с выделенной гардеробной и персональным санузлом, две просторные детские комнаты
+● Масштабная объединенная лаунж-зона кухни-гостиной с панорамным остеклением «в пол» и прямым выходом на террасу
+● Премиальные теневые профили, зонированное потолочное освещение, подготовка под систему автоматизации «Умный Дом»
+● Индивидуальная меблировка от Mechty по авторскому проекту со встроенной бытовой техникой премиум-уровня.`,
+    cover: "/portfolio/level_1.jpg",
+    videoLoop: undefined,
+    videoFull: "https://www.youtube.com/embed/_KJt7dg7jD4",
+    gallery: [
+      "/portfolio/level_1.jpg",
+      "/portfolio/level_2.jpg",
+      "/portfolio/level_3.jpg",
+      "/portfolio/level_4.jpg",
+      "/portfolio/level_5.jpg"
+    ],
+    plan: "/portfolio/level_1.jpg"
+  },
+  {
     id: "case-1",
     title: "Резиденция в СНТ Усадьба",
     location: "Рублёво-Успенское шоссе",
@@ -41,7 +93,7 @@ export const portfolioCases: CaseItem[] = [
     description: "Многофункциональное пространство для семьи в одной из ключевых башен Москва-Сити. Сложные инженерные решения, скрытая фурнитура, полная комплектация по мебели из натуральных материалов от премиальных брендов. Панорамное остекление как главный архитектурный элемент.",
     cover: "/portfolio/headliner_1.png",
     videoLoop: undefined,
-    videoFull: undefined,
+    videoFull: "https://www.youtube.com/embed/F0pD6I9hY88",
     gallery: [
       "/portfolio/headliner_1.png",
       "/portfolio/headliner_2.png",
@@ -90,7 +142,7 @@ export const portfolioCases: CaseItem[] = [
 ● Высочайший уровень уединения, панорамное остекление, изящный дизайн в стиле теплый современный минимализм.`,
     cover: "/portfolio/now_1.jpg",
     videoLoop: undefined,
-    videoFull: undefined,
+    videoFull: "https://www.youtube.com/embed/QCryS2GlKtA",
     gallery: [
       "/portfolio/now_1.jpg",
       "/portfolio/now_2.jpg",
@@ -120,6 +172,24 @@ export const portfolioCases: CaseItem[] = [
 ];
 
 export const premiumProperties: PropertyItem[] = [
+  {
+    "id": "prop-a-prime-park",
+    "title": "Евро 4-комнатная квартира в ЖК «Prime Park»",
+    "location": "Москва, Ленинградский проспект, 24-й этаж",
+    "area": "138 м²",
+    "price": "По запросу",
+    "image": "/portfolio/prime_park_1.jpg",
+    "badge": "Премиум"
+  },
+  {
+    "id": "prop-a-level",
+    "title": "Пентхаус с террасой в ЖК «Level Причальный»",
+    "location": "Москва, Причальный проезд, д. 10, 19/33 этаж",
+    "area": "136 м² + 100 м² терраса",
+    "price": "По запросу",
+    "image": "/portfolio/level_1.jpg",
+    "badge": "Пентхаус"
+  },
   {
     "id": "prop-a-now",
     "title": "Двухуровневая квартира в ЖК “Now”",

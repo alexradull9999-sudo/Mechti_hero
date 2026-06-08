@@ -864,7 +864,7 @@ export default function LuxuryCalculator({ onOpenConsultation }: LuxuryCalculato
                   {propertyType === 'house' ? (
                     <>
                       <span>100 м²</span>
-                      <span>300 м² (Стандарт)</span>
+                      <span>300 м²</span>
                       <span>600 м²</span>
                       <span>900 м²</span>
                       <span>1200 м²</span>
@@ -872,7 +872,7 @@ export default function LuxuryCalculator({ onOpenConsultation }: LuxuryCalculato
                   ) : (
                     <>
                       <span>50 м²</span>
-                      <span>150 м² (Стандарт)</span>
+                      <span>150 м²</span>
                       <span>250 м²</span>
                       <span>350 м²</span>
                       <span>500 м²</span>

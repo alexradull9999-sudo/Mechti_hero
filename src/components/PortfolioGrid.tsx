@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { portfolioCases } from '../data';
-import { ArrowUpRight, X, ChevronLeft, ChevronRight } from 'lucide-react';
+import { ArrowUpRight, X, ChevronLeft, ChevronRight, Play } from 'lucide-react';
 
 interface PortfolioGridProps {
   onOpenConsultation: (message?: string) => void;
@@ -9,14 +9,16 @@ interface PortfolioGridProps {
 export default function PortfolioGrid({ onOpenConsultation }: PortfolioGridProps) {
   const [selectedCaseId, setSelectedCaseId] = useState<string | null>(null);
   const [activeImageIndex, setActiveImageIndex] = useState<number>(0);
+  const [isPlayVideo, setIsPlayVideo] = useState<boolean>(false);
 
   const activeCaseInfo = selectedCaseId ? portfolioCases.find(c => c.id === selectedCaseId) : null;
   const modalImages = activeCaseInfo ? [...activeCaseInfo.gallery, activeCaseInfo.plan] : [];
 
-  // Reset active image index when a case is selected
+  // Reset active image index and video play mode when a case is selected
   const handleOpenCase = (id: string) => {
     setSelectedCaseId(id);
     setActiveImageIndex(0);
+    setIsPlayVideo(false);
   };
 
   const handlePrevImage = () => {
@@ -83,6 +85,14 @@ export default function PortfolioGrid({ onOpenConsultation }: PortfolioGridProps
                   <span className="absolute top-4 left-4 text-[9px] uppercase tracking-[0.3em] text-[#B8956A] bg-[#0F0F0F]/40 backdrop-blur-sm px-3 py-1.5 border border-[#B8956A]/30 font-semibold font-mono">
                     {cs.style}
                   </span>
+
+                  {/* Лейбл видеообзора сверху-справа, если есть видео */}
+                  {cs.videoFull && (
+                    <span className="absolute top-4 right-4 flex items-center gap-1.5 text-[9px] uppercase tracking-[0.25em] text-[#C4BEB3] group-hover:text-[#F5F1EA] group-hover:border-[#B8956A] bg-[#0F0F0F]/75 backdrop-blur-sm px-3 py-1.5 border border-[#B8956A]/30 font-bold font-mono transition-colors duration-300">
+                      <Play size={10} fill="currentColor" />
+                      Видеообзор
+                    </span>
+                  )}
                 </div>
                 
                 {/* Текст под фото */}
@@ -144,28 +154,68 @@ export default function PortfolioGrid({ onOpenConsultation }: PortfolioGridProps
               
               {/* Левая колонка (~65% ширины) */}
               <div className="lg:col-span-7 xl:col-span-8 space-y-4">
+                {activeCaseInfo.videoFull && (
+                  <div className="flex justify-start gap-1 sm:gap-2 mb-1">
+                    <button
+                      type="button"
+                      onClick={() => setIsPlayVideo(false)}
+                      className={`px-4 py-2 text-[10px] sm:text-xs uppercase tracking-widest font-sans font-bold border transition-colors duration-200 cursor-pointer ${
+                        !isPlayVideo
+                          ? 'bg-[#B8956A] text-[#0F0F0F] border-[#B8956A]'
+                          : 'text-[#C4BEB3] hover:text-[#F5F1EA] border-[#B8956A]/20 bg-transparent'
+                      }`}
+                    >
+                      Фотогалерея
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setIsPlayVideo(true)}
+                      className={`px-4 py-2 text-[10px] sm:text-xs uppercase tracking-widest font-sans font-bold border flex items-center gap-1.5 transition-colors duration-200 cursor-pointer ${
+                        isPlayVideo
+                          ? 'bg-[#B8956A] text-[#0F0F0F] border-[#B8956A]'
+                          : 'text-[#C4BEB3] hover:text-[#F5F1EA] border-[#B8956A]/20 bg-transparent'
+                      }`}
+                    >
+                      <Play size={10} fill="currentColor" />
+                      Видеообзор
+                    </button>
+                  </div>
+                )}
+
                 <div className="relative aspect-[16/10] overflow-hidden bg-[#161616] border border-[#B8956A]/10">
-                  <img
-                    src={modalImages[activeImageIndex]}
-                    alt={activeCaseInfo.title}
-                    className="w-full h-full object-cover select-none"
-                  />
-                  
-                  {/* Стрелки переключения */}
-                  <button
-                    onClick={handlePrevImage}
-                    className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/40 hover:bg-[#B8956A]/80 text-[#FFF] hover:text-[#0F0F0F] flex items-center justify-center transition-all border border-[#B8956A]/20"
-                    aria-label="Previous image"
-                  >
-                    <ChevronLeft size={20} />
-                  </button>
-                  <button
-                    onClick={handleNextImage}
-                    className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/40 hover:bg-[#B8956A]/80 text-[#FFF] hover:text-[#0F0F0F] flex items-center justify-center transition-all border border-[#B8956A]/20"
-                    aria-label="Next image"
-                  >
-                    <ChevronRight size={20} />
-                  </button>
+                  {isPlayVideo && activeCaseInfo.videoFull ? (
+                    <iframe
+                      src={activeCaseInfo.videoFull}
+                      title={activeCaseInfo.title}
+                      className="w-full h-full border-0 absolute inset-0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      allowFullScreen
+                    />
+                  ) : (
+                    <>
+                      <img
+                        src={modalImages[activeImageIndex]}
+                        alt={activeCaseInfo.title}
+                        className="w-full h-full object-cover select-none"
+                      />
+                      
+                      {/* Стрелки переключения */}
+                      <button
+                        onClick={handlePrevImage}
+                        className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/40 hover:bg-[#B8956A]/80 text-[#FFF] hover:text-[#0F0F0F] flex items-center justify-center transition-all border border-[#B8956A]/20"
+                        aria-label="Previous image"
+                      >
+                        <ChevronLeft size={20} />
+                      </button>
+                      <button
+                        onClick={handleNextImage}
+                        className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/40 hover:bg-[#B8956A]/80 text-[#FFF] hover:text-[#0F0F0F] flex items-center justify-center transition-all border border-[#B8956A]/20"
+                        aria-label="Next image"
+                      >
+                        <ChevronRight size={20} />
+                      </button>
+                    </>
+                  )}
                 </div>
                 
                 {/* Dynamic thumbnails + plan */}
@@ -176,9 +226,12 @@ export default function PortfolioGrid({ onOpenConsultation }: PortfolioGridProps
                     return (
                       <button
                         key={index}
-                        onClick={() => setActiveImageIndex(index)}
+                        onClick={() => {
+                          setActiveImageIndex(index);
+                          setIsPlayVideo(false);
+                        }}
                         className={`relative aspect-[16/10] overflow-hidden border bg-black transition-all duration-300 ${
-                          isActive ? 'border-[#B8956A] scale-[0.98]' : 'border-[#B8956A]/10 hover:border-[#B8956A]/50'
+                          !isPlayVideo && isActive ? 'border-[#B8956A] scale-[0.98]' : 'border-[#B8956A]/10 hover:border-[#B8956A]/50'
                         }`}
                       >
                         <img
@@ -238,6 +291,21 @@ export default function PortfolioGrid({ onOpenConsultation }: PortfolioGridProps
                 
                 {/* CTA кнопки */}
                 <div className="pt-8 lg:pt-12 space-y-3">
+                  {activeCaseInfo.videoFull && (
+                    <button
+                      type="button"
+                      onClick={() => setIsPlayVideo(true)}
+                      className={`w-full py-4 border-2 transition-all duration-300 flex items-center justify-center gap-2 font-sans font-extrabold text-xs uppercase tracking-[0.25em] ${
+                        isPlayVideo 
+                          ? 'bg-[#B8956A] text-[#0F0F0F] border-[#B8956A]' 
+                          : 'border-[#B8956A]/60 text-[#B8956A] hover:bg-[#B8956A]/10 bg-transparent cursor-pointer'
+                      }`}
+                    >
+                      <Play size={12} fill="currentColor" />
+                      <span>{isPlayVideo ? 'Видеообзор запущен' : 'Смотреть видеообзор ЖК'}</span>
+                    </button>
+                  )}
+
                   <button
                     onClick={() => {
                       setSelectedCaseId(null);

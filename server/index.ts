@@ -144,27 +144,59 @@ app.post('/api/lead', async (req: Request, res: Response) => {
   }
 });
 
-// === Static Assets static delivery ===
-// Robust resolution of static asset directory across dev and production environments
-let STATIC_DIR = path.resolve(process.cwd(), 'dist');
-if (!fs.existsSync(STATIC_DIR) || !fs.existsSync(path.join(STATIC_DIR, 'index.html'))) {
-  STATIC_DIR = path.resolve(__dirname, '../../dist');
+// === Static Assets static delivery or Vite middleware ===
+if (process.env.NODE_ENV !== 'production') {
+  console.log('Using Vite middleware in development mode');
+  try {
+    const { createServer: createViteServer } = await import('vite');
+    const vite = await createViteServer({
+      server: { middlewareMode: true },
+      appType: 'spa',
+    });
+    app.use(vite.middlewares);
+  } catch (err) {
+    console.error('Failed to initialize Vite middleware, falling back to static:', err);
+    setupStaticServing();
+  }
+} else {
+  setupStaticServing();
 }
-console.log(`Serving static from: ${STATIC_DIR}`);
 
-app.use(express.static(STATIC_DIR, {
-  maxAge: '1y',
-  index: false,
-  etag: true,
-}));
+function setupStaticServing() {
+  const possiblePaths = [
+    path.resolve(process.cwd(), 'dist'),
+    path.resolve(__dirname, '../dist'),
+    path.resolve(__dirname, '../../dist'),
+  ];
 
-app.get(/^(?!\/api).*/, (_, res: Response) => {
-  res.sendFile(path.join(STATIC_DIR, 'index.html'));
-});
+  let STATIC_DIR = possiblePaths[0];
+  for (const p of possiblePaths) {
+    if (fs.existsSync(p) && fs.existsSync(path.join(p, 'index.html'))) {
+      STATIC_DIR = p;
+      break;
+    }
+  }
+
+  console.log(`Serving static from: ${STATIC_DIR}`);
+
+  app.use(express.static(STATIC_DIR, {
+    maxAge: '1y',
+    index: false,
+    etag: true,
+  }));
+
+  app.get(/^(?!\/api).*/, (_, res: Response) => {
+    const indexPath = path.join(STATIC_DIR, 'index.html');
+    if (fs.existsSync(indexPath)) {
+      res.sendFile(indexPath);
+    } else {
+      res.status(404).send('Build files not found. Please run "npm run build" first.');
+    }
+  });
+}
 
 app.listen(PORT, '0.0.0.0', () => {
   console.log(`Mechti-hero server listening on port ${PORT}`);
-  console.log(`Static dir: ${STATIC_DIR}`);
 });
 
 export default app;
