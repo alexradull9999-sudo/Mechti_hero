@@ -40,10 +40,10 @@ export default function TrendsSection() {
       id: "vid-3",
       num: "03",
       title: "ЖК Прайм парк. Премиальный дизайн-проект с кастомной меблировкой",
-      image: "https://img.youtube.com/vi/mloSg9Ju8sI/maxresdefault.jpg",
+      image: "https://img.youtube.com/vi/sgg7HZWnWiw/maxresdefault.jpg",
       duration: "14:30",
-      youtubeUrl: "https://youtu.be/mloSg9Ju8sI?si=eopwVK4MXRzHUCMz",
-      embedUrl: "https://www.youtube.com/embed/mloSg9Ju8sI",
+      youtubeUrl: "https://youtu.be/sgg7HZWnWiw?si=0SbwCNEUc716QEEe",
+      embedUrl: "https://www.youtube.com/embed/sgg7HZWnWiw",
       description: "Флагманский ремонт в престижном Prime Park. Проект включает высокие двери 2.7м, просторную мастер-спальню, шпонированные настенные панели и мебель собственного производства."
     },
     {

@@ -16,7 +16,7 @@ export const portfolioCases: CaseItem[] = [
 ● Контрастные акценты от дизайн-студии Mechty для поддержания утонченного ощущения приватности и высочайшего комфорта.`,
     cover: "/portfolio/d1_1.png",
     videoLoop: undefined,
-    videoFull: "https://www.youtube.com/embed/PmRDeyjvyEc",
+    videoFull: "https://www.youtube.com/embed/p73Cma0UrbA",
     gallery: [
       "/portfolio/d1_1.png",
       "/portfolio/d1_2.png",
@@ -43,7 +43,7 @@ export const portfolioCases: CaseItem[] = [
 ● Контрастные акценты и индивидуальная меблировка от студии Mechty для создания утонченной атмосферы комфорта.`,
     cover: "/portfolio/prime_park_1.jpg",
     videoLoop: undefined,
-    videoFull: "https://www.youtube.com/embed/mloSg9Ju8sI",
+    videoFull: "https://www.youtube.com/embed/sgg7HZWnWiw",
     gallery: [
       "/portfolio/prime_park_1.jpg",
       "/portfolio/prime_park_2.jpg",
@@ -69,7 +69,7 @@ export const portfolioCases: CaseItem[] = [
 ● Индивидуальная меблировка от Mechty по авторскому проекту со встроенной бытовой техникой премиум-уровня.`,
     cover: "/portfolio/level_1.jpg",
     videoLoop: undefined,
-    videoFull: "https://www.youtube.com/embed/_KJt7dg7jD4",
+    videoFull: "https://www.youtube.com/embed/NDm5f6GI7p8",
     gallery: [
       "/portfolio/level_1.jpg",
       "/portfolio/level_2.jpg",
