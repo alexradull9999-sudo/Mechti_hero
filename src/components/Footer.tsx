@@ -60,7 +60,7 @@ export default function Footer({ onScrollToSection }: FooterProps) {
             </h4>
             <div className="flex flex-col gap-3">
               <button onClick={() => onScrollToSection('real-estate')} className="hover:text-[#B8956A] text-left transition-colors font-sans text-xs">
-                Авторская недвижимость
+                Недвижимость в продаже
               </button>
               <button onClick={() => onScrollToSection('design-section')} className="hover:text-[#B8956A] text-left transition-colors font-sans text-xs">
                 Дизайн интерьеров

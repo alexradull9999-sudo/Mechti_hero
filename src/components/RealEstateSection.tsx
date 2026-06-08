@@ -58,7 +58,7 @@ export default function RealEstateSection({ onOpenConsultation, onScrollToSectio
               АВТОРСКИЙ ПОДБОР ЭЛИТНОГО ЖИЛЬЯ
             </span>
             <h2 className="font-serif text-4xl md:text-6xl font-light">
-              Авторская недвижимость <br />
+              Недвижимость в продаже <br />
               <span className="italic text-[#B8956A] font-light">в лучших локациях Москвы</span>
             </h2>
             <p className="text-base md:text-lg text-[#C4BEB3] font-sans font-light leading-relaxed max-w-2xl">

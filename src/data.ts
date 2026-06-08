@@ -205,7 +205,7 @@ export const premiumProperties: PropertyItem[] = [
     "location": "Хамовники, Пречистенская набережная",
     "area": "538 м²",
     "price": "По запросу",
-    "image": "https://api.gk-mechti.ru/api/image/61371781dd3aba13ffd87ddda7c9e377",
+    "image": "/properties/61371781dd3aba13ffd87ddda7c9e377.jpg",
     "badge": "Пентхаус"
   },
   {
@@ -223,7 +223,7 @@ export const premiumProperties: PropertyItem[] = [
     "location": "Хамовники, Пречистенская набережная",
     "area": "286 м²",
     "price": "По запросу",
-    "image": "https://api.gk-mechti.ru/api/image/80a902b709dfd9c8920763eb046059a3",
+    "image": "/properties/80a902b709dfd9c8920763eb046059a3.jpg",
     "badge": "Пентхаус"
   },
   {
@@ -232,7 +232,7 @@ export const premiumProperties: PropertyItem[] = [
     "location": "Чистые Пруды, Костянский переулок",
     "area": "450 м²",
     "price": "По запросу",
-    "image": "https://api.gk-mechti.ru/api/image/cb07d5615ecd6b9cd932c0249170d23a",
+    "image": "/properties/cb07d5615ecd6b9cd932c0249170d23a.jpg",
     "badge": "Клубный дом"
   },
   {
@@ -241,7 +241,7 @@ export const premiumProperties: PropertyItem[] = [
     "location": "Золотая Миля, Бутиковский переулок",
     "area": "430 м²",
     "price": "По запросу",
-    "image": "https://api.gk-mechti.ru/api/image/cde55e9ae6ea308ded14e008b681b464",
+    "image": "/properties/cde55e9ae6ea308ded14e008b681b464.jpg",
     "badge": "Пентхаус"
   },
   {
@@ -250,7 +250,7 @@ export const premiumProperties: PropertyItem[] = [
     "location": "Хамовники, улица Ефремова",
     "area": "170 м²",
     "price": "По запросу",
-    "image": "https://api.gk-mechti.ru/api/image/ef3c0d804e1fc0d3f60f9a9090a1241d",
+    "image": "/properties/ef3c0d804e1fc0d3f60f9a9090a1241d.jpg",
     "badge": "Квартира"
   },
   {
@@ -259,7 +259,7 @@ export const premiumProperties: PropertyItem[] = [
     "location": "Хамовники, улица Ефремова",
     "area": "213 м²",
     "price": "По запросу",
-    "image": "https://api.gk-mechti.ru/api/image/05131e7e366e211566d36a4d7859d244",
+    "image": "/properties/05131e7e366e211566d36a4d7859d244.jpg",
     "badge": "Квартира"
   },
   {
@@ -268,7 +268,7 @@ export const premiumProperties: PropertyItem[] = [
     "location": "Хамовники, улица Ефремова",
     "area": "238.8 м²",
     "price": "По запросу",
-    "image": "https://api.gk-mechti.ru/api/image/6728f7f72e397076ef2453247130a25d",
+    "image": "/properties/6728f7f72e397076ef2453247130a25d.jpg",
     "badge": "Пентхаус"
   },
   {
@@ -277,7 +277,7 @@ export const premiumProperties: PropertyItem[] = [
     "location": "Раменки, Мосфильмовская улица",
     "area": "190.7 м²",
     "price": "По запросу",
-    "image": "https://api.gk-mechti.ru/api/image/d7f90df5bcda29cff5744a1e231cddb9",
+    "image": "/properties/d7f90df5bcda29cff5744a1e231cddb9.jpg",
     "badge": "Квартира"
   },
   {
@@ -286,7 +286,7 @@ export const premiumProperties: PropertyItem[] = [
     "location": "Хамовники, улица Льва Толстого",
     "area": "204 м²",
     "price": "По запросу",
-    "image": "https://api.gk-mechti.ru/api/image/01137e329dca2874d7f12b5a644f2741",
+    "image": "/properties/01137e329dca2874d7f12b5a644f2741.jpg",
     "badge": "Клубный дом"
   }
 ];
