@@ -10,6 +10,7 @@ export interface CaseItem {
   videoFull?: string;     // ~60 сек полный обзор для модалки
   gallery: string[];      // 3 фото для модалки
   plan: string;           // план / схема
+  hidden?: boolean;       // временно скрыть проект
 }
 
 export interface PropertyItem {

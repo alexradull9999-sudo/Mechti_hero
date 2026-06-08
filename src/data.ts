@@ -2,9 +2,34 @@ import { CaseItem, PropertyItem, DesignService, RoadmapStep, FAQItem, ReviewItem
 
 export const portfolioCases: CaseItem[] = [
   {
+    id: "case-d1-penthouse",
+    title: "Двухуровневый пентхаус в ЖК «D1»",
+    location: "Москва, Дмитровское шоссе, д. 1, 58–59 этаж",
+    area: "170 м²",
+    style: "Пентхаус",
+    description: `Изысканный двухуровневый пентхаус площадью 170 м² на 58–59 этажах в ультрасовременном жилом комплексе премиум-класса «D1».
+
+● Современное двухуровневое пространство со вторым светом и потрясающими панорамными видами на всю Москву с высоты птичьего полета
+● Продуманное планировочное решение: просторная гостиная, объединенная с кухней на первом уровне, и приватная зона спален на втором
+● Эксклюзивный дизайнерский ремонт с применением натурального мрамора, дорогих премиальных пород дерева и инновационных систем освещения
+● Панорамное остекление «в пол», наполняющее каждый уголок пентхауса теплым естественным светом
+● Проект полностью реализован под ключ со всей мебелью, сантехникой и встроенной техникой от лучших мировых брендов.`,
+    cover: "/portfolio/d1_pent_2.jpg",
+    videoLoop: undefined,
+    videoFull: "https://www.youtube.com/embed/EclgAzuCl4I",
+    gallery: [
+      "/portfolio/d1_pent_2.jpg",
+      "/portfolio/d1_pent_3.jpg",
+      "/portfolio/d1_pent_4.jpg",
+      "/portfolio/d1_pent_5.jpg",
+      "/portfolio/d1_pent_6.jpg"
+    ],
+    plan: "/portfolio/d1_pent_plan.jpg"
+  },
+  {
     id: "case-d1",
-    title: "Евро 4-комнатная квартира в ЖК «D-1»",
-    location: "Москва, Дмитровское Шоссе, д. 1",
+    title: "Евро 4-комнатная квартира в ЖК «D1»",
+    location: "Москва, Дмитровское шоссе, д. 1",
     area: "142,73 м²",
     style: "Современный люкс",
     description: `Изысканная четырехкомнатная квартира площадью 142,73 м² в ультрасовременном жилом комплексе премиум-класса «D-1».
@@ -80,54 +105,6 @@ export const portfolioCases: CaseItem[] = [
     plan: "/portfolio/level_1.jpg"
   },
   {
-    id: "case-1",
-    title: "Резиденция в СНТ Усадьба",
-    location: "Рублёво-Успенское шоссе",
-    area: "812 м²",
-    style: "Современная классика",
-    description: `Дом построен в 2023 году в очень живописном лесу на 30 сотках, на берегу Генеральского озера.
-
-● 812 м² + 152,5 м² гараж на 2 машиноместа + блок для персонала
-● Второй свет
-● Бассейн в доме с зоной спа и с видом на лес
-● Кабинет со стеклянной стеной и видом на второй свет и на лес с балконом
-● Мастер-спальня с витражами и видом на лес с огромной гардеробной м/ж (всего 6 спален)
-● Санузел с отдельно стоящей ванной
-● 6 спален
-● Кинотеатр
-● Постирочная
-● Спортзал
-● Винная комната`,
-    cover: "/portfolio/usadba1.jpg",
-    videoLoop: undefined,
-    videoFull: undefined,
-    gallery: [
-      "/portfolio/usadba1.jpg",
-      "/portfolio/usadba2.jpg",
-      "/portfolio/usadba3.jpg",
-      "/portfolio/usadba4.jpg",
-      "/portfolio/usadba5.jpg"
-    ],
-    plan: "/portfolio/usadba_plan.png"
-  },
-  {
-    id: "case-2",
-    title: "Евро 5-комнатная квартира в ЖК Headliner",
-    location: "Москва-Сити, ЖК Headliner",
-    area: "100 м²",
-    style: "Современный минимализм",
-    description: "Многофункциональное пространство для семьи в одной из ключевых башен Москва-Сити. Сложные инженерные решения, скрытая фурнитура, полная комплектация по мебели из натуральных материалов от премиальных брендов. Панорамное остекление как главный архитектурный элемент.",
-    cover: "/portfolio/headliner_1.png",
-    videoLoop: undefined,
-    videoFull: "https://www.youtube.com/embed/F0pD6I9hY88",
-    gallery: [
-      "/portfolio/headliner_1.png",
-      "/portfolio/headliner_2.png",
-      "/portfolio/headliner_3.png"
-    ],
-    plan: "/portfolio/headliner_schema.png"
-  },
-  {
     id: "case-zolotoy",
     title: "Евро 4-комнатная квартира в ЖК «Золотой»",
     location: "Якиманка, Софийская наб., 18",
@@ -179,6 +156,54 @@ export const portfolioCases: CaseItem[] = [
     plan: "/portfolio/now_1.jpg"
   },
   {
+    id: "case-1",
+    title: "Резиденция в СНТ Усадьба",
+    location: "Рублёво-Успенское шоссе",
+    area: "812 м²",
+    style: "Современная классика",
+    description: `Дом построен в 2023 году в очень живописном лесу на 30 сотках, на берегу Генеральского озера.
+
+● 812 м² + 152,5 м² гараж на 2 машиноместа + блок для персонала
+● Второй свет
+● Бассейн в доме с зоной спа и с видом на лес
+● Кабинет со стеклянной стеной и видом на второй свет и на лес с балконом
+● Мастер-спальня с витражами и видом на лес с огромной гардеробной м/ж (всего 6 спален)
+● Санузел с отдельно стоящей ванной
+● 6 спален
+● Кинотеатр
+● Постирочная
+● Спортзал
+● Винная комната`,
+    cover: "/portfolio/usadba1.jpg",
+    videoLoop: undefined,
+    videoFull: undefined,
+    gallery: [
+      "/portfolio/usadba1.jpg",
+      "/portfolio/usadba2.jpg",
+      "/portfolio/usadba3.jpg",
+      "/portfolio/usadba4.jpg",
+      "/portfolio/usadba5.jpg"
+    ],
+    plan: "/portfolio/usadba_plan.png"
+  },
+  {
+    id: "case-2",
+    title: "Евро 5-комнатная квартира в ЖК Headliner",
+    location: "Москва-Сити, ЖК Headliner",
+    area: "100 м²",
+    style: "Современный минимализм",
+    description: "Многофункциональное пространство для семьи в одной из ключевых башен Москва-Сити. Сложные инженерные решения, скрытая фурнитура, полная комплектация по мебели из натуральных материалов от премиальных брендов. Панорамное остекление как главный архитектурный элемент.",
+    cover: "/portfolio/headliner_1.png",
+    videoLoop: undefined,
+    videoFull: "https://www.youtube.com/embed/F0pD6I9hY88",
+    gallery: [
+      "/portfolio/headliner_1.png",
+      "/portfolio/headliner_2.png",
+      "/portfolio/headliner_3.png"
+    ],
+    plan: "/portfolio/headliner_schema.png"
+  },
+  {
     id: "case-4",
     title: "Евро 4-комнатная в Краснодар-Сити",
     location: "Краснодар, ЖК «Краснодар-Сити»",
@@ -199,9 +224,18 @@ export const portfolioCases: CaseItem[] = [
 
 export const premiumProperties: PropertyItem[] = [
   {
+    "id": "prop-a-d1-penthouse",
+    "title": "Двухуровневый пентхаус в ЖК «D1»",
+    "location": "Москва, Дмитровское шоссе, д. 1, 58–59 этаж",
+    "area": "170 м²",
+    "price": "По запросу",
+    "image": "/portfolio/d1_pent_2.jpg",
+    "badge": "Пентхаус"
+  },
+  {
     "id": "prop-a-d1",
-    "title": "Евро 4-комнатная квартира в ЖК «D-1»",
-    "location": "Москва, Дмитровское Шоссе, д. 1",
+    "title": "Евро 4-комнатная квартира в ЖК «D1»",
+    "location": "Москва, Дмитровское шоссе, д. 1",
     "area": "142,73 м²",
     "price": "По запросу",
     "image": "/portfolio/d1_1.png",

@@ -15,10 +15,10 @@ export default function PortfolioGrid({ onOpenConsultation }: PortfolioGridProps
   const modalImages = activeCaseInfo ? [...activeCaseInfo.gallery, activeCaseInfo.plan] : [];
 
   // Reset active image index and video play mode when a case is selected
-  const handleOpenCase = (id: string) => {
+  const handleOpenCase = (id: string, playVideoFirst: boolean = false) => {
     setSelectedCaseId(id);
     setActiveImageIndex(0);
-    setIsPlayVideo(false);
+    setIsPlayVideo(playVideoFirst);
   };
 
   const handlePrevImage = () => {
@@ -62,7 +62,7 @@ export default function PortfolioGrid({ onOpenConsultation }: PortfolioGridProps
 
         {/* Сетка карточек с асимметрией */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-          {portfolioCases.map((cs) => {
+          {portfolioCases.filter(cs => !cs.hidden).map((cs) => {
             const isLarge = cs.id === 'case-1';
             return (
               <article 
@@ -88,10 +88,17 @@ export default function PortfolioGrid({ onOpenConsultation }: PortfolioGridProps
 
                   {/* Лейбл видеообзора сверху-справа, если есть видео */}
                   {cs.videoFull && (
-                    <span className="absolute top-4 right-4 flex items-center gap-1.5 text-[9px] uppercase tracking-[0.25em] text-[#C4BEB3] group-hover:text-[#F5F1EA] group-hover:border-[#B8956A] bg-[#0F0F0F]/75 backdrop-blur-sm px-3 py-1.5 border border-[#B8956A]/30 font-bold font-mono transition-colors duration-300">
+                    <button
+                      type="button"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleOpenCase(cs.id, true);
+                      }}
+                      className="absolute top-4 right-4 z-10 flex items-center gap-1.5 text-[9px] uppercase tracking-[0.25em] text-[#C4BEB3] hover:text-[#0F0F0F] hover:bg-[#B8956A] hover:border-[#B8956A] bg-[#0F0F0F]/75 backdrop-blur-sm px-3 py-1.5 border border-[#B8956A]/30 font-bold font-mono transition-all duration-300 cursor-pointer"
+                    >
                       <Play size={10} fill="currentColor" />
                       Видеообзор
-                    </span>
+                    </button>
                   )}
                 </div>
                 
