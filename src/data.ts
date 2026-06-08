@@ -2,6 +2,32 @@ import { CaseItem, PropertyItem, DesignService, RoadmapStep, FAQItem, ReviewItem
 
 export const portfolioCases: CaseItem[] = [
   {
+    id: "case-d1",
+    title: "Евро 4-комнатная квартира в ЖК «D-1»",
+    location: "Москва, Дмитровское Шоссе, д. 1",
+    area: "142,73 м²",
+    style: "Современный люкс",
+    description: `Изысканная четырехкомнатная квартира площадью 142,73 м² в ультрасовременном жилом комплексе премиум-класса «D-1».
+
+● Высококлассная планировка с объединением кухни-гостиной в единое функциональное пространство
+● Потрясающая панорама города благодаря выдающимся видовым характеристикам и остеклению «в пол»
+● Мастер-спальня с собственными гардеробной комнатой и просторной ванной комнатой
+● Высочайшее качество отделочных решений, скрытые инженерные системы, теневые профили и премиальная звукоизоляция
+● Контрастные акценты от дизайн-студии Mechty для поддержания утонченного ощущения приватности и высочайшего комфорта.`,
+    cover: "/portfolio/d1_1.png",
+    videoLoop: undefined,
+    videoFull: "https://www.youtube.com/embed/PmRDeyjvyEc",
+    gallery: [
+      "/portfolio/d1_1.png",
+      "/portfolio/d1_2.png",
+      "/portfolio/d1_3.png",
+      "/portfolio/d1_4.png",
+      "/portfolio/d1_5.png",
+      "/portfolio/d1_6.png"
+    ],
+    plan: "/portfolio/d1_1.png"
+  },
+  {
     id: "case-prime-park",
     title: "Евро 4-комнатная квартира в ЖК «Prime Park»",
     location: "Москва, Ленинградский проспект, 24-й этаж",
@@ -172,6 +198,15 @@ export const portfolioCases: CaseItem[] = [
 ];
 
 export const premiumProperties: PropertyItem[] = [
+  {
+    "id": "prop-a-d1",
+    "title": "Евро 4-комнатная квартира в ЖК «D-1»",
+    "location": "Москва, Дмитровское Шоссе, д. 1",
+    "area": "142,73 м²",
+    "price": "По запросу",
+    "image": "/portfolio/d1_1.png",
+    "badge": "Премиум"
+  },
   {
     "id": "prop-a-prime-park",
     "title": "Евро 4-комнатная квартира в ЖК «Prime Park»",
