@@ -297,7 +297,7 @@ export default function App() {
           onOpenConsultation={() => handleOpenConsultation()}
         />
         
-        <StatsCounter />
+        <StatsCounter onScrollToSection={handleScrollToSection} />
         
         <USPComparison />
         

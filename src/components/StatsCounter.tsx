@@ -1,111 +1,80 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React from 'react';
+import { ArrowRight, Image, Calculator, Home } from 'lucide-react';
 
-interface StatFieldProps {
-  target: number;
-  suffix: string;
-  label: string;
-  sublabel: string;
+interface StatsCounterProps {
+  onScrollToSection: (id: string) => void;
 }
 
-function CounterItem({ target, suffix, label, sublabel }: StatFieldProps) {
-  const [count, setCount] = useState(0);
-  const elementRef = useRef<HTMLDivElement>(null);
-  const [hasRun, setHasRun] = useState(false);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries[0].isIntersecting && !hasRun) {
-          setHasRun(true);
-          let start = 0;
-          const end = target;
-          const duration = 2000; // 2 seconds
-          const startTime = performance.now();
-
-          const animate = (currentTime: number) => {
-            const elapsed = currentTime - startTime;
-            const progress = Math.min(elapsed / duration, 1);
-            
-            // Ease out quad
-            const easeProgress = progress * (2 - progress);
-            const currentCount = Math.floor(easeProgress * (end - start) + start);
-            
-            setCount(currentCount);
-
-            if (progress < 1) {
-              requestAnimationFrame(animate);
-            } else {
-              setCount(end);
-            }
-          };
-
-          requestAnimationFrame(animate);
-        }
-      },
-      { threshold: 0.1 }
-    );
-
-    if (elementRef.current) {
-      observer.observe(elementRef.current);
+export default function StatsCounter({ onScrollToSection }: StatsCounterProps) {
+  const items = [
+    {
+      id: "stats-btn-portfolio",
+      num: "I",
+      title: "Портфолио",
+      desc: "Реализованные интерьеры бизнес, премиум и de luxe класса с детальной комплектацией",
+      section: "portfolio",
+      icon: Image,
+    },
+    {
+      id: "stats-btn-calculator",
+      num: "II",
+      title: "Калькулятор",
+      desc: "Интерактивный расчет стоимости дизайна, ремонта и мебели индивидуально под ваш метраж",
+      section: "calculator",
+      icon: Calculator,
+    },
+    {
+      id: "stats-btn-realestate",
+      num: "III",
+      title: "Квартиры в продаже",
+      desc: "Каталог готовой элитной недвижимости в знаковых жилых комплексах Москвы",
+      section: "real-estate",
+      icon: Home,
     }
+  ];
 
-    return () => {
-      observer.disconnect();
-    };
-  }, [target, hasRun]);
-
-  return (
-    <div
-      ref={elementRef}
-      className="flex flex-col items-center text-center p-6 md:p-8"
-    >
-      <div className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-7xl font-light text-[#F5F1EA] mb-2 md:mb-4 tracking-tight min-h-[1.1em] flex items-baseline justify-center whitespace-nowrap">
-        <span>{count.toLocaleString('ru')}</span>
-        <span className={`text-[#B8956A] font-serif ${
-          suffix.length > 2 
-            ? 'text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl ml-1 md:ml-2 font-light uppercase tracking-wider' 
-            : 'text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-6xl'
-        }`}>
-          {suffix}
-        </span>
-      </div>
-      <div className="h-[1px] w-12 bg-[#B8956A]/40 mb-3 md:mb-4" />
-      <span className="text-xs md:text-sm uppercase tracking-[0.2em] font-sans font-semibold text-[#F5F1EA]">
-        {label}
-      </span>
-      <span className="text-xs md:text-sm text-[#C4BEB3] uppercase tracking-[0.1em] mt-1.5 font-medium">
-        {sublabel}
-      </span>
-    </div>
-  );
-}
-
-export default function StatsCounter() {
   return (
     <section
-      id="stats"
-      className="relative bg-[#0F0F0F] border-y brass-border py-20 md:py-32"
+      id="action-promos"
+      className="relative bg-[#0F0F0T] bg-[#0F0F0F] border-y brass-border py-12 md:py-16"
     >
       <div className="max-w-7xl mx-auto px-6 md:px-12">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 divide-y md:divide-y-0 md:divide-x divide-white/10 md:divide-[#B8956A]/20">
-          <CounterItem
-            target={17}
-            suffix="+"
-            label="17+ лет ведения проектов"
-            sublabel="под ключ в премиальном сегменте"
-          />
-          <CounterItem
-            target={1500}
-            suffix="+"
-            label="1500+ реализованных"
-            sublabel="квартир и домов"
-          />
-          <CounterItem
-            target={180}
-            suffix="+"
-            label="Команда"
-            sublabel="из 180+ экспертов"
-          />
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-0 divide-y md:divide-y-0 md:divide-x divide-white/10 md:divide-[#B8956A]/20">
+          {items.map((item) => {
+            const IconComponent = item.icon;
+            return (
+              <button
+                key={item.id}
+                id={item.id}
+                onClick={() => onScrollToSection(item.section)}
+                className="group flex flex-col items-start text-left p-6 sm:p-8 lg:p-10 hover:bg-white/[0.02] active:bg-white/[0.04] transition-all duration-300 relative cursor-pointer w-full border-none focus:outline-none"
+              >
+                {/* Top indicator bar & item roman numeral */}
+                <div className="flex justify-between items-center w-full mb-6 text-[#8B8478]">
+                  <span className="font-serif text-xl italic tracking-wider group-hover:text-[#B8956A] transition-colors">
+                    {item.num}
+                  </span>
+                  <IconComponent size={20} className="text-[#8B8478]/40 group-hover:text-[#B8956A] transition-colors duration-300" />
+                </div>
+
+                {/* Button Title */}
+                <h3 className="font-serif text-2xl lg:text-3xl text-[#F5F1EA] font-light mb-4 tracking-wide group-hover:text-[#B8956A] transition-colors duration-300">
+                  {item.title}
+                </h3>
+
+                {/* Button Description */}
+                <p className="text-xs sm:text-sm text-[#C4BEB3] font-sans font-normal leading-relaxed mb-6 flex-grow max-w-sm">
+                  {item.desc}
+                </p>
+
+                {/* Call-to-action bar */}
+                <div className="flex items-center gap-2 group-hover:gap-4 transition-all duration-300 text-xs uppercase tracking-[0.2em] font-sans font-bold text-[#B8956A]">
+                  <span>Перейти</span>
+                  <ArrowRight size={14} className="transform group-hover:translate-x-1 transition-transform" />
+                </div>
+              </button>
+            );
+          })}
         </div>
       </div>
     </section>
