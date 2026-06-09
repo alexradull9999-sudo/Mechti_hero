@@ -63,11 +63,19 @@ app.use((req, res, next) => {
   if (imageExtensions.includes(ext) || isTargetFolder) {
     const parts = urlPath.split('/').filter(p => p !== '');
     const publicPath = path.join(process.cwd(), 'public', ...parts);
+    const distPath = path.join(process.cwd(), 'dist', ...parts);
 
+    let filePath = '';
     if (fs.existsSync(publicPath) && fs.statSync(publicPath).isFile()) {
+      filePath = publicPath;
+    } else if (fs.existsSync(distPath) && fs.statSync(distPath).isFile()) {
+      filePath = distPath;
+    }
+
+    if (filePath) {
       try {
         // Read file header to determine the actual magic bytes
-        const fd = fs.openSync(publicPath, 'r');
+        const fd = fs.openSync(filePath, 'r');
         const buf = Buffer.alloc(12);
         fs.readSync(fd, buf, 0, 12, 0);
         fs.closeSync(fd);
@@ -91,10 +99,10 @@ app.use((req, res, next) => {
         if (detectedContentType) {
           res.setHeader('Content-Type', detectedContentType);
           res.setHeader('Cache-Control', 'public, max-age=86400');
-          return res.sendFile(publicPath);
+          return res.sendFile(filePath);
         }
       } catch (err) {
-        console.error(`[sniff-middleware] Error reading file ${publicPath}:`, err);
+        console.error(`[sniff-middleware] Error reading file ${filePath}:`, err);
       }
     }
   }
@@ -306,6 +314,68 @@ app.get('/catalog/:id.jpg', async (req: Request, res: Response) => {
     console.error(`[image-proxy] ${id} fetch error:`, err);
     return res.status(500).send('Proxy fetch failed');
   }
+});
+
+// =================================================================
+// Properties Image proxy fallback: /properties/{filename}
+// If a property image doesn't exist locally, proxy-fetch it dynamically.
+// =================================================================
+app.get('/properties/:filename', async (req: Request, res: Response) => {
+  const filename = req.params.filename;
+  const ext = path.extname(filename).toLowerCase();
+  const hash = path.basename(filename, ext);
+
+  // 1. Check if the file is in public/properties or dist/properties
+  const publicPath = path.join(process.cwd(), 'public', 'properties', filename);
+  const distPath = path.join(process.cwd(), 'dist', 'properties', filename);
+
+  if (fs.existsSync(publicPath)) {
+    return res.sendFile(publicPath);
+  }
+  if (fs.existsSync(distPath)) {
+    return res.sendFile(distPath);
+  }
+
+  // 2. If it is a 32-character hex hash, proxy it on-demand
+  if (hash.length === 32 && /^[0-9a-f]+$/i.test(hash)) {
+    const cached = imageCache.get(hash);
+    if (cached && Date.now() - cached.ts < CACHE_TTL_MS) {
+      res.setHeader('Content-Type', cached.contentType);
+      res.setHeader('Cache-Control', 'public, max-age=86400');
+      res.setHeader('X-Cache', 'HIT');
+      return res.send(cached.buffer);
+    }
+
+    try {
+      const url = `https://api.gk-mechti.ru/api/image/${hash}?width=1200&height=900`;
+      const upstream = await fetch(url, {
+        headers: {
+          'User-Agent': 'Mozilla/5.0 (compatible; MechtiProxy/1.0)',
+          'Referer': 'https://gk-mechti.ru/',
+        },
+      });
+
+      if (upstream.ok) {
+        const arrayBuffer = await upstream.arrayBuffer();
+        const buffer = Buffer.from(arrayBuffer);
+        const contentType = upstream.headers.get('content-type') || 'image/jpeg';
+
+        imageCache.set(hash, { buffer, contentType, ts: Date.now() });
+
+        res.setHeader('Content-Type', contentType);
+        res.setHeader('Cache-Control', 'public, max-age=86400');
+        res.setHeader('X-Cache', 'MISS');
+        return res.send(buffer);
+      } else {
+        console.warn(`[properties-proxy] Upstream returned status ${upstream.status} for hash ${hash}`);
+      }
+    } catch (err) {
+      console.error(`[properties-proxy] Failed to proxy on-demand for hash ${hash}:`, err);
+    }
+  }
+
+  // If we can't find or proxy it, return a 404 to trigger frontend fallback/placeholder
+  return res.status(404).send('Image not found');
 });
 
 // === Static Assets static delivery or Vite middleware ===
