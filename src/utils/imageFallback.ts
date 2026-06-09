@@ -1,14 +1,14 @@
 const FALLBACK_IMAGES = [
-  "/site/a-0820.avif",
-  "/site/a-0817.avif",
-  "/site/a-1326.avif",
-  "/site/a-0796.avif",
-  "/site/a-0933.avif",
-  "/site/a-0919.avif",
-  "/site/a-0795.avif",
-  "/site/a-1394.avif",
-  "/site/a-0738.avif",
-  "/site/a-1403.avif"
+  "/catalog/a-0820.jpg",
+  "/catalog/a-0817.jpg",
+  "/catalog/a-1326.jpg",
+  "/catalog/a-0796.jpg",
+  "/catalog/a-0933.jpg",
+  "/catalog/a-0919.jpg",
+  "/catalog/a-0795.jpg",
+  "/catalog/a-1394.jpg",
+  "/catalog/a-0738.jpg",
+  "/catalog/a-1403.jpg"
 ];
 
 export function getFallbackImage(path: string): string {

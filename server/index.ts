@@ -237,6 +237,7 @@ const CATALOG_IMAGE_HASHES: Record<string, string> = {
   'a-0933': 'ef3c0d804e1fc0d3f60f9a9090a1241d',
   'a-0919': '05131e7e366e211566d36a4d7859d244',
   'a-0795': '6728f7f72e397076ef2453247130a25d',
+  'a-1394': '4d56be9d58f9e97c1fb09eaba93c86b8',
   'a-0738': 'd7f90df5bcda29cff5744a1e231cddb9',
   'a-1403': '01137e329dca2874d7f12b5a644f2741',
   'a-0735': '9a9838df9c3afb5707d029a0e150ca78',

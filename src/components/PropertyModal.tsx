@@ -32,9 +32,9 @@ export default function PropertyModal({ property, onClose, onOpenConsultation }:
     ? details.images 
     : [property.image];
 
-  // If this is a premium catalog property, only show authentic images from the catalog site (under /properties/ or /site/)
+  // If this is a premium catalog property, only show authentic images from the catalog site (under /properties/, /catalog/ or /site/)
   if (property.id.match(/^prop-a-\d+$/)) {
-    images = images.filter(img => img.startsWith('/properties/') || img.startsWith('/site/'));
+    images = images.filter(img => img.startsWith('/properties/') || img.startsWith('/catalog/') || img.startsWith('/site/'));
     if (images.length === 0) {
       images = [property.image];
     }
