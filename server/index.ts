@@ -144,6 +144,80 @@ app.post('/api/lead', async (req: Request, res: Response) => {
   }
 });
 
+// =================================================================
+// Image proxy: /catalog/{id}.jpg → api.gk-mechti.ru
+// Перенаправляет запросы к фото на сервер старого сайта.
+// Если ID не в мапминге — отдаёт 404, чтобы React показал заглушку через onError.
+// =================================================================
+const CATALOG_IMAGE_HASHES: Record<string, string> = {
+  'a-0820': '61371781dd3aba13ffd87ddda7c9e377',
+  'a-0817': '80a902b709dfd9c8920763eb046059a3',
+  'a-1326': 'cb07d5615ecd6b9cd932c0249170d23a',
+  'a-0796': 'cde55e9ae6ea308ded14e008b681b464',
+  'a-0933': 'ef3c0d804e1fc0d3f60f9a9090a1241d',
+  'a-0919': '05131e7e366e211566d36a4d7859d244',
+  'a-0795': '6728f7f72e397076ef2453247130a25d',
+  'a-0738': 'd7f90df5bcda29cff5744a1e231cddb9',
+  'a-1403': '01137e329dca2874d7f12b5a644f2741',
+  'a-0735': '9a9838df9c3afb5707d029a0e150ca78',
+  'a-0749': 'aca2c406f76801610559766c99c857ef',
+  // Остальные ID — без фото, отдаём 404 → React покажет заглушку
+};
+
+// Простой in-memory кэш (раз скачали — отдаём из памяти, не дёргаем апстрим)
+const imageCache = new Map<string, { buffer: Buffer; contentType: string; ts: number }>();
+const CACHE_TTL_MS = 1000 * 60 * 60 * 24; // 24 часа
+
+app.get('/catalog/:id.jpg', async (req: Request, res: Response) => {
+  const id = req.params.id;
+  const hash = CATALOG_IMAGE_HASHES[id];
+
+  if (!hash) {
+    // Нет фото для этого объекта — отдаём 404, фронтенд покажет градиент-заглушку
+    return res.status(404).send('No image for this object');
+  }
+
+  // Проверяем кэш
+  const cached = imageCache.get(id);
+  if (cached && Date.now() - cached.ts < CACHE_TTL_MS) {
+    res.setHeader('Content-Type', cached.contentType);
+    res.setHeader('Cache-Control', 'public, max-age=86400');
+    res.setHeader('X-Cache', 'HIT');
+    return res.send(cached.buffer);
+  }
+
+  // Тянем с апстрима
+  try {
+    const url = `https://api.gk-mechti.ru/api/image/${hash}?width=800&height=600`;
+    const upstream = await fetch(url, {
+      headers: {
+        // Часть серверов проверяет UA и Referer — притворяемся обычным браузером
+        'User-Agent': 'Mozilla/5.0 (compatible; MechtiProxy/1.0)',
+        'Referer': 'https://gk-mechti.ru/',
+      },
+    });
+
+    if (!upstream.ok) {
+      console.warn(`[image-proxy] ${id} upstream returned ${upstream.status}`);
+      return res.status(502).send('Upstream error');
+    }
+
+    const arrayBuffer = await upstream.arrayBuffer();
+    const buffer = Buffer.from(arrayBuffer);
+    const contentType = upstream.headers.get('content-type') || 'image/jpeg';
+
+    imageCache.set(id, { buffer, contentType, ts: Date.now() });
+
+    res.setHeader('Content-Type', contentType);
+    res.setHeader('Cache-Control', 'public, max-age=86400');
+    res.setHeader('X-Cache', 'MISS');
+    return res.send(buffer);
+  } catch (err) {
+    console.error(`[image-proxy] ${id} fetch error:`, err);
+    return res.status(500).send('Proxy fetch failed');
+  }
+});
+
 // === Static Assets static delivery or Vite middleware ===
 if (process.env.NODE_ENV !== 'production') {
   console.log('Using Vite middleware in development mode');

@@ -225,26 +225,24 @@ export default function CatalogSection({ onOpenConsultation }: CatalogSectionPro
             >
               {/* Photo section */}
               <div className="relative aspect-[4/5] overflow-hidden bg-gradient-to-br from-[#0F0F0F] via-[#1A1A1A] to-[#B8956A]/30">
-                {obj.image ? (
-                  <img
-                    src={obj.image}
-                    alt={obj.title}
-                    loading="lazy"
-                    referrerPolicy="no-referrer"
-                    onError={(e) => {
-                      // Если URL не открылся — скрываем img, остаётся градиент
-                      e.currentTarget.style.display = 'none';
-                    }}
-                    className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
-                  />
-                ) : (
-                  // Для объектов без фото — стилизованный градиент + крупная буква комплекса
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <span className="font-serif text-[120px] font-thin text-[#B8956A]/15 select-none">
-                      {obj.complex?.[0] || obj.city?.[0] || 'M'}
-                    </span>
-                  </div>
-                )}
+                {/* Для объектов без фото или если фото не загрузилось — на фоне крупная буква комплекса */}
+                <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                  <span className="font-serif text-[120px] font-thin text-[#B8956A]/15 select-none">
+                    {obj.complex?.[0] || obj.city?.[0] || 'M'}
+                  </span>
+                </div>
+
+                <img
+                  src={`/catalog/${obj.id}.jpg`}
+                  alt={obj.title}
+                  loading="lazy"
+                  referrerPolicy="no-referrer"
+                  onError={(e) => {
+                    // Если URL не открылся — скрываем img, остаётся градиент с буквой
+                    e.currentTarget.style.display = 'none';
+                  }}
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+                />
 
                 {/* Тонкий тёмный градиент снизу для читаемости тегов */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
