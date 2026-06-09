@@ -43,8 +43,8 @@ export default function Header({ onOpenConsultation, onScrollToSection }: Header
       <header
         className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
           isScrolled
-            ? 'glass-nav border-b border-[#B8956A]/30 py-3 md:py-4 shadow-xl'
-            : 'bg-[#1A1A1A]/90 backdrop-blur-md border-b border-white/5 py-4 md:py-5'
+            ? 'bg-[#0F0F0F] border-b border-[#B8956A]/30 py-3 md:py-4 shadow-2xl'
+            : 'bg-[#1A1A1A] border-b border-[#B8956A]/15 py-4 md:py-5'
         }`}
       >
         <div className="max-w-7xl mx-auto px-6 md:px-12 flex lg:grid lg:grid-cols-12 items-center justify-between">

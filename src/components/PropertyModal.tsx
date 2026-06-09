@@ -28,9 +28,18 @@ export default function PropertyModal({ property, onClose, onOpenConsultation }:
 
   // Retrieve details for this property (contains description and images list)
   const details = propertyDetailsMap[property.id];
-  const images = (details && details.images && details.images.length > 0) 
+  let images = (details && details.images && details.images.length > 0) 
     ? details.images 
     : [property.image];
+
+  // If this is a premium catalog property, only show authentic images from the catalog site (under /properties/ or /site/)
+  if (property.id.match(/^prop-a-\d+$/)) {
+    images = images.filter(img => img.startsWith('/properties/') || img.startsWith('/site/'));
+    if (images.length === 0) {
+      images = [property.image];
+    }
+  }
+
   const description = details ? details.description : 'Описание подготавливается специалистом по недвижимости.';
 
   const [activeIndex, setActiveIndex] = useState(0);

@@ -1,12 +1,14 @@
 const FALLBACK_IMAGES = [
-  "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1200&q=80", // Modern living room
-  "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1200&q=80", // Upscale kitchen/living
-  "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=1200&q=80", // High-end design living room
-  "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=1200&q=80", // Architecture exterior building
-  "https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=1200&q=80", // Contemporary luxury villa/apartment
-  "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80", // Modern house interior
-  "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1200&q=80", // Luxury house exterior/patio
-  "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1200&q=80", // Modern estate
+  "/properties/61371781dd3aba13ffd87ddda7c9e377.jpg",
+  "/properties/80a902b709dfd9c8920763eb046059a3.jpg",
+  "/properties/cb07d5615ecd6b9cd932c0249170d23a.jpg",
+  "/properties/cde55e9ae6ea308ded14e008b681b464.jpg",
+  "/properties/ef3c0d804e1fc0d3f60f9a9090a1241d.jpg",
+  "/properties/05131e7e366e211566d36a4d7859d244.jpg",
+  "/properties/6728f7f72e397076ef2453247130a25d.jpg",
+  "/properties/c7f59fb7205e12f5979f1fcf2081cd09.jpg",
+  "/properties/d7f90df5bcda29cff5744a1e231cddb9.jpg",
+  "/properties/01137e329dca2874d7f12b5a644f2741.jpg"
 ];
 
 export function getFallbackImage(path: string): string {
