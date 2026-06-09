@@ -170,7 +170,25 @@ const CACHE_TTL_MS = 1000 * 60 * 60 * 24; // 24 часа
 
 app.get('/catalog/:id.jpg', async (req: Request, res: Response) => {
   const id = req.params.id;
-  const hash = CATALOG_IMAGE_HASHES[id];
+
+  // 1. Сначала проверяем, есть ли физический файл в локальной папке public/catalog/ или dist/catalog/
+  const publicPath = path.join(process.cwd(), 'public', 'catalog', `${id}.jpg`);
+  const distPath = path.join(process.cwd(), 'dist', 'catalog', `${id}.jpg`);
+
+  if (fs.existsSync(publicPath)) {
+    return res.sendFile(publicPath);
+  }
+  if (fs.existsSync(distPath)) {
+    return res.sendFile(distPath);
+  }
+
+  // 2. Если локально файла нет, определяем хэш для проксирования
+  let hash = CATALOG_IMAGE_HASHES[id];
+
+  // Если сам запрошенный ID уже является хэшем (32 символа, hex-строка)
+  if (!hash && id.length === 32 && /^[0-9a-f]+$/i.test(id)) {
+    hash = id;
+  }
 
   if (!hash) {
     // Нет фото для этого объекта — отдаём 404, фронтенд покажет градиент-заглушку
