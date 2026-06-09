@@ -1,106 +1,137 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { MapPin, Building, Key } from 'lucide-react';
+import { CatalogObject } from '../types';
 
-interface CatalogItem {
-  id: string; // Hash used for image file naming and API fallback URL
-  title: string;
-  complex: string;
-  city: string;
-  area: string;
-  price: string;
-  badge: string;
-}
-
-const catalogObjects: CatalogItem[] = [
+const initialCatalogObjects: CatalogObject[] = [
   {
     id: "61371781dd3aba13ffd87ddda7c9e377",
     title: "Дизайнерский пентхаус в ЖК Carré Blanc (Карре Бланк)",
     complex: "Carré Blanc",
     city: "Москва",
-    area: "538 м²",
-    price: "3 766 700 000 ₽",
-    badge: "Пентхаус"
+    area_m2: 538,
+    floor: "5",
+    price_rub: 3766700000,
+    rooms: 5,
+    url: "",
+    type: undefined,
+    image: "https://api.gk-mechti.ru/api/image/61371781dd3aba13ffd87ddda7c9e377?width=800&height=600"
   },
   {
     id: "80a902b709dfd9c8920763eb046059a3",
     title: "Пентхаус в ЖК Carré Blanc (Карре Бланк)",
     complex: "Carré Blanc",
     city: "Москва",
-    area: "286 м²",
-    price: "1 998 500 000 ₽",
-    badge: "Пентхаус"
+    area_m2: 286,
+    floor: "4",
+    price_rub: 1998500000,
+    rooms: 4,
+    url: "",
+    type: undefined,
+    image: "https://api.gk-mechti.ru/api/image/80a902b709dfd9c8920763eb046059a3?width=800&height=600"
   },
   {
     id: "cb07d5615ecd6b9cd932c0249170d23a",
     title: "ЖК «Клубный дом TURGENEV (Тургенев)»",
     complex: "TURGENEV",
     city: "Москва",
-    area: "450 м²",
-    price: "1 450 000 000 ₽",
-    badge: "Клубный дом"
+    area_m2: 450,
+    floor: "3",
+    price_rub: 1450000000,
+    rooms: 5,
+    url: "",
+    type: undefined,
+    image: "https://api.gk-mechti.ru/api/image/cb07d5615ecd6b9cd932c0249170d23a?width=800&height=600"
   },
   {
     id: "cde55e9ae6ea308ded14e008b681b464",
     title: "Двухэтажный пентхаус с террасой в ЖК «Cooper house (Купер Хаус)»",
     complex: "Cooper house",
     city: "Москва",
-    area: "430 м²",
-    price: "944 000 000 ₽",
-    badge: "Пентхаус"
+    area_m2: 430,
+    floor: "5",
+    price_rub: 944000000,
+    rooms: 5,
+    url: "",
+    type: undefined,
+    image: "https://api.gk-mechti.ru/api/image/cde55e9ae6ea308ded14e008b681b464?width=800&height=600"
   },
   {
     id: "ef3c0d804e1fc0d3f60f9a9090a1241d",
     title: "4-комнатная квартира в ЖК \"Садовые кварталы\"",
     complex: "Садовые кварталы",
     city: "Москва",
-    area: "170 м²",
-    price: "600 000 000 ₽",
-    badge: "Квартира"
+    area_m2: 170,
+    floor: "4",
+    price_rub: 600000000,
+    rooms: 4,
+    url: "",
+    type: undefined,
+    image: "https://api.gk-mechti.ru/api/image/ef3c0d804e1fc0d3f60f9a9090a1241d?width=800&height=600"
   },
   {
     id: "05131e7e366e211566d36a4d7859d244",
     title: "5-комнатная квартира в ЖК \"Садовые Кварталы\"",
     complex: "Садовые кварталы",
     city: "Москва",
-    area: "213 м²",
-    price: "600 000 000 ₽",
-    badge: "Квартира"
+    area_m2: 213,
+    floor: "3",
+    price_rub: 600000000,
+    rooms: 5,
+    url: "",
+    type: undefined,
+    image: "https://api.gk-mechti.ru/api/image/05131e7e366e211566d36a4d7859d244?width=800&height=600"
   },
   {
     id: "6728f7f72e397076ef2453247130a25d",
     title: "Видовой двухуровневый пентхаус в ЖК «Садовые Кварталы»",
     complex: "Садовые кварталы",
     city: "Москва",
-    area: "238.8 м²",
-    price: "573 000 000 ₽",
-    badge: "Пентхаус"
+    area_m2: 238.8,
+    floor: "5",
+    price_rub: 573000000,
+    rooms: 4,
+    url: "",
+    type: undefined,
+    image: "https://api.gk-mechti.ru/api/image/6728f7f72e397076ef2453247130a25d?width=800&height=600"
   },
   {
     id: "c7f59fb7205e12f5979f1fcf2081cd09",
     title: "ЖК Золотой 162.7 готовый",
     complex: "ЖК Золотой",
     city: "Москва",
-    area: "162.7 м²",
-    price: "495 000 000 ₽",
-    badge: "Клубный дом"
+    area_m2: 162.7,
+    floor: "2",
+    price_rub: 495000000,
+    rooms: 3,
+    url: "",
+    type: undefined,
+    image: "https://api.gk-mechti.ru/api/image/c7f59fb7205e12f5979f1fcf2081cd09?width=800&height=600"
   },
   {
     id: "d7f90df5bcda29cff5744a1e231cddb9",
     title: "Евро-4 комнатная в ЖК \"Вишневый сад\"",
     complex: "ЖК Вишневый сад",
     city: "Москва",
-    area: "190.7 м²",
-    price: "450 000 000 ₽",
-    badge: "Квартира"
+    area_m2: 190.7,
+    floor: "3",
+    price_rub: 450000000,
+    rooms: 4,
+    url: "",
+    type: undefined,
+    image: "https://api.gk-mechti.ru/api/image/d7f90df5bcda29cff5744a1e231cddb9?width=800&height=600"
   },
   {
     id: "01137e329dca2874d7f12b5a644f2741",
     title: "ЖК «Литератор»",
     complex: "ЖК Литератор",
     city: "Москва",
-    area: "204 м²",
-    price: "450 000 000 ₽",
-    badge: "Клубный дом"
+    area_m2: 204,
+    floor: "4",
+    price_rub: 450000000,
+    rooms: 4,
+    url: "",
+    type: undefined,
+    image: "https://api.gk-mechti.ru/api/image/01137e329dca2874d7f12b5a644f2741?width=800&height=600"
   }
 ];
 
@@ -109,7 +140,29 @@ interface CatalogSectionProps {
 }
 
 export default function CatalogSection({ onOpenConsultation }: CatalogSectionProps) {
+  const [catalogObjects, setCatalogObjects] = useState<CatalogObject[]>(initialCatalogObjects);
   const [activeSegment, setActiveSegment] = useState<string>("all");
+
+  useEffect(() => {
+    fetch('/catalog.json')
+      .then(res => {
+        if (!res.ok) throw new Error('Dynamic catalog could not be fetched');
+        return res.json();
+      })
+      .then(data => {
+        if (Array.isArray(data)) {
+          // Normalize objects to ensure image fallback is populated if missing
+          const normalized = data.map(obj => ({
+            ...obj,
+            image: obj.image || (obj.id ? `https://api.gk-mechti.ru/api/image/${obj.id}?width=800&height=600` : undefined)
+          }));
+          setCatalogObjects(normalized);
+        }
+      })
+      .catch(err => {
+        console.warn('Could not load dynamic /catalog.json, falling back to static seeds. Details:', err);
+      });
+  }, []);
 
   const segments = [
     { id: "all", name: "Все объекты", icon: <Building size={14} /> },
@@ -119,10 +172,14 @@ export default function CatalogSection({ onOpenConsultation }: CatalogSectionPro
   ];
 
   const filteredObjects = catalogObjects.filter(obj => {
+    const isHouse = obj.type === 'house' || obj.complex?.toLowerCase().includes('клубный') || obj.title?.toLowerCase().includes('клубный');
+    const isPenthouse = !isHouse && obj.rooms >= 4;
+    const isApartment = !isHouse && !isPenthouse;
+
     if (activeSegment === "all") return true;
-    if (activeSegment === "apartment") return obj.badge === "Квартира";
-    if (activeSegment === "penthouse") return obj.badge === "Пентхаус";
-    if (activeSegment === "clubhouse") return obj.badge === "Клубный дом";
+    if (activeSegment === "apartment") return isApartment;
+    if (activeSegment === "penthouse") return isPenthouse;
+    if (activeSegment === "clubhouse") return isHouse;
     return true;
   });
 
@@ -167,38 +224,38 @@ export default function CatalogSection({ onOpenConsultation }: CatalogSectionPro
               className="group cursor-pointer bg-[#1A1A1A] border border-[#B8956A]/15 relative overflow-hidden flex flex-col justify-between transition-transform duration-300 hover:-translate-y-1"
             >
               {/* Photo section */}
-              <div 
-                className="relative aspect-[4/5] overflow-hidden bg-gradient-to-br from-[#0F0F0F] via-[#1A1A1A] to-[#B8956A]/20"
-              >
-                <img
-                  src={`/catalog/${obj.id}.jpg`}
-                  alt={obj.title}
-                  loading="lazy"
-                  onError={(e) => {
-                    const img = e.currentTarget;
-                    // Если локальное фото не загрузилось — пробуем с API старого сайта
-                    if (!img.dataset.fallbackState) {
-                      img.dataset.fallbackState = 'api';
-                      img.src = `https://api.gk-mechti.ru/api/image/${obj.id}`;
-                    } else if (img.dataset.fallbackState === 'api') {
-                      // Если и API не загрузился — пробуем с placeholder
-                      img.dataset.fallbackState = 'placeholder';
-                      img.src = '/catalog/placeholder.jpg';
-                    } else {
-                      // Если и placeholder не загрузился — скрываем картинку, оставляем градиент
-                      img.style.display = 'none';
-                    }
-                  }}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-all duration-700"
-                />
-                
-                {/* Лейбл-комплекс остаётся видимым даже без фото */}
-                <span className="absolute top-3 left-3 bg-[#0F0F0F]/95 border border-[#B8956A]/45 text-[#B8956A] text-[10px] uppercase tracking-widest px-2.5 py-1.5 font-sans font-medium">
-                  {obj.complex || obj.city}
+              <div className="relative aspect-[4/5] overflow-hidden bg-gradient-to-br from-[#0F0F0F] via-[#1A1A1A] to-[#B8956A]/30">
+                {obj.image ? (
+                  <img
+                    src={obj.image}
+                    alt={obj.title}
+                    loading="lazy"
+                    referrerPolicy="no-referrer"
+                    onError={(e) => {
+                      // Если URL не открылся — скрываем img, остаётся градиент
+                      e.currentTarget.style.display = 'none';
+                    }}
+                    className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+                  />
+                ) : (
+                  // Для объектов без фото — стилизованный градиент + крупная буква комплекса
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <span className="font-serif text-[120px] font-thin text-[#B8956A]/15 select-none">
+                      {obj.complex?.[0] || obj.city?.[0] || 'M'}
+                    </span>
+                  </div>
+                )}
+
+                {/* Тонкий тёмный градиент снизу для читаемости тегов */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
+
+                {/* Тег типа объекта сверху-слева */}
+                <span className="absolute top-3 left-3 text-[9px] uppercase tracking-[0.3em] text-[#B8956A] bg-[#0F0F0F]/60 backdrop-blur-sm px-3 py-1.5 border border-[#B8956A]/30">
+                  {obj.type === 'house' ? 'Дом' : (obj.rooms >= 4 ? 'Пентхаус' : 'Квартира')}
                 </span>
-                
-                {/* Город в правом нижнем углу */}
-                <span className="absolute bottom-3 right-3 bg-[#0F0F0F]/85 text-[#C4BEB3] text-[9px] uppercase tracking-widest px-2 py-1 font-sans">
+
+                {/* Город снизу-справа */}
+                <span className="absolute bottom-3 right-3 text-[10px] font-mono text-white/70">
                   {obj.city}
                 </span>
               </div>
@@ -218,11 +275,15 @@ export default function CatalogSection({ onOpenConsultation }: CatalogSectionPro
                 <div className="pt-3 border-t border-[#B8956A]/10 space-y-1">
                   <div className="flex justify-between items-baseline gap-2">
                     <span className="text-[9px] uppercase font-sans tracking-wider text-[#A8A196] font-medium shrink-0">Площадь</span>
-                    <span className="text-xs font-sans font-medium text-[#F5F1EA] whitespace-nowrap">{obj.area}</span>
+                    <span className="text-xs font-sans font-medium text-[#F5F1EA] whitespace-nowrap">
+                      {obj.area_m2 ? `${obj.area_m2} м²` : (obj as any).area || ''}
+                    </span>
                   </div>
                   <div className="flex justify-between items-baseline gap-2">
                     <span className="text-[9px] uppercase font-sans tracking-wider text-[#A8A196] font-medium shrink-0">Стоимость</span>
-                    <span className="text-xs font-mono text-[#B8956A] font-semibold whitespace-nowrap">{obj.price}</span>
+                    <span className="text-xs font-mono text-[#B8956A] font-semibold whitespace-nowrap">
+                      {obj.price_rub ? `${obj.price_rub.toLocaleString('ru-RU')} ₽` : (obj as any).price || ''}
+                    </span>
                   </div>
                 </div>
               </div>

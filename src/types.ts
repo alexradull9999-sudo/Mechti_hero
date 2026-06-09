@@ -61,3 +61,17 @@ export interface TrendItem {
   description: string;
   image: string;
 }
+
+export interface CatalogObject {
+  id: string;
+  title: string;
+  complex: string;
+  area_m2: number;
+  floor: string;
+  price_rub: number;
+  city: string;
+  url: string;
+  rooms: number;
+  type?: "house";
+  image?: string;  // ← новое поле: полный URL фотографии. Если нет — рисуем градиент
+}
