@@ -121,7 +121,7 @@ export default function Founders({ onOpenConsultation }: FoundersProps) {
         <div className="mt-16 md:mt-24">
           <div className="relative h-[320px] sm:h-[450px] md:h-[550px] overflow-hidden border border-[#B8956A]/20 shadow-2xl bg-[#EDE6D8]">
             <img
-              src="/site-images/photo-1600585154340-be6161a56a0c.jpg"
+              src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80"
               alt="Усадьба"
               className="w-full h-full object-cover"
               referrerPolicy="no-referrer"

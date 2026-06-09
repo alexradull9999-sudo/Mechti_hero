@@ -12,7 +12,7 @@ export default function ServicesGrid({ onScrollToSection }: ServicesGridProps) {
       num: "01",
       title: "Подбор и строительство объекта",
       description: "Персональный подбор премиального жилья в Москве (новостройки, элитная вторичка, усадьбы). Доступ к закрытым сделкам вне открытого рынка.",
-      image: "/site-images/photo-1600607687939-ce8a6c25118c.jpg",
+      image: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=80",
       targetId: "real-estate"
     },
     {
@@ -20,7 +20,7 @@ export default function ServicesGrid({ onScrollToSection }: ServicesGridProps) {
       num: "02",
       title: "Дизайн",
       description: "Авторские дизайн-проекты от концептуального 3D-моделирования до полной рабочей документации, инженерных схем и ведомостей комплектации.",
-      image: "/site-images/photo-1618219908412-a29a1bb7b86e.jpg",
+      image: "https://images.unsplash.com/photo-1618219908412-a29a1bb7b86e?auto=format&fit=crop&w=1200&q=80",
       targetId: "design-section"
     },
     {
@@ -28,7 +28,7 @@ export default function ServicesGrid({ onScrollToSection }: ServicesGridProps) {
       num: "03",
       title: "Ремонт",
       description: "Премиальная строительная реализация. Фиксированная смета, еженедельный фотоотчет в ERP, авторский и технический надзор.",
-      image: "/site-images/photo-1613490493576-7fde63acd811.jpg",
+      image: "https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=1200&q=80",
       targetId: "renovation-section"
     },
     {
@@ -36,7 +36,7 @@ export default function ServicesGrid({ onScrollToSection }: ServicesGridProps) {
       num: "04",
       title: "Комплектация",
       description: "Полная комплектация по мебели, работа с премиальными брендами. Индивидуальный подбор кухонь, премиальных гардеробов и декорирование.",
-      image: "/site-images/photo-1538688525198-9b88f6f53126.jpg",
+      image: "https://images.unsplash.com/photo-1538688525198-9b88f6f53126?auto=format&fit=crop&w=1200&q=80",
       targetId: "furniture-section"
     }
   ];
