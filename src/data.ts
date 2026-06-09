@@ -224,75 +224,21 @@ export const portfolioCases: CaseItem[] = [
 
 export const premiumProperties: PropertyItem[] = [
   {
-    "id": "prop-a-d1-penthouse",
-    "title": "Двухуровневый пентхаус в ЖК «D1»",
-    "location": "Москва, Дмитровское шоссе, д. 1, 58–59 этаж",
-    "area": "170 м²",
-    "price": "По запросу",
-    "image": "/portfolio/d1_pent_2.jpg",
-    "badge": "Пентхаус"
-  },
-  {
-    "id": "prop-a-d1",
-    "title": "Евро 4-комнатная квартира в ЖК «D1»",
-    "location": "Москва, Дмитровское шоссе, д. 1",
-    "area": "142,73 м²",
-    "price": "По запросу",
-    "image": "/portfolio/d1_1.png",
-    "badge": "Премиум"
-  },
-  {
-    "id": "prop-a-prime-park",
-    "title": "Евро 4-комнатная квартира в ЖК «Prime Park»",
-    "location": "Москва, Ленинградский проспект, 24-й этаж",
-    "area": "138 м²",
-    "price": "По запросу",
-    "image": "/portfolio/prime_park_1.jpg",
-    "badge": "Премиум"
-  },
-  {
-    "id": "prop-a-level",
-    "title": "Пентхаус с террасой в ЖК «Level Причальный»",
-    "location": "Москва, Причальный проезд, д. 10, 19/33 этаж",
-    "area": "136 м² + 100 м² терраса",
-    "price": "По запросу",
-    "image": "/portfolio/level_1.jpg",
-    "badge": "Пентхаус"
-  },
-  {
-    "id": "prop-a-now",
-    "title": "Двухуровневая квартира в ЖК “Now”",
-    "location": "Москва, проезд Лихачева 10, к.3, 12-13 этаж",
-    "area": "184,55 м²",
-    "price": "По запросу",
-    "image": "/portfolio/now_1.jpg",
-    "badge": "Пентхаус"
-  },
-  {
     "id": "prop-a-0820",
     "title": "Дизайнерский пентхаус в ЖК Carré Blanc (Карре Бланк)",
     "location": "Хамовники, Пречистенская набережная",
     "area": "538 м²",
-    "price": "По запросу",
-    "image": "/properties/61371781dd3aba13ffd87ddda7c9e377.jpg",
+    "price": "3 766 700 000 ₽",
+    "image": "/site/a-0820.avif",
     "badge": "Пентхаус"
-  },
-  {
-    "id": "prop-a-1394",
-    "title": "Евро 4-комнатная квартира в ЖК «Золотой»",
-    "location": "Якиманка, Софийская наб., 18",
-    "area": "162.7 м²",
-    "price": "495 000 000 ₽",
-    "image": "/portfolio/zolotoy_1.jpg",
-    "badge": "Клубный дом"
   },
   {
     "id": "prop-a-0817",
     "title": "Пентхаус в ЖК Carré Blanc (Карре Бланк)",
     "location": "Хамовники, Пречистенская набережная",
     "area": "286 м²",
-    "price": "По запросу",
-    "image": "/properties/80a902b709dfd9c8920763eb046059a3.jpg",
+    "price": "1 998 500 000 ₽",
+    "image": "/site/a-0817.avif",
     "badge": "Пентхаус"
   },
   {
@@ -300,8 +246,8 @@ export const premiumProperties: PropertyItem[] = [
     "title": "ЖК «Клубный дом TURGENEV (Тургенев)»",
     "location": "Чистые Пруды, Костянский переулок",
     "area": "450 м²",
-    "price": "По запросу",
-    "image": "/properties/cb07d5615ecd6b9cd932c0249170d23a.jpg",
+    "price": "1 450 000 000 ₽",
+    "image": "/site/a-1326.avif",
     "badge": "Клубный дом"
   },
   {
@@ -309,8 +255,8 @@ export const premiumProperties: PropertyItem[] = [
     "title": "Двухэтажный пентхаус с террасой в ЖК «Cooper house (Купер Хаус)»",
     "location": "Золотая Миля, Бутиковский переулок",
     "area": "430 м²",
-    "price": "По запросу",
-    "image": "/properties/cde55e9ae6ea308ded14e008b681b464.jpg",
+    "price": "944 000 000 ₽",
+    "image": "/site/a-0796.avif",
     "badge": "Пентхаус"
   },
   {
@@ -318,8 +264,8 @@ export const premiumProperties: PropertyItem[] = [
     "title": "4-комнатная квартира в ЖК \"Садовые кварталы\"",
     "location": "Хамовники, улица Ефремова",
     "area": "170 м²",
-    "price": "По запросу",
-    "image": "/properties/ef3c0d804e1fc0d3f60f9a9090a1241d.jpg",
+    "price": "600 000 000 ₽",
+    "image": "/site/a-0933.avif",
     "badge": "Квартира"
   },
   {
@@ -327,26 +273,35 @@ export const premiumProperties: PropertyItem[] = [
     "title": "5-комнатная квартира в ЖК \"Садовые Кварталы\"",
     "location": "Хамовники, улица Ефремова",
     "area": "213 м²",
-    "price": "По запросу",
-    "image": "/properties/05131e7e366e211566d36a4d7859d244.jpg",
+    "price": "600 000 000 ₽",
+    "image": "/site/a-0919.avif",
     "badge": "Квартира"
   },
   {
     "id": "prop-a-0795",
-    "title": "Видовой двухуровнемый пентхаус в ЖК «Садовые Кварталы»",
+    "title": "Видовой двухуровневый пентхаус в ЖК «Садовые Кварталы»",
     "location": "Хамовники, улица Ефремова",
     "area": "238.8 м²",
-    "price": "По запросу",
-    "image": "/properties/6728f7f72e397076ef2453247130a25d.jpg",
+    "price": "573 000 000 ₽",
+    "image": "/site/a-0795.avif",
     "badge": "Пентхаус"
+  },
+  {
+    "id": "prop-a-1394",
+    "title": "ЖК Золотой 162.7 готовый",
+    "location": "Якиманка, Софийская наб., 18",
+    "area": "162.7 м²",
+    "price": "495 000 000 ₽",
+    "image": "/site/a-1394.avif",
+    "badge": "Клубный дом"
   },
   {
     "id": "prop-a-0738",
     "title": "Евро-4 комнатная в ЖК \"Вишневый сад\"",
     "location": "Раменки, Мосфильмовская улица",
     "area": "190.7 м²",
-    "price": "По запросу",
-    "image": "/properties/d7f90df5bcda29cff5744a1e231cddb9.jpg",
+    "price": "450 000 000 ₽",
+    "image": "/site/a-0738.avif",
     "badge": "Квартира"
   },
   {
@@ -354,8 +309,8 @@ export const premiumProperties: PropertyItem[] = [
     "title": "ЖК «Литератор»",
     "location": "Хамовники, улица Льва Толстого",
     "area": "204 м²",
-    "price": "По запросу",
-    "image": "/properties/01137e329dca2874d7f12b5a644f2741.jpg",
+    "price": "450 000 000 ₽",
+    "image": "/site/a-1403.avif",
     "badge": "Клубный дом"
   }
 ];
@@ -547,7 +502,7 @@ export const reviewsList: ReviewItem[] = [
     project: "ЖК Хедлайнер",
     area: "110 м²",
     quote: "Впечатлило качество и комплектация под ключ — кухня-гостиная получилась невероятно изысканной и стильной! Дизайн-проектирование было очень дотошным и индивидуальным под наши привычки.",
-    videoPlaceholder: "/site-images/photo-1513694203232-719a280e022f.avif",
+    videoPlaceholder: "/site-images/photo-1513694203232-719a280e022f.jpg",
     rutubeUrl: "https://rutube.ru/shorts/826ab7d36770560f7e2940c9a581c38e/",
     embedUrl: "https://rutube.ru/play/embed/826ab7d36770560f7e2940c9a581c38e/"
   },
@@ -568,7 +523,7 @@ export const trendsList: TrendItem[] = [
     id: "trend-1",
     title: "Монохромное погружение (Color Drenching)",
     description: "Покраска стен, плинтусов, дверей и потолков в один сложный, приглушенный природный тон для ощущения бесконечного, обволакивающего пространства.",
-    image: "/site-images/photo-1600210492486-724fe5c67fb0.avif"
+    image: "/site-images/photo-1600210492486-724fe5c67fb0.jpg"
   },
   {
     id: "trend-2",
@@ -586,6 +541,6 @@ export const trendsList: TrendItem[] = [
     id: "trend-4",
     title: "Сценарное скрытое освещение",
     description: "Отказ от одной люстры по центру комнаты. Интеграция диффузных магнитных световых треков, парящих линий плинтуса и щелевых контурных светильников.",
-    image: "/site-images/photo-1513694203232-719a280e022f.avif"
+    image: "/site-images/photo-1513694203232-719a280e022f.jpg"
   }
 ];

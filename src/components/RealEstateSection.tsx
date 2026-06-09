@@ -97,7 +97,7 @@ export default function RealEstateSection({ onOpenConsultation, onScrollToSectio
 
         {/* Properties Catalog Showcase cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-          {filteredProperties.slice(0, 8).map((prop) => (
+          {filteredProperties.map((prop) => (
             <div
               key={prop.id}
               onClick={() => setSelectedProperty(prop)}
