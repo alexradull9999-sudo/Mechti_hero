@@ -81,7 +81,7 @@ export default function FurnitureSection({ onScrollToSection, onOpenConsultation
 
             <div className="relative h-[380px] overflow-hidden">
               <img
-                src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=800&q=80"
+                src="/site-images/photo-1586023492125-27b2c045efd7.jpg"
                 alt="Mechty Factory Cabinetry Finish"
                 className="w-full h-full object-cover shadow-lg"
                 referrerPolicy="no-referrer"

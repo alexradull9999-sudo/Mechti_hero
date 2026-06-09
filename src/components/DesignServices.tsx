@@ -47,7 +47,7 @@ export default function DesignServices({ onOpenConsultation, onScrollToSection }
           <div className="lg:col-span-5 space-y-6 relative">
             <div className="relative h-[480px] overflow-hidden group">
               <img
-                src="https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&w=800&q=80"
+                src="/site-images/photo-1507089947368-19c1da9775ae.jpg"
                 alt="3D Visualization Render of Luxury Kitchen"
                 className="w-full h-full object-cover group-hover:scale-102 transition-transform duration-[4s]"
                 referrerPolicy="no-referrer"

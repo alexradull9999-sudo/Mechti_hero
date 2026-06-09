@@ -517,7 +517,7 @@ export const reviewsList: ReviewItem[] = [
     project: "ЖК Level Причальный",
     area: "132 м²",
     quote: "Доверилась команде Mechty с первой встречи — система этапности и понятный график оплат сразу сняли все мои страхи. Через 8 месяцев въехала в квартиру, готовую к жизни.",
-    videoPlaceholder: "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=800&q=80",
+    videoPlaceholder: "/site-images/photo-1616486338812-3dadae4b4ace.jpg",
     rutubeUrl: "https://rutube.ru/shorts/94f2357a201612f464d8bab37d70d95e/",
     embedUrl: "https://rutube.ru/play/embed/94f2357a201612f464d8bab37d70d95e/"
   },
@@ -527,7 +527,7 @@ export const reviewsList: ReviewItem[] = [
     project: "ЖК Headliner",
     area: "100 м²",
     quote: "Непередаваемые эмоции от переезда! С застройщиком намучились, но команда Mechty Group исправила все косяки планировки и сделала настоящий образец роскоши с панорамными видами. Рекомендуем!",
-    videoPlaceholder: "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=800&q=80",
+    videoPlaceholder: "/site-images/photo-1600607687920-4e2a09cf159d.jpg",
     rutubeUrl: "https://rutube.ru/shorts/be55e1d9196a2c7c695a3380f69eed2b/",
     embedUrl: "https://rutube.ru/play/embed/be55e1d9196a2c7c695a3380f69eed2b/"
   },
@@ -537,7 +537,7 @@ export const reviewsList: ReviewItem[] = [
     project: "ЖК Крылья",
     area: "180 м²",
     quote: "Строительный надзор и автоматизация в ERP на уровне космических кораблей. Все закупки материалов ровно в смету. Получили квартиру мечты точно к юбилею супруги.",
-    videoPlaceholder: "https://images.unsplash.com/photo-1618219908412-a29a1bb7b86e?auto=format&fit=crop&w=800&q=80",
+    videoPlaceholder: "/site-images/photo-1618219908412-a29a1bb7b86e.jpg",
     rutubeUrl: "https://rutube.ru/shorts/2d04537c0776bfd8ff9139b2a33d5858/",
     embedUrl: "https://rutube.ru/play/embed/2d04537c0776bfd8ff9139b2a33d5858/"
   },
@@ -547,7 +547,7 @@ export const reviewsList: ReviewItem[] = [
     project: "ЖК Хедлайнер",
     area: "110 м²",
     quote: "Впечатлило качество и комплектация под ключ — кухня-гостиная получилась невероятно изысканной и стильной! Дизайн-проектирование было очень дотошным и индивидуальным под наши привычки.",
-    videoPlaceholder: "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=800&q=80",
+    videoPlaceholder: "/site-images/photo-1513694203232-719a280e022f.avif",
     rutubeUrl: "https://rutube.ru/shorts/826ab7d36770560f7e2940c9a581c38e/",
     embedUrl: "https://rutube.ru/play/embed/826ab7d36770560f7e2940c9a581c38e/"
   },
@@ -557,7 +557,7 @@ export const reviewsList: ReviewItem[] = [
     project: "ЖК Тургенев",
     area: "210 м²",
     quote: "Уникальный элитный комплекс и соответствующая реализация от Mechty Group. Полная шумоизоляция, сложная автоматика кондиционирования, шпонированная мебель высокого ремесленного уровня.",
-    videoPlaceholder: "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=800&q=80",
+    videoPlaceholder: "/site-images/photo-1600566753190-17f0baa2a6c3.jpg",
     rutubeUrl: "https://rutube.ru/video/148258f63886f4d1032af39bfa452652/",
     embedUrl: "https://rutube.ru/play/embed/148258f63886f4d1032af39bfa452652/"
   }
@@ -568,24 +568,24 @@ export const trendsList: TrendItem[] = [
     id: "trend-1",
     title: "Монохромное погружение (Color Drenching)",
     description: "Покраска стен, плинтусов, дверей и потолков в один сложный, приглушенный природный тон для ощущения бесконечного, обволакивающего пространства.",
-    image: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=500&q=80"
+    image: "/site-images/photo-1600210492486-724fe5c67fb0.avif"
   },
   {
     id: "trend-2",
     title: "Тактильные природные фактуры",
     description: "Уход от плоского пластика. Использование дикого фактурного мрамора травертина, шпона грубой радиальной распиловки, брашированной латуни и натурального льна.",
-    image: "https://images.unsplash.com/photo-1613977257363-707ba9348227?auto=format&fit=crop&w=500&q=80"
+    image: "/site-images/photo-1613977257363-707ba9348227.jpg"
   },
   {
     id: "trend-3",
     title: "Мягкая скругленная геометрия",
     description: "Дизайн без острых углов. Скругленные углы стен, овальные кухонные острова, криволинейные диваны-полумесяцы в рамках полной комплектации по мебели и работы с премиальными брендами от Комплектации Мечты.",
-    image: "https://images.unsplash.com/photo-1618221381711-42ca8ab6e908?auto=format&fit=crop&w=500&q=80"
+    image: "/site-images/photo-1618221381711-42ca8ab6e908.jpg"
   },
   {
     id: "trend-4",
     title: "Сценарное скрытое освещение",
     description: "Отказ от одной люстры по центру комнаты. Интеграция диффузных магнитных световых треков, парящих линий плинтуса и щелевых контурных светильников.",
-    image: "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=500&q=80"
+    image: "/site-images/photo-1513694203232-719a280e022f.avif"
   }
 ];
