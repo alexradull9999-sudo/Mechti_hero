@@ -29,6 +29,78 @@ app.use((req, res, next) => {
   next();
 });
 
+// === Smart Image Sniffer & Cyrillic Solver Middleware ===
+// Automatically detects physical file content types (e.g. WebP files named as .jpg)
+// and handles Cyrillic request paths accurately to ensure no images are broken on Safari/iOS/Chrome.
+app.use((req, res, next) => {
+  if (req.method !== 'GET' && req.method !== 'HEAD') {
+    return next();
+  }
+
+  let urlPath = req.path;
+  try {
+    urlPath = decodeURIComponent(req.path);
+  } catch (e) {
+    // Keep raw path if decoding fails
+  }
+
+  // Skip API routes, Vite sources or source tree requests
+  if (urlPath.startsWith('/api') || urlPath.startsWith('/@') || urlPath.startsWith('/src')) {
+    return next();
+  }
+
+  const ext = path.extname(urlPath).toLowerCase();
+  const imageExtensions = ['.jpg', '.jpeg', '.png', '.avif', '.webp', '.svg'];
+
+  // Check if this request is aiming for a static folder
+  const isTargetFolder = urlPath.includes('/properties/') || 
+                         urlPath.includes('/portfolio/') || 
+                         urlPath.includes('/site/') || 
+                         urlPath.includes('/сайт/') ||
+                         urlPath.includes('/catalog/') ||
+                         urlPath.includes('/site-images/');
+
+  if (imageExtensions.includes(ext) || isTargetFolder) {
+    const parts = urlPath.split('/').filter(p => p !== '');
+    const publicPath = path.join(process.cwd(), 'public', ...parts);
+
+    if (fs.existsSync(publicPath) && fs.statSync(publicPath).isFile()) {
+      try {
+        // Read file header to determine the actual magic bytes
+        const fd = fs.openSync(publicPath, 'r');
+        const buf = Buffer.alloc(12);
+        fs.readSync(fd, buf, 0, 12, 0);
+        fs.closeSync(fd);
+
+        let detectedContentType = '';
+
+        if (buf[0] === 0xff && buf[1] === 0xd8) {
+          detectedContentType = 'image/jpeg';
+        } else if (buf[0] === 0x89 && buf[1] === 0x50 && buf[2] === 0x4e && buf[3] === 0x47) {
+          detectedContentType = 'image/png';
+        } else if (buf.slice(0, 4).toString('ascii') === 'RIFF' && buf.slice(8, 12).toString('ascii') === 'WEBP') {
+          detectedContentType = 'image/webp';
+        } else if (buf[0] === 0 && buf[1] === 0 && buf[2] === 0 && buf[3] === 0x20 && buf.slice(8, 12).toString('ascii') === 'avif') {
+          detectedContentType = 'image/avif';
+        } else if (buf[0] === 0 && buf[1] === 0 && buf[2] === 0 && (buf[3] === 0x18 || buf[3] === 0x20) && buf.slice(8, 12).toString('ascii') === 'ftyp') {
+          detectedContentType = 'image/avif';
+        } else if (ext === '.svg') {
+          detectedContentType = 'image/svg+xml';
+        }
+
+        if (detectedContentType) {
+          res.setHeader('Content-Type', detectedContentType);
+          res.setHeader('Cache-Control', 'public, max-age=86400');
+          return res.sendFile(publicPath);
+        }
+      } catch (err) {
+        console.error(`[sniff-middleware] Error reading file ${publicPath}:`, err);
+      }
+    }
+  }
+  next();
+});
+
 // === In-memory rate-limit (simple, without third-party libraries) ===
 const rateLimitMap = new Map<string, { count: number; resetAt: number }>();
 const RATE_LIMIT = 5;
