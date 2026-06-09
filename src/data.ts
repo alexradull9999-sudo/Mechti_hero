@@ -229,7 +229,7 @@ export const premiumProperties: PropertyItem[] = [
     "location": "Хамовники, Пречистенская набережная",
     "area": "538 м²",
     "price": "3 766 700 000 ₽",
-    "image": "/site/a-0820.avif",
+    "image": "/site/a-0820.jpg",
     "badge": "Пентхаус"
   },
   {
@@ -238,7 +238,7 @@ export const premiumProperties: PropertyItem[] = [
     "location": "Хамовники, Пречистенская набережная",
     "area": "286 м²",
     "price": "1 998 500 000 ₽",
-    "image": "/site/a-0817.avif",
+    "image": "/site/a-0817.jpg",
     "badge": "Пентхаус"
   },
   {
@@ -247,7 +247,7 @@ export const premiumProperties: PropertyItem[] = [
     "location": "Чистые Пруды, Костянский переулок",
     "area": "450 м²",
     "price": "1 450 000 000 ₽",
-    "image": "/site/a-1326.avif",
+    "image": "/site/a-1326.jpg",
     "badge": "Клубный дом"
   },
   {
@@ -256,7 +256,7 @@ export const premiumProperties: PropertyItem[] = [
     "location": "Золотая Миля, Бутиковский переулок",
     "area": "430 м²",
     "price": "944 000 000 ₽",
-    "image": "/site/a-0796.avif",
+    "image": "/site/a-0796.jpg",
     "badge": "Пентхаус"
   },
   {
@@ -265,7 +265,7 @@ export const premiumProperties: PropertyItem[] = [
     "location": "Хамовники, улица Ефремова",
     "area": "170 м²",
     "price": "600 000 000 ₽",
-    "image": "/site/a-0933.avif",
+    "image": "/site/a-0933.jpg",
     "badge": "Квартира"
   },
   {
@@ -274,7 +274,7 @@ export const premiumProperties: PropertyItem[] = [
     "location": "Хамовники, улица Ефремова",
     "area": "213 м²",
     "price": "600 000 000 ₽",
-    "image": "/site/a-0919.avif",
+    "image": "/site/a-0919.jpg",
     "badge": "Квартира"
   },
   {
@@ -283,7 +283,7 @@ export const premiumProperties: PropertyItem[] = [
     "location": "Хамовники, улица Ефремова",
     "area": "238.8 м²",
     "price": "573 000 000 ₽",
-    "image": "/site/a-0795.avif",
+    "image": "/site/a-0795.jpg",
     "badge": "Пентхаус"
   },
   {
@@ -292,7 +292,7 @@ export const premiumProperties: PropertyItem[] = [
     "location": "Якиманка, Софийская наб., 18",
     "area": "162.7 м²",
     "price": "495 000 000 ₽",
-    "image": "/site/a-1394.avif",
+    "image": "/site/a-1394.jpg",
     "badge": "Клубный дом"
   },
   {
@@ -301,7 +301,7 @@ export const premiumProperties: PropertyItem[] = [
     "location": "Раменки, Мосфильмовская улица",
     "area": "190.7 м²",
     "price": "450 000 000 ₽",
-    "image": "/site/a-0738.avif",
+    "image": "/site/a-0738.jpg",
     "badge": "Квартира"
   },
   {
@@ -310,7 +310,7 @@ export const premiumProperties: PropertyItem[] = [
     "location": "Хамовники, улица Льва Толстого",
     "area": "204 м²",
     "price": "450 000 000 ₽",
-    "image": "/site/a-1403.avif",
+    "image": "/site/a-1403.jpg",
     "badge": "Клубный дом"
   }
 ];
