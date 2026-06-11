@@ -203,7 +203,7 @@ export const portfolioCases: CaseItem[] = [
     ],
     plan: "/portfolio/headliner_schema.png"
   },
-  {
+/*  {
     id: "case-4",
     title: "Евро 4-комнатная в Краснодар-Сити",
     location: "Краснодар, ЖК «Краснодар-Сити»",
@@ -219,7 +219,7 @@ export const portfolioCases: CaseItem[] = [
       "/portfolio/krasnodar_city_3.png"
     ],
     plan: "/portfolio/krasnodar_city_plan.png"
-  }
+  }*/
 ];
 
 export const premiumProperties: PropertyItem[] = [
