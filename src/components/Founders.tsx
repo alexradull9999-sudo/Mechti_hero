@@ -35,6 +35,16 @@ export default function Founders({ onOpenConsultation }: FoundersProps) {
           </blockquote>
         </div>
 
+        {/* Founders Photo */}
+        <div className="max-w-lg mx-auto mb-16 px-4">
+          <img 
+            src="/about.jpg" 
+            alt="Юрий и Диана Постриганевы" 
+            className="w-full h-auto object-cover border border-[#B8956A]/20 shadow-md"
+            loading="lazy"
+          />
+        </div>
+
         <hr className="border-[#B8956A]/20 max-w-4xl mx-auto mb-16" />
 
         {/* Sub-details layout */}
