@@ -36,10 +36,10 @@ export default function StatsCounter({ onScrollToSection }: StatsCounterProps) {
   return (
     <section
       id="action-promos"
-      className="relative bg-[#0F0F0T] bg-[#0F0F0F] border-y brass-border py-12 md:py-16"
+      className="relative bg-[#E4DDD2] border-y brass-border py-12 md:py-16"
     >
       <div className="max-w-7xl mx-auto px-6 md:px-12">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-0 divide-y md:divide-y-0 md:divide-x divide-white/10 md:divide-[#B8956A]/20">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-0 divide-y md:divide-y-0 md:divide-x divide-black/10 md:divide-[#B8956A]/20">
           {items.map((item) => {
             const IconComponent = item.icon;
             return (
@@ -47,28 +47,28 @@ export default function StatsCounter({ onScrollToSection }: StatsCounterProps) {
                 key={item.id}
                 id={item.id}
                 onClick={() => onScrollToSection(item.section)}
-                className="group flex flex-col items-start text-left p-6 sm:p-8 lg:p-10 hover:bg-white/[0.02] active:bg-white/[0.04] transition-all duration-300 relative cursor-pointer w-full border-none focus:outline-none"
+                className="group flex flex-col items-start text-left p-6 sm:p-8 lg:p-10 hover:bg-black/[0.01] active:bg-black/[0.02] transition-all duration-300 relative cursor-pointer w-full border-none focus:outline-none"
               >
                 {/* Top indicator bar & item roman numeral */}
-                <div className="flex justify-between items-center w-full mb-6 text-[#8B8478]">
+                <div className="flex justify-between items-center w-full mb-6 text-[#3D3A34]">
                   <span className="font-serif text-xl italic tracking-wider group-hover:text-[#B8956A] transition-colors">
                     {item.num}
                   </span>
-                  <IconComponent size={20} className="text-[#8B8478]/40 group-hover:text-[#B8956A] transition-colors duration-300" />
+                  <IconComponent size={20} className="text-[#3D3A34]/50 group-hover:text-[#B8956A] transition-colors duration-300" />
                 </div>
 
                 {/* Button Title */}
-                <h3 className="font-serif text-2xl lg:text-3xl text-[#F5F1EA] font-light mb-4 tracking-wide group-hover:text-[#B8956A] transition-colors duration-300">
+                <h3 className="font-serif text-2xl lg:text-3xl text-[#121212] font-light mb-4 tracking-wide group-hover:text-[#B8956A] transition-colors duration-300">
                   {item.title}
                 </h3>
 
                 {/* Button Description */}
-                <p className="text-xs sm:text-sm text-[#C4BEB3] font-sans font-normal leading-relaxed mb-6 flex-grow max-w-sm">
+                <p className="text-base lg:text-sm text-[#3D3A34] font-sans font-semibold leading-relaxed mb-6 flex-grow max-w-sm">
                   {item.desc}
                 </p>
 
                 {/* Call-to-action bar */}
-                <div className="flex items-center gap-2 group-hover:gap-4 transition-all duration-300 text-xs uppercase tracking-[0.2em] font-sans font-bold text-[#B8956A]">
+                <div className="flex items-center gap-2 group-hover:gap-4 transition-all duration-300 text-sm md:text-xs uppercase tracking-[0.2em] font-sans font-bold text-[#B8956A]">
                   <span>Перейти</span>
                   <ArrowRight size={14} className="transform group-hover:translate-x-1 transition-transform" />
                 </div>

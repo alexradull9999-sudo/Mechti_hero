@@ -42,20 +42,20 @@ export default function ServicesGrid({ onScrollToSection }: ServicesGridProps) {
   ];
 
   return (
-    <section id="directions" className="bg-[#0F0F0F] pt-12 pb-24 md:pt-16 md:pb-36 relative border-b border-[#B8956A]/10">
+    <section id="directions" className="bg-[#F2EDE4] pt-12 pb-24 md:pt-16 md:pb-36 relative border-b border-[#B8956A]/10">
       <div className="max-w-7xl mx-auto px-6 md:px-12 mb-16 md:mb-24">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
           <div className="space-y-4">
             <span className="text-xs uppercase font-sans tracking-[0.3em] text-[#B8956A] block">
               МЫ ОБЪЕДИНЯЕМ ВСЕ СТАДИИ
             </span>
-            <h2 className="font-serif text-4xl md:text-7xl font-light text-[#F5F1EA]">
+            <h2 className="font-serif text-4xl md:text-7xl font-light text-[#121212]">
               Четыре направления <br />
               <span className="italic font-light text-[#B8956A]">экосистемы</span>
             </h2>
           </div>
           <div className="max-w-md">
-            <p className="text-sm md:text-base text-[#8B8478] font-sans font-light leading-relaxed">
+            <p className="text-sm md:text-base text-[#3D3A34] font-sans font-semibold leading-relaxed">
               Вы взаимодействуете с одной компанией и личным менеджером на каждом этапе. От подбора/строительства объекта до дизайна, ремонта, комплектации и передачи ключей.
             </p>
           </div>
@@ -69,19 +69,19 @@ export default function ServicesGrid({ onScrollToSection }: ServicesGridProps) {
             <div
               key={dir.id}
               onClick={() => onScrollToSection(dir.targetId)}
-              className="relative h-[450px] overflow-hidden group cursor-pointer border border-[#B8956A]/10 bg-[#1A1A1A]"
+              className="relative h-[450px] overflow-hidden group cursor-pointer border border-[#B8956A]/10 bg-white"
             >
               {/* Image with zoom element */}
-              <div className="absolute inset-0">
+              <div className="absolute inset-0 bg-[#0F0F0F]">
                 <img
                   src={dir.image}
                   alt={dir.title}
-                  className="w-full h-full object-cover opacity-35 group-hover:opacity-45 group-hover:scale-105 transition-all duration-[0.8s] ease-out"
+                  className="w-full h-full object-cover opacity-75 group-hover:opacity-85 group-hover:scale-105 transition-all duration-[0.8s] ease-out"
                   referrerPolicy="no-referrer"
                   loading="lazy"
                 />
-                {/* Visual shade grad */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0F0F0F] via-[#0F0F0F]/50 to-[#0F0F0F]/40" />
+                {/* Visual shade grad - dark at bottom for text contrast, fading out at top */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-black/10" />
               </div>
 
               {/* Card Label and Content */}
@@ -97,11 +97,11 @@ export default function ServicesGrid({ onScrollToSection }: ServicesGridProps) {
                     <h3 className="font-serif text-2xl md:text-3xl font-light text-[#F5F1EA]">
                       {dir.title}
                     </h3>
-                    <div className="w-10 h-10 border border-[#B8956A]/30 rounded-full flex items-center justify-center text-[#B8956A] group-hover:bg-[#B8956A] group-hover:text-[#0F0F0F] transition-all duration-300">
+                    <div className="w-10 h-10 border border-[#B8956A]/30 rounded-full flex items-center justify-center text-[#B8956A] group-hover:bg-[#B8956A] group-hover:text-white transition-all duration-300">
                       <ArrowUpRight size={16} />
                     </div>
                   </div>
-                  <p className="text-xs md:text-sm text-[#8B8478] font-sans font-light leading-relaxed max-w-sm">
+                  <p className="text-xs md:text-sm text-[#F5F1EA]/95 font-sans font-medium leading-relaxed max-w-sm">
                     {dir.description}
                   </p>
                 </div>

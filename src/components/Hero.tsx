@@ -10,7 +10,7 @@ export default function Hero({ onScrollToSection, onOpenConsultation }: HeroProp
   return (
     <section
       id="hero"
-      className="relative w-full min-h-screen pt-24 flex flex-col justify-between bg-[#0F0F0F] border-b brass-border"
+      className="relative w-full min-h-screen pt-24 flex flex-col justify-between bg-[#FAF8F5] border-b brass-border"
     >
       <div className="flex-grow flex flex-col lg:flex-row w-full h-full">
         {/* Left Content column: 50% on desktop, full on mobile */}
@@ -18,19 +18,19 @@ export default function Hero({ onScrollToSection, onOpenConsultation }: HeroProp
           <div className="max-w-xl mx-auto lg:mx-0 xl:pl-12">
             <div className="mb-6 flex items-center gap-4">
               <div className="w-12 h-[1px] bg-[#B8956A]"></div>
-              <span className="text-xs md:text-sm uppercase tracking-[0.3em] text-[#C4BEB3] font-semibold flex flex-wrap items-center gap-x-1.5 gap-y-1 align-middle">
+              <span className="text-xs md:text-sm uppercase tracking-[0.3em] text-[#6E6A62] font-semibold flex flex-wrap items-center gap-x-1.5 gap-y-1 align-middle">
                 <Sparkles size={12} className="animate-pulse text-[#B8956A]" />
                 <span>Бизнес · Премиум · De Luxe · </span>
                 <span className="whitespace-nowrap">с 2009 года</span>
               </span>
             </div>
             
-            <h1 className="text-4xl sm:text-6xl md:text-[76px] xl:text-[88px] font-serif leading-[1.0] sm:leading-[0.95] font-light mb-8 text-[#F5F1EA]">
+            <h1 className="text-4xl sm:text-6xl md:text-[76px] xl:text-[88px] font-serif leading-[1.0] sm:leading-[0.95] font-light mb-8 text-[#1A1A1A]">
               Всё начинается<br/>
               <span className="italic text-[#B8956A] font-light">с Мечты</span>
             </h1>
             
-            <p className="text-lg md:text-2xl font-light text-[#EDE6D8] max-w-lg leading-relaxed mb-10 font-sans">
+            <p className="text-lg md:text-2xl font-light text-[#2E2B2A] max-w-lg leading-relaxed mb-10 font-sans">
               Находим квартиру, делаем ремонт, полностью обставляем — вы получаете готовый дом. Один договор, один менеджер, ноль хаоса.
             </p>
             
@@ -38,17 +38,17 @@ export default function Hero({ onScrollToSection, onOpenConsultation }: HeroProp
               <div className="flex flex-col w-full sm:w-auto">
                 <button
                   onClick={() => onScrollToSection('calculator')}
-                  className="bg-brass text-[#0F0F0F] px-8 py-4 text-sm uppercase tracking-[0.2em] font-sans font-bold hover:bg-[#8B6F4E] transition-all transform active:scale-97 cursor-pointer text-center w-full"
+                  className="bg-brass text-white px-8 py-4 text-sm uppercase tracking-[0.2em] font-sans font-bold hover:bg-[#8B6F4E] transition-all transform active:scale-97 cursor-pointer text-center w-full"
                 >
                   Рассчитать стоимость
                 </button>
-                <div className="text-[12px] text-[#8B8478] italic mt-3 select-none text-left pl-1">
+                <div className="text-[12px] text-[#6E6A62] italic mt-3 select-none text-left pl-1">
                   Квартира 100 м² под ключ — от 29 млн ₽. Узнайте точнее за 2 минуты →
                 </div>
               </div>
               <button
                 onClick={onOpenConsultation}
-                className="border brass-border px-8 py-4 text-sm uppercase tracking-[0.2em] font-sans font-medium hover:bg-white/5 transition-all transform active:scale-97 cursor-pointer text-center w-full sm:w-auto"
+                className="border brass-border text-[#1A1A1A] px-8 py-4 text-sm uppercase tracking-[0.2em] font-sans font-medium hover:bg-black/5 transition-all transform active:scale-97 cursor-pointer text-center w-full sm:w-auto"
               >
                 Записаться на встречу
               </button>
@@ -57,24 +57,24 @@ export default function Hero({ onScrollToSection, onOpenConsultation }: HeroProp
         </div>
 
         {/* Contact Actions or Right Visual block column: 50% on desktop, fallback image height on mobile */}
-        <div className="w-full lg:w-1/2 min-h-[350px] lg:min-h-0 relative bg-[#1A1A1A] flex-grow">
+        <div className="w-full lg:w-1/2 min-h-[350px] lg:min-h-0 relative bg-[#F2EDE4] flex-grow">
           <div
-            className="absolute inset-0 bg-cover bg-center opacity-70"
+            className="absolute inset-0 bg-cover bg-center opacity-100"
             style={{
               backgroundImage: `url('/hero.jpg')`,
             }}
           />
-          <div className="absolute inset-0 bg-gradient-to-t lg:bg-gradient-to-r from-[#0F0F0F] via-transparent to-transparent opacity-45" />
+          <div className="absolute inset-0 bg-gradient-to-t lg:bg-gradient-to-r from-[#F2EDE4] via-transparent to-transparent opacity-30" />
           
           {/* Floating Sticker tag overlay */}
-          <div className="absolute bottom-8 right-6 left-6 sm:left-auto sm:right-12 sm:max-w-[320px] lg:left-[-80px] lg:bottom-16 bg-[#0F0F0F]/95 p-6 lg:p-8 border brass-border shadow-2xl z-20">
+          <div className="absolute bottom-8 right-6 left-6 sm:left-auto sm:right-12 sm:max-w-[320px] lg:left-[-80px] lg:bottom-16 bg-white/95 p-6 lg:p-8 border brass-border shadow-2xl z-20">
             <p className="text-xs uppercase tracking-[0.2em] accent-text mb-3 font-semibold font-sans">
               Флагманский продукт
             </p>
-            <p className="text-lg md:text-xl font-serif italic mb-2 leading-tight text-[#F5F1EA]">
+            <p className="text-lg md:text-xl font-serif italic mb-2 leading-tight text-[#1A1A1A]">
               «Всё включено под тапочки»
             </p>
-            <p className="text-xs md:text-sm text-[#C4BEB3] font-sans font-normal leading-normal">
+            <p className="text-xs md:text-sm text-[#6E6A62] font-sans font-normal leading-normal">
               Дизайн, ремонт и комплектация мебели под ключ с гарантией на условиях договора.
             </p>
           </div>

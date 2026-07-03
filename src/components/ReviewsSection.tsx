@@ -13,19 +13,19 @@ export default function ReviewsSection({ onOpenConsultation }: ReviewsSectionPro
   const isShort = activeReviewInfo?.rutubeUrl?.includes('/shorts/') || false;
 
   return (
-    <section id="reviews" className="bg-[#F5F1EA] text-[#1A1A1A] py-24 md:py-36 border-b border-[#1A1A1A]/5">
+    <section id="reviews" className="bg-[#F2EDE4] text-[#121212] py-24 md:py-36 border-b border-[#1A1A1A]/5">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16 md:mb-24 space-y-4">
-          <span className="text-xs uppercase font-sans tracking-[0.3em] text-[#B8956A] block">
+          <span className="text-xs uppercase font-sans tracking-[0.3em] text-[#B8956A] block font-bold">
             РЕПУТАЦИЯ И ДОВЕРИЕ
           </span>
-          <h2 className="font-serif text-4xl md:text-6xl font-light">
+          <h2 className="font-serif text-4xl md:text-6xl font-light text-[#121212]">
             Что говорят <span className="italic text-[#8B6F4E] font-light">наши клиенты</span>
           </h2>
           <div className="h-[1px] w-20 bg-[#B8956A]/40 mx-auto mt-4" />
-          <p className="text-base md:text-lg text-[#1A1A1A]/75 font-sans font-light leading-relaxed">
+          <p className="text-base md:text-lg text-[#3D3A34] font-sans font-semibold leading-relaxed">
             Каждое новоселье — это праздник и подтвержденный результат премиального качества Mechty Group. Посмотрите видеообзоры непосредственно из готовых резиденций.
           </p>
         </div>
@@ -53,7 +53,7 @@ export default function ReviewsSection({ onOpenConsultation }: ReviewsSectionPro
                 <img
                   src={rev.videoPlaceholder}
                   alt={`${rev.name} - Видеоотзыв`}
-                  className="absolute inset-0 w-full h-full object-cover grayscale opacity-60 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-[1s] ease-out select-none"
+                  className="absolute inset-0 w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-[0.8s] ease-out select-none"
                   referrerPolicy="no-referrer"
                   loading="lazy"
                 />
@@ -110,7 +110,7 @@ export default function ReviewsSection({ onOpenConsultation }: ReviewsSectionPro
         </div>
 
         {/* Ending disclaimer */}
-        <div className="mt-16 text-center text-xs text-[#1A1A1A]/55 font-mono uppercase tracking-widest">
+        <div className="mt-16 text-center text-xs text-[#3D3A34] font-mono font-bold uppercase tracking-widest">
           Все видеообзоры записаны на завершенных объектах Mechty Group в высоком разрешении.
         </div>
 

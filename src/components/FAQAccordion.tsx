@@ -14,7 +14,7 @@ export default function FAQAccordion() {
   };
 
   return (
-    <section id="faq" className="bg-[#F5F1EA] text-[#1A1A1A] py-24 md:py-36 border-b border-[#1A1A1A]/5">
+    <section id="faq" className="bg-[#F2EDE4] text-[#121212] py-24 md:py-36 border-b border-[#1A1A1A]/5">
       <div className="max-w-4xl mx-auto px-6 md:px-12">
         
         {/* Header Title */}
@@ -22,7 +22,7 @@ export default function FAQAccordion() {
           <span className="text-xs uppercase font-sans tracking-[0.2em] text-[#B8956A] font-bold block">
             FAQ
           </span>
-          <h2 className="font-serif text-4xl md:text-6xl font-normal tracking-tight text-[#1A1A1A]">
+          <h2 className="font-serif text-4xl md:text-6xl font-normal tracking-tight text-[#121212]">
             Ответы на ваши вопросы <br />
             <span className="italic text-[#8B6F4E] font-light text-3xl md:text-4xl block mt-2">Детали, зазоры, гарантийные соглашения</span>
           </h2>
@@ -36,7 +36,7 @@ export default function FAQAccordion() {
             return (
               <div
                 key={item.id}
-                className="bg-[#EDE6D8]/50 border border-[#1A1A1A]/10 transition-all duration-300 overflow-hidden"
+                className="bg-white/60 border border-[#1A1A1A]/10 transition-all duration-300 overflow-hidden shadow-sm"
               >
                 {/* Header clickable button */}
                 <button
@@ -45,7 +45,7 @@ export default function FAQAccordion() {
                 >
                   <div className="flex gap-3 items-center">
                     <HelpCircle size={16} className="text-[#8B6F4E] shrink-0 hidden sm:block" />
-                    <span className="font-serif text-lg md:text-xl text-[#1A1A1A] font-light leading-snug">
+                    <span className="font-serif text-lg md:text-xl text-[#121212] font-semibold leading-snug">
                       {item.question}
                     </span>
                   </div>
@@ -63,9 +63,9 @@ export default function FAQAccordion() {
                     isOpen ? 'max-h-[600px] opacity-100 border-t border-[#1A1A1A]/10' : 'max-h-0 opacity-0'
                   }`}
                 >
-                  <div className="p-6 md:p-8 text-xs md:text-sm text-[#8B8478] font-sans font-light leading-relaxed space-y-3">
+                  <div className="p-6 md:p-8 text-xs md:text-sm text-[#3D3A34] font-sans font-semibold leading-relaxed space-y-3">
                     <p>{item.answer}</p>
-                    <div className="text-[10px] font-mono uppercase tracking-widest text-[#B8956A] text-right pt-2">
+                    <div className="text-[10px] font-mono uppercase tracking-widest text-[#B8956A] text-right pt-2 font-bold">
                       Единый стандарт — Группа компаний „Всё начинается с Мечты“
                     </div>
                   </div>

@@ -595,6 +595,8 @@ export default function LuxuryCalculator({ onOpenConsultation }: LuxuryCalculato
     house_kitchen: true,
   });
 
+  const [hasInteracted, setHasInteracted] = useState<boolean>(false);
+
   const [expandedSections, setExpandedSections] = useState<Record<string, boolean>>({
     'sec-design': true,
     'sec-construction': true,
@@ -655,6 +657,7 @@ export default function LuxuryCalculator({ onOpenConsultation }: LuxuryCalculato
 
   const handleSwitchToPodTapochki = () => {
     setFormat('podTapochki');
+    setHasInteracted(true);
     const element = document.getElementById('calculator');
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
@@ -663,6 +666,7 @@ export default function LuxuryCalculator({ onOpenConsultation }: LuxuryCalculato
 
   const handleSwitchToPoChastyam = () => {
     setFormat('poChastyam');
+    setHasInteracted(true);
     setTimeout(() => {
       const element = document.getElementById('constructor-steps') || document.getElementById('sec-design') || document.getElementById('sec-arch');
       if (element) {
@@ -673,6 +677,7 @@ export default function LuxuryCalculator({ onOpenConsultation }: LuxuryCalculato
 
   const handleToggleCategory = (key: CategoryKey) => {
     if (format !== 'poChastyam') return;
+    setHasInteracted(true);
     setSelectedCategories(prev => ({
       ...prev,
       [key]: !prev[key]
@@ -681,6 +686,7 @@ export default function LuxuryCalculator({ onOpenConsultation }: LuxuryCalculato
 
   const handleSelectAllInSection = (secId: string, value: boolean) => {
     if (format !== 'poChastyam') return;
+    setHasInteracted(true);
     const section = SECTIONS.find(s => s.id === secId);
     if (!section) return;
     setSelectedCategories(prev => {
@@ -781,10 +787,10 @@ export default function LuxuryCalculator({ onOpenConsultation }: LuxuryCalculato
   };
 
   return (
-    <section id="calculator" className="bg-[#1A1A1A] text-[#F5F1EA] py-24 md:py-36 relative overflow-clip border-b border-[#B8956A]/20 pb-32 md:pb-36">
+    <section id="calculator" className="bg-[#F2EDE4] text-[#121212] py-24 md:py-36 relative overflow-clip border-b border-[#B8956A]/20 pb-32 md:pb-36">
       {/* Background radial glows */}
-      <div className="absolute top-1/4 left-0 w-96 h-96 bg-[#B8956A]/5 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-1/4 right-0 w-96 h-96 bg-[#B8956A]/5 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-1/4 left-0 w-96 h-96 bg-[#B8956A]/3 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-1/4 right-0 w-96 h-96 bg-[#B8956A]/3 rounded-full blur-3xl pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
         
@@ -793,35 +799,41 @@ export default function LuxuryCalculator({ onOpenConsultation }: LuxuryCalculato
           <span className="text-xs sm:text-sm uppercase font-sans tracking-[0.3em] text-[#B8956A] block font-bold">
             ПРОЗРАЧНЫЙ БЮДЖЕТ ДО СТАРТА
           </span>
-          <h2 className="font-serif text-4xl md:text-6xl font-light">
+          <h2 className="font-serif text-4xl md:text-6xl font-light text-[#121212]">
             Калькулятор стоимости <span className="italic text-[#B8956A] font-light">проекта</span>
           </h2>
           <div className="h-[1px] w-24 bg-[#B8956A]/40 mx-auto mt-4" />
-          <p className="text-lg md:text-xl text-[#C4BEB3] font-sans font-light leading-relaxed">
+          <p className="text-lg md:text-xl text-[#3D3A34] font-sans font-semibold leading-relaxed">
             Цена фиксируется в договоре и может быть изменена по соглашению сторон с учётом изменения объёмов или материалов.
           </p>
         </div>
 
         {/* Type selector (Квартира / Загородный дом) */}
         <div className="flex justify-center mb-16">
-          <div className="inline-flex rounded-full bg-[#0F0F0F] p-1.5 border border-[#B8956A]/20">
+          <div className="inline-flex rounded-full bg-white/60 p-1.5 border border-[#B8956A]/30 shadow-sm">
             <button
-              onClick={() => setPropertyType('apartment')}
+              onClick={() => {
+                setPropertyType('apartment');
+                setHasInteracted(true);
+              }}
               className={`rounded-full px-8 py-3.5 text-xs sm:text-sm uppercase tracking-widest font-sans font-bold flex items-center gap-2 transition-all duration-300 cursor-pointer ${
                 propertyType === 'apartment'
-                  ? 'bg-[#B8956A] text-[#0F0F0F]'
-                  : 'text-[#C4BEB3] hover:text-[#F5F1EA] bg-transparent'
+                  ? 'bg-[#B8956A] text-white shadow-md'
+                  : 'text-[#3D3A34] hover:text-[#121212] bg-transparent'
               }`}
             >
               <Building size={16} />
               Квартира
             </button>
             <button
-              onClick={() => setPropertyType('house')}
+              onClick={() => {
+                setPropertyType('house');
+                setHasInteracted(true);
+              }}
               className={`rounded-full px-8 py-3.5 text-xs sm:text-sm uppercase tracking-widest font-sans font-bold flex items-center gap-2 transition-all duration-300 cursor-pointer ${
                 propertyType === 'house'
-                  ? 'bg-[#B8956A] text-[#0F0F0F]'
-                  : 'text-[#C4BEB3] hover:text-[#F5F1EA] bg-transparent'
+                  ? 'bg-[#B8956A] text-white shadow-md'
+                  : 'text-[#3D3A34] hover:text-[#121212] bg-transparent'
               }`}
             >
               <Home size={16} />
@@ -837,13 +849,13 @@ export default function LuxuryCalculator({ onOpenConsultation }: LuxuryCalculato
           <div className="md:col-span-8 lg:col-span-7 space-y-12">
             
             {/* STEP 1: Area Range Slider */}
-            <div className="bg-[#0F0F0F] p-6 md:p-8 border border-[#B8956A]/10">
+            <div className="bg-white/80 p-6 md:p-8 border border-[#B8956A]/25 shadow-sm">
               <div className="flex flex-col sm:flex-row items-start sm:items-baseline justify-between gap-4 mb-6">
-                <span className="text-sm sm:text-base uppercase tracking-widest font-sans font-bold text-[#C4BEB3]">
+                <span className="text-sm sm:text-base uppercase tracking-widest font-sans font-bold text-[#121212]">
                   Шаг 1 · Площадь {propertyType === 'house' ? 'вашего дома' : 'вашей квартиры'}
                 </span>
                 <span className="font-serif text-6xl md:text-8xl text-[#B8956A] font-light leading-none">
-                  {area} <span className="text-xl uppercase tracking-wider font-sans ml-1 text-[#F5F1EA]">м²</span>
+                  {area} <span className="text-xl uppercase tracking-wider font-sans ml-1 text-[#121212]">м²</span>
                 </span>
               </div>
               
@@ -854,13 +866,16 @@ export default function LuxuryCalculator({ onOpenConsultation }: LuxuryCalculato
                   max={propertyType === 'house' ? '1200' : '500'}
                   step="5"
                   value={area}
-                  onChange={(e) => setArea(Number(e.target.value))}
+                  onChange={(e) => {
+                    setArea(Number(e.target.value));
+                    setHasInteracted(true);
+                  }}
                   className="w-full h-[4px] bg-[#B8956A]/20 rounded-lg appearance-none cursor-pointer accent-[#B8956A]"
                   style={{
                     background: `linear-gradient(to right, #B8956A 0%, #B8956A ${((area - (propertyType === 'house' ? 100 : 50)) / (propertyType === 'house' ? 1100 : 450)) * 100}%, rgba(184, 149, 106, 0.2) ${((area - (propertyType === 'house' ? 100 : 50)) / (propertyType === 'house' ? 1100 : 450)) * 100}%, rgba(184, 149, 106, 0.2) 100%)`
                   }}
                 />
-                <div className="flex justify-between text-xs sm:text-sm font-mono text-[#C4BEB3] font-bold mt-4 shrink-0">
+                <div className="flex justify-between text-xs sm:text-sm font-mono text-[#121212] font-bold mt-4 shrink-0">
                   {propertyType === 'house' ? (
                     <>
                       <span>100 м²</span>
@@ -879,7 +894,7 @@ export default function LuxuryCalculator({ onOpenConsultation }: LuxuryCalculato
                     </>
                   )}
                 </div>
-                <p className="text-xs sm:text-sm italic text-[#9B9488] mt-3">
+                <p className="text-xs sm:text-sm italic text-[#3D3A34] font-semibold mt-3">
                   Для объектов площадью менее {propertyType === 'house' ? '100' : '50'} м² расчёт стоимости производится индивидуально.
                 </p>
               </div>
@@ -887,7 +902,7 @@ export default function LuxuryCalculator({ onOpenConsultation }: LuxuryCalculato
 
             {/* STEP 2: Service Formats Comparison */}
             <div className="space-y-4">
-              <span className="text-xs sm:text-sm uppercase tracking-widest font-sans font-bold text-[#C4BEB3] block">
+              <span className="text-xs sm:text-sm uppercase tracking-widest font-sans font-bold text-[#121212] block">
                 Шаг 2 · Формат сотрудничества
               </span>
               
@@ -895,8 +910,11 @@ export default function LuxuryCalculator({ onOpenConsultation }: LuxuryCalculato
                 
                 {/* Format Card A: "Vse Vklucheno" */}
                 <div
-                  onClick={() => setFormat('podTapochki')}
-                  className={`bg-[#0F0F0F] p-6 md:p-8 border cursor-pointer relative flex flex-col justify-between transition-all duration-300 min-h-[420px] ${
+                  onClick={() => {
+                    setFormat('podTapochki');
+                    setHasInteracted(true);
+                  }}
+                  className={`bg-white p-6 md:p-8 border cursor-pointer relative flex flex-col justify-between transition-all duration-300 min-h-[420px] ${
                     format === 'podTapochki'
                       ? 'border-[#B8956A] shadow-lg shadow-[#B8956A]/5'
                       : 'border-[#B8956A]/10 hover:border-[#B8956A]/40'
@@ -907,22 +925,22 @@ export default function LuxuryCalculator({ onOpenConsultation }: LuxuryCalculato
                       <span className="text-xs uppercase font-mono tracking-widest text-[#B8956A] font-extrabold block leading-none">
                         Вариант под ключ
                       </span>
-                      <div className="bg-[#B8956A] text-[#0F0F0F] text-[10px] sm:text-xs uppercase tracking-widest font-extrabold px-2.5 py-1 whitespace-nowrap leading-none">
+                      <div className="bg-[#B8956A] text-white text-[10px] sm:text-xs uppercase tracking-widest font-extrabold px-2.5 py-1 whitespace-nowrap leading-none">
                         Рекомендуем
                       </div>
                     </div>
-                    <h3 className="font-serif text-xl sm:text-2xl text-[#F5F1EA] font-light min-h-[56px] flex items-center">
+                    <h3 className="font-serif text-xl sm:text-2xl text-[#121212] font-semibold min-h-[56px] flex items-center">
                       ВСЁ ВКЛЮЧЕНО «ПОД ТАПОЧКИ»
                     </h3>
                     
                     <div className="py-1">
-                      <span className="text-xs font-mono text-[#8B8478] block">Цена за м²:</span>
+                      <span className="text-xs font-mono text-[#3D3A34] font-bold block">Цена за м²:</span>
                       <span className="text-2xl sm:text-3xl font-serif text-[#B8956A] font-bold">
                         {propertyType === 'house' ? '450 000 ₽ / м²' : '350 000 ₽ / м²'}
                       </span>
                     </div>
 
-                    <p className="text-xs sm:text-sm text-[#C4BEB3] leading-relaxed">
+                    <p className="text-xs sm:text-sm text-[#3D3A34] font-semibold leading-relaxed">
                       {propertyType === 'house'
                         ? "Индивидуальный проект + возведение коробки + фасад + забор по периметру + ландшафт с автополивом + котельная и коммуникации + премиальная отделка, дизайнерский свет и меблировка под ключ."
                         : "Дизайн + Ремонт + Инженерия + Сантехника + Кухня + Мебель + Техника + Текстиль + Декор + Клининг."
@@ -948,10 +966,10 @@ export default function LuxuryCalculator({ onOpenConsultation }: LuxuryCalculato
                             'Текстильный дизайн и декорирование',
                           ]
                       ).map((name, i) => (
-                        <div key={i} className="flex items-start gap-2.5 text-[11px] sm:text-xs text-[#C4BEB3]">
+                        <div key={i} className="flex items-start gap-2.5 text-[11px] sm:text-xs text-[#121212] font-semibold">
                           <Check size={12} className="text-[#B8956A] shrink-0 mt-0.5" />
                           <span className="leading-normal">
-                            {name} — <span className="text-[#B8956A]/80 font-mono font-bold whitespace-nowrap font-sans font-medium">включено</span>
+                            {name} — <span className="text-[#B8956A] font-mono font-bold whitespace-nowrap">включено</span>
                           </span>
                         </div>
                       ))}
@@ -959,7 +977,7 @@ export default function LuxuryCalculator({ onOpenConsultation }: LuxuryCalculato
                   </div>
 
                   <div className="border-t border-[#B8956A]/15 pt-4 mt-4">
-                    <p className="text-[10px] sm:text-xs font-sans text-[#8B8478] leading-normal font-medium">
+                    <p className="text-[10px] sm:text-xs font-sans text-[#121212] leading-normal font-extrabold">
                       Один договор. Фиксированная цена. Защита от подорожания. Гарантия 5 лет.
                     </p>
                   </div>
@@ -968,7 +986,7 @@ export default function LuxuryCalculator({ onOpenConsultation }: LuxuryCalculato
                 {/* Format Card B: Customized "Po Chastyam" */}
                 <div
                   onClick={handleSwitchToPoChastyam}
-                  className={`bg-[#0F0F0F] p-6 md:p-8 border cursor-pointer relative flex flex-col justify-between transition-all duration-300 min-h-[420px] ${
+                  className={`bg-white p-6 md:p-8 border cursor-pointer relative flex flex-col justify-between transition-all duration-300 min-h-[420px] ${
                     format === 'poChastyam'
                       ? 'border-[#B8956A] shadow-lg shadow-[#B8956A]/5'
                       : 'border-[#B8956A]/10 hover:border-[#B8956A]/40'
@@ -976,15 +994,15 @@ export default function LuxuryCalculator({ onOpenConsultation }: LuxuryCalculato
                 >
                   <div className="space-y-4">
                     <div className="flex flex-row items-center justify-between gap-2 flex-wrap sm:flex-nowrap h-7">
-                      <span className="text-xs uppercase font-mono tracking-widest text-[#C4BEB3] font-bold block leading-none">
+                      <span className="text-xs uppercase font-mono tracking-widest text-[#121212] font-extrabold block leading-none">
                         Конструктор проекта
                       </span>
                     </div>
-                    <h3 className="font-serif text-xl sm:text-2xl text-[#F5F1EA] font-light min-h-[56px] flex items-center">
+                    <h3 className="font-serif text-xl sm:text-2xl text-[#121212] font-semibold min-h-[56px] flex items-center">
                       СОБРАТЬ ПО ЧАСТЯМ
                     </h3>
                     
-                    <p className="text-xs sm:text-sm text-[#C4BEB3] leading-relaxed min-h-[40px]">
+                    <p className="text-xs sm:text-sm text-[#3D3A34] font-semibold leading-relaxed min-h-[40px]">
                       {totalSelectedCount === 0 && 'Выберите услуги, которые вам необходимы'}
                       {totalSelectedCount >= 1 && totalSelectedCount <= (propertyType === 'house' ? 5 : 10) && 'Подходит, если вам необходима только часть работ'}
                       {totalSelectedCount > (propertyType === 'house' ? 5 : 10) && totalSelectedCount <= (propertyType === 'house' ? 10 : 22) && 'Частичная сборка. Сравните выгоду с полным тарифом'}
@@ -993,7 +1011,7 @@ export default function LuxuryCalculator({ onOpenConsultation }: LuxuryCalculato
                   </div>
 
                   <div className="border-t border-[#B8956A]/15 pt-4 mt-6">
-                    <p className="text-[10px] sm:text-xs font-sans text-[#8B8478] leading-normal font-medium">
+                    <p className="text-[10px] sm:text-xs font-sans text-[#121212] leading-normal font-extrabold">
                       Гибкие опции. Настройте конфигурацию по {propertyType === 'house' ? 15 : 30} разделам сметы под конкретные требования вашего объекта.
                     </p>
                   </div>
@@ -1015,20 +1033,20 @@ export default function LuxuryCalculator({ onOpenConsultation }: LuxuryCalculato
                 >
                   
                   {/* STEP 3: Categories by Sections */}
-                  <div className="space-y-6 pt-6 border-t border-[#B8956A]/10">
-                    <span className="text-sm sm:text-base uppercase tracking-widest font-sans font-bold text-[#C4BEB3] block">
+                  <div className="space-y-6 pt-6 border-t border-[#B8956A]/20">
+                    <span className="text-sm sm:text-base uppercase tracking-widest font-sans font-bold text-[#121212] block">
                       Шаг 3 · Категории проекта
                     </span>
                     
                     {!showFullMobileConfig && (
-                      <div className="md:hidden bg-[#121212] p-6 sm:p-8 border-2 border-[#B8956A]/40 text-center space-y-4 rounded-none">
-                        <p className="text-sm sm:text-base text-[#F5F1EA] font-sans font-medium leading-relaxed">
+                      <div className="md:hidden bg-white p-6 sm:p-8 border-2 border-[#B8956A]/40 text-center space-y-4 rounded-none">
+                        <p className="text-sm sm:text-base text-[#121212] font-sans font-bold leading-relaxed">
                           Все {propertyType === 'house' ? 15 : 30} разделов сметы сгруппированы для вашей площади. Вы можете открыть детальный ручной конфигуратор.
                         </p>
                         <button
                           type="button"
                           onClick={() => setShowFullMobileConfig(true)}
-                          className="w-full py-4 border-2 border-[#B8956A] text-[#B8956A] text-xs sm:text-sm uppercase tracking-widest font-extrabold transition-all hover:bg-[#B8956A] hover:text-[#0F0F0F] bg-transparent cursor-pointer block"
+                          className="w-full py-4 border-2 border-[#B8956A] text-[#B8956A] text-xs sm:text-sm uppercase tracking-widest font-extrabold transition-all hover:bg-[#B8956A] hover:text-white bg-transparent cursor-pointer block"
                         >
                           Открыть полный конфигуратор
                         </button>
@@ -1040,32 +1058,32 @@ export default function LuxuryCalculator({ onOpenConsultation }: LuxuryCalculato
                         const isExpanded = !!expandedSections[section.id];
                         const { total, active, cost } = getSectionActiveStats(section);
                         const sectionRatesSum = section.categories
-                          .filter(cat => selectedCategories[cat.key])
-                          .reduce((sum, cat) => sum + cat.rate, 0);
+                           .filter(cat => selectedCategories[cat.key])
+                           .reduce((sum, cat) => sum + cat.rate, 0);
 
                         return (
                           <div 
                             key={section.id} 
-                            className="border border-[#B8956A]/20 bg-[#0F0F0F] overflow-hidden transition-all duration-300"
+                            className="border border-[#B8956A]/25 bg-white/60 overflow-hidden transition-all duration-300"
                           >
                             {/* Header of Section */}
                             <div 
                               onClick={() => toggleSectionExpanded(section.id)}
-                              className="flex items-center justify-between p-4 sm:p-5 cursor-pointer bg-[#0A0A0A] hover:bg-[#121212] transition-colors"
+                              className="flex items-center justify-between p-4 sm:p-5 cursor-pointer bg-white hover:bg-white/90 transition-colors"
                             >
                               <div className="flex items-center gap-3">
-                                <span className="text-xs font-mono font-bold text-[#B8956A] border border-[#B8956A]/30 w-6 h-6 flex items-center justify-center">
+                                <span className="text-xs font-mono font-bold text-[#B8956A] border border-[#B8956A]/40 w-6 h-6 flex items-center justify-center">
                                   {section.num}
                                 </span>
-                                <h3 className="text-xs sm:text-sm uppercase font-sans tracking-widest font-bold text-[#F5F1EA] flex items-center gap-1">
+                                <h3 className="text-xs sm:text-sm uppercase font-sans tracking-widest font-bold text-[#121212] flex items-center gap-1">
                                   {section.title}
                                   {/* Tooltip Info icon */}
                                   <span onClick={(e) => e.stopPropagation()}>
                                     <div className="relative group/tooltip inline-block ml-2">
-                                      <Info size={12} className="text-[#B8956A]/70 hover:text-[#B8956A] cursor-pointer" />
-                                      <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-64 p-3 bg-[#0F0F0F] border border-[#B8956A]/30 text-[11px] text-[#C4BEB3] opacity-0 group-hover/tooltip:opacity-100 transition-opacity duration-200 pointer-events-none z-50 shadow-xl leading-relaxed text-left font-normal font-sans normal-case tracking-normal">
+                                      <Info size={12} className="text-[#B8956A]/80 hover:text-[#B8956A] cursor-pointer" />
+                                      <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-64 p-3 bg-white border border-[#B8956A]/40 text-[11px] text-[#121212] opacity-0 group-hover/tooltip:opacity-100 transition-opacity duration-200 pointer-events-none z-50 shadow-xl leading-relaxed text-left font-semibold font-sans normal-case tracking-normal">
                                         {section.tooltip}
-                                        <div className="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-[#0F0F0F]" />
+                                        <div className="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-white" />
                                       </div>
                                     </div>
                                   </span>
@@ -1078,15 +1096,15 @@ export default function LuxuryCalculator({ onOpenConsultation }: LuxuryCalculato
                                   <button
                                     type="button"
                                     onClick={() => handleSelectAllInSection(section.id, true)}
-                                    className="text-[9px] sm:text-[10px] uppercase tracking-wider text-[#B8956A]/60 hover:text-[#B8956A] transition-colors bg-transparent border-none cursor-pointer"
+                                    className="text-[9px] sm:text-[10px] uppercase tracking-wider text-[#B8956A] hover:text-[#121212] font-bold transition-colors bg-transparent border-none cursor-pointer"
                                   >
                                     Выбрать все
                                   </button>
-                                  <span className="text-[#B8956A]/30 text-xs text-light pointer-events-none">|</span>
+                                  <span className="text-[#B8956A]/40 text-xs text-light pointer-events-none">|</span>
                                   <button
                                     type="button"
                                     onClick={() => handleSelectAllInSection(section.id, false)}
-                                    className="text-[9px] sm:text-[10px] uppercase tracking-wider text-[#B8956A]/60 hover:text-[#B8956A] transition-colors bg-transparent border-none cursor-pointer"
+                                    className="text-[9px] sm:text-[10px] uppercase tracking-wider text-[#B8956A] hover:text-[#121212] font-bold transition-colors bg-transparent border-none cursor-pointer"
                                   >
                                     Снять все
                                   </button>
@@ -1096,7 +1114,7 @@ export default function LuxuryCalculator({ onOpenConsultation }: LuxuryCalculato
                                 <button 
                                   type="button"
                                   onClick={() => toggleSectionExpanded(section.id)}
-                                  className="text-[#B8956A] hover:text-[#F5F1EA] transition-colors p-1"
+                                  className="text-[#B8956A] hover:text-[#121212] transition-colors p-1"
                                 >
                                   <span className="font-mono text-base font-bold">
                                     {isExpanded ? '▼' : '▶'}
@@ -1115,9 +1133,9 @@ export default function LuxuryCalculator({ onOpenConsultation }: LuxuryCalculato
                                   transition={{ duration: 0.3 }}
                                   className="overflow-hidden"
                                 >
-                                  <div className="p-4 sm:p-5 border-t border-[#B8956A]/10 space-y-4">
+                                  <div className="p-4 sm:p-5 border-t border-[#B8956A]/20 space-y-4">
                                     {section.subtitle && (
-                                      <p className="text-[11px] text-[#C4BEB3]/80 italic font-sans leading-relaxed">
+                                      <p className="text-[11px] text-[#3D3A34] italic font-sans font-bold leading-relaxed">
                                         {section.subtitle}
                                       </p>
                                     )}
@@ -1131,8 +1149,8 @@ export default function LuxuryCalculator({ onOpenConsultation }: LuxuryCalculato
                                             onClick={() => handleToggleCategory(cat.key)}
                                             className={`p-3 border cursor-pointer transition-all duration-300 flex items-start gap-3.5 ${
                                               isChecked
-                                                ? 'bg-[#B8956A]/5 border-[#B8956A]/40'
-                                                : 'bg-[#050505] border-[#B8956A]/5 hover:border-[#B8956A]/15'
+                                                ? 'bg-[#B8956A]/10 border-[#B8956A]/60'
+                                                : 'bg-white border-[#B8956A]/20 hover:border-[#B8956A]/40'
                                             }`}
                                           >
                                             {/* Custom Checkbox */}
@@ -1140,7 +1158,7 @@ export default function LuxuryCalculator({ onOpenConsultation }: LuxuryCalculato
                                               <button
                                                 type="button"
                                                 onClick={() => handleToggleCategory(cat.key)}
-                                                className="flex items-center justify-center w-4 h-4 rounded-none border border-[#B8956A]/40 bg-[#0F0F0F] hover:border-[#B8956A] transition-colors"
+                                                className="flex items-center justify-center w-4 h-4 rounded-none border border-[#B8956A]/50 bg-white hover:border-[#B8956A] transition-colors"
                                               >
                                                 {isChecked && (
                                                   <Check size={11} className="text-[#B8956A] stroke-[3]" />
@@ -1150,14 +1168,14 @@ export default function LuxuryCalculator({ onOpenConsultation }: LuxuryCalculato
 
                                             <div className="space-y-1 flex-1">
                                               <div className="flex items-baseline justify-between gap-2">
-                                                <span className="text-xs sm:text-xs uppercase tracking-wider font-sans font-bold text-[#F5F1EA]">
+                                                <span className="text-xs sm:text-xs uppercase tracking-wider font-sans font-bold text-[#121212]">
                                                   {cat.title}
                                                 </span>
-                                                <span className="font-serif text-[13px] sm:text-[14px] text-[#B8956A] font-medium shrink-0">
+                                                <span className="font-serif text-[13px] sm:text-[14px] text-[#B8956A] font-bold shrink-0">
                                                   {cat.rate.toLocaleString('ru')} ₽/м²
                                                 </span>
                                               </div>
-                                              <p className="text-[11px] text-[#C4BEB3] leading-relaxed font-light">
+                                              <p className="text-[11px] text-[#3D3A34] leading-relaxed font-semibold">
                                                 {cat.description}
                                               </p>
                                             </div>
@@ -1167,9 +1185,9 @@ export default function LuxuryCalculator({ onOpenConsultation }: LuxuryCalculato
                                     </div>
 
                                     {/* Section subtotal rate line */}
-                                    <div className="text-[11px] text-[#8B8478] font-mono border-t border-[#B8956A]/10 pt-3 flex justify-between items-baseline mt-4">
+                                    <div className="text-[11px] text-[#121212] font-mono border-t border-[#B8956A]/25 pt-3 flex justify-between items-baseline mt-4 font-bold">
                                       <span>Подитог раздела:</span>
-                                      <span className="text-[#B8956A] font-bold">
+                                      <span className="text-[#B8956A] font-extrabold">
                                         {sectionRatesSum.toLocaleString('ru')} ₽/м²
                                       </span>
                                     </div>
@@ -1193,9 +1211,9 @@ export default function LuxuryCalculator({ onOpenConsultation }: LuxuryCalculato
           <div className="md:col-span-4 lg:col-span-5 md:sticky md:top-28 lg:top-32 self-start transition-all space-y-6">
             
             {/* Promo Banner Action */}
-            <div className="bg-[#0F0F0F] border-2 border-[#B8956A] p-6 sm:p-8 text-center relative rounded-none shadow-xl">
+            <div className="bg-white border-2 border-[#B8956A] p-6 sm:p-8 text-center relative rounded-none shadow-xl">
               <div className="absolute -top-3 left-1/2 -translate-x-1/2">
-                <span className="bg-[#B8956A] text-[#0F0F0F] text-[10px] uppercase font-sans font-extrabold px-3.5 py-1 tracking-[0.4em] whitespace-nowrap">
+                <span className="bg-[#B8956A] text-white text-[10px] uppercase font-sans font-extrabold px-3.5 py-1 tracking-[0.4em] whitespace-nowrap">
                   АКЦИЯ
                 </span>
               </div>
@@ -1203,11 +1221,11 @@ export default function LuxuryCalculator({ onOpenConsultation }: LuxuryCalculato
                 <h4 className="font-serif text-3xl sm:text-4xl text-[#B8956A] font-light uppercase tracking-wide leading-tight">
                   ДИЗАЙН-ПРОЕКТ В ПОДАРОК
                 </h4>
-                <p className="font-sans text-base sm:text-lg text-white">
+                <p className="font-sans text-base sm:text-lg text-[#121212] font-bold">
                   при заказе варианта „Под ключ“.
                 </p>
                 <div className="h-[1px] w-16 bg-[#B8956A]/20 mx-auto my-3" />
-                <p className="font-sans text-xs sm:text-sm text-[#8B8478] leading-relaxed">
+                <p className="font-sans text-xs sm:text-sm text-[#3D3A34] font-bold leading-relaxed">
                   {propertyType === 'house'
                     ? `Экономия от 2 850 000 ₽ на проекте ${area} м² — полный архитектурный консалтинг, фасадная и ландшафтная инженерия в подарок.`
                     : `Экономия от 1 125 000 ₽ на проекте ${area} м² — авторские решения на работы, мебель, технику и комплектацию в подарок.`
@@ -1216,7 +1234,7 @@ export default function LuxuryCalculator({ onOpenConsultation }: LuxuryCalculato
               </div>
             </div>
 
-            <div className="bg-[#0F0F0F] border border-[#B8956A] p-6 lg:p-8 space-y-6 shadow-xl relative">
+            <div className="bg-white border border-[#B8956A] p-6 lg:p-8 space-y-6 shadow-xl relative">
               
               {/* Header */}
               <div className="flex items-center justify-between border-b border-[#B8956A]/15 pb-4">
@@ -1227,30 +1245,43 @@ export default function LuxuryCalculator({ onOpenConsultation }: LuxuryCalculato
               </div>
 
               {/* Huge dynamic counter */}
-              <div className="space-y-2">
-                <span className="font-serif text-3xl sm:text-4xl lg:text-5xl xl:text-6xl text-[#B8956A] tracking-tight block font-light leading-none">
-                  <AnimatedPrice value={activeTotal} />
-                </span>
-                <span className="text-xs font-mono text-[#C4BEB3] uppercase tracking-wider block font-bold transition-opacity">
-                  {format === 'podTapochki'
-                    ? `${propertyType === 'house' ? '450 000' : '350 000'} ₽/м² × ${area} м²`
-                    : `${area} м² · ${totalSelectedCount === (propertyType === 'house' ? 15 : 30) ? 'все категории включены' : `категорий: ${totalSelectedCount} из ${propertyType === 'house' ? 15 : 30}`}`}
-                </span>
+              <div className="space-y-2 min-h-[90px] flex flex-col justify-center">
+                {!hasInteracted ? (
+                  <div className="space-y-2 py-1 animate-fadeIn">
+                    <span className="text-base sm:text-lg text-[#121212] font-sans font-bold block leading-snug">
+                      Укажите параметры слева для точного расчета
+                    </span>
+                    <span className="text-xs text-[#3D3A34] font-sans font-semibold block leading-relaxed">
+                      Итоговая смета сформируется автоматически после выбора площади и тарифа.
+                    </span>
+                  </div>
+                ) : (
+                  <div className="animate-fadeIn">
+                    <span className="font-serif text-3xl sm:text-4xl lg:text-5xl xl:text-6xl text-[#B8956A] tracking-tight block font-light leading-none">
+                      <AnimatedPrice value={activeTotal} />
+                    </span>
+                    <span className="text-xs font-mono text-[#121212] uppercase tracking-wider block font-bold transition-opacity mt-2">
+                      {format === 'podTapochki'
+                        ? `${propertyType === 'house' ? '450 000' : '350 000'} ₽/м² × ${area} м²`
+                        : `${area} м² · ${totalSelectedCount === (propertyType === 'house' ? 15 : 30) ? 'все категории включены' : `категорий: ${totalSelectedCount} из ${propertyType === 'house' ? 15 : 30}`}`}
+                    </span>
+                  </div>
+                )}
               </div>
 
               {/* Plaque "Вариант под ключ" in constructor */}
               {format === 'poChastyam' && (
-                <div className="border border-[#B8956A]/20 bg-[#1A1A1A] p-4.5 space-y-3">
+                <div className="border border-[#B8956A]/20 bg-[#F2EDE4] p-4.5 space-y-3">
                   <div className="flex items-center gap-2 text-[#B8956A]">
                     <Sparkles size={13} className="stroke-[1.5]" />
                     <span className="text-xs uppercase tracking-widest font-sans font-bold">Выгода решения под ключ</span>
                   </div>
-                  <p className="text-xs text-[#C4BEB3] leading-relaxed font-light">
+                  <p className="text-xs text-[#3D3A34] leading-relaxed font-semibold">
                     Если заказать те же категории по частям у разных подрядчиков — стоимость выше примерно на 1,5–2 млн ₽ из-за координации, переделок и потерь времени. Под ключ от Mechty — на 2,3 млн ₽ ниже Конструктора.
                   </p>
                   <button
                     onClick={handleSwitchToPodTapochki}
-                    className="w-full py-2 border border-[#B8956A]/30 hover:border-[#B8956A] text-[#B8956A] hover:text-[#0F0F0F] hover:bg-[#B8956A] text-[10px] uppercase tracking-wider font-sans font-bold transition-all duration-300 bg-transparent cursor-pointer"
+                    className="w-full py-2 border border-[#B8956A]/30 hover:border-[#B8956A] text-[#B8956A] hover:text-white hover:bg-[#B8956A] text-[10px] uppercase tracking-wider font-sans font-bold transition-all duration-300 bg-transparent cursor-pointer"
                   >
                     Посмотреть Вариант под ключ
                   </button>
@@ -1260,7 +1291,7 @@ export default function LuxuryCalculator({ onOpenConsultation }: LuxuryCalculato
               {/* Dynamic breakdown area switcher */}
               {format === 'podTapochki' ? (
                 /* Card Flagship Features list */
-                <div className="space-y-3 bg-[#1A1A1A] p-4.5 border border-[#B8956A]/10 text-xs sm:text-sm">
+                <div className="space-y-3 bg-[#F2EDE4] p-4.5 border border-[#B8956A]/10 text-xs sm:text-sm">
                   <span className="text-xs uppercase font-mono tracking-wider font-extrabold text-[#B8956A] block mb-2">
                     Что входит в стоимость:
                   </span>
@@ -1289,7 +1320,7 @@ export default function LuxuryCalculator({ onOpenConsultation }: LuxuryCalculato
                         "Сборка, монтаж, финальный клининг"
                       ]
                   ).map((chk, i) => (
-                    <div key={i} className="flex items-start gap-2.5 text-[#EDE6D8] font-medium leading-tight">
+                    <div key={i} className="flex items-start gap-2.5 text-[#121212] font-bold leading-tight">
                       <Check size={13} className="text-[#B8956A] shrink-0 mt-0.5" />
                       <span>{chk}</span>
                     </div>
@@ -1297,7 +1328,7 @@ export default function LuxuryCalculator({ onOpenConsultation }: LuxuryCalculato
                 </div>
               ) : (
                 /* Custom Construct parts listed */
-                <div className="space-y-4 bg-[#1A1A1A] p-5 border border-[#B8956A]/10 text-xs">
+                <div className="space-y-4 bg-[#F2EDE4] p-5 border border-[#B8956A]/10 text-xs">
                   <span className="text-xs uppercase font-mono tracking-wider font-extrabold text-[#B8956A] block mb-2">
                     СТАТЬИ РАСХОДОВ:
                   </span>
@@ -1308,13 +1339,13 @@ export default function LuxuryCalculator({ onOpenConsultation }: LuxuryCalculato
                       if (active === 0) return null;
                       return (
                         <div key={section.id} className="flex justify-between items-baseline py-1">
-                          <div className="flex items-baseline gap-1.5 text-[#C4BEB3]">
+                          <div className="flex items-baseline gap-1.5 text-[#121212] font-semibold">
                             <span className="truncate">{section.displayName}</span>
                             {active < total && (
-                              <span className="text-[10px] text-[#8B8478] font-mono">({active} из {total})</span>
+                              <span className="text-[10px] text-[#121212] font-bold">({active} из {total})</span>
                             )}
                           </div>
-                          <span className="font-mono text-[#F5F1EA] font-semibold tracking-tight shrink-0">
+                          <span className="font-mono text-[#121212] font-bold tracking-tight shrink-0">
                             {formatTextNumber(cost)}
                           </span>
                         </div>
@@ -1325,12 +1356,12 @@ export default function LuxuryCalculator({ onOpenConsultation }: LuxuryCalculato
                   {/* Agent accompaniment fee row Always appended in construction */}
                   <div className="pt-1">
                     <div className="flex justify-between items-center">
-                      <span className="text-[#C4BEB3] font-bold">Агентское сопровождение</span>
+                      <span className="text-[#121212] font-bold">Агентское сопровождение</span>
                       <span className="font-mono text-[#B8956A] font-extrabold tracking-tight">
                         {formatTextNumber(agentFee)}
                       </span>
                     </div>
-                    <p className="text-[10px] text-[#8B8478] leading-normal mt-1.5 font-light">
+                    <p className="text-[10px] text-[#3D3A34] leading-normal mt-1.5 font-bold">
                       Юридическое сопровождение, договор, контроль качества, выплаты подрядчикам, защита от подорожания — на условиях договора.
                     </p>
                   </div>
@@ -1338,19 +1369,19 @@ export default function LuxuryCalculator({ onOpenConsultation }: LuxuryCalculato
               )}
 
               {/* Pricing Footnote (Pravka 4) */}
-              <p className="text-[10px] italic text-[#8B8478] leading-relaxed mt-4 max-w-prose">
+              <p className="text-[10px] italic text-[#3D3A34] font-semibold leading-relaxed mt-4 max-w-prose">
                 Цена является ориентировочной и может быть изменена при детальном расчёте после замера, согласования объёмов работ и выбранных материалов.
               </p>
 
               {/* Additional Specs cards */}
               <div className="space-y-3 pt-2 border-t border-[#B8956A]/10">
-                <div className="flex items-center gap-3 text-xs sm:text-sm text-[#C4BEB3]">
+                <div className="flex items-center gap-3 text-xs sm:text-sm text-[#121212]">
                   <Calendar size={15} className="text-[#B8956A]" />
-                  <span className="font-semibold">Срок реализации: <strong className="text-[#F5F1EA]">{dynamicTerm}</strong></span>
+                  <span className="font-bold">Срок реализации: <strong className="text-[#121212] font-black">{dynamicTerm}</strong></span>
                 </div>
-                <div className="flex items-start gap-3 text-xs text-[#C4BEB3]">
+                <div className="flex items-start gap-3 text-xs text-[#121212]">
                   <Shield size={15} className="text-[#B8956A] shrink-0 mt-0.5" />
-                  <span className="font-semibold leading-tight">Защита от подорожания материалов и работ — на условиях, указанных в договоре.</span>
+                  <span className="font-bold leading-tight">Защита от подорожания материалов и работ — на условиях, указанных в договоре.</span>
                 </div>
               </div>
 
@@ -1358,7 +1389,7 @@ export default function LuxuryCalculator({ onOpenConsultation }: LuxuryCalculato
               <div className="space-y-3 pt-2">
                 <button
                   onClick={handleCTA}
-                  className="w-full py-4 bg-[#B8956A] hover:bg-[#8B6F4E] text-[#0F0F0F] text-xs uppercase tracking-widest font-sans font-bold transition-all duration-300 transform active:scale-98 text-center block cursor-pointer border-none"
+                  className="w-full py-4 bg-[#B8956A] hover:bg-[#8B6F4E] text-white text-xs uppercase tracking-widest font-sans font-bold transition-all duration-300 transform active:scale-98 text-center block cursor-pointer border-none"
                 >
                   Получить детальный расчет
                 </button>
@@ -1371,7 +1402,7 @@ export default function LuxuryCalculator({ onOpenConsultation }: LuxuryCalculato
                 <button
                   type="button"
                   onClick={() => setEmailModalOpen(true)}
-                  className="w-full text-center text-[12px] text-[#B8956A] hover:underline transition-all mt-3 bg-transparent border-none cursor-pointer block font-medium"
+                  className="w-full text-center text-[12px] text-[#B8956A] hover:underline transition-all mt-3 bg-transparent border-none cursor-pointer block font-extrabold"
                 >
                   📧 Сохранить расчёт и отправить себе на почту
                 </button>
@@ -1392,7 +1423,7 @@ export default function LuxuryCalculator({ onOpenConsultation }: LuxuryCalculato
                 const el = document.getElementById('portfolio');
                 if (el) el.scrollIntoView({ behavior: 'smooth' });
               }}
-              className="w-full py-6.5 px-8 bg-[#0F0F0F] hover:bg-[#B8956A] text-[#B8956A] hover:text-[#0F0F0F] text-sm sm:text-lg md:text-xl uppercase tracking-[0.25em] font-sans font-black transition-all duration-300 transform hover:scale-[1.01] active:scale-98 cursor-pointer border-none flex items-center justify-center gap-3.5 shadow-2xl"
+              className="w-full py-6.5 px-8 bg-white hover:bg-[#B8956A] text-[#B8956A] hover:text-white text-sm sm:text-lg md:text-xl uppercase tracking-[0.25em] font-sans font-black transition-all duration-300 transform hover:scale-[1.01] active:scale-98 cursor-pointer border-none flex items-center justify-center gap-3.5 shadow-2xl"
             >
               <LayoutGrid size={22} className="shrink-0" />
               <span>Посмотреть готовые объекты</span>
@@ -1404,49 +1435,59 @@ export default function LuxuryCalculator({ onOpenConsultation }: LuxuryCalculato
       </div>
 
       {/* MOBILE STICKY FOOTER PANEL (visible on mobile viewport under md breakpoint) */}
-      <div className="md:hidden fixed bottom-0 left-0 right-0 bg-[#0F0F0F]/95 backdrop-blur-md border-t border-[#B8956A]/30 z-50 p-4 flex items-center justify-between shadow-2xl">
-        <div>
-          <span className="text-[10px] font-mono uppercase text-[#8B8478] block">Итоговая смета:</span>
-          <span className="text-lg font-serif text-[#B8956A] font-bold">
-            <AnimatedPrice value={activeTotal} />
-          </span>
-        </div>
-        <button
-          onClick={handleCTA}
-          className="px-5 py-2.5 bg-[#B8956A] text-[#0F0F0F] text-xs font-bold uppercase tracking-wider rounded-none border-none cursor-pointer"
-        >
-          Получить расчет
-        </button>
-      </div>
+      <AnimatePresence>
+        {hasInteracted && (
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 50 }}
+            transition={{ type: 'spring', damping: 25, stiffness: 200 }}
+            className="md:hidden fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-md border-t border-[#B8956A]/30 z-50 p-4 flex items-center justify-between shadow-2xl"
+          >
+            <div>
+              <span className="text-[10px] font-mono uppercase text-[#121212] font-extrabold block">Итоговая смета:</span>
+              <span className="text-lg font-serif text-[#B8956A] font-bold">
+                <AnimatedPrice value={activeTotal} />
+              </span>
+            </div>
+            <button
+              onClick={handleCTA}
+              className="px-5 py-2.5 bg-[#B8956A] text-white text-xs font-bold uppercase tracking-wider rounded-none border-none cursor-pointer"
+            >
+              Получить расчет
+            </button>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       <AnimatePresence>
         {emailModalOpen && (
-          <div className="fixed inset-0 bg-[#0F0F0F]/85 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+          <div className="fixed inset-0 bg-[#1A1A1A]/70 backdrop-blur-sm flex items-center justify-center z-50 p-4">
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.95 }}
-              className="bg-[#1A1A1A] border-2 border-[#B8956A] p-6 sm:p-8 max-w-md w-full relative z-[100] shadow-2xl"
+              className="bg-white border-2 border-[#B8956A] p-6 sm:p-8 max-w-md w-full relative z-[100] shadow-2xl"
               onClick={(e) => e.stopPropagation()}
             >
               <button
                 type="button"
                 onClick={() => { setEmailModalOpen(false); setEmailSent(false); }}
-                className="absolute top-4 right-4 text-[#C4BEB3] hover:text-[#B8956A] text-lg font-mono bg-transparent border-none cursor-pointer"
+                className="absolute top-4 right-4 text-[#5E5A53] hover:text-[#B8956A] text-lg font-mono bg-transparent border-none cursor-pointer"
               >
                 ✕
               </button>
-              <h4 className="font-serif text-2xl text-[#F5F1EA] mb-4">📧 Сохранить расчёт</h4>
+              <h4 className="font-serif text-2xl text-[#1A1A1A] mb-4">📧 Сохранить расчёт</h4>
               {emailSent ? (
                 <div className="space-y-4 py-4 text-center">
                   <p className="text-[#B8956A] font-medium text-sm sm:text-base">Расчёт успешно отправлен!</p>
-                  <p className="text-xs text-[#C4BEB3] leading-relaxed">
-                    Мы продублировали детализированную спецификацию на адрес <strong className="text-white font-semibold">{email}</strong>.
+                  <p className="text-xs text-[#5E5A53] leading-relaxed">
+                    Мы продублировали детализированную спецификацию на адрес <strong className="text-[#1A1A1A] font-semibold">{email}</strong>.
                   </p>
                   <button
                     type="button"
                     onClick={() => { setEmailModalOpen(false); setEmailSent(false); }}
-                    className="mt-2 bg-[#B8956A] text-[#0F0F0F] px-8 py-2.5 text-xs uppercase tracking-wider font-bold hover:bg-[#8B6F4E] transition-all border-none cursor-pointer"
+                    className="mt-2 bg-[#B8956A] text-white px-8 py-2.5 text-xs uppercase tracking-wider font-bold hover:bg-[#8B6F4E] transition-all border-none cursor-pointer"
                   >
                     Закрыть
                   </button>
@@ -1465,23 +1506,23 @@ export default function LuxuryCalculator({ onOpenConsultation }: LuxuryCalculato
                   }}
                   className="space-y-4"
                 >
-                  <p className="text-xs text-[#C4BEB3] leading-relaxed">
+                  <p className="text-xs text-[#5E5A53] leading-relaxed">
                     Введите ваш адрес электронной почты. Мы вышлем вам полную спецификацию по {totalSelectedCount} статьям расходов для площади {area} м² со всеми тарифами и черновой подготовкой.
                   </p>
                   <div>
-                    <label className="text-[10px] uppercase tracking-wider text-[#8B8478] block mb-1 font-bold">Ваш Email</label>
+                    <label className="text-[10px] uppercase tracking-wider text-[#6E6A62] block mb-1 font-bold">Ваш Email</label>
                     <input
                       type="email"
                       required
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder="example@mail.ru"
-                      className="w-full bg-[#0F0F0F] border border-[#B8956A]/30 text-white p-3 text-sm focus:outline-none focus:border-[#B8956A] font-sans"
+                      className="w-full bg-[#FAF8F5] border border-[#B8956A]/30 text-[#1A1A1A] p-3 text-sm focus:outline-none focus:border-[#B8956A] font-sans"
                     />
                   </div>
                   <button
                     type="submit"
-                    className="w-full py-3 bg-[#B8956A] text-[#0F0F0F] text-xs uppercase tracking-wider font-bold hover:bg-[#8B6F4E] transition-all border-none cursor-pointer"
+                    className="w-full py-3 bg-[#B8956A] text-white text-xs uppercase tracking-wider font-bold hover:bg-[#8B6F4E] transition-all border-none cursor-pointer"
                   >
                     Отправить расчет
                   </button>

@@ -267,7 +267,7 @@ export default function App() {
   }
 
   return (
-    <div className="relative min-h-screen bg-[#0F0F0F] text-[#F5F1EA] overflow-clip selection:bg-[#B8956A]/30">
+    <div className="relative min-h-screen bg-[#F2EDE4] text-[#121212] overflow-clip selection:bg-[#B8956A]/30">
       
       {/* Premium custom mouse companion cursor */}
       {isCursorSupported && (
@@ -301,6 +301,8 @@ export default function App() {
         
         <USPComparison />
         
+        <PortfolioGrid onOpenConsultation={handleOpenConsultation} />
+        
         <ServicesGrid onScrollToSection={handleScrollToSection} />
         
         <LuxuryCalculator onOpenConsultation={handleOpenConsultation} />
@@ -328,8 +330,6 @@ export default function App() {
           onScrollToSection={handleScrollToSection} 
         />
         
-        <PortfolioGrid onOpenConsultation={handleOpenConsultation} />
-        
         <Founders 
           onOpenConsultation={handleOpenConsultation}
         />
@@ -355,12 +355,12 @@ export default function App() {
 
       {/* Dynamic Pop-up Consultation modal dialog */}
       {isConsultationOpen && (
-        <div className="fixed inset-0 z-[100] bg-[#0F0F0F]/95 backdrop-blur-md flex items-center justify-center p-4">
-          <div className="max-w-xl w-full bg-[#1A1A1A] border-2 border-[#B8956A] overflow-hidden relative shadow-2xl">
+        <div className="fixed inset-0 z-[100] bg-[#F2EDE4]/95 backdrop-blur-md flex items-center justify-center p-4">
+          <div className="max-w-xl w-full bg-white border-2 border-[#B8956A] overflow-hidden relative shadow-2xl">
             {/* Close cross trigger */}
             <button
               onClick={() => setIsConsultationOpen(false)}
-              className="absolute top-4 right-4 text-[#8B8478] hover:text-[#B8956A] p-2 border border-[#B8956A]/10 bg-[#0F0F0F] rounded-full hover:bg-white/5 transition-all text-xs"
+              className="absolute top-4 right-4 text-[#3D3A34] hover:text-[#B8956A] p-2 border border-[#B8956A]/20 bg-white rounded-full hover:bg-black/5 transition-all text-xs"
               aria-label="Close dialog"
             >
               <X size={14} />
@@ -370,19 +370,19 @@ export default function App() {
               {isModalSubmitted ? (
                 /* Success screen in dialog */
                 <div className="text-center py-10 space-y-6 animate-fadeIn">
-                  <div className="w-16 h-16 bg-[#B8956A]/20 border border-[#B8956A] text-[#B8956A] rounded-full flex items-center justify-center mx-auto">
+                  <div className="w-16 h-16 bg-[#B8956A]/10 border border-[#B8956A] text-[#B8956A] rounded-full flex items-center justify-center mx-auto">
                     <CheckCircle size={32} />
                   </div>
-                  <h3 className="font-serif text-3xl font-light text-[#F5F1EA]">
+                  <h3 className="font-serif text-3xl font-light text-[#121212]">
                     Запись подтверждена
                   </h3>
                   <div className="h-[1px] w-12 bg-[#B8956A]/40 mx-auto" />
-                  <p className="text-xs text-[#8B8478] leading-relaxed max-w-sm mx-auto">
-                    Спасибо! Юрий Постриганев или ведущий де-люкс архитектор перезвонит вам в течение <strong className="text-[#F5F1EA]">15 минут</strong> для предметного подтверждения пропуска в башню «Империя».
+                  <p className="text-xs text-[#3D3A34] leading-relaxed max-w-sm mx-auto">
+                    Спасибо! Юрий Постриганев или ведущий де-люкс архитектор перезвонит вам в течение <strong className="text-[#121212]">15 минут</strong> для предметного подтверждения пропуска в башню «Империя».
                   </p>
                   <button
                     onClick={() => setIsConsultationOpen(false)}
-                    className="w-full py-4 bg-[#B8956A] text-[#0F0F0F] font-sans text-xs uppercase tracking-widest font-bold hover:bg-[#8B6F4E] transition-colors"
+                    className="w-full py-4 bg-[#B8956A] text-white font-sans text-xs uppercase tracking-widest font-bold hover:bg-[#8B6F4E] transition-colors"
                   >
                     Вернуться на лендинг
                   </button>
@@ -394,35 +394,35 @@ export default function App() {
                     <span className="text-[10px] uppercase font-mono tracking-widest text-[#B8956A] block">
                       Один партнёр — Один результат
                     </span>
-                    <h3 className="font-serif text-2xl text-[#F5F1EA] font-light">
+                    <h3 className="font-serif text-2xl text-[#121212] font-light">
                       {modalTitle}
                     </h3>
-                    <p className="text-xs text-[#8B8478] font-sans leading-normal">
+                    <p className="text-xs text-[#3D3A34] font-sans leading-normal">
                       {modalDesc}
                     </p>
                   </div>
 
                   {calcMessage && (
-                    <div className="bg-[#B8956A]/10 border-l border-[#B8956A] p-3 text-[11px] text-[#EDE6D8] font-mono leading-relaxed max-h-24 overflow-y-auto">
+                    <div className="bg-[#B8956A]/5 border-l border-[#B8956A] p-3 text-[11px] text-[#2E2B2A] font-mono leading-relaxed max-h-24 overflow-y-auto">
                       {calcMessage}
                     </div>
                   )}
 
                   <div className="space-y-4">
                     <div className="space-y-1">
-                      <label className="text-[9px] uppercase tracking-wider text-[#8B8478] block">Имя представителя *</label>
+                      <label className="text-[9px] uppercase tracking-wider text-[#3D3A34] block font-bold">Имя представителя *</label>
                       <input
                         type="text"
                         required
                         value={mName}
                         onChange={(e) => setMName(e.target.value)}
                         placeholder="Александр Владимирович"
-                        className="w-full bg-[#0F0F0F] border border-[#B8956A]/20 focus:border-[#B8956A] focus:outline-none p-3 text-xs text-[#F5F1EA] font-sans"
+                        className="w-full bg-white border border-[#B8956A]/20 focus:border-[#B8956A] focus:outline-none p-3 text-xs text-[#121212] font-sans"
                       />
                     </div>
 
                     <div className="space-y-1">
-                      <label className="text-[9px] uppercase tracking-wider text-[#8B8478] block">
+                      <label className="text-[9px] uppercase tracking-wider text-[#3D3A34] block font-bold">
                         Контактный телефон *
                         {mPhone && !isValidPhoneNumber(mPhone) && (
                           <span className="text-[#B8956A] text-[8px] normal-case ml-2 font-medium animate-pulse">Неполный номер</span>
@@ -434,13 +434,13 @@ export default function App() {
                         value={mPhone}
                         onChange={(e) => setMPhone(formatPhoneNumber(e.target.value))}
                         placeholder="+7 (925) 000-00-00"
-                        className="w-full bg-[#0F0F0F] border border-[#B8956A]/20 focus:border-[#B8956A] focus:outline-none p-3 text-xs text-[#F5F1EA] font-sans"
+                        className="w-full bg-white border border-[#B8956A]/20 focus:border-[#B8956A] focus:outline-none p-3 text-xs text-[#121212] font-sans"
                       />
                     </div>
 
                     {/* Preferred contact channel */}
                     <div className="space-y-1.5 pt-1">
-                      <label className="text-[9px] uppercase tracking-wider text-[#8B8478] block font-bold">{modalChannelLabel}</label>
+                      <label className="text-[9px] uppercase tracking-wider text-[#3D3A34] block font-bold">{modalChannelLabel}</label>
                       <div className="grid grid-cols-3 gap-2">
                         {[
                           { id: 'telegram', label: 'Telegram' },
@@ -453,8 +453,8 @@ export default function App() {
                             onClick={() => setMChannel(ch.id as any)}
                             className={`py-2 text-[10px] font-sans font-bold text-center tracking-wider uppercase transition-all border cursor-pointer ${
                               mChannel === ch.id
-                                ? 'bg-[#B8956A] text-[#0F0F0F] border-[#B8956A]'
-                                : 'bg-[#0F0F0F] text-[#C4BEB3] border-[#B8956A]/20 hover:border-[#B8956A]/50'
+                                ? 'bg-[#B8956A] text-white border-[#B8956A]'
+                                : 'bg-white text-[#3D3A34] border-[#B8956A]/20 hover:border-[#B8956A]/50'
                             }`}
                           >
                             {ch.label}
@@ -474,7 +474,7 @@ export default function App() {
                       onChange={(e) => setModalConsent(e.target.checked)}
                       className="mt-0.5 w-3.5 h-3.5 accent-[#B8956A] cursor-pointer shrink-0"
                     />
-                    <span className="text-[10px] text-[#8B8478] leading-normal select-none">
+                    <span className="text-[10px] text-[#3D3A34] leading-normal select-none">
                       Я даю согласие на обработку моих персональных данных в соответствии с{' '}
                       <a href="/privacy" target="_blank" className="text-[#B8956A] hover:underline">
                         Политикой конфиденциальности
@@ -486,14 +486,14 @@ export default function App() {
                     </span>
                   </label>
 
-                  <div className="text-[9px] text-[#8B8478] leading-normal">
+                  <div className="text-[9px] text-[#3D3A34] leading-normal">
                     Ваш визит координируется в строго конфиденциальном режиме. Все данные инвесторов зашифрованы по стандартам холдинга Mechty.
                   </div>
 
                   <button
                     type="submit"
                     disabled={isModalSubmitting || !mName || !isValidPhoneNumber(mPhone) || !modalConsent}
-                    className="w-full py-4 bg-[#B8956A] hover:bg-[#8B6F4E] disabled:bg-[#8B8478]/15 disabled:text-[#8B8478] text-[#0F0F0F] uppercase tracking-widest font-sans font-bold text-xs transition-colors duration-300 transform active:scale-98 flex items-center justify-center gap-2 block shadow-lg cursor-pointer"
+                    className="w-full py-4 bg-[#B8956A] hover:bg-[#8B6F4E] disabled:bg-[#E4DDD2] disabled:text-[#3D3A34]/40 text-white uppercase tracking-widest font-sans font-bold text-xs transition-colors duration-300 transform active:scale-98 flex items-center justify-center gap-2 block shadow-lg cursor-pointer"
                   >
                     {isModalSubmitting ? (
                       <span>Шифрование данных...</span>

@@ -43,23 +43,9 @@ export default function PortfolioGrid({ onOpenConsultation }: PortfolioGridProps
   }, []);
 
   return (
-    <section id="portfolio" className="bg-[#0F0F0F] text-[#F5F1EA] py-32 md:py-44 border-b border-[#B8956A]/20 relative overflow-hidden">
+    <section id="portfolio" className="bg-[#F2EDE4] text-[#121212] pb-32 md:pb-44 pt-6 md:pt-8 border-b border-[#B8956A]/20 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         
-        {/* Section Header */}
-        <div className="text-center space-y-4 mb-20 md:mb-28">
-          <span className="uppercase text-[10px] tracking-[0.4em] text-[#B8956A] block font-semibold">
-            Реализованные проекты
-          </span>
-          <h2 className="font-serif text-[64px] md:text-[88px] font-light leading-none text-[#F5F1EA]">
-            Портфолио
-          </h2>
-          <div className="h-[1px] w-24 bg-[#B8956A]/40 mx-auto" />
-          <p className="text-[15px] text-[#8B8478] leading-relaxed font-light max-w-2xl mx-auto">
-            От квартир в премиум-ЖК до загородных резиденций. Каждый проект — полный цикл от планировки до расстановки декора.
-          </p>
-        </div>
-
         {/* Сетка карточек с асимметрией */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {portfolioCases.filter(cs => !cs.hidden).map((cs) => {
@@ -105,14 +91,14 @@ export default function PortfolioGrid({ onOpenConsultation }: PortfolioGridProps
                 {/* Текст под фото */}
                 <div className="pt-5 space-y-2">
                   <div className="flex items-baseline justify-between gap-4">
-                    <h3 className="font-serif text-2xl md:text-[28px] font-light text-[#F5F1EA] leading-tight transition-colors duration-300 group-hover:text-[#B8956A]">
+                    <h3 className="font-serif text-2xl md:text-[28px] font-light text-[#121212] leading-tight transition-colors duration-300 group-hover:text-[#B8956A]">
                       {cs.title}
                     </h3>
                     <span className="text-xs font-mono text-[#B8956A] whitespace-nowrap">
                       {cs.area}
                     </span>
                   </div>
-                  <p className="text-[11px] uppercase tracking-[0.2em] text-[#8B8478] font-sans">
+                  <p className="text-[11px] uppercase tracking-[0.2em] text-[#3D3A34] font-semibold font-sans">
                     {cs.location}
                   </p>
                   {/* Тонкая линия как hover-индикатор */}
@@ -126,12 +112,12 @@ export default function PortfolioGrid({ onOpenConsultation }: PortfolioGridProps
         {/* Кнопка под сеткой */}
         <div className="text-center mt-20 md:mt-28 space-y-6">
           <div className="h-[1px] w-32 bg-[#B8956A]/40 mx-auto" />
-          <h4 className="text-xs md:text-sm uppercase tracking-[0.3em] text-[#8B8478] font-sans">
+          <h4 className="text-xs md:text-sm uppercase tracking-[0.3em] text-[#3D3A34] font-bold font-sans">
             Это 5 из 1500+ реализованных проектов
           </h4>
           <button
             onClick={() => onOpenConsultation('Запрос на полное портфолио объектов Mechty Group')}
-            className="border border-[#B8956A] text-[#B8956A] px-10 py-4 text-xs uppercase tracking-[0.25em] hover:bg-[#B8956A] hover:text-[#0F0F0F] transition-all duration-300 font-semibold"
+            className="border border-[#B8956A] text-[#B8956A] px-10 py-4 text-xs uppercase tracking-[0.25em] hover:bg-[#B8956A] hover:text-white transition-all duration-300 font-semibold"
           >
             Запросить полное портфолио
           </button>
@@ -141,26 +127,26 @@ export default function PortfolioGrid({ onOpenConsultation }: PortfolioGridProps
 
       {/* Модальное окно по клику на карточку */}
       {selectedCaseId && activeCaseInfo && (
-        <div className="fixed inset-0 z-50 bg-[#0F0F0F]/95 backdrop-blur-lg flex items-center justify-center p-4 md:p-8 overflow-y-auto">
+        <div className="fixed inset-0 z-50 bg-[#121212]/60 backdrop-blur-md flex items-center justify-center p-4 md:p-8 overflow-y-auto">
           {/* Клик по фону закрывает */}
           <div className="absolute inset-0 cursor-default" onClick={() => setSelectedCaseId(null)} />
           
-          <div className="relative w-full max-w-6xl bg-[#0F0F0F] border border-[#B8956A]/30 p-6 md:p-10 z-10 shadow-2xl max-h-[95vh] lg:max-h-[90vh] overflow-y-auto lg:overflow-visible">
+          <div className="relative w-full max-w-6xl bg-[#F2EDE4] text-[#121212] border-2 border-[#B8956A]/40 p-6 md:p-10 z-10 shadow-2xl max-h-[95vh] lg:max-h-[90vh] overflow-y-auto">
             
             {/* Кнопка закрыть */}
             <button
               onClick={() => setSelectedCaseId(null)}
-              className="absolute top-4 right-4 flex items-center gap-1.5 text-xs text-[#8B8478] hover:text-[#B8956A] font-mono uppercase tracking-widest bg-transparent border-0 cursor-pointer z-30 transition-colors"
+              className="absolute top-4 right-4 flex items-center gap-1.5 text-base md:text-xs text-[#3D3A34] hover:text-[#B8956A] font-mono uppercase tracking-widest bg-transparent border-0 cursor-pointer z-30 transition-colors font-bold"
             >
               <X size={16} />
               <span>закрыть</span>
             </button>
 
             {/* Сетка модалки */}
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start mt-4">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start mt-6">
               
               {/* Левая колонка (~65% ширины) */}
-              <div className="lg:col-span-7 xl:col-span-8 space-y-4">
+              <div className="lg:col-span-7 xl:col-span-8 space-y-6">
                 {activeCaseInfo.videoFull && (
                   <div className="flex justify-start gap-1 sm:gap-2 mb-1">
                     <button
@@ -168,8 +154,8 @@ export default function PortfolioGrid({ onOpenConsultation }: PortfolioGridProps
                       onClick={() => setIsPlayVideo(false)}
                       className={`px-4 py-2 text-[10px] sm:text-xs uppercase tracking-widest font-sans font-bold border transition-colors duration-200 cursor-pointer ${
                         !isPlayVideo
-                          ? 'bg-[#B8956A] text-[#0F0F0F] border-[#B8956A]'
-                          : 'text-[#C4BEB3] hover:text-[#F5F1EA] border-[#B8956A]/20 bg-transparent'
+                          ? 'bg-[#B8956A] text-white border-[#B8956A]'
+                          : 'text-[#3D3A34] hover:text-[#121212] border-[#B8956A]/20 bg-white/40'
                       }`}
                     >
                       Фотогалерея
@@ -179,8 +165,8 @@ export default function PortfolioGrid({ onOpenConsultation }: PortfolioGridProps
                       onClick={() => setIsPlayVideo(true)}
                       className={`px-4 py-2 text-[10px] sm:text-xs uppercase tracking-widest font-sans font-bold border flex items-center gap-1.5 transition-colors duration-200 cursor-pointer ${
                         isPlayVideo
-                          ? 'bg-[#B8956A] text-[#0F0F0F] border-[#B8956A]'
-                          : 'text-[#C4BEB3] hover:text-[#F5F1EA] border-[#B8956A]/20 bg-transparent'
+                          ? 'bg-[#B8956A] text-white border-[#B8956A]'
+                          : 'text-[#3D3A34] hover:text-[#121212] border-[#B8956A]/20 bg-white/40'
                       }`}
                     >
                       <Play size={10} fill="currentColor" />
@@ -189,7 +175,7 @@ export default function PortfolioGrid({ onOpenConsultation }: PortfolioGridProps
                   </div>
                 )}
 
-                <div className="relative aspect-[16/10] overflow-hidden bg-[#161616] border border-[#B8956A]/10">
+                <div className="relative aspect-[16/10] overflow-hidden bg-[#E6DFD5] border border-[#B8956A]/20">
                   {isPlayVideo && activeCaseInfo.videoFull ? (
                     <iframe
                       src={activeCaseInfo.videoFull}
@@ -209,14 +195,14 @@ export default function PortfolioGrid({ onOpenConsultation }: PortfolioGridProps
                       {/* Стрелки переключения */}
                       <button
                         onClick={handlePrevImage}
-                        className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/40 hover:bg-[#B8956A]/80 text-[#FFF] hover:text-[#0F0F0F] flex items-center justify-center transition-all border border-[#B8956A]/20"
+                        className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/80 hover:bg-[#B8956A] text-[#121212] hover:text-white flex items-center justify-center transition-all border border-[#B8956A]/30 shadow-md"
                         aria-label="Previous image"
                       >
                         <ChevronLeft size={20} />
                       </button>
                       <button
                         onClick={handleNextImage}
-                        className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/40 hover:bg-[#B8956A]/80 text-[#FFF] hover:text-[#0F0F0F] flex items-center justify-center transition-all border border-[#B8956A]/20"
+                        className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/80 hover:bg-[#B8956A] text-[#121212] hover:text-white flex items-center justify-center transition-all border border-[#B8956A]/30 shadow-md"
                         aria-label="Next image"
                       >
                         <ChevronRight size={20} />
@@ -237,18 +223,18 @@ export default function PortfolioGrid({ onOpenConsultation }: PortfolioGridProps
                           setActiveImageIndex(index);
                           setIsPlayVideo(false);
                         }}
-                        className={`relative aspect-[16/10] overflow-hidden border bg-black transition-all duration-300 ${
-                          !isPlayVideo && isActive ? 'border-[#B8956A] scale-[0.98]' : 'border-[#B8956A]/10 hover:border-[#B8956A]/50'
+                        className={`relative aspect-[16/10] overflow-hidden border bg-white transition-all duration-300 ${
+                          !isPlayVideo && isActive ? 'border-[#B8956A] ring-2 ring-[#B8956A]/20 scale-[0.98]' : 'border-[#B8956A]/20 hover:border-[#B8956A]/50'
                         }`}
                       >
                         <img
                           src={imgSrc}
                           alt={`Thumbnail ${index + 1}`}
-                          className="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity"
+                          className="w-full h-full object-cover opacity-100 transition-opacity"
                         />
                         {isPlan && (
-                          <div className="absolute inset-0 bg-[#0F0F0F]/80 flex flex-col items-center justify-center">
-                            <span className="text-[10px] font-mono tracking-widest uppercase text-[#B8956A] font-bold">
+                          <div className="absolute inset-0 bg-[#F2EDE4]/90 flex flex-col items-center justify-center">
+                            <span className="text-[10px] font-mono tracking-widest uppercase text-[#B8956A] font-extrabold">
                               План
                             </span>
                           </div>
@@ -257,59 +243,21 @@ export default function PortfolioGrid({ onOpenConsultation }: PortfolioGridProps
                     );
                   })}
                 </div>
-              </div>
-              
-              {/* Правая колонка (~35% ширины) */}
-              <div className="lg:col-span-5 xl:col-span-4 flex flex-col justify-between h-full lg:min-h-[400px]">
-                <div className="space-y-6">
-                  <div>
-                    <span className="text-[10px] uppercase tracking-[0.3em] text-[#B8956A] block font-mono font-bold">
-                      {activeCaseInfo.style}
-                    </span>
-                    <h3 className="font-serif text-3xl md:text-4xl text-[#F5F1EA] font-light tracking-tight mt-1 leading-tight">
-                      {activeCaseInfo.title}
-                    </h3>
-                    <div className="h-[1px] w-20 bg-[#B8956A]/40 mt-3" />
-                  </div>
-                  
-                  <div className="grid grid-cols-2 gap-4 pt-2">
-                    <div>
-                      <span className="text-[10px] uppercase tracking-[0.2em] text-[#8B8478] block font-sans font-bold">
-                        Локация
-                      </span>
-                      <span className="text-sm text-[#F5F1EA] font-light mt-0.5 block">
-                        {activeCaseInfo.location}
-                      </span>
-                    </div>
-                    <div>
-                      <span className="text-[10px] uppercase tracking-[0.2em] text-[#8B8478] block font-sans font-bold">
-                        Площадь
-                      </span>
-                      <span className="text-sm font-mono text-[#F5F1EA] font-light mt-0.5 block">
-                        {activeCaseInfo.area}
-                      </span>
-                    </div>
-                  </div>
-                  
-                  <p className="text-[#C4BEB3] text-sm leading-relaxed font-light font-sans pt-3 border-t border-[#B8956A]/10 whitespace-pre-line">
-                    {activeCaseInfo.description}
-                  </p>
-                </div>
-                
-                {/* CTA кнопки */}
-                <div className="pt-8 lg:pt-12 space-y-3">
+
+                {/* CTA кнопки под миниатюрами в левой колонке */}
+                <div className={`grid grid-cols-1 ${activeCaseInfo.videoFull ? 'sm:grid-cols-3' : 'sm:grid-cols-2'} gap-3 pt-4 border-t border-[#B8956A]/20`}>
                   {activeCaseInfo.videoFull && (
                     <button
                       type="button"
-                      onClick={() => setIsPlayVideo(true)}
-                      className={`w-full py-4 border-2 transition-all duration-300 flex items-center justify-center gap-2 font-sans font-extrabold text-xs uppercase tracking-[0.25em] ${
+                      onClick={() => setIsPlayVideo(!isPlayVideo)}
+                      className={`w-full py-3.5 border-2 transition-all duration-300 flex items-center justify-center gap-2 font-sans font-extrabold text-base md:text-xs uppercase tracking-[0.2em] ${
                         isPlayVideo 
-                          ? 'bg-[#B8956A] text-[#0F0F0F] border-[#B8956A]' 
+                          ? 'bg-[#B8956A] text-white border-[#B8956A]' 
                           : 'border-[#B8956A]/60 text-[#B8956A] hover:bg-[#B8956A]/10 bg-transparent cursor-pointer'
                       }`}
                     >
                       <Play size={12} fill="currentColor" />
-                      <span>{isPlayVideo ? 'Видеообзор запущен' : 'Смотреть видеообзор ЖК'}</span>
+                      <span>{isPlayVideo ? 'Смотреть фото' : 'Смотреть видео'}</span>
                     </button>
                   )}
 
@@ -318,7 +266,7 @@ export default function PortfolioGrid({ onOpenConsultation }: PortfolioGridProps
                       setSelectedCaseId(null);
                       onOpenConsultation(`Запрос на скачивание презентации проекта — ${activeCaseInfo.title}, ${activeCaseInfo.area}`);
                     }}
-                    className="w-full py-4 bg-[#B8956A] text-[#0F0F0F] hover:bg-[#A38157] text-xs uppercase tracking-[0.25em] font-sans font-extrabold transition-all duration-300 flex items-center justify-center gap-2 animate-fadeIn"
+                    className="w-full py-3.5 bg-[#B8956A] text-white hover:bg-[#A38157] text-base md:text-xs uppercase tracking-[0.2em] font-sans font-extrabold transition-all duration-300 flex items-center justify-center gap-2"
                   >
                     <span>Скачать презентацию</span>
                     <ArrowUpRight size={14} />
@@ -329,11 +277,49 @@ export default function PortfolioGrid({ onOpenConsultation }: PortfolioGridProps
                       setSelectedCaseId(null);
                       onOpenConsultation(`Интересует похожий проект — ${activeCaseInfo.title}, ${activeCaseInfo.area}`);
                     }}
-                    className="w-full py-4 border border-[#B8956A]/40 text-[#B8956A] hover:bg-[#B8956A]/10 text-xs uppercase tracking-[0.25em] font-sans font-bold transition-all duration-300 flex items-center justify-center gap-2"
+                    className="w-full py-3.5 border border-[#B8956A]/40 text-[#B8956A] hover:bg-[#B8956A]/10 text-base md:text-xs uppercase tracking-[0.2em] font-sans font-extrabold transition-all duration-300 flex items-center justify-center gap-2"
                   >
-                    <span>Запросить похожий проект</span>
+                    <span>Похожий проект</span>
                     <ArrowUpRight size={14} />
                   </button>
+                </div>
+              </div>
+              
+              {/* Правая колонка (~35% ширины) */}
+              <div className="lg:col-span-5 xl:col-span-4 flex flex-col space-y-6">
+                <div className="space-y-6">
+                  <div>
+                    <span className="text-[10px] uppercase tracking-[0.3em] text-[#B8956A] block font-mono font-bold">
+                      {activeCaseInfo.style}
+                    </span>
+                    <h3 className="font-serif text-3xl md:text-4xl text-[#121212] font-light tracking-tight mt-1 leading-tight">
+                      {activeCaseInfo.title}
+                    </h3>
+                    <div className="h-[1px] w-20 bg-[#B8956A]/40 mt-3" />
+                  </div>
+                  
+                  <div className="grid grid-cols-2 gap-4 pt-2">
+                    <div>
+                      <span className="text-xs lg:text-[10px] uppercase tracking-[0.2em] text-[#3D3A34] block font-sans font-bold">
+                        Локация
+                      </span>
+                      <span className="text-base lg:text-sm text-[#121212] font-semibold mt-0.5 block">
+                        {activeCaseInfo.location}
+                      </span>
+                    </div>
+                    <div>
+                      <span className="text-xs lg:text-[10px] uppercase tracking-[0.2em] text-[#3D3A34] block font-sans font-bold">
+                        Площадь
+                      </span>
+                      <span className="text-base lg:text-sm font-mono text-[#121212] font-bold mt-0.5 block">
+                        {activeCaseInfo.area}
+                      </span>
+                    </div>
+                  </div>
+                  
+                  <p className="text-[#3D3A34] text-base lg:text-sm leading-relaxed font-semibold font-sans pt-3 border-t border-[#B8956A]/20 whitespace-pre-line">
+                    {activeCaseInfo.description}
+                  </p>
                 </div>
               </div>
 
@@ -343,7 +329,7 @@ export default function PortfolioGrid({ onOpenConsultation }: PortfolioGridProps
         </div>
       )}
 
-      <div className="absolute bottom-6 right-6 text-[#F5F1EA] opacity-20 text-[10px] sm:text-xs tracking-[0.25em] font-sans font-extrabold uppercase select-none pointer-events-none">
+      <div className="absolute bottom-6 right-6 text-[#121212] opacity-10 text-[10px] sm:text-xs tracking-[0.25em] font-sans font-extrabold uppercase select-none pointer-events-none">
         НАЧИНАЕТСЯ С…
       </div>
 

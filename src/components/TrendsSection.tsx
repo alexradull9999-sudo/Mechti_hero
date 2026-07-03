@@ -129,7 +129,7 @@ export default function TrendsSection() {
                   <img
                     src={video.image}
                     alt={video.title}
-                    className="w-full h-full object-cover opacity-85 group-hover:scale-103 group-hover:opacity-95 transition-all duration-[0.8s] ease-out select-none"
+                    className="w-full h-full object-cover opacity-100 group-hover:scale-103 transition-all duration-[0.8s] ease-out select-none"
                     referrerPolicy="no-referrer"
                     loading="lazy"
                   />
