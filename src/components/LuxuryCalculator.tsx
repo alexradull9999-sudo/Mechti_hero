@@ -540,7 +540,7 @@ function AnimatedPrice({ value }: { value: number }) {
 
 export default function LuxuryCalculator({ onOpenConsultation }: LuxuryCalculatorProps) {
   const [propertyType, setPropertyType] = useState<'apartment' | 'house'>('apartment');
-  const [area, setArea] = useState<number>(150);
+  const [area, setArea] = useState<number>(20);
   const [format, setFormat] = useState<FormatService>('poChastyam');
   const [showFullMobileConfig, setShowFullMobileConfig] = useState<boolean>(false);
   const [emailModalOpen, setEmailModalOpen] = useState<boolean>(false);
@@ -862,7 +862,7 @@ export default function LuxuryCalculator({ onOpenConsultation }: LuxuryCalculato
               <div className="relative pt-4 pb-2">
                 <input
                   type="range"
-                  min={propertyType === 'house' ? '100' : '50'}
+                  min={propertyType === 'house' ? '100' : '20'}
                   max={propertyType === 'house' ? '1200' : '500'}
                   step="5"
                   value={area}
@@ -872,7 +872,7 @@ export default function LuxuryCalculator({ onOpenConsultation }: LuxuryCalculato
                   }}
                   className="w-full h-[4px] bg-[#B8956A]/20 rounded-lg appearance-none cursor-pointer accent-[#B8956A]"
                   style={{
-                    background: `linear-gradient(to right, #B8956A 0%, #B8956A ${((area - (propertyType === 'house' ? 100 : 50)) / (propertyType === 'house' ? 1100 : 450)) * 100}%, rgba(184, 149, 106, 0.2) ${((area - (propertyType === 'house' ? 100 : 50)) / (propertyType === 'house' ? 1100 : 450)) * 100}%, rgba(184, 149, 106, 0.2) 100%)`
+                    background: `linear-gradient(to right, #B8956A 0%, #B8956A ${((area - (propertyType === 'house' ? 100 : 20)) / (propertyType === 'house' ? 1100 : 480)) * 100}%, rgba(184, 149, 106, 0.2) ${((area - (propertyType === 'house' ? 100 : 20)) / (propertyType === 'house' ? 1100 : 480)) * 100}%, rgba(184, 149, 106, 0.2) 100%)`
                   }}
                 />
                 <div className="flex justify-between text-xs sm:text-sm font-mono text-[#121212] font-bold mt-4 shrink-0">
@@ -886,7 +886,7 @@ export default function LuxuryCalculator({ onOpenConsultation }: LuxuryCalculato
                     </>
                   ) : (
                     <>
-                      <span>50 м²</span>
+                      <span>20 м²</span>
                       <span>150 м²</span>
                       <span>250 м²</span>
                       <span>350 м²</span>
@@ -895,7 +895,7 @@ export default function LuxuryCalculator({ onOpenConsultation }: LuxuryCalculato
                   )}
                 </div>
                 <p className="text-xs sm:text-sm italic text-[#3D3A34] font-semibold mt-3">
-                  Для объектов площадью менее {propertyType === 'house' ? '100' : '50'} м² расчёт стоимости производится индивидуально.
+                  Для объектов площадью менее {propertyType === 'house' ? '100' : '20'} м² расчёт стоимости производится индивидуально.
                 </p>
               </div>
             </div>
